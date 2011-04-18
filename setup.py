@@ -6,7 +6,7 @@ version = open(os.path.join("sc", "social", "like", "version.txt")).read().strip
 
 setup(name='sc.social.like',
       version=version,
-      description="",
+      description="sc.social.like is a Plone package providing a simple Twitter and Facebook integration for Plone Content Types",
       long_description=open(os.path.join("sc", "social", "like", "README.txt")).read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
