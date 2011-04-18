@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5 - Unreleased
+0.5 (Unreleased)
 ------------------
 
 * Support for Twitter and Facebook [cleberjsantos]
