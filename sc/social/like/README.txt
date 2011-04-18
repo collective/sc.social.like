@@ -12,9 +12,15 @@ Facebook integration to Plone Content Types.
 
 Requirements
 ------------
-    
-    - Plone 3.2.x (http://plone.org/products/plone)
-    
+
+    - Plone 4.0.x (http://plone.org/products/plone)    
+    - Plone 3.3.x (http://plone.org/products/plone)
+
+Screenshot
+-----------
+
+    .. image:: http://www.simplesconsultoria.com.br/tecnologia/plone/produtos/sc.social.like/sc.social.like-0.5-screenshot.png/image_preview
+
 Installation
 ------------
     
@@ -27,11 +33,6 @@ To enable this product,on a buildout based installation:
         ...
         eggs = 
             sc.social.like
-
-
-If another package depends on the sc.social.like egg or 
-includes its zcml directly you do not need to specify anything in the 
-buildout configuration: buildout will detect this automatically.
 
 After updating the configuration you need to run the ''bin/buildout'',
 which will take care of updating your system.
@@ -46,6 +47,12 @@ if you installed it from the quick installer.
 
 Note: You may have to empty your browser cache and save your resource registries
 in order to see the effects of the product installation.
+
+Contributing
+--------------
+
+    Code repository and isssue tracker can be found at 
+    `BitBucket <https://bitbucket.org/simplesconsultoria/sc.social.like>`_
 
 Sponsoring
 ----------
