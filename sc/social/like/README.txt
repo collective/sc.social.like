@@ -7,13 +7,16 @@ sc.social.like
 Overview
 --------
 
-    **sc.social.like** is a Plone package providing a simple Twitter and 
-Facebook integration to Plone Content Types.
+**sc.social.like** is a Plone package providing a simple Twitter and Facebook 
+integration for Plone Content Types.
+
+This package installs a viewlet with actions to Tweet and Like (or Recommend) a 
+content.
 
 Requirements
 ------------
 
-    - Plone 4.0.x (http://plone.org/products/plone)    
+    - Plone 4.0.x (http://plone.org/products/plone)
     - Plone 3.3.x (http://plone.org/products/plone)
 
 Screenshot
@@ -58,7 +61,7 @@ Sponsoring
 ----------
 
     * Development of this product was sponsored by `Rede Brasil Atual 
-<http://www.redebrasilatual.com.br/>`_.
+      <http://www.redebrasilatual.com.br/>`_.
     
 
 Credits
