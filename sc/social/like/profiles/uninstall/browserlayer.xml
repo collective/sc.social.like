@@ -1,0 +1,7 @@
+<layers>
+ <layer
+     name="SocialLike"
+     interface="sc.social.like.interfaces.ISocialLikeLayer"
+     remove="True"
+     />
+</layers>

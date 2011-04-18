@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="sc.social.like.install"
+               version="20110414-01"
+               handler="sc.social.like.setuphandlers.install"
+               title="sc.social.like: miscellaneous import steps for install package">
+    Various import steps that are not handled by GS import/export
+    handlers.
+  </import-step>
+</import-steps>

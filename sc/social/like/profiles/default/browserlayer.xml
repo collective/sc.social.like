@@ -1,0 +1,6 @@
+<layers>
+ <layer
+     name="SocialLike"
+     interface="sc.social.like.interfaces.ISocialLikeLayer"
+     />
+</layers>

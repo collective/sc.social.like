@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sc.sociallike\n"
+"POT-Creation-Date: 2011-04-18 20:06+0000\n"
+"PO-Revision-Date: 2011-04-15 13:01-0300\n"
+"Last-Translator: Cleber J Santos <cleber@simplesconsultoria.com.br>\n"
+"Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pt-br\n"
+"Language-Name: Brazilian Portuguese\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.social.like\n"
+
+#: ../controlpanel/likes.py:69
+msgid "Admins"
+msgstr "Administradores"
+
+#: ../controlpanel/likes.py:41
+msgid "Button style"
+msgstr "Estilo dos botões"
+
+#: ../controlpanel/likes.py:99
+msgid "Configure settings for social like actions."
+msgstr "Configurações para as ações sociais"
+
+#: ../controlpanel/likes.py:32
+msgid "Content types"
+msgstr "Tipos de conteúdo"
+
+#: ../profiles/default/actionicons.xml
+#: ../profiles/default/controlpanel.xml
+msgid "Social Like"
+msgstr "Social Like"
+
+#: ../controlpanel/likes.py:100
+msgid "Social: Like Actions"
+msgstr "Social: Ações de Curtir"
+
+#: ../controlpanel/likes.py:98
+msgid "Social: Like Actions settings"
+msgstr "Social: Configurações das Ações de Curtir"
+
+#: ../controlpanel/likes.py:51
+msgid "Twitter nick"
+msgstr "Usuário do Twitter"
+
+#: ../controlpanel/likes.py:59
+msgid "Verb to display"
+msgstr "Verbo a ser exibido"
+
+#. Default: "A comma-separated list of either the Facebook IDs of page administrators or a Facebook Platform application ID."
+#: ../controlpanel/likes.py:70
+msgid "help_admins"
+msgstr "Uma lista, separada por vírgulas, dos IDs dos administradores desta página ou o ID de uma aplicação da plataforma Facebook."
+
+#. Default: "Please select content types in which the viewlet will be applied."
+#: ../controlpanel/likes.py:33
+msgid "help_portal_types"
+msgstr "Indique quais tipos de conteúdo terão o viewlet de ações sociais."
+
+#. Default: "Choose your button style."
+#: ../controlpanel/likes.py:42
+msgid "help_selected_buttons"
+msgstr "Qual o estilo dos botões."
+
+#. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
+#: ../controlpanel/likes.py:60
+msgid "help_verb_display"
+msgstr "Verbo a ser exibido no botão do Facebook. Atualmente apenas 'curtir' e 'recomendar' estão habilitados"
+
+#. Default: "Enter your twitter nick. eg. simplesconsultoria"
+#: ../controlpanel/likes.py:52
+msgid "help_your_twitter_nick"
+msgstr "Informe seu usuário do Twitter. Ex: simplesconsultoria"
+
+#: ../controlpanel/likes.py:46
+msgid "horizontal"
+msgstr "horizontal"
+
+#: ../controlpanel/likes.py:65
+msgid "like"
+msgstr "curtir"
+
+#: ../controlpanel/likes.py:65
+msgid "recommend"
+msgstr "recomendar"
+
+#: ../controlpanel/likes.py:47
+msgid "vertical"
+msgstr "vertical"
+

@@ -1,0 +1,48 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sc.social.like">
+
+    <browser:page
+        for="*"
+        name="social_likes_view"
+        class=".socialikes.SocialLikes"
+        allowed_attributes="enabled"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+
+    <browser:viewlet
+        name="sc.social.likes"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".viewlets.SocialLikesViewlet"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+
+    <browser:viewlet
+        name="sc.social.likes_metadata"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        layer="..interfaces.ISocialLikeLayer"
+        class=".viewlets.SocialMetadataViewlet"
+        permission="zope.Public"
+        />
+
+    <browser:resourceDirectory
+        name="sl_images"
+        directory="images"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+
+    <browser:resourceDirectory
+        name="sl_stylesheets"
+        directory="stylesheets"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+    
+</configure>

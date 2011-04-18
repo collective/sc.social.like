@@ -1,0 +1,9 @@
+Changelog
+=========
+
+0.5 - Unreleased
+------------------
+
+* Support for Twitter and Facebook [cleberjsantos]
+
+* Initial release [cleberjsantos]

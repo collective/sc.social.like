@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object>
+    <order manager="plone.belowcontenttitle" skinname="*">
+      <viewlet name="sc.social.likes" insert-before="plone.belowcontenttitle.documentbyline" remove="True" />
+    </order>
+</object>

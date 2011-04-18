@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <adapter factory=".likes.ProvidersControlPanelAdapter" />
+
+  <browser:page
+    name="likes-providers"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".likes.ProvidersControlPanel"
+    permission="cmf.ManagePortal"
+    />
+
+</configure>

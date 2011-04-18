@@ -1,0 +1,8 @@
+Accessing as portal owner
+-------------------------
+
+  >>> from Products.Five.testbrowser import Browser
+  >>> from Testing.ZopeTestCase import user_password
+  >>> browser = Browser()
+  >>> browser.addHeader('Authorization',
+  ...                   'Basic %s:%s' % ('portal_owner', user_password))
