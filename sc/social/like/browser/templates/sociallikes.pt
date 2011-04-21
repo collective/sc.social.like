@@ -1,4 +1,4 @@
-<div id="viewlet-social-like" i18n:domain="sc.social.like" tal:condition="view/enabled">
+<div id="viewlet-social-like" style="display:none" i18n:domain="sc.social.like" tal:condition="view/enabled">
     <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
     <a href="http://twitter.com/share" class="twitter-share-button" tal:attributes="data-count view/typebutton;
                                                                                     data-via view/twittvia;
@@ -12,3 +12,12 @@
     </tal:block>
 
 </div>
+
+<script language="JavaScript"> 
+    jQuery(function () {
+        jQuery("div#viewlet-social-like").each(function(){
+            jQuery(this).fadeIn(3000);
+            jQuery(this).removeAttr("style");
+        });
+    });
+</script>
