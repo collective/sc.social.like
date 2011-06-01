@@ -11,6 +11,10 @@
         <fb:like tal:attributes="href here/absolute_url; layout python:button[str(vbutton)]; action view/fbaction"></fb:like>
     </tal:block>
 
+    <tal:block tal:define="button python:{'vertical':'tall','horizontal':'medium'}; vbutton view/typebutton">
+     <g:plusone tal:attributes="size python:button[str(vbutton)]"></g:plusone>
+    </tal:block>
+
 </div>
 
 <script language="JavaScript"> 
