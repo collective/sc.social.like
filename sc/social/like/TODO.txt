@@ -1,1 +1,2 @@
-# Language support in Google PlusOne
+# Language support for Google PlusOne and Facebook
+# Choose between the buttons, which will be shown and what order
