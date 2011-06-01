@@ -1,8 +1,16 @@
 Changelog
 =========
 
-0.5 (Unreleased)
-------------------
+0.6 (2011-06-01)
+----------------
+
+* Support for plusone google button [cleberjsantos]
+
+* jQuery Loading the buttons [cleberjsantos]
+
+
+0.5 (2011-04-18)
+----------------
 
 * Support for Twitter and Facebook [cleberjsantos]
 
