@@ -1,2 +1,4 @@
 #viewlet-social-like {margin-top: 5px;}
-#viewlet-social-like .twitter-count-horizontal {height: 22px !important;}
+#viewlet-social-like .twitter-count-horizontal {height: 20px !important;}
+#viewlet-social-like .fb_edge_widget_with_comment {position: absolute; margin-top: 0px;}
+.twitter-share-button {margin-top: 0.8px;}
