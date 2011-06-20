@@ -1,12 +1,7 @@
-from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
+from zope.component import getMultiAdapter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
-from zope.publisher.interfaces import IPublishTraverse
 from plone.app.layout.viewlets import ViewletBase
-from plone.memoize.view import memoize
-from string import Template
-import sre
-
 
 class SocialMetadataViewlet(ViewletBase):
     """
