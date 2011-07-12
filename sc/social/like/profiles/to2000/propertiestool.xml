@@ -1,0 +1,17 @@
+<object name="portal_properties">
+  <object name="sc_social_likes_properties" meta_type="Plone Property Sheet">
+      <property name="enabled_portal_types" type="lines" purge="False">
+          <element value="Event"/>
+          <element value="Document"/>
+          <element value="News Item"/>
+          <element value="File" />
+      </property>
+      <property name="typebutton" type="string" purge="False">horizontal</property>
+      <property name="twitter_enabled" type="boolean">True</property>
+      <property name="twittvia" type="string" purge="False"></property>
+      <property name="fb_enabled" type="boolean">True</property>      
+      <property name="fbaction" type="string" purge="False"></property>
+      <property name="fbadmins" type="string" purge="False"></property>
+      <property name="gp_enabled" type="boolean">True</property>      
+  </object>
+</object>
