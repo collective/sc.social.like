@@ -6,7 +6,7 @@ version = open(os.path.join("sc", "social", "like", "version.txt")).read().strip
 
 setup(name='sc.social.like',
       version=version,
-      description="sc.social.like is a Plone package providing a simple Twitter and Facebook integration for Plone Content Types",
+      description="sc.social.like is a Plone package providing simple Google+, Twitter and Facebook integration for Plone Content Types",
       long_description=open(os.path.join("sc", "social", "like", "README.txt")).read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -17,7 +17,7 @@ setup(name='sc.social.like',
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='Python Plone Zope Web Dev',
+      keywords='python plone zope webdev social googleplus facebook twitter',
       author='Simples Consultoria',
       author_email='products@simplesconsultoria.com.br',
       url='http://www.simplesconsultoria.com.br/',
