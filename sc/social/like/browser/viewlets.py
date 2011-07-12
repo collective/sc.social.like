@@ -3,6 +3,32 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone.app.layout.viewlets import ViewletBase
 
+from sc.social.like.config import FB_LOCALES
+
+def fix_iso(code):
+    #TODO: We should be dealing also with *simple*
+    #      language codes like pt or en or es
+    if code.find('-')>-1:
+        # we have a iso code like
+        # pt-br and FB_LOCALES uses
+        # pt_BR
+        code = code.split('-')
+        code = '%s_%s' % (code[0],code[1].upper())
+    return code
+
+def facebook_language(languages,default):
+    ''' Given the prefered language on request
+        we return the right language_code option to the 
+        template
+    '''
+    if not languages:
+        # do not change anything
+        return default
+    languages = [fix_iso(l) for l in languages]
+    prefered = [l for l in languages if l in FB_LOCALES]
+    return prefered and prefered[0] or default
+
+
 class BaseLikeViewlet(ViewletBase):
     
     enabled_portal_types = []
@@ -13,6 +39,7 @@ class BaseLikeViewlet(ViewletBase):
     fbaction = ''
     fbadmins = ''
     gp_enabled = False
+    language = 'en_US'
     
     def __init__(self, context, request, view, manager):
         super(BaseLikeViewlet, self).__init__(context, request, view, manager)
@@ -22,6 +49,9 @@ class BaseLikeViewlet(ViewletBase):
         self.request = request
         self.portal_state = getMultiAdapter((self.context, self.request),
                                              name=u'plone_portal_state')
+        
+        languages = self.request.get('HTTP_ACCEPT_LANGUAGE', '').split(';')[0].split(',')
+        self.language = facebook_language(languages, self.language)
         self.site_url = self.portal_state.portal_url()
         self.sheet = getattr(pp,'sc_social_likes_properties',None)
         if self.sheet:
