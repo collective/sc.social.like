@@ -4,7 +4,14 @@ Changelog
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* i18n support for Facebook button. Now we check which languages the 
+  user accepts then provide the right link [erico_andrei]
+
+* Add conditions to show each provider [erico_andrei]
+
+* Refactor viewlet code [erico_andrei]
+
+* Enable controlpanel tabbing [erico_andrei]
 
 
 0.6 (2011-06-09)
