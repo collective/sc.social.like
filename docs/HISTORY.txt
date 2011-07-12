@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7 (unreleased)
+0.7 (2011-07-12)
 ----------------
 
 * i18n support for Facebook button. Now we check which languages the 
