@@ -12,6 +12,6 @@
       <property name="fb_enabled" type="boolean">True</property>      
       <property name="fbaction" type="string" purge="False"></property>
       <property name="fbadmins" type="string" purge="False"></property>
-      <property name="gp_enabled" type="boolean">True</property>      
+      <property name="gp_enabled" type="boolean">False</property>      
   </object>
 </object>

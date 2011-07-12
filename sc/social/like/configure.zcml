@@ -26,7 +26,24 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         />
-
+    
+    <genericsetup:registerProfile
+        name="to2000"
+        title="Upgrade Social: Like Actions"
+        directory="profiles/to2000"
+        description="Upgrade Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+    
+    <genericsetup:upgradeStep
+        title="Upgrade for sc.social.like (To version 2000)"
+        description=""
+        source="1001"
+        destination="2000"
+        sortkey="2"
+        handler="sc.social.like.setuphandlers.upgradefrom1001"
+        profile="sc.social.like:default" />
 
     <i18n:registerTranslations directory="locales" />
 </configure>
