@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.sociallike\n"
-"POT-Creation-Date: 2011-04-18 20:06+0000\n"
+"POT-Creation-Date: 2011-07-12 22:14+0000\n"
 "PO-Revision-Date: 2011-04-15 13:01-0300\n"
 "Last-Translator: Cleber J Santos <cleber@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -14,81 +14,109 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.social.like\n"
 
-#: ../controlpanel/likes.py:69
+#: ../controlpanel/likes.py:97
 msgid "Admins"
 msgstr "Administradores"
 
-#: ../controlpanel/likes.py:41
+#: ../controlpanel/likes.py:156
+msgid "Base Plugin Configuration"
+msgstr "Configuração deste plugin"
+
+#: ../controlpanel/likes.py:54
 msgid "Button style"
 msgstr "Estilo dos botões"
 
-#: ../controlpanel/likes.py:99
+#: ../controlpanel/likes.py:179
 msgid "Configure settings for social like actions."
 msgstr "Configurações para as ações sociais"
 
-#: ../controlpanel/likes.py:32
+#: ../controlpanel/likes.py:45
 msgid "Content types"
 msgstr "Tipos de conteúdo"
+
+#: ../controlpanel/likes.py:82
+msgid "Enable Facebook button"
+msgstr "Habilitar Facebook"
+
+#: ../controlpanel/likes.py:107
+msgid "Enable Google+ action"
+msgstr "Habilitar Google+"
+
+#: ../controlpanel/likes.py:67
+msgid "Enable Twitter button"
+msgstr "Habilitar Twitter"
+
+#: ../controlpanel/likes.py:164
+msgid "Facebook settings"
+msgstr "Configurações para Facebook"
+
+#: ../controlpanel/likes.py:168
+msgid "Google+ settings"
+msgstr "Configurações para Google+"
+
+#: ../controlpanel/likes.py:30
+msgid "Like"
+msgstr "Curtir"
+
+#: ../controlpanel/likes.py:31
+msgid "Recommend"
+msgstr "Recomendar"
 
 #: ../profiles/default/actionicons.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
 msgstr "Social Like"
 
-#: ../controlpanel/likes.py:100
+#: ../controlpanel/likes.py:180
 msgid "Social: Like Actions"
 msgstr "Social: Ações de Curtir"
 
-#: ../controlpanel/likes.py:98
+#: ../controlpanel/likes.py:178
 msgid "Social: Like Actions settings"
 msgstr "Social: Configurações das Ações de Curtir"
 
-#: ../controlpanel/likes.py:51
+#: ../controlpanel/likes.py:72
 msgid "Twitter nick"
 msgstr "Usuário do Twitter"
 
-#: ../controlpanel/likes.py:59
+#: ../controlpanel/likes.py:160
+msgid "Twitter settings"
+msgstr "Configurações para Twitter"
+
+#: ../controlpanel/likes.py:87
 msgid "Verb to display"
 msgstr "Verbo a ser exibido"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators or a Facebook Platform application ID."
-#: ../controlpanel/likes.py:70
+#: ../controlpanel/likes.py:98
 msgid "help_admins"
 msgstr "Uma lista, separada por vírgulas, dos IDs dos administradores desta página ou o ID de uma aplicação da plataforma Facebook."
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ../controlpanel/likes.py:33
+#: ../controlpanel/likes.py:46
 msgid "help_portal_types"
 msgstr "Indique quais tipos de conteúdo terão o viewlet de ações sociais."
 
 #. Default: "Choose your button style."
-#: ../controlpanel/likes.py:42
+#: ../controlpanel/likes.py:55
 msgid "help_selected_buttons"
 msgstr "Qual o estilo dos botões."
 
 #. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
-#: ../controlpanel/likes.py:60
+#: ../controlpanel/likes.py:88
 msgid "help_verb_display"
 msgstr "Verbo a ser exibido no botão do Facebook. Atualmente apenas 'curtir' e 'recomendar' estão habilitados"
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ../controlpanel/likes.py:52
+#: ../controlpanel/likes.py:73
 msgid "help_your_twitter_nick"
 msgstr "Informe seu usuário do Twitter. Ex: simplesconsultoria"
 
-#: ../controlpanel/likes.py:46
+#: ../controlpanel/likes.py:59
 msgid "horizontal"
 msgstr "horizontal"
 
-#: ../controlpanel/likes.py:65
-msgid "like"
-msgstr "curtir"
-
-#: ../controlpanel/likes.py:65
-msgid "recommend"
-msgstr "recomendar"
-
-#: ../controlpanel/likes.py:47
+#: ../controlpanel/likes.py:60
 msgid "vertical"
 msgstr "vertical"
 
