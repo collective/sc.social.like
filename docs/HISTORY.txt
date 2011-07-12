@@ -1,7 +1,13 @@
 Changelog
 =========
 
-0.6 (2011-06-01)
+0.7 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
+0.6 (2011-06-09)
 ----------------
 
 * Support for plusone google button [cleberjsantos]

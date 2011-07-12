@@ -3,13 +3,19 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone.app.layout.viewlets import ViewletBase
 
-class SocialMetadataViewlet(ViewletBase):
-    """
-    """
-    render = ViewPageTemplateFile("templates/metadata.pt")
-
+class BaseLikeViewlet(ViewletBase):
+    
+    enabled_portal_types = []
+    typebutton = ''
+    twitter_enabled = False
+    twittvia = ''
+    fb_enabled = False
+    fbaction = ''
+    fbadmins = ''
+    gp_enabled = False
+    
     def __init__(self, context, request, view, manager):
-        super(SocialMetadataViewlet, self).__init__(context, request, view, manager)
+        super(BaseLikeViewlet, self).__init__(context, request, view, manager)
         pp = getToolByName(context,'portal_properties')
 
         self.context = context
@@ -19,18 +25,16 @@ class SocialMetadataViewlet(ViewletBase):
         self.site_url = self.portal_state.portal_url()
         self.sheet = getattr(pp,'sc_social_likes_properties',None)
         if self.sheet:
-            self.enabled_portal_types = self.sheet.getProperty("enabled_portal_types") or []
-            self.fbadmins = self.sheet.getProperty("fbadmins") or ''
-        else:
-            self.enabled_portal_types = []
-            self.fbadmins = ''
-
-    def fbadmins(self):
-        """Return admins comma-separated
-        """
-        fbadmins = self.fbadmins
-        return fbadmins
-
+            self.enabled_portal_types = self.sheet.getProperty("enabled_portal_types",[])
+            self.typebutton = self.sheet.getProperty("typebutton","")
+            self.twitter_enabled = self.sheet.getProperty("twitter_enabled",True)
+            self.twittvia = self.sheet.getProperty("twittvia","")
+            self.fb_enabled = self.sheet.getProperty("fb_enabled",True)
+            self.fbaction = self.sheet.getProperty("fbaction","")
+            self.fbadmins = self.sheet.getProperty("fbadmins","")
+            self.gp_enabled = self.sheet.getProperty("gp_enabled",True)
+        
+    
     def enabled(self):
         """Validates if the viewlet should be enabled
            for this context"""
@@ -38,6 +42,12 @@ class SocialMetadataViewlet(ViewletBase):
         enabled_portal_types = self.enabled_portal_types
         return context.portal_type in enabled_portal_types
 
+class SocialMetadataViewlet(BaseLikeViewlet):
+    """ Viewlet used to insert metadata into page header
+    """
+    render = ViewPageTemplateFile("templates/metadata.pt")
+    
+    
     def hasImage(self):
         """Return object image
         """
@@ -71,55 +81,9 @@ class SocialMetadataViewlet(ViewletBase):
 
         return logoName
 
-class SocialLikesViewlet(ViewletBase):
-    """
+class SocialLikesViewlet(BaseLikeViewlet):
+    """ Viewlet used to display the buttons
     """
     render = ViewPageTemplateFile("templates/sociallikes.pt")
-   
-    def __init__(self, context, request, view, manager):
-        super(SocialLikesViewlet, self).__init__(context, request, view, manager)
-        pp = getToolByName(context,'portal_properties')
-        self.sheet = getattr(pp,'sc_social_likes_properties',None)
-        if self.sheet:
-            self.enabled_portal_types = self.sheet.getProperty("enabled_portal_types") or []
-            self.typebutton = self.sheet.getProperty("typebutton") or ''
-            self.twittvia = self.sheet.getProperty("twittvia") or ''
-            self.fbaction = self.sheet.getProperty("fbaction") or ''
-            self.fbadmins = self.sheet.getProperty("fbadmins") or ''
-        else:
-            self.enabled_portal_types = []
-            self.typebutton = ''
-            self.twittvia = ''
-            self.fbaction = ''
-            self.fbadmins = ''
-
-    def enabled(self):
-        """Validates if the viewlet should be enabled
-           for this context"""
-        context = self.context
-        enabled_portal_types = self.enabled_portal_types
-        return context.portal_type in enabled_portal_types
-
-    def typebutton(self):
-        """
-        """
-        typebutton = self.typebutton
-        return typebutton
-
-    def twittvia(self):
-        """
-        """
-        twittvia = self.twittvia
-        return twittvia
-
-    def fbaction(self):
-        """
-        """
-        fbaction = self.fbaction
-        return fbaction
-
-    def fbadmins(self):
-        """Return admins comma-separated
-        """
-        fbadmins = self.fbadmins
-        return fbadmins
+    
+    

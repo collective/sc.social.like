@@ -22,7 +22,7 @@ Requirements
 Screenshot
 -----------
 
-    .. image:: http://www.simplesconsultoria.com.br/tecnologia/plone/produtos/sc.social.like/sc.social.like-0.5-screenshot.png/image_preview
+    .. image:: http://www.simplesconsultoria.com.br/tecnologia/plone/produtos/sc.social.like/sc.social.like-0.6-screenshot.png/image_preview
 
 Installation
 ------------
