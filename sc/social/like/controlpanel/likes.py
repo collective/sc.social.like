@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+from zope.schema import Bool
 from zope.schema import Int
 from zope.schema import TextLine
 from zope.schema import Tuple
@@ -13,6 +15,9 @@ from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 
 from zope.formlib.form import FormFields
 from plone.app.controlpanel.form import ControlPanelForm
+
+from plone.fieldsets.fieldsets import FormFieldsets
+
 from zope.app.form.browser.itemswidgets import MultiSelectWidget as BaseMultiSelectWidget
 from zope.app.form.browser.itemswidgets import OrderedMultiSelectWidget as BaseOrderedMultiSelectWidget
 from plone.app.controlpanel.widgets import MultiCheckBoxThreeColumnWidget, MultiCheckBoxVocabularyWidget
@@ -25,9 +30,9 @@ class MultiSelectWidget(BaseMultiSelectWidget):
         """Initialize the widget."""
         super(MultiSelectWidget, self).__init__(field,
             field.value_type.vocabulary, request)
-           
+
 class IProvidersSchema(Interface):
-    """ """ 
+    """ General Configurations """ 
     enabled_portal_types = Tuple(
         title=_(u'Content types'),
         description=_(u'help_portal_types',
@@ -36,7 +41,7 @@ class IProvidersSchema(Interface):
         required=True,
         value_type=Choice(vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes")
     )
-
+    
     typebutton = Choice(
         title=_(u'Button style'),
         description=_(u'help_selected_buttons',
@@ -47,6 +52,14 @@ class IProvidersSchema(Interface):
         values=(_(u'horizontal'),_(u'vertical')),
     )
 
+
+class ITwitterSchema(Interface):
+    """ Twitter configurations """ 
+    
+    twitter_enabled = Bool(title=_(u"Enable Twitter button"),
+                           default=True,
+                           required=False)
+                          
     twittvia = TextLine(
         title=_(u'Twitter nick'),
         description=_(u'help_your_twitter_nick',
@@ -55,6 +68,13 @@ class IProvidersSchema(Interface):
         required=False,
     )
 
+class IFbSchema(Interface):
+    """ Facebook configurations """ 
+    
+    fb_enabled = Bool(title=_(u"Enable Facebook button"),
+                           default=True,
+                           required=False)    
+    
     fbaction = Choice(
         title=_(u'Verb to display'),
         description=_(u'help_verb_display',
@@ -72,26 +92,75 @@ class IProvidersSchema(Interface):
         ),
         required=False,
     )
+
+class IGpSchema(Interface):
+    """ Google+ configurations """ 
+    
+    googlep_enabled = Bool(title=_(u"Enable Google+ action"),
+                           default=True,
+                           required=False)
+    
  
-class ProvidersControlPanelAdapter(SchemaAdapterBase):
-    """ """
+class BaseControlPanelAdapter(SchemaAdapterBase):
+    """ Base control panel adapter """
     adapts(IPloneSiteRoot)
-    implements(IProvidersSchema)
    
     def __init__(self, context):
         super(ProvidersControlPanelAdapter, self).__init__(context)
         portal_properties = getToolByName(context, 'portal_properties')
         self.context = portal_properties.sc_social_likes_properties
-   
+
+
+class LikeControlPanelAdapter(BaseControlPanelAdapter):
+    """ Like control panel adapter """
+    implements(IProvidersSchema)
+    
     enabled_portal_types = ProxyFieldProperty(IProvidersSchema['enabled_portal_types'])
     typebutton = ProxyFieldProperty(IProvidersSchema['typebutton'])
+
+
+class TwitterControlPanelAdapter(BaseControlPanelAdapter):
+    """ Twitter control panel adapter """
+    implements(ITwitterSchema)
+    
+    twitter_enabled = ProxyFieldProperty(IProvidersSchema['twitter_enabled'])
     twittvia = ProxyFieldProperty(IProvidersSchema['twittvia'])
+
+class FbControlPanelAdapter(BaseControlPanelAdapter):
+    """ Facebook control panel adapter """
+    implements(IFbSchema)
+    
+    fb_enabled = ProxyFieldProperty(IProvidersSchema['fb_enabled'])    
     fbaction = ProxyFieldProperty(IProvidersSchema['fbaction'])
     fbadmins = ProxyFieldProperty(IProvidersSchema['fbadmins'])
 
+class GpControlPanelAdapter(BaseControlPanelAdapter):
+    """ Google+ control panel adapter """
+    implements(IGpSchema)
+    
+    googlep_enabled = ProxyFieldProperty(IProvidersSchema['googlep_enabled'])
+
+baseset = FormFieldsets(IProvidersSchema)
+baseset.id = 'baseset'
+baseset.label = _(u'Base Plugin Configuration')
+
+twitterset = FormFieldsets(ITwitterSchema)
+zipset.id = 'twitterset'
+zipset.label = _(u'Twitter settings')
+
+fbset = FormFieldsets(IFbSchema)
+fbset.id = 'fbset'
+fbset.label = _(u'Facebook settings')
+
+gpset = FormFieldsets(IGpSchema)
+gpset.id = 'gpset'
+gpset.label = _(u'Google+ settings')
+
+
 class ProvidersControlPanel(ControlPanelForm):
     """ """
-    form_fields = FormFields(IProvidersSchema)
+    form_fields = FormFieldsets(baseset,twitterset,fbset,gpset)
+    
     form_fields['enabled_portal_types'].custom_widget = MultiSelectWidget
 
 
