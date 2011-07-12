@@ -104,7 +104,7 @@ class IFbSchema(Interface):
 class IGpSchema(Interface):
     """ Google+ configurations """ 
     
-    googlep_enabled = Bool(title=_(u"Enable Google+ action"),
+    gp_enabled = Bool(title=_(u"Enable Google+ action"),
                            default=True,
                            required=False)
     
@@ -149,7 +149,7 @@ class GpControlPanelAdapter(BaseControlPanelAdapter):
     adapts(IPloneSiteRoot)
     implements(IGpSchema)
     
-    googlep_enabled = ProxyFieldProperty(IGpSchema['googlep_enabled'])
+    gp_enabled = ProxyFieldProperty(IGpSchema['gp_enabled'])
 
 baseset = FormFieldsets(IProvidersSchema)
 baseset.id = 'baseset'
