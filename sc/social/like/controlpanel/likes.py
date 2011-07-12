@@ -24,6 +24,13 @@ from plone.app.controlpanel.widgets import MultiCheckBoxThreeColumnWidget, Multi
 
 from sc.social.like import LikeMessageFactory as _
 
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
+verbs = SimpleVocabulary(
+    [SimpleTerm(value=u'like', title=_(u'Like')),
+     SimpleTerm(value=u'recommend', title=_(u'Recommend')),]
+    )
+
 class MultiSelectWidget(BaseMultiSelectWidget):
     """ """
     def __init__(self, field, request):
@@ -33,6 +40,7 @@ class MultiSelectWidget(BaseMultiSelectWidget):
 
 class IProvidersSchema(Interface):
     """ General Configurations """ 
+    
     enabled_portal_types = Tuple(
         title=_(u'Content types'),
         description=_(u'help_portal_types',
@@ -82,7 +90,7 @@ class IFbSchema(Interface):
         ),
         required=True,
         default=u'like',
-        values=(_(u'like'),_(u'recommend')),
+        vocabulary=verbs,
     )
   
     fbadmins = TextLine(
@@ -103,16 +111,16 @@ class IGpSchema(Interface):
  
 class BaseControlPanelAdapter(SchemaAdapterBase):
     """ Base control panel adapter """
-    adapts(IPloneSiteRoot)
    
     def __init__(self, context):
-        super(ProvidersControlPanelAdapter, self).__init__(context)
+        super(BaseControlPanelAdapter, self).__init__(context)
         portal_properties = getToolByName(context, 'portal_properties')
         self.context = portal_properties.sc_social_likes_properties
 
 
 class LikeControlPanelAdapter(BaseControlPanelAdapter):
     """ Like control panel adapter """
+    adapts(IPloneSiteRoot)
     implements(IProvidersSchema)
     
     enabled_portal_types = ProxyFieldProperty(IProvidersSchema['enabled_portal_types'])
@@ -121,32 +129,35 @@ class LikeControlPanelAdapter(BaseControlPanelAdapter):
 
 class TwitterControlPanelAdapter(BaseControlPanelAdapter):
     """ Twitter control panel adapter """
+    adapts(IPloneSiteRoot)
     implements(ITwitterSchema)
     
-    twitter_enabled = ProxyFieldProperty(IProvidersSchema['twitter_enabled'])
-    twittvia = ProxyFieldProperty(IProvidersSchema['twittvia'])
+    twitter_enabled = ProxyFieldProperty(ITwitterSchema['twitter_enabled'])
+    twittvia = ProxyFieldProperty(ITwitterSchema['twittvia'])
 
 class FbControlPanelAdapter(BaseControlPanelAdapter):
     """ Facebook control panel adapter """
+    adapts(IPloneSiteRoot)
     implements(IFbSchema)
     
-    fb_enabled = ProxyFieldProperty(IProvidersSchema['fb_enabled'])    
-    fbaction = ProxyFieldProperty(IProvidersSchema['fbaction'])
-    fbadmins = ProxyFieldProperty(IProvidersSchema['fbadmins'])
+    fb_enabled = ProxyFieldProperty(IFbSchema['fb_enabled'])    
+    fbaction = ProxyFieldProperty(IFbSchema['fbaction'])
+    fbadmins = ProxyFieldProperty(IFbSchema['fbadmins'])
 
 class GpControlPanelAdapter(BaseControlPanelAdapter):
     """ Google+ control panel adapter """
+    adapts(IPloneSiteRoot)
     implements(IGpSchema)
     
-    googlep_enabled = ProxyFieldProperty(IProvidersSchema['googlep_enabled'])
+    googlep_enabled = ProxyFieldProperty(IGpSchema['googlep_enabled'])
 
 baseset = FormFieldsets(IProvidersSchema)
 baseset.id = 'baseset'
 baseset.label = _(u'Base Plugin Configuration')
 
 twitterset = FormFieldsets(ITwitterSchema)
-zipset.id = 'twitterset'
-zipset.label = _(u'Twitter settings')
+twitterset.id = 'twitterset'
+twitterset.label = _(u'Twitter settings')
 
 fbset = FormFieldsets(IFbSchema)
 fbset.id = 'fbset'
