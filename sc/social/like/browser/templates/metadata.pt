@@ -1,4 +1,5 @@
 <tal:metas i18n:domain="sc.social.like" tal:condition="view/enabled">
+  <tal:fb tal:condition="view/fb_enabled">
     <meta property="og:site_name" tal:attributes="content view/portaltitle" />
     <tal:cond tal:condition="view/hasImage">
         <meta property="og:image" tal:attributes="content python:'%s/image_tile' %(here.absolute_url())" />
@@ -7,7 +8,6 @@
         <meta property="og:image" tal:attributes="content python:'%s/%s' %(context.portal_url(),logoname)" />
     </tal:cond>
     <meta tal:condition="view/fbadmins" property="fb:admins" tal:attributes="content view/fbadmins" />
-
-    <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
-
+  </tal:fb>
+    <script type="text/javascript" tal:condition="view/gp_enabled" src="http://apis.google.com/js/plusone.js"></script>
 </tal:metas>
