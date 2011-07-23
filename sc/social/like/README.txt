@@ -37,6 +37,8 @@ To enable this product,on a buildout based installation:
         eggs = 
             sc.social.like
 
+* Not is necessary tell the plone.recipe.zope2instance recipe to install a ZCML slug.
+
 After updating the configuration you need to run the ''bin/buildout'',
 which will take care of updating your system.
 
