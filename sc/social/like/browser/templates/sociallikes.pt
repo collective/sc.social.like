@@ -1,6 +1,6 @@
-<div id="viewlet-social-like" 
-    tal:attributes="class view/typebutton"
-    style="display:none" i18n:domain="sc.social.like" tal:condition="view/enabled">
+<div id="viewlet-social-like"
+     tal:attributes="class view/typebutton"
+     style="display:none" i18n:domain="sc.social.like" tal:condition="view/enabled">
     <tal:gp tal:condition="view/gp_enabled">
         <tal:block tal:define="button python:{'vertical':'tall','horizontal':'medium'}; vbutton view/typebutton">
          <g:plusone tal:attributes="size python:button[str(vbutton)]"></g:plusone>
@@ -14,16 +14,16 @@
                                                                                         data-text here/Title;">Tweet</a>
     </tal:twitter>
     <tal:fb
-        tal:condition="view/fb_enabled" 
+        tal:condition="view/fb_enabled"
         tal:define="button python:{'vertical':'box_count','horizontal':'button_count'};
                            vbutton view/typebutton">
-        <fb:like tal:attributes="href here/absolute_url; 
-                                 layout python:button[str(vbutton)]; 
+        <fb:like tal:attributes="href here/absolute_url;
+                                 layout python:button[str(vbutton)];
                                  action view/fbaction"></fb:like>
     </tal:fb>
 </div>
 
-<script language="JavaScript"> 
+<script type="text/javascript">
     jQuery(function () {
         jQuery("div#viewlet-social-like").each(function(){
             jQuery(this).fadeIn(3000);

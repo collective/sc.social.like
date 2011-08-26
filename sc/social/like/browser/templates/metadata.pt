@@ -8,7 +8,7 @@
         <meta property="og:image" tal:attributes="content python:'%s/%s' %(context.portal_url(),logoname)" />
     </tal:cond>
     <meta tal:condition="view/fbadmins" property="fb:admins" tal:attributes="content view/fbadmins" />
-    <script 
+    <script
         tal:attributes="src string:http://connect.facebook.net/${view/language}/all.js#xfbml=1"
         src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
   </tal:fb>
