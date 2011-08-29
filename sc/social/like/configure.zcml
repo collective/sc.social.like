@@ -8,8 +8,6 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
-    <include package="Products.CMFCore" file="permissions.zcml" />
-
     <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
     <include package=".browser" />
     <include package=".controlpanel" />
