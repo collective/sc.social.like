@@ -4,6 +4,8 @@ Changelog
 0.8 (unreleased)
 ----------------
 
+* Added testing framework [hvelarde]
+
 * Added Spanish translation [hvelarde]
 
 * Fixed "Deadlock when viewing an object on which the user has not the View

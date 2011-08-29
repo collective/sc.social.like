@@ -27,9 +27,11 @@ setup(name='sc.social.like',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
-      ],
+        'setuptools',
+        ],
+      extras_require={
+        'test': ['plone.app.testing'],
+        },
       entry_points="""
       [z3c.autoinclude.plugin]
       target = plone
