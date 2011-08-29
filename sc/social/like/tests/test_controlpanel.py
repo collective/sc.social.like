@@ -19,7 +19,7 @@ class ControlPanelTest(unittest.TestCase):
         self.portal = self.layer['portal']
 
     def test_controlpanel_view(self):
-        view = getMultiAdapter((self.portal, self.portal.REQUEST), name='likes-provider')
+        view = getMultiAdapter((self.portal, self.portal.REQUEST), name='likes-providers')
         view = view.__of__(self.portal)
         self.failUnless(view())
 
@@ -27,7 +27,7 @@ class ControlPanelTest(unittest.TestCase):
         # control panel view can not be accessed by anonymous users
         from AccessControl import Unauthorized
         logout()
-        self.assertRaises(Unauthorized, self.portal.restrictedTraverse, '@@likes-provider')
+        self.assertRaises(Unauthorized, self.portal.restrictedTraverse, '@@likes-providers')
 
     def test_configlet_install(self):
         controlpanel = getToolByName(self.portal, 'portal_controlpanel')
