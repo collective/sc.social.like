@@ -4,13 +4,16 @@ Changelog
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* Added Spanish translation [hvelarde]
+
+* Fixed "Deadlock when viewing an object on which the user has not the View
+  permission" issue with patch provided by glenfant [hvelarde]
 
 
 0.7 (2011-07-12)
 ----------------
 
-* i18n support for Facebook button. Now we check which languages the 
+* i18n support for Facebook button. Now we check which languages the
   user accepts then provide the right link [erico_andrei]
 
 * Add conditions to show each provider [erico_andrei]

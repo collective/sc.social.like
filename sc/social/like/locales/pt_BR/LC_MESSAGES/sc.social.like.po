@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.sociallike\n"
-"POT-Creation-Date: 2011-07-12 22:14+0000\n"
+"POT-Creation-Date: 2011-08-29 13:09+0000\n"
 "PO-Revision-Date: 2011-04-15 13:01-0300\n"
 "Last-Translator: Cleber J Santos <cleber@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"

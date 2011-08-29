@@ -1,122 +1,124 @@
+# Héctor Velarde <hector.velarde@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2011-08-29 13:09+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2011-08-29 17:47+0000\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: sc.social.like\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
 #: ../controlpanel/likes.py:97
 msgid "Admins"
-msgstr ""
+msgstr "Administradores"
 
 #: ../controlpanel/likes.py:156
 msgid "Base Plugin Configuration"
-msgstr ""
+msgstr "Configuración de este plugin"
 
 #: ../controlpanel/likes.py:54
 msgid "Button style"
-msgstr ""
+msgstr "Estilo de los botones"
 
 #: ../controlpanel/likes.py:179
 msgid "Configure settings for social like actions."
-msgstr ""
+msgstr "Configuración de las acciones sociales."
 
 #: ../controlpanel/likes.py:45
 msgid "Content types"
-msgstr ""
+msgstr "Tipos de contenido"
 
 #: ../controlpanel/likes.py:82
 msgid "Enable Facebook button"
-msgstr ""
+msgstr "Habilitar el botón de Facebook"
 
 #: ../controlpanel/likes.py:107
 msgid "Enable Google+ action"
-msgstr ""
+msgstr "Habilitar el botón de Google+"
 
 #: ../controlpanel/likes.py:67
 msgid "Enable Twitter button"
-msgstr ""
+msgstr "Habilitar el botón de Twitter"
 
 #: ../controlpanel/likes.py:164
 msgid "Facebook settings"
-msgstr ""
+msgstr "Configuración de Facebook"
 
 #: ../controlpanel/likes.py:168
 msgid "Google+ settings"
-msgstr ""
+msgstr "Configuración de Google+"
 
 #: ../controlpanel/likes.py:30
 msgid "Like"
-msgstr ""
+msgstr "Me gusta"
 
 #: ../controlpanel/likes.py:31
 msgid "Recommend"
-msgstr ""
+msgstr "Recomendar"
 
 #: ../profiles/default/actionicons.xml
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
-msgstr ""
+msgstr "Social Like"
 
 #: ../controlpanel/likes.py:180
 msgid "Social: Like Actions"
-msgstr ""
+msgstr "Acciones"
 
 #: ../controlpanel/likes.py:178
 msgid "Social: Like Actions settings"
-msgstr ""
+msgstr "Configuración de las acciones"
 
 #: ../controlpanel/likes.py:72
 msgid "Twitter nick"
-msgstr ""
+msgstr "Nombre de usuario en Twitter"
 
 #: ../controlpanel/likes.py:160
 msgid "Twitter settings"
-msgstr ""
+msgstr "Configuración de Twitter"
 
 #: ../controlpanel/likes.py:87
 msgid "Verb to display"
-msgstr ""
+msgstr "Texto a mostrar"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators or a Facebook Platform application ID."
 #: ../controlpanel/likes.py:98
 msgid "help_admins"
-msgstr ""
+msgstr "Una lista de los ID de los administradores de esta página, separados por comas, o el ID de una aplicación de Facebook."
 
 #. Default: "Please select content types in which the viewlet will be applied."
 #: ../controlpanel/likes.py:46
 msgid "help_portal_types"
-msgstr ""
+msgstr "Seleccione los tipos de contenido en los que se mostrarán el viewlet social."
 
 #. Default: "Choose your button style."
 #: ../controlpanel/likes.py:55
 msgid "help_selected_buttons"
-msgstr ""
+msgstr "Seleccione el estilo de los botones."
 
 #. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
 #: ../controlpanel/likes.py:88
 msgid "help_verb_display"
-msgstr ""
+msgstr "Texto que se mostrará en el botón de Facebook. De momento sólo 'Me gusta y 'Recomendar' están soportados."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
 #: ../controlpanel/likes.py:73
 msgid "help_your_twitter_nick"
-msgstr ""
+msgstr "Introduzca su nombre de usuario de Twitter. Ejemplo: simplesconsultoria"
 
 #: ../controlpanel/likes.py:59
 msgid "horizontal"
-msgstr ""
+msgstr "horizontal"
 
 #: ../controlpanel/likes.py:60
 msgid "vertical"
-msgstr ""
+msgstr "vertical"
 
