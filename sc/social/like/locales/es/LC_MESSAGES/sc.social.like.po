@@ -71,11 +71,11 @@ msgstr "Social Like"
 
 #: ../controlpanel/likes.py:180
 msgid "Social: Like Actions"
-msgstr "Acciones"
+msgstr "Social Like"
 
 #: ../controlpanel/likes.py:178
 msgid "Social: Like Actions settings"
-msgstr "Configuración de las acciones"
+msgstr "Configuración de Social Like"
 
 #: ../controlpanel/likes.py:72
 msgid "Twitter nick"
@@ -97,12 +97,12 @@ msgstr "Una lista de los ID de los administradores de esta página, separados po
 #. Default: "Please select content types in which the viewlet will be applied."
 #: ../controlpanel/likes.py:46
 msgid "help_portal_types"
-msgstr "Seleccione los tipos de contenido en los que se mostrarán el viewlet social."
+msgstr "Seleccione en cuáles tipos de contenido se mostrará el viewlet social."
 
 #. Default: "Choose your button style."
 #: ../controlpanel/likes.py:55
 msgid "help_selected_buttons"
-msgstr "Seleccione el estilo de los botones."
+msgstr "Seleccione de la lista."
 
 #. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
 #: ../controlpanel/likes.py:88
@@ -116,9 +116,9 @@ msgstr "Introduzca su nombre de usuario de Twitter. Ejemplo: simplesconsultoria"
 
 #: ../controlpanel/likes.py:59
 msgid "horizontal"
-msgstr "horizontal"
+msgstr "Horizontal"
 
 #: ../controlpanel/likes.py:60
 msgid "vertical"
-msgstr "vertical"
+msgstr "Vertical"
 
