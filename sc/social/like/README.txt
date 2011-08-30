@@ -16,6 +16,7 @@ Like (or Recommend) a content.
 Requirements
 ------------
 
+    - Plone 4.1.x (http://plone.org/products/plone)
     - Plone 4.0.x (http://plone.org/products/plone)
     - Plone 3.3.x (http://plone.org/products/plone)
 
@@ -77,3 +78,5 @@ Credits
       implementation.
     
     * Andre Nogueira (andre at simplesconsultoria dot com dot br) - CSS magic
+
+    * Hector Velarde (hvelarde at simplesconsultoria dot com dot br) - Fixes
