@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8 (unreleased)
+0.8 (2011-08-30)
 ----------------
 
 * Fixed Plone 4.1 compatibility [hvelarde]

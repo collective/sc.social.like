@@ -80,3 +80,4 @@ Credits
     * Andre Nogueira (andre at simplesconsultoria dot com dot br) - CSS magic
 
     * Hector Velarde (hvelarde at simplesconsultoria dot com dot br) - Fixes
+
