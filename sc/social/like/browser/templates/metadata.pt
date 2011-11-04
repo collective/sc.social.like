@@ -13,6 +13,8 @@
         src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
   </tal:fb>
   <tal:gp  tal:condition="view/gp_enabled">
-    <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+      <script type="text/javascript" src="http://apis.google.com/js/plusone.js">
+        {"parsetags": "explicit"}
+      </script>
   </tal:gp>
 </tal:metas>

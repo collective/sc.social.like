@@ -3,7 +3,9 @@
      style="display:none" i18n:domain="sc.social.like" tal:condition="view/enabled">
     <tal:gp tal:condition="view/gp_enabled">
         <tal:block tal:define="button python:{'vertical':'tall','horizontal':'medium'}; vbutton view/typebutton">
-         <g:plusone tal:attributes="size python:button[str(vbutton)]"></g:plusone>
+          <div id="plusonebt"></div> 
+          <script type="text/javascript" tal:content="python:'''\n gapi.plusone.render('plusonebt',{'size': '%s','annotation': 'bubble'}); ''' %(button[str(vbutton)])" >
+          </script>
         </tal:block>
     </tal:gp>
     <tal:twitter tal:condition="view/twitter_enabled">
@@ -17,9 +19,8 @@
         tal:condition="view/fb_enabled"
         tal:define="button python:{'vertical':'box_count','horizontal':'button_count'};
                            vbutton view/typebutton">
-        <fb:like tal:attributes="href here/absolute_url;
-                                 layout python:button[str(vbutton)];
-                                 action view/fbaction"></fb:like>
+        <iframe tal:attributes="src python:'//www.facebook.com/plugins/like.php?href=%s&amp;send=false&amp;layout=%s&amp;show_faces=true&amp;action=%s' %(here.absolute_url(),button[str(vbutton)],view.fbaction)"
+                                scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
     </tal:fb>
 </div>
 
