@@ -4,8 +4,7 @@ Changelog
 0.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Compressed icon ico-sociallike.png with pngout 70% of original [Michael Krishtopa]
 
 0.8 (2011-08-30)
 ----------------
