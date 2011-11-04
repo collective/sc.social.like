@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - Compressed icon ico-sociallike.png with pngout 70% of original [Michael Krishtopa]
+- Fix loading buttons for diazo themers [cleberjsantos]
 
 0.8 (2011-08-30)
 ----------------
