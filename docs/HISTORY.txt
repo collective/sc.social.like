@@ -1,14 +1,16 @@
 Changelog
-=========
+-----------
 
 0.9 (unreleased)
-----------------
+^^^^^^^^^^^^^^^^^^
 
-- Compressed icon ico-sociallike.png with pngout 70% of original [Michael Krishtopa]
-- Fix loading buttons for diazo themers [cleberjsantos]
+* Compressed icon ico-sociallike.png with pngout 70% of original 
+  [Michael Krishtopa]
+
+* Fix loading buttons for diazo themers [cleberjsantos]
 
 0.8 (2011-08-30)
-----------------
+^^^^^^^^^^^^^^^^^^
 
 * Fixed Plone 4.1 compatibility [hvelarde]
 
@@ -21,7 +23,7 @@ Changelog
 
 
 0.7 (2011-07-12)
-----------------
+^^^^^^^^^^^^^^^^^^
 
 * i18n support for Facebook button. Now we check which languages the user
   accepts then provide the right link [erico_andrei]
@@ -34,7 +36,7 @@ Changelog
 
 
 0.6 (2011-06-09)
-----------------
+^^^^^^^^^^^^^^^^^^
 
 * Support for plusone google button [cleberjsantos]
 
@@ -42,7 +44,7 @@ Changelog
 
 
 0.5 (2011-04-18)
-----------------
+^^^^^^^^^^^^^^^^^^
 
 * Support for Twitter and Facebook [cleberjsantos]
 

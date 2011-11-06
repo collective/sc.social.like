@@ -1,17 +1,19 @@
+===============================================
+Social: Like Actions (sc.social.like)
+===============================================
+
 .. contents:: Table of Contents
    :depth: 2
 
-sc.social.like
-****************************************
 
 Overview
 --------
 
-**sc.social.like** is a Plone package providing simple Google+, Twitter and 
-Facebook integration for Plone Content Types.
+**Social: Like Actions** is a Plone package (add-on) providing simple Google+,
+Twitter and Facebook integration for Plone Content Types.
 
-This package installs a viewlet with actions to +1, Tweet and 
-Like (or Recommend) a content.
+This package installs a viewlet with actions to +1, Tweet and Like (or
+Recommend) a content.
 
 Requirements
 ------------
@@ -23,12 +25,12 @@ Requirements
 Screenshot
 -----------
 
-    .. image:: http://www.simplesconsultoria.com.br/tecnologia/plone/produtos/sc.social.like/sc.social.like-0.6-screenshot.png/image_preview
+    .. image:: https://bitbucket.org/simplesconsultoria/sc.social.like/raw/e95bc09f7337/docs/screenshot.png
 
 Installation
 ------------
-    
-To enable this product,on a buildout based installation:
+
+To enable this product, on a buildout based installation:
 
     1. Edit your buildout.cfg and add ``sc.social.like``
        to the list of eggs to install ::
@@ -38,21 +40,46 @@ To enable this product,on a buildout based installation:
         eggs = 
             sc.social.like
 
-* Not is necessary tell the plone.recipe.zope2instance recipe to install a ZCML slug.
+.. note:: Since Plone 3.3 is not is necessary to explictly inform 
+          plone.recipe.zope2instance recipe to install the ZCML slug
 
 After updating the configuration you need to run the ''bin/buildout'',
 which will take care of updating your system.
 
+Using in a Plone Site
+----------------------
+
+Step 1: Activate it
+^^^^^^^^^^^^^^^^^^^^
+
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Add/Remove Products' link.
 
-Choose the product (check its checkbox) and click the 'Install' button.
+Choose the product **Social: Like Actions** (check checkbox at its left side)
+and click the 'Activate' button.
 
-Uninstall -- This can be done from the same management screen, but only
-if you installed it from the quick installer.
+Step 2: Configure it
+^^^^^^^^^^^^^^^^^^^^^^
 
-Note: You may have to empty your browser cache and save your resource registries
-in order to see the effects of the product installation.
+Go to the 'Site Setup' page in the Plone interface and click on the
+'Social Like' link -- under Add-on Configuration.
+
+.. image:: https://bitbucket.org/simplesconsultoria/sc.social.like/raw/e95bc09f7337/docs/control_panel.png
+
+There you can configure how **Social: Like Actions** will behave, which actions
+will be displayed and for which content types.
+
+Uninstall
+-------------
+
+Go to the 'Site Setup' page in the Plone interface and click on the
+'Add/Remove Products' link.
+
+Choose the product **Social: Like Actions**, which should be under *Activated
+add-ons*, (check checkbox at its left side) and click the 'Deactivate' button.
+
+.. note:: You may have to empty your browser cache and save your resource 
+          registries in order to see the effects of the product installation.
 
 Contributing
 --------------
@@ -65,11 +92,11 @@ Sponsoring
 
 Development of this product was sponsored by :
     
-    * `Rede Brasil Atual <http://www.redebrasilatual.com.br/>`_.
+    * `Rede Brasil Atual <http://www.redebrasilatual.com.br/>`_
     
-    * `Brazilian Government <http://www.brasil.gov.br/>`_.
+    * `TV1 <http://www.grupotv1.com.br/>`_
     
-    * `TV1 <http://www.grupotv1.com.br/>`_.
+    * `Brazilian Government <http://www.planalto.gov.br/>`_
 
 Credits
 -------
