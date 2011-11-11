@@ -4,7 +4,7 @@
     <tal:gp tal:condition="view/gp_enabled">
         <tal:block tal:define="button python:{'vertical':'tall','horizontal':'medium'}; vbutton view/typebutton">
           <div id="plusonebt"></div> 
-          <script type="text/javascript" tal:content="python:'''\n gapi.plusone.render('plusonebt',{'size': '%s','annotation': 'bubble'}); ''' %(button[str(vbutton)])" >
+          <script type="text/javascript" tal:content="python:'''\n jQuery(document).ready(function(){ \n gapi.plusone.render('plusonebt',{'size': '%s','annotation': 'bubble'}) \n }); ''' %(button[str(vbutton)])" >
           </script>
         </tal:block>
     </tal:gp>
