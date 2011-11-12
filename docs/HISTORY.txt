@@ -1,7 +1,7 @@
 Changelog
 -----------
 
-1.0 (unreleased)
+0.9.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
 * We carry the plusone button after the document load [cleberjsantos]
