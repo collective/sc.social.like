@@ -17,14 +17,14 @@ def fix_iso(code):
         # Try to find the best combination...
         available = [fb for fb in FB_LOCALES if fb.startswith(code)]
         if len(available) == 1:
-            return available[0]
+            code = available[0]
         else:
             # We have several choices... try to find a xx_XX combination if possible.
             # if not, return the first one..
             if '%s_%s' % (code.lower(), code.upper()) in FB_LOCALES:
-                return '%s_%s' % (code.lower(), code.upper())
+                code = '%s_%s' % (code.lower(), code.upper())
             else:
-                return available[0]
+                code = available[0]
         
     return code
 
