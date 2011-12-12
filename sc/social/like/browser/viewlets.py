@@ -13,6 +13,19 @@ def fix_iso(code):
         # we have a iso code like pt-br and FB_LOCALES uses pt_BR
         code = code.split('-')
         code = '%s_%s' % (code[0], code[1].upper())
+    elif code.find('_') == -1:
+        # Try to find the best combination...
+        available = [fb for fb in FB_LOCALES if fb.startswith(code)]
+        if len(available) == 1:
+            return available[0]
+        else:
+            # We have several choices... try to find a xx_XX combination if possible.
+            # if not, return the first one..
+            if '%s_%s' % (code.lower(), code.upper()) in FB_LOCALES:
+                return '%s_%s' % (code.lower(), code.upper())
+            else:
+                return available[0]
+        
     return code
 
 
