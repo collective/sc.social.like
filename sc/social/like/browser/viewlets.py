@@ -14,6 +14,7 @@ def fix_iso(code):
         code = code.split('-')
         code = '%s_%s' % (code[0], code[1].upper())
     elif code.find('_') == -1:
+        # XXX: Hack follows!
         # Try to find the best combination...
         available = [fb for fb in FB_LOCALES if fb.startswith(code)]
         if len(available) == 1:
