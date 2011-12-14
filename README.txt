@@ -108,3 +108,6 @@ Credits
 
     * Hector Velarde (hvelarde at simplesconsultoria dot com dot br) - Fixes
 
+    * Erico Andrei (erico at simplesconsultoria dot com dot br) - Fixes
+
+    * Mikel Larreategi (mlarreategi at codesyntax dot com) - Translation and fixes
