@@ -25,7 +25,7 @@ Requirements
 Screenshot
 -----------
 
-    .. image:: https://bitbucket.org/simplesconsultoria/sc.social.like/raw/e95bc09f7337/docs/screenshot.png
+    .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot.png
 
 Installation
 ------------
@@ -64,7 +64,7 @@ Step 2: Configure it
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Social Like' link -- under Add-on Configuration.
 
-.. image:: https://bitbucket.org/simplesconsultoria/sc.social.like/raw/e95bc09f7337/docs/control_panel.png
+.. image:: https://github.com/collective/sc.social.like/raw/master/docs/control_panel.png
 
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
@@ -85,7 +85,7 @@ Contributing
 --------------
 
     Code repository and isssue tracker can be found at 
-    `BitBucket <https://bitbucket.org/simplesconsultoria/sc.social.like>`_
+    `BitBucket <https://github.com/collective/sc.social.like>`_
 
 Sponsoring
 ----------
