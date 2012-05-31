@@ -19,7 +19,8 @@ def fix_iso(code):
         available = [fb for fb in FB_LOCALES if fb.startswith(code)]
         if len(available) == 1:
             code = available[0]
-        else:
+            
+        elif len(availabe) > 1:
             # We have several choices... try to find a xx_XX combination if possible.
             # if not, return the first one..
             if '%s_%s' % (code.lower(), code.upper()) in FB_LOCALES:
