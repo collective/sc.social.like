@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 
+
 def install(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.
@@ -11,6 +12,7 @@ def install(context):
         return
 
     # Add additional setup code here
+
 
 def uninstall(context):
 
@@ -35,9 +37,9 @@ def upgradefrom1001(context):
     ''' Upgrade from 1001
     '''
     setup = getToolByName(context, 'portal_setup')
-    
+
     # Install
     profiles = ['profile-sc.social.like:to2000', ]
-    
+
     for profile in profiles:
         setup.runAllImportStepsFromProfile(profile)

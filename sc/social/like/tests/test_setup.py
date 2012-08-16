@@ -10,13 +10,13 @@ from plone.browserlayer.utils import registered_layers
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.testing import INTEGRATION_TESTING
 
-
 JAVASCRIPTS = [
     ]
 
 CSS = [
     '++resource++sl_stylesheets/social_like.css',
     ]
+
 
 class InstallTestCase(unittest.TestCase):
 

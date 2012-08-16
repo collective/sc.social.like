@@ -6,7 +6,7 @@ __docformat__ = 'plaintext'
 
 PROJECTNAME = 'sc.social.like'
 
-# Retrieved from https://www.facebook.com/translations/FacebookLocales.xml 
+# Retrieved from https://www.facebook.com/translations/FacebookLocales.xml
 # on 2011-07-12 16:06-0300
 FB_LOCALES = ['af_ZA',
               'ar_AR',
@@ -115,4 +115,5 @@ FB_LOCALES = ['af_ZA',
               'zh_CN',
               'zh_HK',
               'zh_TW',
-              'zu_ZA',]
+              'zu_ZA',
+              ]
