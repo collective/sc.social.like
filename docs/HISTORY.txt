@@ -4,7 +4,11 @@ Changelog
 0.9.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Updated package documentation. [hvelarde]
+
+- Tested Plone 4.2 compatibility. [hvelarde]
+
+- Added basic installation tests. [hvelarde]
 
 
 0.9.1 (2012-06-11)
