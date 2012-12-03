@@ -131,6 +131,11 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 
         return logoName
 
+    def get_params(self):
+        return """
+        window.___gcfg = {'parsetags': 'explicit','lang':'%s'};
+        """ % self.language
+
 
 class SocialLikesViewlet(BaseLikeViewlet):
     """Viewlet used to display the buttons
