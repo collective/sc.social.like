@@ -23,18 +23,17 @@ from sc.social.like import LikeMessageFactory as _
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-verbs = SimpleVocabulary(
-    [SimpleTerm(value=u'like', title=_(u'Like')),
-     SimpleTerm(value=u'recommend', title=_(u'Recommend')), ]
-    )
+verbs = SimpleVocabulary([
+    SimpleTerm(value=u'like', title=_(u'Like')),
+    SimpleTerm(value=u'recommend', title=_(u'Recommend')),
+])
 
 
 class MultiSelectWidget(BaseMultiSelectWidget):
     """ """
     def __init__(self, field, request):
         """Initialize the widget."""
-        super(MultiSelectWidget, self).__init__(field,
-            field.value_type.vocabulary, request)
+        super(MultiSelectWidget, self).__init__(field, field.value_type.vocabulary, request)
 
 
 class IProvidersSchema(Interface):
@@ -42,23 +41,25 @@ class IProvidersSchema(Interface):
 
     enabled_portal_types = Tuple(
         title=_(u'Content types'),
-        description=_(u'help_portal_types',
-                      default=u"Please select content types in which the "
-                              u"viewlet will be applied.",
-            ),
+        description=_(
+            u'help_portal_types',
+            default=u"Please select content types in which the "
+                    u"viewlet will be applied.",
+        ),
         required=True,
         value_type=Choice(vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes")
-        )
+    )
 
     typebutton = Choice(
         title=_(u'Button style'),
-        description=_(u'help_selected_buttons',
-                      default=u"Choose your button style.",
-            ),
+        description=_(
+            u'help_selected_buttons',
+            default=u"Choose your button style.",
+        ),
         required=True,
         default=_(u'horizontal'),
         values=(_(u'horizontal'), _(u'vertical')),
-        )
+    )
 
 
 class ITwitterSchema(Interface):
@@ -68,15 +69,16 @@ class ITwitterSchema(Interface):
         title=_(u"Enable Twitter button"),
         default=True,
         required=False,
-        )
+    )
 
     twittvia = TextLine(
         title=_(u'Twitter nick'),
-        description=_(u'help_your_twitter_nick',
-                      default=u"Enter your twitter nick. eg. simplesconsultoria",
-            ),
+        description=_(
+            u'help_your_twitter_nick',
+            default=u"Enter your twitter nick. eg. simplesconsultoria",
+        ),
         required=False,
-        )
+    )
 
 
 class IFbSchema(Interface):
@@ -86,29 +88,31 @@ class IFbSchema(Interface):
         title=_(u"Enable Facebook button"),
         default=True,
         required=False,
-        )
+    )
 
     fbaction = Choice(
         title=_(u'Verb to display'),
-        description=_(u'help_verb_display',
-                      default=u"The verb to display in the facebook button. "
-                              u"Currently only 'like' and 'recommend' are "
-                              u"supported.",
-            ),
+        description=_(
+            u'help_verb_display',
+            default=u"The verb to display in the facebook button. "
+                    u"Currently only 'like' and 'recommend' are "
+                    u"supported.",
+        ),
         required=True,
         default=u'like',
         vocabulary=verbs,
-        )
+    )
 
     fbadmins = TextLine(
         title=_(u'Admins'),
-        description=_(u'help_admins',
-                      default=u"A comma-separated list of either the "
-                              u"Facebook IDs of page administrators or a "
-                              u"Facebook Platform application ID.",
-            ),
+        description=_(
+            u'help_admins',
+            default=u"A comma-separated list of either the "
+                    u"Facebook IDs of page administrators or a "
+                    u"Facebook Platform application ID.",
+        ),
         required=False,
-        )
+    )
 
 
 class IGpSchema(Interface):
@@ -118,7 +122,7 @@ class IGpSchema(Interface):
         title=_(u"Enable Google+ action"),
         default=True,
         required=False,
-        )
+    )
 
 
 class BaseControlPanelAdapter(SchemaAdapterBase):
