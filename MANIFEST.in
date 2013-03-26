@@ -1,4 +1,6 @@
 include *.txt
+include *.rst
+include *.cfg
 
 recursive-include sc *
 recursive-include docs *
