@@ -26,6 +26,12 @@ before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 script: bin/test
-after_success: ./validation.sh
+after_success:
+  - bin/flake8 --ignore=E501 --max-complexity=12 sc/social/like
+  - bin/coverage.sh 87
+  - npm install csslint -g 2>/dev/null
+  - find sc/social/like -type f -name *.css ! -name jquery\* | xargs csslint
+  - npm install jshint -g 2>/dev/null
+  - find sc/social/like -type f -name *.js ! -name jquery\* -exec jshint {} ';'
 notifications:
   irc: irc.freenode.org#simplesconsultoria
