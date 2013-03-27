@@ -9,11 +9,11 @@
 # JS_IGNORES: skip file names matching find pattern (use ! -name PATTERN)
 
 SRC = sc/social/like/
-MINIMUM_COVERAGE = 87
-PEP8_IGNORES = E501
-MAX_COMPLEXITY = 12
-CSS_IGNORES = ! -name jquery\*
-JS_IGNORES = ! -name jquery\*
+MINIMUM_COVERAGE=87
+PEP8_IGNORES=E501
+MAX_COMPLEXITY=12
+CSS_IGNORES="! -name jquery\*"
+JS_IGNORES="! -name jquery\*"
 
 if "$QA" != "" ; then
 	@echo Validating Python files
