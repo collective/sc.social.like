@@ -25,7 +25,7 @@
     </tal:fb>
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript" tal:condition="view/enabled">
     jQuery(function () {
         jQuery("div#viewlet-social-like").each(function(){
             jQuery(this).fadeIn(3000);
