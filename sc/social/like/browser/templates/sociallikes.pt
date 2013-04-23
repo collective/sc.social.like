@@ -9,8 +9,8 @@
         </tal:block>
     </tal:gp>
     <tal:twitter tal:condition="view/twitter_enabled">
-        <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-        <a href="http://twitter.com/share" class="twitter-share-button" tal:attributes="data-count view/typebutton;
+        <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+        <a href="//twitter.com/share" class="twitter-share-button" tal:attributes="data-count view/typebutton;
                                                                                         data-via view/twittvia;
                                                                                         data-url here/absolute_url;
                                                                                         data-lang view/language;
