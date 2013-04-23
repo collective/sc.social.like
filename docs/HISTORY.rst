@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Ensure all resources are loaded using scheme-relative URLs.  Previously,
+  attempting to load off HTTP on HTTPS sites resulted in broken pages.
+  [davidjb]
 - Plone 3.x is not officially supported anymore; use it at your own risk.
   [hvelarde]
 
