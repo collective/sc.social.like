@@ -9,13 +9,13 @@
     </tal:cond>
     <meta tal:condition="view/fbadmins" property="fb:admins" tal:attributes="content view/fbadmins" />
     <script
-        tal:attributes="src string:http://connect.facebook.net/${view/language}/all.js#xfbml=1"
-        src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+        tal:attributes="src string://connect.facebook.net/${view/language}/all.js#xfbml=1"
+        src="//connect.facebook.net/en_US/all.js#xfbml=1"></script>
   </tal:fb>
   <tal:gp  tal:condition="view/gp_enabled">
 
   <script tal:attributes="type string:text/javascript;
-                          src string:http://apis.google.com/js/plusone.js">
+                          src string://apis.google.com/js/plusone.js">
   </script>
 
   <script type="text/javascript" tal:content="view/get_params">
