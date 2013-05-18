@@ -2,7 +2,7 @@ Changelog
 -----------
 
 1.0.2 (unreleased)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 - Ensure all resources are loaded using scheme-relative URLs.  Previously,
   attempting to load off HTTP on HTTPS sites resulted in broken pages.
@@ -16,7 +16,7 @@ Changelog
 
 
 1.0.1 (2013-03-26)
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 - Fix packaging [ericof]
 
@@ -34,7 +34,7 @@ Changelog
 
 
 0.9.1 (2012-06-11)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 * FB support for simple language codes [erral]
 
