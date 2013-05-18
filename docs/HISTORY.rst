@@ -7,8 +7,12 @@ Changelog
 - Ensure all resources are loaded using scheme-relative URLs.  Previously,
   attempting to load off HTTP on HTTPS sites resulted in broken pages.
   [davidjb]
+
 - Plone 3.x is not officially supported anymore; use it at your own risk.
   [hvelarde]
+
+- Change CSS import to link.
+  [agnogueira]
 
 
 1.0.1 (2013-03-26)
