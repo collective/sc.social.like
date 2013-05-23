@@ -1,5 +1,17 @@
 #viewlet-social-like {margin-top: 5px;}
 #viewlet-social-like .twitter-count-horizontal {height: 20px !important;}
 #viewlet-social-like .fb_edge_widget_with_comment {position: relative; margin-top: 0px;}
-.twitter-share-button {margin-top: 0.8px;}
-.horizontal .fb_iframe_widget iframe {height: 23px !important;}
+
+#viewlet-social-like ul.like-buttons{
+float: left;
+list-style: none;
+margin: 5px 0 5px 0;
+padding: 0;
+width: 100%;
+list-style-type: none;
+}
+
+#viewlet-social-like ul.like-buttons li{
+    display: block;
+    float: left;
+}
