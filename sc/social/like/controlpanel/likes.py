@@ -23,6 +23,11 @@ from sc.social.like import LikeMessageFactory as _
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
+buttonTypes = SimpleVocabulary([
+    SimpleTerm(value=u'like', title=_(u'Like')),
+    SimpleTerm(value=u'share_this', title=_(u'Share this')),
+])
+
 verbs = SimpleVocabulary([
     SimpleTerm(value=u'like', title=_(u'Like')),
     SimpleTerm(value=u'recommend', title=_(u'Recommend')),
@@ -90,13 +95,21 @@ class IFbSchema(Interface):
         required=False,
     )
 
+    fb_typebutton = Choice(
+        title=_(u"Choose the type of button you want"),
+        required=True,
+        default=u'like',
+        vocabulary=buttonTypes,
+    )
+
     fbaction = Choice(
         title=_(u'Verb to display'),
         description=_(
             u'help_verb_display',
             default=u"The verb to display in the facebook button. "
                     u"Currently only 'like' and 'recommend' are "
-                    u"supported.",
+                    u"supported."
+                    u"Only used for 'Like' button type.",
         ),
         required=True,
         default=u'like',
@@ -158,6 +171,7 @@ class FbControlPanelAdapter(BaseControlPanelAdapter):
     implements(IFbSchema)
 
     fb_enabled = ProxyFieldProperty(IFbSchema['fb_enabled'])
+    fb_typebutton = ProxyFieldProperty(IFbSchema['fb_typebutton'])
     fbaction = ProxyFieldProperty(IFbSchema['fbaction'])
     fbadmins = ProxyFieldProperty(IFbSchema['fbadmins'])
 
