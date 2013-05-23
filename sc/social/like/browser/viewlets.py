@@ -50,6 +50,7 @@ class BaseLikeViewlet(ViewletBase):
     twitter_enabled = False
     twittvia = ''
     fb_enabled = False
+    fb_typebutton = ''
     fbaction = ''
     fbadmins = ''
     gp_enabled = False
@@ -74,6 +75,7 @@ class BaseLikeViewlet(ViewletBase):
             self.twitter_enabled = self.sheet.getProperty("twitter_enabled", True)
             self.twittvia = self.sheet.getProperty("twittvia", "")
             self.fb_enabled = self.sheet.getProperty("fb_enabled", True)
+            self.fb_typebutton = self.sheet.getProperty("fb_typebutton", "")
             self.fbaction = self.sheet.getProperty("fbaction", "")
             self.fbadmins = self.sheet.getProperty("fbadmins", "")
             self.gp_enabled = self.sheet.getProperty("gp_enabled", True)
