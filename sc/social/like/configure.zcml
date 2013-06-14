@@ -12,8 +12,14 @@
     <include file="profiles.zcml" />
     <include package=".browser" />
     <include package=".controlpanel" />
+    <include package=".plugins" />
 
     <i18n:registerTranslations directory="locales" />
 
+     <!-- Vocabularies -->
+     <utility
+       component=".vocabularies.PluginsVocabularyFactory"
+       name="sc.social.likes.plugins"
+       />
 
 </configure>
