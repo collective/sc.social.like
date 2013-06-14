@@ -43,3 +43,15 @@ def upgradefrom1001(context):
 
     for profile in profiles:
         setup.runAllImportStepsFromProfile(profile)
+
+
+def upgradefrom2001(context):
+    ''' Upgrade from 2001
+    '''
+    setup = getToolByName(context, 'portal_setup')
+
+    # Install
+    profiles = ['profile-sc.social.like:to3000', ]
+
+    for profile in profiles:
+        setup.runAllImportStepsFromProfile(profile)
