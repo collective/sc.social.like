@@ -18,4 +18,4 @@ class Plugin(object):
         return 'metadata'
 
     def plugin(self):
-        return 'metadata'
+        return 'plugin'
