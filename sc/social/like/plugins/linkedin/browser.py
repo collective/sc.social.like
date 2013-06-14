@@ -2,7 +2,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from sc.social.like.plugins.linkedin import controlpanel
 from sc.social.like.utils import facebook_language
 from zope.component import getMultiAdapter
 
@@ -32,11 +31,6 @@ class PluginView(BrowserView):
                                      '').split(';')[0].split(',')
         self.language = facebook_language(languages, self.language)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-
-    @property
-    def prefs(self):
-        portal = self.portal
-        return controlpanel.ILinkedinSchema(portal)
 
     @property
     def typebutton(self):
