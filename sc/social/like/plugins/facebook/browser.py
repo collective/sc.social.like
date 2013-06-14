@@ -59,8 +59,8 @@ class PluginView(BrowserView):
             field = [field for field in schema.keys() if field in fields]
             if field:
                 field = field[0]
-        view = context.unrestrictedTraverse('@@images')
         try:
+            view = context.unrestrictedTraverse('@@images')
             img = view.scale(fieldname=field, scale=scale)
         except AttributeError:
             img = None
