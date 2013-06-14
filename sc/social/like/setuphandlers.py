@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 
 
@@ -31,27 +32,3 @@ def uninstall(context):
             pp.manage_delObjects(ids='sc_social_likes_properties')
     except KeyError:
         pass
-
-
-def upgradefrom1001(context):
-    ''' Upgrade from 1001
-    '''
-    setup = getToolByName(context, 'portal_setup')
-
-    # Install
-    profiles = ['profile-sc.social.like:to2000', ]
-
-    for profile in profiles:
-        setup.runAllImportStepsFromProfile(profile)
-
-
-def upgradefrom2001(context):
-    ''' Upgrade from 2001
-    '''
-    setup = getToolByName(context, 'portal_setup')
-
-    # Install
-    profiles = ['profile-sc.social.like:to3000', ]
-
-    for profile in profiles:
-        setup.runAllImportStepsFromProfile(profile)

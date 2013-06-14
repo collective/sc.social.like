@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <!-- Include Upgrades -->
+    <include package=".v2000" />
+    <include package=".v3000" />
+
+</configure>
