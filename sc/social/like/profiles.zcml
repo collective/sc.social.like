@@ -1,0 +1,60 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <gs:registerProfile
+        name="default"
+        title="Social: Like Actions"
+        directory="profiles/default"
+        description="A simple, yet useful, social networking integration for Plone"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <gs:registerProfile
+        name="uninstall"
+        title="Uninstall Social: Like Actions"
+        directory="profiles/uninstall"
+        description="Removes Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+    <gs:registerProfile
+        name="to2000"
+        title="Upgrade Social: Like Actions (v2000)"
+        directory="profiles/to2000"
+        description="Upgrade Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+    <gs:registerProfile
+        name="to3000"
+        title="Upgrade Social: Like Actions (v3000)"
+        directory="profiles/to3000"
+        description="Upgrade Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+
+    <gs:upgradeStep
+        title="Upgrade for sc.social.like (To version 2000)"
+        description=""
+        source="1001"
+        destination="2000"
+        sortkey="2"
+        handler="sc.social.like.setuphandlers.upgradefrom1001"
+        profile="sc.social.like:default" />
+
+    <gs:upgradeStep
+        title="Upgrade for sc.social.like (To version 3000)"
+        description=""
+        source="2001"
+        destination="3000"
+        sortkey="3"
+        handler="sc.social.like.setuphandlers.upgradefrom2001"
+        profile="sc.social.like:default" />
+
+</configure>
