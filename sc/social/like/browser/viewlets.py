@@ -25,9 +25,12 @@ class BaseLikeViewlet(ViewletBase):
 
         self.site_url = self.portal_state.portal_url()
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-        if self.sheet:
-            self.enabled_portal_types = self.sheet.enabled_portal_types
-            self.plugins_enabled = self.sheet.plugins_enabled
+        self.enabled_portal_types = self.sheet.getProperty(
+            'enabled_portal_types',
+            []
+        )
+        self.plugins_enabled = self.sheet.getProperty('plugins_enabled',
+                                                      [])
 
     def available_plugins(self):
         registered = dict(getUtilitiesFor(IPlugin))
