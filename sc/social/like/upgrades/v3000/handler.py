@@ -23,8 +23,8 @@ def update_plugins(context):
     if sheet.twitter_enabled:
         plugins_enabled.append('Twitter')
     if sheet.fb_enabled:
-        plugins_enabled.append('Twitter')
+        plugins_enabled.append('Facebook')
     if sheet.gp_enabled:
-        plugins_enabled.append('Twitter')
+        plugins_enabled.append('Google+')
     sheet.manage_changeProperties(plugins_enabled=plugins_enabled)
     logger.info('Update enabled plugins list')
