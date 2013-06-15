@@ -3,7 +3,6 @@ from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from sc.social.like.plugins.facebook import controlpanel
 from sc.social.like.utils import facebook_language
 from zope.component import getMultiAdapter
 
@@ -28,6 +27,8 @@ class PluginView(BrowserView):
         pp = getToolByName(context, 'portal_properties')
 
         self.context = context
+        self.title = context.title
+        self.description = context.description
         self.request = request
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
@@ -43,11 +44,6 @@ class PluginView(BrowserView):
             self.fbaction = self.sheet.getProperty("fbaction", "")
             self.fbadmins = self.sheet.getProperty("fbadmins", "")
             self.button = self.typebutton
-
-    @property
-    def prefs(self):
-        portal = self.portal
-        return controlpanel.IFacebookSchema(portal)
 
     def image_url(self, scale='large'):
         """ Return url to image

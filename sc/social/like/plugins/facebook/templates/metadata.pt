@@ -1,5 +1,8 @@
 <tal:fb>
   <meta property="og:site_name" tal:attributes="content view/portal_title" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" tal:attributes="content view/title" />
+  <meta property="og:description" tal:attributes="content view/description" />
   <meta property="og:image" 
         tal:attributes="content view/image_url" />
   <meta tal:condition="view/fbadmins"
