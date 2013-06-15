@@ -2,7 +2,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from sc.social.like.plugins.twitter import controlpanel
 from sc.social.like.utils import facebook_language
 from zope.component import getMultiAdapter
 
@@ -37,8 +36,3 @@ class PluginView(BrowserView):
         if self.sheet:
             self.typebutton = self.sheet.getProperty("typebutton", "")
             self.twittvia = self.sheet.getProperty("twittvia", "")
-
-    @property
-    def prefs(self):
-        portal = self.portal
-        return controlpanel.ITwitterSchema(portal)
