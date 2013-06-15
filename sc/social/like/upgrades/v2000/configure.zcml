@@ -4,7 +4,7 @@
     i18n_domain="sc.social.like">
 
     <gs:registerProfile
-        name="v2000"
+        name="default"
         title="Upgrade Social: Like Actions (v2000)"
         directory="profile"
         description="Upgrade Social: Like Actions"
