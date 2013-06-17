@@ -47,7 +47,8 @@ setup(name='sc.social.like',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Plone',
+          'Pillow',
+          'Plone'
       ],
       extras_require={
           'test': ['plone.app.testing']
