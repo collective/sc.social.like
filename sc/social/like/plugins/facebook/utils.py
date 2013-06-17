@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from sc.social.like.config import FB_LOCALES
+from config import FB_LOCALES
 
 
 def fix_iso(code):
@@ -9,13 +9,19 @@ def fix_iso(code):
         # we have a iso code like pt-br and FB_LOCALES uses pt_BR
         code = code.split('-')
         code = '%s_%s' % (code[0], code[1].upper())
+        # Deal with Umbrella locations (Arabic and Spanish)
+        if code.startswith('es_'):
+            if not code in FB_LOCALES:
+                code = 'es_LA'
+        elif code.startswith('ar_'):
+            code = 'ar_AR'
     elif code.find('_') == -1:
         # XXX: Hack follows!
         # Try to find the best combination...
         available = [fb for fb in FB_LOCALES if fb.startswith(code)]
         if len(available) == 1:
+            # Just one match, use it
             code = available[0]
-
         elif len(available) > 1:
             # We have several choices...
             # try to find a xx_XX combination if possible.
@@ -24,7 +30,6 @@ def fix_iso(code):
                 code = '%s_%s' % (code.lower(), code.upper())
             else:
                 code = available[0]
-
     return code
 
 

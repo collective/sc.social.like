@@ -5,6 +5,8 @@ from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.facebook import browser
 from sc.social.like.plugins.facebook import controlpanel
+from sc.social.like.plugins.facebook.utils import facebook_language
+from sc.social.like.plugins.facebook.utils import fix_iso
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import generate_image
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -153,12 +155,27 @@ class PluginViewsTest(unittest.TestCase):
         image_url = view.image_url()
         self.assertEqual(expected, image_url)
 
+    def test_plugin_language(self):
+        plugin = self.plugin
+        document = self.document
+        plugin_view = plugin.view()
+        self.document.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br;q=0.5'
+        view = document.restrictedTraverse(plugin_view)
+        html = view.metadata()
+        self.assertTrue('connect.facebook.net/pt_BR/all.js' in html)
+
+        self.document.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'en;q=0.5'
+        view = document.restrictedTraverse(plugin_view)
+        html = view.metadata()
+        self.assertTrue('connect.facebook.net/en_GB/all.js' in html)
+
     def test_plugin_view_typebutton(self):
         portal = self.portal
         plugin = self.plugin
 
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
+        self.assertEqual(view.button, 'button_count')
         self.assertEqual(view.typebutton, 'button_count')
         self.assertEqual(view.width, '90px')
 
@@ -168,3 +185,34 @@ class PluginViewsTest(unittest.TestCase):
         view = portal.restrictedTraverse(plugin_view)
         self.assertEqual(view.typebutton, 'box_count')
         self.assertEqual(view.width, '55px')
+
+
+class LanguageCodeTest(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+
+    def test_fix_iso(self):
+        self.assertEqual(fix_iso('pt-br'), 'pt_BR')
+        self.assertEqual(fix_iso('pt-pt'), 'pt_PT')
+        self.assertEqual(fix_iso('en-gb'), 'en_GB')
+        self.assertEqual(fix_iso('es-es'), 'es_ES')
+        self.assertEqual(fix_iso('es-ar'), 'es_LA')
+        self.assertEqual(fix_iso('es-cl'), 'es_LA')
+        self.assertEqual(fix_iso('ar-sa'), 'ar_AR')
+        self.assertEqual(fix_iso('ar-eg'), 'ar_AR')
+        self.assertEqual(fix_iso('pt'), 'pt_PT')
+        self.assertEqual(fix_iso('de'), 'de_DE')
+        self.assertEqual(fix_iso('it'), 'it_IT')
+        self.assertEqual(fix_iso('en'), 'en_GB')
+
+    def facebook_language(self):
+        default = 'en_US'
+        self.assertEqual(facebook_language(['pt-br', 'pt']), 'pt_BR')
+        self.assertEqual(facebook_language(['de', ]), 'de_DE')
+        self.assertEqual(facebook_language(['it', ]), 'it_IT')
+        self.assertEqual(facebook_language(['fi', 'en']), 'fi_FI')
+        self.assertEqual(facebook_language(['ga', ]), 'ga_IE')
+        self.assertEqual(facebook_language(['ji', ]), default)

@@ -2,7 +2,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from sc.social.like.utils import facebook_language
 from zope.component import getMultiAdapter
 
 
@@ -10,7 +9,7 @@ class PluginView(BrowserView):
 
     typebutton = ''
     gp_enabled = True
-    language = 'en_US'
+    language = 'en'
 
     metadata = ViewPageTemplateFile("templates/metadata.pt")
     plugin = ViewPageTemplateFile("templates/plugin.pt")
@@ -29,7 +28,7 @@ class PluginView(BrowserView):
         self.url = context.absolute_url()
         languages = self.request.get('HTTP_ACCEPT_LANGUAGE',
                                      '').split(';')[0].split(',')
-        self.language = facebook_language(languages, self.language)
+        self.language = languages[0] if languages else self.language
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
 
     @property

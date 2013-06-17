@@ -3,7 +3,7 @@ from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from sc.social.like.utils import facebook_language
+from sc.social.like.plugins.facebook.utils import facebook_language
 from zope.component import getMultiAdapter
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
