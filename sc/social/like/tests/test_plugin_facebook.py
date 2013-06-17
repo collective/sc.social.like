@@ -216,3 +216,4 @@ class LanguageCodeTest(unittest.TestCase):
         self.assertEqual(facebook_language(['fi', 'en']), 'fi_FI')
         self.assertEqual(facebook_language(['ga', ]), 'ga_IE')
         self.assertEqual(facebook_language(['ji', ]), default)
+        self.assertEqual(facebook_language([]), default)
