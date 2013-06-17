@@ -5,7 +5,7 @@
     <span>
       <tal:replace replace="structure html" />
     </span>
-  </tal:plugin> 
+  </tal:plugin>
 </div>
 
 <script type="text/javascript" tal:condition="view/enabled">
