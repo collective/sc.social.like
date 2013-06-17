@@ -40,8 +40,16 @@ class IFacebookSchema(Interface):
         description=_(
             u'help_admins',
             default=u"A comma-separated list of either the "
-                    u"Facebook IDs of page administrators or a "
-                    u"Facebook Platform application ID.",
+                    u"Facebook IDs of page administrators.",
+        ),
+        required=False,
+    )
+
+    fbapp_id = schema.TextLine(
+        title=_(u'Application ID'),
+        description=_(
+            u'help_appid',
+            default=u"A Facebook Platform application ID.",
         ),
         required=False,
     )
@@ -54,6 +62,7 @@ class ControlPanelAdapter(BaseControlPanelAdapter):
 
     fbaction = PFP(IFacebookSchema['fbaction'])
     fbadmins = PFP(IFacebookSchema['fbadmins'])
+    fbapp_id = PFP(IFacebookSchema['fbapp_id'])
 
 
 class ProviderControlPanel(ControlPanelForm):

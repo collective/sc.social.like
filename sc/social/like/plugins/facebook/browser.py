@@ -42,6 +42,7 @@ class PluginView(BrowserView):
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         if self.sheet:
             self.fbaction = self.sheet.getProperty("fbaction", "")
+            self.fbapp_id = self.sheet.getProperty("fbapp_id", "")
             self.fbadmins = self.sheet.getProperty("fbadmins", "")
             self.button = self.typebutton
 

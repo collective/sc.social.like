@@ -11,6 +11,7 @@
       <property name="twittvia" type="string" purge="False"></property>
       <property name="fbaction" type="string" purge="False"></property>
       <property name="fbadmins" type="string" purge="False"></property>
+      <property name="fbapp_id" type="string" purge="False"></property>
 
       <property name="plugins_enabled" type="lines" purge="False">
           <element value="Facebook"/>

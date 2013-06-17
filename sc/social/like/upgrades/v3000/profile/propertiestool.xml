@@ -4,5 +4,6 @@
       <property name="plugins_enabled" type="lines" purge="False">
 
       </property>
+      <property name="fbapp_id" type="string" purge="False"></property>
   </object>
 </object>
