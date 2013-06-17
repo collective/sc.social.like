@@ -120,6 +120,19 @@ class PluginViewsTest(unittest.TestCase):
         image_url = view.image_url()
         self.assertEqual(expected, image_url)
 
+    def test_plugin_view_document(self):
+        plugin = self.plugin
+        self.portal.invokeFactory('Document', 'my-document')
+        document = self.portal['my-document']
+        expected = 'logo.png'
+
+        plugin_view = plugin.view()
+        view = document.restrictedTraverse(plugin_view)
+
+        # At document, return logo
+        image_url = view.image_url()
+        self.assertTrue(expected in image_url)
+
     def test_plugin_view_typebutton(self):
         portal = self.portal
         plugin = self.plugin
