@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from plone.memoize import forever
 from sc.social.like.plugins import IPlugin
 from zope.component import getUtilitiesFor
 from zope.interface import implements
@@ -13,7 +14,8 @@ class PluginsVocabulary(object):
 
     implements(IVocabularyFactory)
 
-    def __call__(self, context):
+    @forever.memoize
+    def plugins(self):
         terms = []
         registered = dict(getUtilitiesFor(IPlugin))
         keys = registered.keys()
@@ -22,5 +24,8 @@ class PluginsVocabulary(object):
             terms.append(SimpleTerm(key, title=key))
 
         return SimpleVocabulary(terms)
+
+    def __call__(self, context):
+        return self.plugins()
 
 PluginsVocabularyFactory = PluginsVocabulary()
