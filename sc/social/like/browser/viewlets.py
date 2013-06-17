@@ -36,18 +36,27 @@ class BaseLikeViewlet(ViewletBase):
         registered = dict(getUtilitiesFor(IPlugin))
         return registered
 
+    def _plugins(self):
+        available = self.available_plugins()
+        enabled = self.plugins_enabled
+        plugins = []
+        for plugin_id in enabled:
+            plugin = available.get(plugin_id, None)
+            if plugin:
+                plugins.append(plugin)
+        return plugins
+
     def plugins(self):
         context = self.context
         render_method = self.render_method
-        available = self.available_plugins()
-        enabled = self.plugins_enabled
         rendered = []
-        for plugin_id in enabled:
-            plugin = available.get(plugin_id, None)
+        plugins = self._plugins()
+        for plugin in plugins:
             if plugin and render_method:
                 view = context.restrictedTraverse(plugin.view())
                 html = getattr(view, render_method)()
-                rendered.append(html)
+                rendered.append({'id': plugin.id,
+                                 'html': html})
         return rendered
 
     def enabled(self):
