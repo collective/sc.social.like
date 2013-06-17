@@ -4,6 +4,10 @@ Changelog
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^^
 
+- Increasing test coverage [ericof]
+
+- Plugin implementation [ericof]
+
 - Ensure all resources are loaded using scheme-relative URLs.  Previously,
   attempting to load off HTTP on HTTPS sites resulted in broken pages.
   [davidjb]
