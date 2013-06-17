@@ -6,6 +6,7 @@ from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.pinterest import browser
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import generate_image
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
@@ -66,8 +67,18 @@ class PluginViewsTest(unittest.TestCase):
         self.plugin = self.plugins[name]
 
     def setup_content(self, portal):
-        portal.invokeFactory('Document', 'my-document')
-        self.document = portal['my-document']
+        portal.invokeFactory('News Item', 'my-newsitem')
+        portal.invokeFactory('Image', 'my-image')
+        self.newsitem = portal['my-newsitem']
+        self.newsitem.setImage(generate_image(1024, 768))
+        self.image = portal['my-image']
+        self.image.setImage(generate_image(1024, 768))
+
+    def image_url(self, obj, field='image', scale='large'):
+
+        view = obj.unrestrictedTraverse('@@images')
+        scale = view.scale(fieldname='image', scale='large')
+        return scale.url
 
     def test_plugin_view(self):
         plugin = self.plugin
@@ -78,12 +89,36 @@ class PluginViewsTest(unittest.TestCase):
 
     def test_plugin_view_html(self):
         plugin = self.plugin
-        document = self.document
+        newsitem = self.newsitem
         plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
+        view = newsitem.restrictedTraverse(plugin_view)
         html = view.plugin()
         self.assertTrue('js/pinit.js' in html)
         self.assertTrue('pin_it_button.png' in html)
+
+    def test_plugin_view_image(self):
+        plugin = self.plugin
+        image = self.image
+        expected = self.image_url(image)
+
+        plugin_view = plugin.view()
+        view = image.restrictedTraverse(plugin_view)
+
+        # At image, use local image
+        image_url = view.image_url()
+        self.assertEqual(expected, image_url)
+
+    def test_plugin_view_newsitem(self):
+        plugin = self.plugin
+        newsitem = self.newsitem
+        expected = self.image_url(newsitem)
+
+        plugin_view = plugin.view()
+        view = newsitem.restrictedTraverse(plugin_view)
+
+        # At newsitem, use image
+        image_url = view.image_url()
+        self.assertEqual(expected, image_url)
 
     def test_plugin_view_typebutton(self):
         portal = self.portal
