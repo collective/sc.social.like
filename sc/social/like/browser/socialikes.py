@@ -16,6 +16,8 @@ class SocialLikes(BrowserView):
     """
     implements(ISocialLikes)
 
+    enabled_portal_types = []
+
     def __init__(self, context, request, *args, **kwargs):
         super(SocialLikes, self).__init__(context, request, *args, **kwargs)
         context = aq_inner(context)
@@ -23,9 +25,9 @@ class SocialLikes(BrowserView):
         pp = getToolByName(context, 'portal_properties')
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         if self.sheet:
-            self.enabled_portal_types = self.sheet.getProperty("enabled_portal_types")
-        else:
-            self.enabled_portal_types = []
+            self.enabled_portal_types = self.sheet.getProperty(
+                "enabled_portal_types"
+            )
 
     @property
     def enabled(self):
