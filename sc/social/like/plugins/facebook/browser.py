@@ -28,7 +28,7 @@ class PluginView(BrowserView):
 
         self.context = context
         self.title = context.title
-        self.description = context.description
+        self.description = context.Description()
         self.request = request
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
