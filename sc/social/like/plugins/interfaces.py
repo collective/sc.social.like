@@ -6,23 +6,23 @@ class IPlugin(Interface):
     ''' A Social Like Plugin '''
 
     def config_view():
-        pass
+        ''' Plugin configuration '''
 
     def view():
-        pass
+        ''' Plugin's browser view '''
 
     def metadata():
-        pass
+        ''' Return metadata method '''
 
     def plugin():
-        pass
+        ''' Return html render method '''
 
 
 class IPluginView(Interface):
     ''' A Social Like Plugin Browser View '''
 
     def metadata():
-        pass
+        ''' Return metadata method '''
 
     def plugin():
-        pass
+        ''' Return html render method '''
