@@ -208,12 +208,19 @@ class LanguageCodeTest(unittest.TestCase):
         self.assertEqual(fix_iso('it'), 'it_IT')
         self.assertEqual(fix_iso('en'), 'en_GB')
 
-    def facebook_language(self):
+    def test_facebook_language(self):
         default = 'en_US'
-        self.assertEqual(facebook_language(['pt-br', 'pt']), 'pt_BR')
-        self.assertEqual(facebook_language(['de', ]), 'de_DE')
-        self.assertEqual(facebook_language(['it', ]), 'it_IT')
-        self.assertEqual(facebook_language(['fi', 'en']), 'fi_FI')
-        self.assertEqual(facebook_language(['ga', ]), 'ga_IE')
-        self.assertEqual(facebook_language(['ji', ]), default)
-        self.assertEqual(facebook_language([]), default)
+        self.assertEqual(facebook_language(['pt-br', 'pt'], default),
+                         'pt_BR')
+        self.assertEqual(facebook_language(['de', ], default),
+                         'de_DE')
+        self.assertEqual(facebook_language(['it', ], default),
+                         'it_IT')
+        self.assertEqual(facebook_language(['fi', 'en'], default),
+                         'fi_FI')
+        self.assertEqual(facebook_language(['ga', ], default),
+                         'ga_IE')
+        self.assertEqual(facebook_language(['ji', ], default),
+                         default)
+        self.assertEqual(facebook_language([], default),
+                         default)
