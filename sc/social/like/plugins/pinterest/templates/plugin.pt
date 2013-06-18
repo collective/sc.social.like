@@ -1,0 +1,10 @@
+<tal:pinterest>
+	<!-- Pinterest -->
+	<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+	<a href=""
+	   data-pin-do="buttonPin"
+	   data-pin-config="beside"
+	   tal:attributes="href view/share_url;
+	   				   data-pin-config view/typebutton;"
+	   	><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+</tal:pinterest>

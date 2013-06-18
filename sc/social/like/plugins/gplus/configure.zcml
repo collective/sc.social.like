@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sc.social.like">
+
+  <!-- Register Plugin -->
+  <utility
+      factory="sc.social.like.plugins.gplus.GooglePlus"
+      name="Google+" />
+
+
+  <!-- Metadata -->
+  <browser:page
+    name="gplus-plugin"
+    for="*"
+    class=".browser.PluginView"
+    layer="sc.social.like.interfaces.ISocialLikeLayer"
+    allowed_interface='sc.social.like.plugins.interfaces.IPluginView'
+    permission="zope2.View"
+    />
+
+</configure>

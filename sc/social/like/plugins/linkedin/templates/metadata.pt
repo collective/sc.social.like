@@ -1,0 +1,3 @@
+<tal:linkedin>
+    <script type="text/javascript" src="//platform.linkedin.com/in.js"></script>
+</tal:linkedin>

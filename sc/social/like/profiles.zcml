@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <!-- Profiles -->
+
+    <gs:registerProfile
+        name="default"
+        title="Social: Like Actions"
+        directory="profiles/default"
+        description="A simple, yet useful, social networking integration for Plone"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <gs:registerProfile
+        name="uninstall"
+        title="Uninstall Social: Like Actions"
+        directory="profiles/uninstall"
+        description="Removes Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+    <!-- Upgrades -->
+    <include package=".upgrades" />
+
+
+    <!-- Hide profiles/products from Quick Installer -->
+    <utility factory=".setuphandlers.HiddenProducts"
+             name="sc.social.like" />
+    <utility factory=".setuphandlers.HiddenProfiles"
+             name="sc.social.like" />
+
+
+</configure>

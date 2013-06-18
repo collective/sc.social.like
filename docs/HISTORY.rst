@@ -4,6 +4,19 @@ Changelog
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^^
 
+- Increasing test coverage [ericof]
+
+- Render metadata viewlet on folder_full_view and all_content templates
+  https://github.com/collective/sc.social.like/issues/11 [ericof]
+
+- Fixes vertical display 
+  https://github.com/collective/sc.social.like/issues/5 [ericof]
+
+- Add LinkedIn and Pinterest support.
+  https://github.com/collective/sc.social.like/issues/6 [ericof]
+
+- Plugin implementation [ericof]
+
 - Ensure all resources are loaded using scheme-relative URLs.  Previously,
   attempting to load off HTTP on HTTPS sites resulted in broken pages.
   [davidjb]
