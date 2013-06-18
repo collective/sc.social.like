@@ -3,9 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser">
 
   <adapter factory=".likes.LikeControlPanelAdapter" />
-  <adapter factory=".likes.TwitterControlPanelAdapter" />
-  <adapter factory=".likes.FbControlPanelAdapter" />
-  <adapter factory=".likes.GpControlPanelAdapter" />
   
   <browser:page
     name="likes-providers"

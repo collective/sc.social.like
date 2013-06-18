@@ -1,0 +1,6 @@
+<tal:linkedin>
+	<!-- Linkedin -->
+    <script type="in/share" data-counter="right"
+            tal:attributes="data-counter view/typebutton;
+            				data-url view/url;"></script>
+</tal:linkedin>

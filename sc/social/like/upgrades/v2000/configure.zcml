@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <gs:registerProfile
+        name="default"
+        title="Upgrade Social: Like Actions (v2000)"
+        directory="profile"
+        description="Upgrade Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+    <gs:upgradeSteps
+        source="1001"
+        destination="2000"
+        profile="sc.social.like:default">
+
+      <gs:upgradeStep
+          title="Set default values for plugins"
+          description=""
+          handler=".handler.apply_profile"
+          />
+
+    </gs:upgradeSteps>
+
+</configure>

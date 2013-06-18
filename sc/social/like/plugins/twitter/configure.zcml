@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sc.social.like">
+
+  <!-- Register Plugin -->
+  <utility
+      factory="sc.social.like.plugins.twitter.Twitter"
+      name="Twitter" />
+
+
+  <!-- ControlPanel -->
+  <adapter factory=".controlpanel.ControlPanelAdapter" />
+  
+  <browser:page
+    name="twitter-config"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.ProviderControlPanel"
+    layer="sc.social.like.interfaces.ISocialLikeLayer"
+    permission="cmf.ManagePortal"
+    />
+
+  <!-- Metadata -->
+  <browser:page
+    name="twitter-plugin"
+    for="*"
+    class=".browser.PluginView"
+    layer="sc.social.like.interfaces.ISocialLikeLayer"
+    allowed_interface='sc.social.like.plugins.interfaces.IPluginView'
+    permission="zope2.View"
+    />
+
+</configure>

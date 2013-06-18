@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_properties">
+  <object name="sc_social_likes_properties" meta_type="Plone Property Sheet">
+      <property name="plugins_enabled" type="lines" purge="False">
+
+      </property>
+      <property name="fbapp_id" type="string" purge="False"></property>
+  </object>
+</object>

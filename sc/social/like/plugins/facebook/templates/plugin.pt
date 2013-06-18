@@ -1,0 +1,10 @@
+<tal:fb>
+    <!-- Facebook -->
+    <div class="fb-like"
+    	 tal:attributes="data-href view/url;
+    	 				 data-send string:false;
+    	 				 data-action view/fbaction;
+    	 				 data-layout view/typebutton;
+    	 				 data-width view/width;
+    	 				 data-show-faces string:false"></div>
+</tal:fb>

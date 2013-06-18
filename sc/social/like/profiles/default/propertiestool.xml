@@ -8,11 +8,15 @@
           <element value="File" />
       </property>
       <property name="typebutton" type="string" purge="False">horizontal</property>
-      <property name="twitter_enabled" type="boolean">True</property>
       <property name="twittvia" type="string" purge="False"></property>
-      <property name="fb_enabled" type="boolean">True</property>      
       <property name="fbaction" type="string" purge="False"></property>
       <property name="fbadmins" type="string" purge="False"></property>
-      <property name="gp_enabled" type="boolean">True</property>      
+      <property name="fbapp_id" type="string" purge="False"></property>
+
+      <property name="plugins_enabled" type="lines" purge="False">
+          <element value="Facebook"/>
+          <element value="Twitter"/>
+          <element value="Google+"/>
+      </property>
   </object>
 </object>

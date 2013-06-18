@@ -1,0 +1,52 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <gs:registerProfile
+        name="default"
+        title="Upgrade Social: Like Actions (v3000)"
+        directory="profile"
+        description="Upgrade Social: Like Actions"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+    <gs:upgradeSteps
+        source="2000"
+        destination="3000"
+        profile="sc.social.like:default">
+
+      <gs:upgradeStep
+          title="Create plugins_enabled property"
+          description=""
+          handler=".handler.apply_profile"
+          />
+
+      <gs:upgradeStep
+          title="Update plugins_enabled property with existing values"
+          description="If properties for Facebook, Google+ and Twitter have been set, update them."
+          handler=".handler.update_plugins"
+          />
+    </gs:upgradeSteps>
+
+    <gs:upgradeSteps
+        source="2001"
+        destination="3000"
+        profile="sc.social.like:default">
+
+      <gs:upgradeStep
+          title="Create plugins_enabled property"
+          description=""
+          handler=".handler.apply_profile"
+          />
+
+      <gs:upgradeStep
+          title="Update plugins_enabled property with existing values"
+          description="If properties for Facebook, Google+ and Twitter have been set, update them."
+          handler=".handler.update_plugins"
+          />
+    </gs:upgradeSteps>
+
+
+</configure>
