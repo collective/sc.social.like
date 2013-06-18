@@ -33,6 +33,12 @@ class MetadataViewletTestCase(unittest.TestCase):
         viewlet = self.viewlet(self.portal)
         self.assertFalse(viewlet.enabled())
 
+    def test_enabled_on_portal_with_template_full_view(self):
+        # Set layout to folder_full_view
+        self.portal.setLayout('folder_full_view')
+        viewlet = self.viewlet(self.portal)
+        self.assertTrue(viewlet.enabled())
+
     def test_enabled_on_document(self):
         viewlet = self.viewlet(self.document)
         self.assertTrue(viewlet.enabled())

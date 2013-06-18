@@ -23,6 +23,9 @@ class BaseLikeViewlet(ViewletBase):
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
 
+        self.context_state = getMultiAdapter((self.context, self.request),
+                                             name=u'plone_context_state')
+
         self.site_url = self.portal_state.portal_url()
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         self.enabled_portal_types = self.sheet.getProperty(
@@ -79,6 +82,20 @@ class SocialMetadataViewlet(BaseLikeViewlet):
     """
     render = ViewPageTemplateFile("templates/metadata.pt")
     render_method = 'metadata'
+
+    def enabled(self):
+        """Validates if the viewlet should be enabled for this context
+        """
+        context = self.context
+        template = self.context_state.view_template_id()
+        # If using folder_full_view or all_content, we add metadata
+        # in order to proper display share buttons for
+        # contained content types
+        if template in ('all_content', 'folder_full_view',):
+            return True
+        else:
+            enabled_portal_types = self.enabled_portal_types
+            return context.portal_type in enabled_portal_types
 
 
 class SocialLikesViewlet(BaseLikeViewlet):
