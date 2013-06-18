@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
-from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.plugins.facebook.utils import facebook_language
+from sc.social.like.utils import get_content_image
 from zope.component import getMultiAdapter
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
@@ -40,30 +40,38 @@ class PluginView(BrowserView):
                                      '').split(';')[0].split(',')
         self.language = facebook_language(languages, self.language)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
+        self.image = get_content_image(context, scale='large')
         if self.sheet:
             self.fbaction = self.sheet.getProperty("fbaction", "")
             self.fbapp_id = self.sheet.getProperty("fbapp_id", "")
             self.fbadmins = self.sheet.getProperty("fbadmins", "")
             self.button = self.typebutton
 
-    def image_url(self, scale='large'):
+    def image_height(self):
+        """ Return height to image
+        """
+        img = self.image
+        if img:
+            return img.height
+
+    def image_type(self):
+        """ Return content type to image
+        """
+        img = self.image
+        if img:
+            return img.content_type
+
+    def image_width(self):
+        """ Return width to image
+        """
+        img = self.image
+        if img:
+            return img.width
+
+    def image_url(self):
         """ Return url to image
         """
-        fields = ['image', 'leadImage', 'portrait']
-        context = self.context
-        if IBaseContent.providedBy(context):
-            schema = context.Schema()
-            field = [field for field in schema.keys() if field in fields]
-            if field:
-                field = field[0]
-        else:
-            # Let's assume image as a valid fieldname
-            field = 'image'
-        try:
-            view = context.unrestrictedTraverse('@@images')
-            img = view.scale(fieldname=field, scale=scale)
-        except AttributeError:
-            img = None
+        img = self.image
         if img:
             return img.url
         else:

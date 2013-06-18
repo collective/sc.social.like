@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
-from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.utils import get_content_image
 from zope.component import getMultiAdapter
 
 BASE_URL = '//pinterest.com/pin/create/button/'
@@ -30,6 +30,7 @@ class PluginView(BrowserView):
         self.site_url = self.portal_state.portal_url()
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
+        self.image = get_content_image(context, scale='large')
         languages = self.request.get('HTTP_ACCEPT_LANGUAGE',
                                      '').split(';')[0].split(',')
         self.language = languages[0] if languages else self.language
@@ -43,24 +44,10 @@ class PluginView(BrowserView):
             self.context.Title(),
         )
 
-    def image_url(self, scale='large'):
+    def image_url(self):
         """ Return url to image
         """
-        fields = ['image', 'leadImage', 'portrait']
-        context = self.context
-        if IBaseContent.providedBy(context):
-            schema = context.Schema()
-            field = [field for field in schema.keys() if field in fields]
-            if field:
-                field = field[0]
-        else:
-            # Let's assume image as a valid fieldname
-            field = 'image'
-        view = context.unrestrictedTraverse('@@images')
-        try:
-            img = view.scale(fieldname=field, scale=scale)
-        except AttributeError:
-            img = None
+        img = self.image
         if img:
             return img.url
         else:
