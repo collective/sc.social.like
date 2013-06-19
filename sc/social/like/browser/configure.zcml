@@ -15,6 +15,15 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        for="*"
+        name="sl_helper"
+        class=".helper.HelperView"
+        allowed_interface="..interfaces.IHelperView"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+
     <browser:viewlet
         name="sc.social.likes"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"

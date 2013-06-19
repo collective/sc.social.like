@@ -11,3 +11,31 @@ class ISocialLikeLayer(Interface):
 class ISocialLikes(Interface):
     """
     """
+
+
+class IHelperView(Interface):
+    """
+    """
+    def configs():
+        ''' Social Like configuration '''
+
+    def enabled_portal_types():
+        ''' Portal Types that will display our viewlet '''
+
+    def plugins_enabled():
+        ''' List of plugins enabled '''
+
+    def typebutton():
+        ''' Button to be used '''
+
+    def enabled():
+        ''' Social Like is enabled for this context '''
+
+    def available_plugins():
+        ''' Return available plugins '''
+
+    def plugins():
+        ''' Return enabled plugins '''
+
+    def view_template_id():
+        ''' View or template id for this context '''
