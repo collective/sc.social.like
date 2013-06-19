@@ -79,12 +79,6 @@ class PluginViewsTest(unittest.TestCase):
         self.image = portal['my-image']
         self.image.setImage(generate_image(1024, 768))
 
-    def image_url(self, obj, field='image', scale='large'):
-
-        view = obj.unrestrictedTraverse('@@images')
-        scale = view.scale(fieldname='image', scale='large')
-        return scale.url
-
     def test_config_view(self):
         plugin = self.plugin
         portal = self.portal
@@ -134,26 +128,28 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_image(self):
         plugin = self.plugin
         image = self.image
-        expected = self.image_url(image)
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
 
         # At image, use local image
         image_url = view.image_url()
-        self.assertEqual(expected, image_url)
+        self.assertTrue('logo.png' not in image_url)
+        self.assertEqual(view.image_width(), 200)
+        self.assertEqual(view.image_height(), 200)
 
     def test_plugin_view_newsitem(self):
         plugin = self.plugin
         newsitem = self.newsitem
-        expected = self.image_url(newsitem)
 
         plugin_view = plugin.view()
         view = newsitem.restrictedTraverse(plugin_view)
 
         # At newsitem, use image
         image_url = view.image_url()
-        self.assertEqual(expected, image_url)
+        self.assertTrue('logo.png' not in image_url)
+        self.assertEqual(view.image_width(), 200)
+        self.assertEqual(view.image_height(), 200)
 
     def test_plugin_language(self):
         plugin = self.plugin

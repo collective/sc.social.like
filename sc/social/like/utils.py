@@ -11,6 +11,7 @@ def get_images_view(context):
     value = cache.get(key, None)
     if not value:
         view = context.unrestrictedTraverse('@@images', None)
+        field = 'image'
         if view:
             fields = ['image', 'leadImage', 'portrait']
             if IBaseContent.providedBy(context):
@@ -18,10 +19,7 @@ def get_images_view(context):
                 field = [field for field in schema.keys() if field in fields]
                 if field:
                     field = field[0]
-            else:
-                # Let's assume image as a valid fieldname
-                field = 'image'
-        value = (view, field)
+        value = (view, field) if (view and field) else (None, None)
         cache[key] = value
     return value
 
