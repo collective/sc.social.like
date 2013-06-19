@@ -15,4 +15,4 @@ class Pinterest(Plugin):
         return None
 
     def metadata(self):
-        return ''
+        return None
