@@ -43,11 +43,6 @@ class MetadataViewletTestCase(unittest.TestCase):
         viewlet = self.viewlet(self.document)
         self.assertTrue(viewlet.enabled())
 
-    def test_available_plugins(self):
-        viewlet = self.viewlet(self.document)
-        available_plugins = viewlet.available_plugins()
-        self.assertEqual(len(available_plugins), 5)
-
     def test_render(self):
         viewlet = self.viewlet(self.document)
         html = viewlet.render()
@@ -80,11 +75,6 @@ class LikeViewletTestCase(unittest.TestCase):
     def test_enabled_on_document(self):
         viewlet = self.viewlet(self.document)
         self.assertTrue(viewlet.enabled())
-
-    def test_available_plugins(self):
-        viewlet = self.viewlet(self.document)
-        available_plugins = viewlet.available_plugins()
-        self.assertEqual(len(available_plugins), 5)
 
     def test_render(self):
         viewlet = self.viewlet(self.document)
