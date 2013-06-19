@@ -45,7 +45,7 @@ class PluginTest(unittest.TestCase):
     def test_plugin_metadata(self):
         plugin = self.plugins[name]
         self.assertEqual(plugin.metadata(),
-                         '')
+                         None)
 
     def test_plugin_plugin(self):
         plugin = self.plugins[name]
