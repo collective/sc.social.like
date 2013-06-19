@@ -40,7 +40,7 @@ class PluginView(BrowserView):
                                      '').split(';')[0].split(',')
         self.language = facebook_language(languages, self.language)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-        self.image = get_content_image(context, scale='large')
+        self.image = get_content_image(context, width=200, height=200)
         if self.sheet:
             self.fbaction = self.sheet.getProperty("fbaction", "")
             self.fbapp_id = self.sheet.getProperty("fbapp_id", "")
@@ -59,7 +59,8 @@ class PluginView(BrowserView):
         """
         img = self.image
         if img:
-            return img.content_type
+            return getattr(img, 'content_type',
+                           getattr(img, 'mimetype', 'image/jpeg'))
 
     def image_width(self):
         """ Return width to image
