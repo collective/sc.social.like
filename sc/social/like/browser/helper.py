@@ -39,7 +39,7 @@ class HelperView(BrowserView):
     @memoize_contextless
     def plugins_enabled(self):
         configs = self.configs()
-        return configs.plugins_enabled
+        return configs.plugins_enabled or []
 
     @memoize_contextless
     def typebutton(self):
