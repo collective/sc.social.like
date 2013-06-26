@@ -4,6 +4,8 @@ Changelog
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^^
 
+- Drop support for Plone 4.0.x [ericof]
+
 - Increasing test coverage [ericof]
 
 - Render metadata viewlet on folder_full_view and all_content templates
