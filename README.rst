@@ -9,11 +9,16 @@ Social: Like Actions (sc.social.like)
 Life, the Universe, and Everything
 ----------------------------------
 
-**Social: Like Actions** is a Plone package (add-on) providing simple Google+,
-Twitter and Facebook integration for Plone Content Types.
+**Social: Like Actions** is a Plone package (add-on) providing simple social
+networks integration for Plone Content Types.
 
-This package installs a viewlet with actions to +1, Tweet and Like (or
-Recommend) a content.
+This package ships with plugins for the following networks:
+	
+	* Facebook
+	* Google+
+	* LinkedIn
+	* Pinterest
+	* Twitter
 
 Screenshot
 ^^^^^^^^^^
