@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
+from Products.PythonScripts.standard import url_quote
 
 
 class PluginView(BrowserView):
@@ -35,3 +36,7 @@ class PluginView(BrowserView):
         if self.sheet:
             self.typebutton = self.sheet.getProperty("typebutton", "")
             self.twittvia = self.sheet.getProperty("twittvia", "")
+        self.urlnoscript = ('http://twitter.com/home?status=' +
+                            url_quote('%s - %s via %s' % (self.context.Title(),
+                                                          self.context.absolute_url(),
+                                                          self.twittvia)))
