@@ -2,8 +2,8 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import getMultiAdapter
 from Products.PythonScripts.standard import url_quote
+from zope.component import getMultiAdapter
 
 
 class PluginView(BrowserView):
