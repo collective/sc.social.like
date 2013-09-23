@@ -19,6 +19,8 @@ def get_images_view(context):
                 field = [field for field in schema.keys() if field in fields]
                 if field:
                     field = field[0]
+                    if schema[field].type != "image":
+                        field = ""
         value = (view, field) if (view and field) else (None, None)
         cache[key] = value
     return value

@@ -29,6 +29,7 @@ Changelog
 - Change CSS import to link.
   [agnogueira]
 
+- If a field named "image" isn't an ImageField, doesn't break the viewlet [cekk]
 
 1.0.1 (2013-03-26)
 ^^^^^^^^^^^^^^^^^^^
