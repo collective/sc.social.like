@@ -50,5 +50,7 @@ def get_content_image(context,
                 img = view.scale(fieldname=field, **kwargs)
             except AttributeError:
                 img = None
+            except TypeError:
+                img = None
         cache[key] = img
     return img
