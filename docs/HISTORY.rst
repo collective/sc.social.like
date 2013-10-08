@@ -1,7 +1,15 @@
 Changelog
 -----------
 
-1.0.2 (unreleased)
+2.0.b1 (unreleased)
+^^^^^^^^^^^^^^^^^^^^
+
+- Use content language instead of request language, avoiding cache problems
+  https://github.com/collective/sc.social.like/issues/19
+  [ericof]
+
+
+2.0a1 (2013-07-23)
 ^^^^^^^^^^^^^^^^^^^^
 
 - Drop support for Plone 4.0.x [ericof]
