@@ -4,6 +4,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
+from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
@@ -36,9 +37,7 @@ class PluginView(BrowserView):
         self.site_url = self.portal_state.portal_url()
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
-        languages = self.request.get('HTTP_ACCEPT_LANGUAGE',
-                                     '').split(';')[0].split(',')
-        self.language = facebook_language(languages, self.language)
+        self.language = facebook_language(get_language(context), self.language)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         self.image = get_content_image(context, width=200, height=200)
         if self.sheet:
