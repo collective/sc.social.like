@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_content_image
+from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 
 BASE_URL = '//pinterest.com/pin/create/button/'
@@ -31,9 +32,7 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.image = get_content_image(context, scale='large')
-        languages = self.request.get('HTTP_ACCEPT_LANGUAGE',
-                                     '').split(';')[0].split(',')
-        self.language = languages[0] if languages else self.language
+        self.language = get_language(context)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
 
     def share_url(self):
