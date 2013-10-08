@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
@@ -50,3 +51,14 @@ def get_content_image(context,
                 img = None
         cache[key] = img
     return img
+
+
+def get_language(context):
+    ps = context.restrictedTraverse('plone_portal_state')
+    default_language = ps.default_language()
+    content = aq_base(context)
+    if IBaseContent.providedBy(content):
+        language = content.Language()
+    else:
+        language = content.language if hasattr(content, 'language') else ''
+    return language if language else default_language
