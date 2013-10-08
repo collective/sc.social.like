@@ -17,7 +17,7 @@ def get_images_view(context):
             fields = ['image', 'leadImage', 'portrait']
             if IBaseContent.providedBy(context):
                 schema = context.Schema()
-                field = [field for field in schema.keys() if field in fields]
+                field = [f for f in schema.keys() if f in fields]
                 if field:
                     field = field[0]
         value = (view, field) if (view and field) else (None, None)
