@@ -155,12 +155,12 @@ class PluginViewsTest(unittest.TestCase):
         plugin = self.plugin
         document = self.document
         plugin_view = plugin.view()
-        self.document.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br;q=0.5'
+        self.document.setLanguage('pt-br')
         view = document.restrictedTraverse(plugin_view)
         html = view.metadata()
         self.assertTrue('connect.facebook.net/pt_BR/all.js' in html)
 
-        self.document.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'en;q=0.5'
+        self.document.setLanguage('en')
         view = document.restrictedTraverse(plugin_view)
         html = view.metadata()
         self.assertTrue('connect.facebook.net/en_GB/all.js' in html)
