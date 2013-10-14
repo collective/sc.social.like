@@ -31,6 +31,8 @@ Changelog
 
 - If a field named "image" isn't an ImageField, doesn't break the viewlet [cekk]
 
+- Fixed decoding error for content title in twitter plugin [cekk]
+
 1.0.1 (2013-03-26)
 ^^^^^^^^^^^^^^^^^^^
 
