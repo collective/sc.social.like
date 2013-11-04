@@ -107,12 +107,12 @@ class PluginViewsTest(unittest.TestCase):
         plugin = self.plugin
         document = self.document
         plugin_view = plugin.view()
-        self.document.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br;q=0.5'
+        self.document.setLanguage('pt-br')
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
         self.assertTrue('data-lang="pt-br"' in html)
 
-        self.document.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'en;q=0.5'
+        self.document.setLanguage('en')
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
         self.assertTrue('data-lang="en"' in html)
