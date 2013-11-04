@@ -14,4 +14,4 @@ Development sponsored by:
 
 - `Rede Brasil Atual <http://www.redebrasilatual.com.br/>`_
 - `TV1 <http://www.grupotv1.com.br/>`_
-- `Brazilian Government <http://www.planalto.gov.br/>`_
+- `Brazilian Government <http://www2.planalto.gov.br/>`_

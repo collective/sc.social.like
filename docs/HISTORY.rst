@@ -1,7 +1,7 @@
 Changelog
 -----------
 
-2.0.b1 (unreleased)
+2.0.a2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^^
 
 - Use content language instead of request language, avoiding cache problems
