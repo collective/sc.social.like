@@ -20,6 +20,8 @@ def get_images_view(context):
                 field = [f for f in schema.keys() if f in fields]
                 if field:
                     field = field[0]
+                    if schema[field].type != "image":
+                        field = ""
         value = (view, field) if (view and field) else (None, None)
         cache[key] = value
     return value
@@ -48,6 +50,8 @@ def get_content_image(context,
             try:
                 img = view.scale(fieldname=field, **kwargs)
             except AttributeError:
+                img = None
+            except TypeError:
                 img = None
         cache[key] = img
     return img
