@@ -4,7 +4,8 @@ Changelog
 2.0.a2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Use content language instead of request language, avoiding cache problems https://github.com/collective/sc.social.like/issues/19 [ericof]
+- Use content language instead of request language, avoiding cache problems
+  https://github.com/collective/sc.social.like/issues/19 [ericof]
 
 - If a field named "image" isn't an ImageField, doesn't break the viewlet [cekk]
 
