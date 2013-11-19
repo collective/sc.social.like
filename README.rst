@@ -31,11 +31,27 @@ Don't Panic
 Step 1: Activate it
 ^^^^^^^^^^^^^^^^^^^
 
-Go to the 'Site Setup' page in the Plone interface and click on the
-'Add/Remove Products' link.
+To enable this product in a buildout-based installation:
 
-Choose the product **Social: Like Actions** (check checkbox at its left side)
-and click the 'Activate' button.
+#. Edit your buildout.cfg and add ``sc.social.like`` to the list of eggs to
+   install::
+
+    [buildout]
+    ...
+    eggs =
+        sc.social.like
+
+After updating the configuration you need to run ''bin/buildout'', which will
+take care of updating your system.
+
+Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+
+Check the box next to ``Social: Like Actions`` and click the 'Activate'
+button.
+
+.. Note::
+    You may have to empty your browser cache and save your resource registries
+    in order to see the effects of the product installation.
 
 Step 2: Configure it
 ^^^^^^^^^^^^^^^^^^^^
