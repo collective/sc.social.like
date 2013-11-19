@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from sc.social.like.plugins.interfaces import IPlugin
+from sc.social.like.plugins.interfaces import IPlugin  # noqa
 
 
 class Plugin(object):
