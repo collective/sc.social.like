@@ -17,8 +17,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 script:
   - bin/test
-  - bin/code-analysis
-  - bin/zopepy setup.py check --metadata --restructuredtext --strict
+  - test -v QA bin/code-analysis && bin/zopepy setup.py check -mrs || true
 after_success:
   - test -v QA && bin/coverage.sh && pip install -q coveralls && coveralls || true
 after_failure:
