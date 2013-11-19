@@ -67,9 +67,14 @@ will be displayed and for which content types.
 Mostly Harmless
 ---------------
 
-.. image:: https://secure.travis-ci.org/collective/sc.social.like.png
+.. image:: https://secure.travis-ci.org/collective/sc.social.like.png?branch=master
+    :alt: Travis CI badge
     :target: http://travis-ci.org/collective/sc.social.like
 
-Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+.. image:: https://coveralls.io/repos/collective/sc.social.like/badge.png?branch=master
+    :alt: Coveralls badge
+    :target: https://coveralls.io/r/collective/sc.social.like
+
+Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/collective/sc.social.like/issues

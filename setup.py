@@ -49,7 +49,8 @@ setup(name='sc.social.like',
           'Plone'
       ],
       extras_require={
-          'test': ['plone.app.testing']
+          'test': ['plone.app.testing'],
+          'develop': ['docutils'],
       },
       entry_points="""
       [z3c.autoinclude.plugin]

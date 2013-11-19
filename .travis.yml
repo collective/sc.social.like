@@ -1,19 +1,12 @@
 language: python
-python:
-  - 2.6
-  - 2.7
+python: 2.7
 env:
-  - PLONE_VERSION=4.1
   - PLONE_VERSION=4.2
   - PLONE_VERSION=4.3 QA=true
 matrix:
-  exclude:
+  include:
     - python: 2.6
       env: PLONE_VERSION=4.1
-    - python: 2.7
-      env: PLONE_VERSION=4.2
-    - python: 2.7
-      env: PLONE_VERSION=4.3 QA=true
 install:
   - sed -ie "s#travis-4.x.cfg#travis-$PLONE_VERSION.x.cfg#" travis.cfg
   - mkdir -p buildout-cache/downloads
@@ -22,7 +15,14 @@ install:
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-script: bin/test
-after_success: test -v QA && make python-validation coverage-validation || true
+script:
+  - bin/test
+  - bin/code-analysis
+  - bin/zopepy setup.py check --metadata --restructuredtext --strict
+after_success:
+  - test -v QA && bin/coverage.sh && pip install -q coveralls && coveralls || true
+after_failure:
+  - bin/buildout annotate -c travis.cfg
+  - firefox -v
 notifications:
   irc: irc.freenode.org#simplesconsultoria
