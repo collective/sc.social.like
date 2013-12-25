@@ -46,7 +46,7 @@ setup(name='sc.social.like',
       install_requires=[
           'setuptools',
           'Pillow',
-          'Plone'
+          'Products.CMFPlone >=4.1'
       ],
       extras_require={
           'test': ['plone.app.testing'],
