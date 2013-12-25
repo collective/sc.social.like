@@ -9,7 +9,7 @@ from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
-import unittest2 as unittest
+import unittest
 
 name = 'LinkedIn'
 

@@ -6,7 +6,7 @@ from sc.social.like.controlpanel.likes import ProvidersControlPanel
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getMultiAdapter
 
-import unittest2 as unittest
+import unittest
 
 
 class ControlPanelTest(unittest.TestCase):
