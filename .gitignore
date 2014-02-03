@@ -14,3 +14,6 @@ var/
 include/
 lib/
 Makefile
+.pydevproject
+.project
+.settings
