@@ -4,6 +4,10 @@ Changelog
 2.0.a2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^^
 
+- Use View permission on viewlets to avoid security failures into viewlet
+  if anonymous try to display non public parts of site.
+  [thomasdesvenain]
+
 - Fix package dependencies.
   [hvelarde]
 
@@ -22,7 +26,7 @@ Changelog
 - Render metadata viewlet on folder_full_view and all_content templates
   https://github.com/collective/sc.social.like/issues/11 [ericof]
 
-- Fixes vertical display 
+- Fixes vertical display
   https://github.com/collective/sc.social.like/issues/5 [ericof]
 
 - Add LinkedIn and Pinterest support.
@@ -78,7 +82,7 @@ Changelog
 0.9 (2011-11-06)
 ^^^^^^^^^^^^^^^^^^
 
-* Compressed icon ico-sociallike.png with pngout 70% of original 
+* Compressed icon ico-sociallike.png with pngout 70% of original
   [Michael Krishtopa]
 
 * Fix loading buttons for diazo themes [cleberjsantos]

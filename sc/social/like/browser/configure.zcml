@@ -12,7 +12,7 @@
         class=".socialikes.SocialLikes"
         allowed_attributes="enabled"
         layer="..interfaces.ISocialLikeLayer"
-        permission="zope.Public"
+        permission="zope2.View"
         />
 
     <browser:page
@@ -21,7 +21,7 @@
         class=".helper.HelperView"
         allowed_interface="..interfaces.IHelperView"
         layer="..interfaces.ISocialLikeLayer"
-        permission="zope.Public"
+        permission="zope2.View"
         />
 
     <browser:viewlet
@@ -29,7 +29,7 @@
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".viewlets.SocialLikesViewlet"
         layer="..interfaces.ISocialLikeLayer"
-        permission="zope.Public"
+        permission="zope2.View"
         />
 
     <browser:viewlet
@@ -37,7 +37,7 @@
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
         layer="..interfaces.ISocialLikeLayer"
         class=".viewlets.SocialMetadataViewlet"
-        permission="zope.Public"
+        permission="zope2.View"
         />
 
     <browser:resourceDirectory
@@ -53,5 +53,5 @@
         layer="..interfaces.ISocialLikeLayer"
         permission="zope.Public"
         />
-    
+
 </configure>
