@@ -1,7 +1,7 @@
 Changelog
 -----------
 
-2.0b1 (unreleased)
+2.0b1 (2014-02-07)
 ^^^^^^^^^^^^^^^^^^^^
 
 - Use View permission on viewlets to avoid security failures into viewlet
