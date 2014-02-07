@@ -1,7 +1,7 @@
 Changelog
 -----------
 
-2.0.a2 (unreleased)
+2.0b1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^^
 
 - Use View permission on viewlets to avoid security failures into viewlet
@@ -10,6 +10,10 @@ Changelog
 
 - Fix package dependencies.
   [hvelarde]
+
+
+2.0a2 (2013-11-04)
+^^^^^^^^^^^^^^^^^^^^
 
 - Use content language instead of request language, avoiding cache problems
   https://github.com/collective/sc.social.like/issues/19
