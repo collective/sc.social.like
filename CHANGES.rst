@@ -4,7 +4,8 @@ Changelog
 2.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Facebook now recommends 1200 x 630 images
+  [ericof]
 
 
 2.0b1 (2014-02-07)
