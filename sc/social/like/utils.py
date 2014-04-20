@@ -30,7 +30,8 @@ def get_content_image(context,
                       width=None,
                       height=None):
     request = getRequest()
-    key = "cache-%s-%s-%s-%s" % (context, scale, width, height)
+    modification = context.ModificationDate()
+    key = "cache-%s-%s-%s-%s-%s" % (context, modification, scale, width, height)
     cache = IAnnotations(request)
     img = cache.get(key, None)
     if not img:
