@@ -140,7 +140,26 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_height(), 768)
 
         # Set a larger image
-        self.newsitem.setImage(generate_image(1920, 1080))
+        image.setImage(generate_image(1920, 1080))
+
+        plugin_view = plugin.view()
+        view = image.restrictedTraverse(plugin_view)
+
+        self.assertEqual(view.image_width(), 1200)
+        self.assertEqual(view.image_height(), 675)
+
+    def test_plugin_view_image_large(self):
+        plugin = self.plugin
+        image = self.image
+        image.setImage(generate_image(1920, 1080))
+
+        plugin_view = plugin.view()
+        view = image.restrictedTraverse(plugin_view)
+
+        # At newsitem, use image
+        image_url = view.image_url()
+        self.assertTrue('logo.png' not in image_url)
+
         self.assertEqual(view.image_width(), 1200)
         self.assertEqual(view.image_height(), 675)
 
@@ -157,8 +176,18 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_width(), 1024)
         self.assertEqual(view.image_height(), 768)
 
-        # Set a larger image
-        self.newsitem.setImage(generate_image(1920, 1080))
+    def test_plugin_view_newsitem_large(self):
+        plugin = self.plugin
+        newsitem = self.newsitem
+        newsitem.setImage(generate_image(1920, 1080))
+
+        plugin_view = plugin.view()
+        view = newsitem.restrictedTraverse(plugin_view)
+
+        # At newsitem, use image
+        image_url = view.image_url()
+        self.assertTrue('logo.png' not in image_url)
+
         self.assertEqual(view.image_width(), 1200)
         self.assertEqual(view.image_height(), 675)
 
