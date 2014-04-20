@@ -3,6 +3,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.interfaces import ISocialLikeLayer
+from sc.social.like import utils
 from sc.social.like.plugins.facebook import browser
 from sc.social.like.plugins.facebook import controlpanel
 from sc.social.like.plugins.facebook.utils import facebook_language
@@ -135,8 +136,13 @@ class PluginViewsTest(unittest.TestCase):
         # At image, use local image
         image_url = view.image_url()
         self.assertTrue('logo.png' not in image_url)
-        self.assertEqual(view.image_width(), 200)
-        self.assertEqual(view.image_height(), 200)
+        self.assertEqual(view.image_width(), 1024)
+        self.assertEqual(view.image_height(), 768)
+
+        # Set a larger image
+        self.newsitem.setImage(generate_image(1920, 1080))
+        self.assertEqual(view.image_width(), 1200)
+        self.assertEqual(view.image_height(), 675)
 
     def test_plugin_view_newsitem(self):
         plugin = self.plugin
@@ -148,8 +154,13 @@ class PluginViewsTest(unittest.TestCase):
         # At newsitem, use image
         image_url = view.image_url()
         self.assertTrue('logo.png' not in image_url)
-        self.assertEqual(view.image_width(), 200)
-        self.assertEqual(view.image_height(), 200)
+        self.assertEqual(view.image_width(), 1024)
+        self.assertEqual(view.image_height(), 768)
+
+        # Set a larger image
+        self.newsitem.setImage(generate_image(1920, 1080))
+        self.assertEqual(view.image_width(), 1200)
+        self.assertEqual(view.image_height(), 675)
 
     def test_plugin_language(self):
         plugin = self.plugin
@@ -220,3 +231,53 @@ class LanguageCodeTest(unittest.TestCase):
                          default)
         self.assertEqual(facebook_language([], default),
                          default)
+
+
+class ImageResizingTest(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+
+    def test_larger_width_height(self):
+        current = (1920, 1080)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 1200)
+        self.assertEqual(height, 675)
+
+    def test_larger_width_height_small_aspect(self):
+        current = (1920, 1920)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 1200)
+        self.assertEqual(height, 1200)
+
+    def test_larger_width(self):
+        current = (1210, 400)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 1210)
+        self.assertEqual(height, 400)
+
+    def test_larger_height(self):
+        current = (800, 800)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 800)
+        self.assertEqual(height, 800)
+
+    def test_smaller_width(self):
+        current = (640, 640)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 640)
+        self.assertEqual(height, 640)
+
+    def test_smaller_height(self):
+        current = (800, 600)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 800)
+        self.assertEqual(height, 600)

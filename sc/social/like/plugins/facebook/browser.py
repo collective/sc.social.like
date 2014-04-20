@@ -39,7 +39,7 @@ class PluginView(BrowserView):
         self.url = context.absolute_url()
         self.language = facebook_language(get_language(context), self.language)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-        self.image = get_content_image(context, width=200, height=200)
+        self.image = get_content_image(context, width=1200, height=630)
         if self.sheet:
             self.fbaction = self.sheet.getProperty("fbaction", "")
             self.fbapp_id = self.sheet.getProperty("fbapp_id", "")

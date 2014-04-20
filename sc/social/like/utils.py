@@ -36,19 +36,24 @@ def get_content_image(context,
     if not img:
         view, field = get_images_view(context)
         if view:
-            kwargs = {}
-            if not (width or height):
-                kwargs['scale'] = scale
-            else:
-                if width:
-                    kwargs['width'] = width
-                if height:
-                    kwargs['height'] = height
-                kwargs['direction'] = 'down'
             try:
-                img = view.scale(fieldname=field, **kwargs)
+                sizes = view.getImageSize(field)
             except AttributeError:
-                img = None
+                sizes = img = None
+            if sizes:
+                kwargs = {}
+                if not (width or height):
+                    kwargs['scale'] = scale
+                else:
+                    new = (width, height)
+                    width, height = _image_size(sizes, new)
+                    kwargs['width'] = width
+                    kwargs['height'] = height
+                    kwargs['direction'] = 'down'
+                try:
+                    img = view.scale(fieldname=field, **kwargs)
+                except AttributeError:
+                    img = None
         cache[key] = img
     return img
 
@@ -62,3 +67,24 @@ def get_language(context):
     else:
         language = content.language if hasattr(content, 'language') else ''
     return language if language else default_language
+
+
+def _image_size(current, new):
+    # Current width, height and aspect ratio
+    c_width, c_height = current
+    c_aspect = float(c_width) / float(c_height)
+    # New width, height
+    n_width, n_height = new
+
+    # If new dimensions are larger than the current ones, we
+    # return the current dimensions
+    if (n_width > c_width) or (n_height > c_height):
+        return current
+    width = n_width
+    height = int(round(float(width) / c_aspect))
+    if n_height > height:
+        height = n_height
+        width = int(round(height * c_aspect))
+        if n_width > width:
+            return current
+    return (width, height)
