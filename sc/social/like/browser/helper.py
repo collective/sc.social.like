@@ -41,11 +41,6 @@ class HelperView(BrowserView):
         configs = self.configs()
         return configs.plugins_enabled or []
 
-    @memoize_contextless
-    def typebutton(self):
-        configs = self.configs()
-        return configs.typebutton
-
     @memoize
     def enabled(self):
         enabled_portal_types = self.enabled_portal_types()
