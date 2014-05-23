@@ -138,6 +138,7 @@ class PluginViewsTest(unittest.TestCase):
         self.assertTrue('logo.png' not in image_url)
         self.assertEqual(view.image_width(), 1024)
         self.assertEqual(view.image_height(), 768)
+        self.assertEqual(view.image_type(), 'image/png')
 
         # Set a larger image
         image.setImage(generate_image(1920, 1080))
@@ -310,3 +311,10 @@ class ImageResizingTest(unittest.TestCase):
         width, height = utils._image_size(current, new)
         self.assertEqual(width, 800)
         self.assertEqual(height, 600)
+
+    def test_smaller_resized_height(self):
+        current = (1220, 632)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 1216)
+        self.assertEqual(height, 630)
