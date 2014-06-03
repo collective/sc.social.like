@@ -9,9 +9,13 @@ following people:
 - Héctor Velarde
 - Erico Andrei
 - Mikel Larreategi
+- Rodrigo Ferreira de Souza
+- Luciano Camargo Cruz
+- Thomas Desvenain
 
 Development sponsored by:
 
 - `Rede Brasil Atual <http://www.redebrasilatual.com.br/>`_
+- `CartaCapital <http://www.cartacapital.com.br/>`_
 - `TV1 <http://www.grupotv1.com.br/>`_
 - `Brazilian Government <http://www2.planalto.gov.br/>`_
