@@ -75,6 +75,10 @@ Mostly Harmless
     :alt: Coveralls badge
     :target: https://coveralls.io/r/collective/sc.social.like
 
+.. image:: https://pypip.in/d/sc.social.like/badge.png
+    :target: https://pypi.python.org/pypi/sc.social.like/
+    :alt: Downloads
+
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/collective/sc.social.like/issues
