@@ -1,7 +1,7 @@
 Changelog
 -----------
 
-2.0b3 (unreleased)
+2.0b3 (2014-06-06)
 ^^^^^^^^^^^^^^^^^^
 
 - Fix a division by zero issue happening with AT Images during creation (while on portal_factory)
