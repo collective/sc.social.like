@@ -73,6 +73,8 @@ def get_language(context):
 def _image_size(current, new):
     # Current width, height and aspect ratio
     c_width, c_height = current
+    if not (c_width and c_height):
+        return (0, 0)
     c_aspect = float(c_width) / float(c_height)
     # New width, height
     n_width, n_height = new

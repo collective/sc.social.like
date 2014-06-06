@@ -318,3 +318,10 @@ class ImageResizingTest(unittest.TestCase):
         width, height = utils._image_size(current, new)
         self.assertEqual(width, 1216)
         self.assertEqual(height, 630)
+
+    def test_width_height_zero(self):
+        current = (0, 0)
+        new = (1200, 630)
+        width, height = utils._image_size(current, new)
+        self.assertEqual(width, 0)
+        self.assertEqual(height, 0)
