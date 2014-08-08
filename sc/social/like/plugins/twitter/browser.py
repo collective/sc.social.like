@@ -35,7 +35,11 @@ class PluginView(BrowserView):
         if self.sheet:
             self.typebutton = self.sheet.getProperty("typebutton", "")
             self.twittvia = self.sheet.getProperty("twittvia", "")
-        self.urlnoscript = ('http://twitter.com/home?status=' +
-                            url_quote('%s - %s via %s' % (self.context.Title(),
-                                                          self.context.absolute_url(),
-                                                          self.twittvia)))
+        self.urlnoscript = (
+            u'http://twitter.com/home?status=' +
+            url_quote(u'{0} - {1} via {2}'.format(
+                self.context.title,
+                self.context.absolute_url(),
+                self.twittvia)
+            )
+        )

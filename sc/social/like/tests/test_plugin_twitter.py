@@ -103,6 +103,18 @@ class PluginViewsTest(unittest.TestCase):
         html = view.plugin()
         self.assertTrue('data-via="@simplesconsult"' in html)
 
+    def test_plugin_urlnoscript_encoding(self):
+        plugin = self.plugin
+        document = self.document
+        document.setTitle(u'Notícia')
+        adapter = controlpanel.ControlPanelAdapter(self.portal)
+        adapter.twittvia = u'@simplesconsult'
+
+        plugin_view = plugin.view()
+        view = document.restrictedTraverse(plugin_view)
+        html = view.plugin()
+        self.assertTrue('%20via%20%40simplesconsult">Tweet' in html)
+
     def test_plugin_language(self):
         plugin = self.plugin
         document = self.document

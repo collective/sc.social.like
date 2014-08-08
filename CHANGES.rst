@@ -4,7 +4,8 @@ Changelog
 2.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix an UnicodeDecodeError in the Twitter plugin (Reported by Programa Interlegis)
+  [ericof]
 
 
 2.0b3 (2014-06-06)
