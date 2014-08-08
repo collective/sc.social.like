@@ -1,7 +1,7 @@
 Changelog
 -----------
 
-2.0b4 (unreleased)
+2.0b4 (2014-08-08)
 ^^^^^^^^^^^^^^^^^^
 
 - Fixed styling for action buttons. Now they are displayed side by side
