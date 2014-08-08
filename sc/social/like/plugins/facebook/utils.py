@@ -3,7 +3,7 @@ from config import FB_LOCALES
 
 
 def fix_iso(code):
-    #TODO: We should be dealing also with *simple*
+    # TODO: We should be dealing also with *simple*
     #      language codes like pt or en or es
     if code.find('-') > -1:
         # we have a iso code like pt-br and FB_LOCALES uses pt_BR
@@ -11,7 +11,7 @@ def fix_iso(code):
         code = '%s_%s' % (code[0], code[1].upper())
         # Deal with Umbrella locations (Arabic and Spanish)
         if code.startswith('es_'):
-            if not code in FB_LOCALES:
+            if code not in FB_LOCALES:
                 code = 'es_LA'
         elif code.startswith('ar_'):
             code = 'ar_AR'
