@@ -4,6 +4,9 @@ Changelog
 2.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Fixed styling for action buttons. Now they are displayed side by side
+  [agnogueira]
+
 - Fix an UnicodeDecodeError in the Twitter plugin (Reported by Programa Interlegis)
   [ericof]
 
