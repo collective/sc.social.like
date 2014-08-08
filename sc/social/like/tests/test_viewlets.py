@@ -80,3 +80,4 @@ class LikeViewletTestCase(unittest.TestCase):
         viewlet = self.viewlet(self.document)
         html = viewlet.render()
         self.assertTrue('id="viewlet-social-like"' in html)
+        self.assertTrue('class="horizontal"' in html)
