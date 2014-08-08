@@ -17,6 +17,7 @@ class BaseLikeViewlet(ViewletBase):
         self.request = request
         self.helper = getMultiAdapter((self.context, self.request),
                                       name=u'sl_helper')
+        self.typebutton = self.helper.typebutton()
 
     def plugins(self):
         context = self.context

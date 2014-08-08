@@ -62,6 +62,11 @@ class HelperView(BrowserView):
                 plugins.append(plugin)
         return plugins
 
+    @memoize_contextless
+    def typebutton(self):
+        configs = self.configs()
+        return configs.typebutton
+
     @memoize
     def view_template_id(self):
         return self.context_state.view_template_id()
