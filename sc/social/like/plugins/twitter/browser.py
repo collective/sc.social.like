@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
@@ -38,7 +39,7 @@ class PluginView(BrowserView):
         self.urlnoscript = (
             u'http://twitter.com/home?status=' +
             url_quote(u'{0} - {1} via {2}'.format(
-                self.context.title,
+                safe_unicode(self.context.title),
                 self.context.absolute_url(),
                 self.twittvia)
             )
