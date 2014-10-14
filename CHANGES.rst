@@ -1,6 +1,12 @@
 Changelog
 -----------
 
+2.0rc2 (unreleased)
+^^^^^^^^^^^^^^^^^^^
+
+- Nothing changed yet.
+
+
 2.0rc1 (2014-10-14)
 ^^^^^^^^^^^^^^^^^^
 
