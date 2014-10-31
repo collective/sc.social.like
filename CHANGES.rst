@@ -4,7 +4,7 @@ Changelog
 2.0rc2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fixed metadata og:type, used value 'article' for internal page [fdelia]
 
 
 2.0rc1 (2014-10-14)
