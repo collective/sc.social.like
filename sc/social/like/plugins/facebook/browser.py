@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+from Acquisition import aq_parent, aq_inner
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -87,3 +89,21 @@ class PluginView(BrowserView):
             typebutton = 'box_count'
             self.width = '55px'
         return typebutton
+
+    def _isPortalDefaultView(self):
+        context = self.context
+        if ISiteRoot.providedBy(aq_parent(aq_inner(context))):
+            putils = getToolByName(context, 'plone_utils')
+            return putils.isDefaultPage(context)
+        return False
+
+    def _isPortal(self):
+        context = self.context
+        if ISiteRoot.providedBy(aq_inner(context)):
+            return True
+        return self._isPortalDefaultView()
+
+    def type(self):
+        if self._isPortal():
+            return "website"
+        return "article"
