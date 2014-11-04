@@ -20,6 +20,10 @@ def get_images_view(context):
                 field = [f for f in schema.keys() if f in fields]
                 if field:
                     field = field[0]
+                    # if a content has an image field that isn't an ImageField
+                    # (for example a relation field), set field="" to avoid errors
+                    if schema[field].type not in ["image", "blob"]:
+                        field = ""
         value = (view, field) if (view and field) else (None, None)
         cache[key] = value
     return value
@@ -53,7 +57,7 @@ def get_content_image(context,
                     kwargs['direction'] = 'down'
                 try:
                     img = view.scale(fieldname=field, **kwargs)
-                except AttributeError:
+                except (AttributeError, TypeError):
                     img = None
         cache[key] = img
     return img

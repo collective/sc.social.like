@@ -6,6 +6,12 @@ Changelog
 
 - Fixed metadata og:type, used value 'article' for internal page [fdelia]
 
+- If a field named "image" isn't an ImageField, do not break the viewlet
+  [cekk]
+
+- Add exception handling also for TypeError in get_content_image method
+  [cekk]
+
 
 2.0rc1 (2014-10-14)
 ^^^^^^^^^^^^^^^^^^
