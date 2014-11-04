@@ -115,6 +115,10 @@ class PluginViewsTest(unittest.TestCase):
         image_url = view.image_url()
         self.assertTrue('logo.png' in image_url)
 
+        # At root, use website type
+        og_type = view.type()
+        self.assertTrue('website' in og_type)
+
     def test_plugin_view_document(self):
         plugin = self.plugin
         document = self.document
@@ -125,6 +129,10 @@ class PluginViewsTest(unittest.TestCase):
         # At document, use site logo
         image_url = view.image_url()
         self.assertTrue('logo.png' in image_url)
+
+        # At document, use article type
+        og_type = view.type()
+        self.assertTrue('article' in og_type)
 
     def test_plugin_view_image(self):
         plugin = self.plugin
