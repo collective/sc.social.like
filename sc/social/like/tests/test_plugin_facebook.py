@@ -122,6 +122,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_document(self):
         plugin = self.plugin
         document = self.document
+        portal = self.portal
 
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
@@ -133,6 +134,11 @@ class PluginViewsTest(unittest.TestCase):
         # At document, use article type
         og_type = view.type()
         self.assertTrue('article' in og_type)
+
+        # At document, default page of portal, use website type
+        portal.setDefaultPage(document.id)
+        og_type = view.type()
+        self.assertTrue('website' in og_type)
 
     def test_plugin_view_image(self):
         plugin = self.plugin
