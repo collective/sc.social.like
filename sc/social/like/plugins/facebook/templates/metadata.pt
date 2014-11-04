@@ -1,7 +1,7 @@
 <tal:fb>
   <meta property="og:site_name" tal:attributes="content view/portal_title" />
   <meta property="og:url" tal:attributes="content view/url" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" tal:attributes="content view/type" />
   <meta property="og:locale" tal:attributes="content view/language" />
   <meta property="og:title" tal:attributes="content view/title" />
   <meta property="og:description" tal:attributes="content view/description" />
@@ -10,7 +10,7 @@
   <meta property="og:image:height" tal:attributes="content view/image_height" />
   <meta property="og:image:width" tal:attributes="content view/image_width" />
   <meta property="og:image:type" tal:attributes="content view/image_type" />
-  </tal:image>  
+  </tal:image>
   <meta tal:condition="view/fbadmins" property="fb:admins" tal:attributes="content view/fbadmins" />
   <meta tal:condition="view/fbapp_id" property="fb:app_id" tal:attributes="content view/fbapp_id" />
   <script
