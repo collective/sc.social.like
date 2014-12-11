@@ -9,7 +9,7 @@ from StringIO import StringIO
 import random
 
 
-def generate_image(width, height):
+def generate_image(width, height, format="PNG"):
     # Mandelbrot fractal
     # FB - 201003254
     # drawing area
@@ -37,7 +37,7 @@ def generate_image(width, height):
             image.putpixel((x, y), b * 65536 + g * 256 + r)
 
     output = StringIO()
-    image.save(output, format="PNG")
+    image.save(output, format=format)
     return output.getvalue()
 
 
