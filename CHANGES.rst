@@ -12,6 +12,10 @@ Changelog
 - Add exception handling also for TypeError in get_content_image method
   [cekk]
 
+- Fixed a problem with images loaded in news. If the image isn't a jpg,
+  the `get_content_image` method can't get image size and returns nothing.
+  This avoid some strange things, like MemoryError with Pillow.
+  [cekk]
 
 2.0rc1 (2014-10-14)
 ^^^^^^^^^^^^^^^^^^
