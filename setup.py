@@ -63,10 +63,10 @@ setup(name='sc.social.like',
       ],
       extras_require={
           'test': [
-              'Pillow',
               'plone.app.testing',
               'plone.browserlayer',
               'plone.testing',
+              'unittest2',
           ],
           'develop': ['docutils'],
       },
