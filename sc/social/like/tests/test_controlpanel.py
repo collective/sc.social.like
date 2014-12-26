@@ -22,8 +22,8 @@ class ControlPanelTest(unittest.TestCase):
         view = getMultiAdapter((self.portal, self.portal.REQUEST),
                                name='likes-providers')
         view = view.__of__(self.portal)
-        self.failUnless(view())
-        self.failUnless(isinstance(view, ProvidersControlPanel))
+        self.assertTrue(view())
+        self.assertTrue(isinstance(view, ProvidersControlPanel))
 
     def test_controlpanel_plugins_configs(self):
         view = getMultiAdapter((self.portal, self.portal.REQUEST),
@@ -42,7 +42,7 @@ class ControlPanelTest(unittest.TestCase):
         controlpanel = getToolByName(self.portal, 'portal_controlpanel')
         installed = [a.getAction(self)['id']
                      for a in controlpanel.listActions()]
-        self.failUnless('sociallikes' in installed)
+        self.assertIn('sociallikes', installed)
 
     def test_enabled_portal_types(self):
         adapter = self.adapter
