@@ -15,7 +15,7 @@ matrix:
     - python: 2.6
       env: PLONE_VERSION=4.1
 install:
-  - sed -ie "s#test-4.3.x#test-$PLONE_VERSION.x.cfg#" buildout.cfg
+  - sed -ie "s#test-4.3.x#test-$PLONE_VERSION.x#" buildout.cfg
   - mkdir -p buildout-cache/downloads
   - python bootstrap.py -c travis.cfg -v 2.2.1
   - bin/buildout -c travis.cfg annotate
