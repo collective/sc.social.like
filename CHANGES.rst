@@ -12,6 +12,9 @@ Changelog
 - Add exception handling also for TypeError in get_content_image method
   [cekk]
 
+- Load behavior of all social plugins changed to be async
+  [keul]
+
 
 2.0rc1 (2014-10-14)
 ^^^^^^^^^^^^^^^^^^
