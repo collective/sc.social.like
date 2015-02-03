@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
+
+import os.path
 from PIL import Image
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
+
 from StringIO import StringIO
 
 import random
 
 
-def generate_image(width, height, format="PNG"):
+def generate_image(width, height):
     # Mandelbrot fractal
     # FB - 201003254
     # drawing area
@@ -37,8 +40,16 @@ def generate_image(width, height, format="PNG"):
             image.putpixel((x, y), b * 65536 + g * 256 + r)
 
     output = StringIO()
-    image.save(output, format=format)
+    image.save(output, format="PNG")
     return output.getvalue()
+
+
+def load_image(width, height, format="PNG"):
+    filename = os.path.join(os.path.dirname(__file__),
+                            'tests', 'images', "imgtest_%dx%d.%s" % 
+                                    (width, height, format.lower()))   
+    with open(filename, 'rb') as f:
+        return f.read() 
 
 
 class Fixture(PloneSandboxLayer):
