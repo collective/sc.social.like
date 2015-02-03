@@ -1,3 +1,13 @@
 <tal:linkedin>
-    <script type="text/javascript" src="//platform.linkedin.com/in.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = '//platform.linkedin.com/in.js?async=true';
+            po.onload = function() {IN.init()};
+            var head = document.getElementsByTagName('head')[0];
+            head.appendChild(po);
+        })();
+    </script>
 </tal:linkedin>
