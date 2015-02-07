@@ -9,7 +9,7 @@ from sc.social.like.plugins.facebook import controlpanel
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.plugins.facebook.utils import fix_iso
 from sc.social.like.plugins.interfaces import IPlugin
-from sc.social.like.testing import generate_image
+from sc.social.like.testing import load_image
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
@@ -73,12 +73,18 @@ class PluginViewsTest(unittest.TestCase):
     def setup_content(self, portal):
         portal.invokeFactory('Document', 'my-document')
         portal.invokeFactory('News Item', 'my-newsitem')
+        portal.invokeFactory('News Item', 'my-newsitem-bmp')
         portal.invokeFactory('Image', 'my-image')
+        portal.invokeFactory('Image', 'my-image-bmp')
         self.document = portal['my-document']
         self.newsitem = portal['my-newsitem']
-        self.newsitem.setImage(generate_image(1024, 768))
+        self.newsitem.setImage(load_image(1024, 768))
+        self.newsitem_bmp = portal['my-newsitem-bmp']
+        self.newsitem_bmp.setImage(load_image(640, 480, format="BMP"))
         self.image = portal['my-image']
-        self.image.setImage(generate_image(1024, 768))
+        self.image.setImage(load_image(1024, 768))
+        self.image_bmp = portal['my-image-bmp']
+        self.image_bmp.setImage(load_image(640, 480, format="BMP"))
 
     def test_config_view(self):
         plugin = self.plugin
@@ -155,7 +161,29 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_type(), 'image/png')
 
         # Set a larger image
-        image.setImage(generate_image(1920, 1080))
+        image.setImage(load_image(1920, 1080))
+
+        plugin_view = plugin.view()
+        view = image.restrictedTraverse(plugin_view)
+
+        self.assertEqual(view.image_width(), 1200)
+        self.assertEqual(view.image_height(), 675)
+
+    def test_plugin_view_image_bmp(self):
+        plugin = self.plugin
+        image = self.image_bmp
+
+        plugin_view = plugin.view()
+        view = image.restrictedTraverse(plugin_view)
+
+        # At image, use local image
+        image_url = view.image_url()
+        self.assertTrue('logo.png' not in image_url)
+        self.assertEqual(view.image_width(), 640)
+        self.assertEqual(view.image_height(), 480)
+
+        # Set a larger image
+        image.setImage(load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
@@ -166,7 +194,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_image_large(self):
         plugin = self.plugin
         image = self.image
-        image.setImage(generate_image(1920, 1080))
+        image.setImage(load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
@@ -191,10 +219,23 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_width(), 1024)
         self.assertEqual(view.image_height(), 768)
 
+    def test_plugin_view_newsitem_bmp(self):
+        plugin = self.plugin
+        newsitem = self.newsitem_bmp
+
+        plugin_view = plugin.view()
+        view = newsitem.restrictedTraverse(plugin_view)
+        # At newsitem, use image
+        self.assertEqual(view.image, None)
+        image_url = view.image_url()
+        self.assertTrue('logo.png' in image_url)
+        self.assertEqual(view.image_width(), None)
+        self.assertEqual(view.image_height(), None)
+
     def test_plugin_view_newsitem_large(self):
         plugin = self.plugin
         newsitem = self.newsitem
-        newsitem.setImage(generate_image(1920, 1080))
+        newsitem.setImage(load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = newsitem.restrictedTraverse(plugin_view)

@@ -1,25 +1,34 @@
 Changelog
------------
+---------
+
+There's a frood who really knows where his towel is.
 
 2.0rc2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Fixed metadata og:type, used value 'article' for internal page [fdelia]
-
-- If a field named "image" isn't an ImageField, do not break the viewlet
-  [cekk]
-
-- Add exception handling also for TypeError in get_content_image method
-  [cekk]
-
-- Load behavior of all social plugins changed to be async
+- Load behavior of all social plugins changed to be async.
   [keul]
+
+- Fixed a problem with images loaded in news. If the image isn't a JPG,
+  the `get_content_image` method can't get image size and returns nothing.
+  This avoid some strange things, like MemoryError with Pillow.
+  [cekk]
+
+- If a field named "image" isn't an ImageField, do not break the viewlet.
+  [cekk]
+
+- Add exception handling also for TypeError in get_content_image method.
+  [cekk]
+
+- Fixed metadata og:type, used value 'article' for internal page.
+  [fdelia]
 
 
 2.0rc1 (2014-10-14)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Use safe_unicode to deal with accented chars in content Title.
+  [ericof]
 
 
 2.0b4 (2014-08-08)
