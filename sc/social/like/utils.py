@@ -45,6 +45,10 @@ def get_content_image(context,
                 sizes = view.getImageSize(field)
             except AttributeError:
                 sizes = img = None
+            if sizes == (0, 0) or sizes == ('', ''):
+                # this avoid strange cases where we can't get size infos.
+                # for example if the loaded image in a news is a bmp or a tiff
+                return None
             if sizes:
                 kwargs = {}
                 if not (width or height):
