@@ -48,6 +48,18 @@ class PluginView(BrowserView):
             self.fbadmins = self.sheet.getProperty("fbadmins", "")
             self.button = self.typebutton
 
+    def fbjs(self):
+        js_source = """
+    (function() {
+        var po = document.createElement('script');
+        po.async = true;
+        po.src = document.location.protocol + '//connect.facebook.net/%s/all.js#xfbml=1';
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(po);
+    }());
+    """ % self.language
+        return js_source
+
     def image_height(self):
         """ Return height to image
         """
