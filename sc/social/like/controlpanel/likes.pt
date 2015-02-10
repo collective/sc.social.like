@@ -116,12 +116,12 @@
 
                   <div class="field">
                     <label for="plugins_configs">
-                      <span i18n:translate="">
+                      <span i18n:translate="" i18n:domain="sc.social.like">
                           Plugin-Specific Configuration
                       </span>
 
                       <span class="formHelp"
-                           i18n:translate="">
+                           i18n:translate="" i18n:domain="sc.social.like">
                           Configure each plugin.
                       </span>
                     </label>                    

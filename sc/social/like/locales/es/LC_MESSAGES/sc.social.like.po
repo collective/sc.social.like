@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-02-10 10:17+0000\n"
+"POT-Creation-Date: 2015-02-10 10:34+0000\n"
 "PO-Revision-Date: 2011-08-29 17:47+0000\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,10 @@ msgstr ""
 msgid "Button style"
 msgstr "Estilo de los botones"
 
+#: ../controlpanel/likes.pt:123
+msgid "Configure each plugin."
+msgstr ""
+
 #: ../plugins/facebook/controlpanel.py:73
 msgid "Configure settings for Facebook integration."
 msgstr ""
@@ -50,6 +54,10 @@ msgstr "Tipos de contenido"
 #: ../plugins/facebook/controlpanel.py:17
 msgid "Like"
 msgstr "Me gusta"
+
+#: ../controlpanel/likes.pt:119
+msgid "Plugin-Specific Configuration"
+msgstr ""
 
 #: ../controlpanel/likes.py:46
 msgid "Plugins"
