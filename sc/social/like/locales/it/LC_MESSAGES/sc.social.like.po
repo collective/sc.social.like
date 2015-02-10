@@ -1,0 +1,143 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-02-10 10:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
+"Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.social.like\n"
+"X-Is-Fallback-For: it-ch it-it\n"
+
+msgid "A simple, yet useful, social networking integration for Plone"
+msgstr "Una semplice ma funzionale integrazione tra Plone e i social network"
+
+#: ../plugins/facebook/controlpanel.py:39
+msgid "Admins"
+msgstr "Amministratori"
+
+#: ../plugins/facebook/controlpanel.py:49
+msgid "Application ID"
+msgstr "ID applicazione"
+
+#: ../controlpanel/likes.py:56
+msgid "Button style"
+msgstr "Stile del bottone"
+
+#: ../controlpanel/likes.pt:123
+msgid "Configure each plugin."
+msgstr "Configura ogni plugin"
+
+#: ../plugins/facebook/controlpanel.py:73
+msgid "Configure settings for Facebook integration."
+msgstr "Configura impostazioni per integrazione con Facebook"
+
+#: ../plugins/twitter/controlpanel.py:41
+msgid "Configure settings for Twitter integration."
+msgstr "Configura impostazioni per integrazione con Twitter"
+
+#: ../controlpanel/likes.py:95
+msgid "Configure settings for social like actions."
+msgstr "Configura impostazioni le le azioni dei social network"
+
+#: ../controlpanel/likes.py:35
+msgid "Content types"
+msgstr "Tipi di contenuto"
+
+#: ../plugins/facebook/controlpanel.py:17
+msgid "Like"
+msgstr ""
+
+#: ../controlpanel/likes.pt:119
+msgid "Plugin-Specific Configuration"
+msgstr "Configurazioni specifiche per plugin"
+
+#: ../controlpanel/likes.py:46
+msgid "Plugins"
+msgstr "Plugin"
+
+#: ../plugins/facebook/controlpanel.py:18
+msgid "Recommend"
+msgstr "Consigliato"
+
+#: ../profiles/default/actionicons.xml
+#: ../profiles/default/controlpanel.xml
+msgid "Social Like"
+msgstr ""
+
+#: ../plugins/facebook/controlpanel.py:72
+msgid "Social: Facebook settings"
+msgstr "Social: impostazioni Facebook"
+
+#: ../controlpanel/likes.py:96
+msgid "Social: Like Actions"
+msgstr "Social: azioni di like"
+
+#: ../controlpanel/likes.py:94
+msgid "Social: Like Actions settings"
+msgstr "Social: impostazioni azioni like"
+
+#: ../plugins/twitter/controlpanel.py:40
+msgid "Social: Twitter settings"
+msgstr "Social: impostazioni Twitter"
+
+#: ../plugins/twitter/controlpanel.py:19
+msgid "Twitter nick"
+msgstr "Nickname Twitter"
+
+#: ../plugins/facebook/controlpanel.py:26
+msgid "Verb to display"
+msgstr "Verbo da visualizzare"
+
+#. Default: "A comma-separated list of either the Facebook IDs of page administrators."
+#: ../plugins/facebook/controlpanel.py:40
+msgid "help_admins"
+msgstr "Una lista separata da virgole di ID Facebook di amministratori della pagina"
+
+#. Default: "A Facebook Platform application ID."
+#: ../plugins/facebook/controlpanel.py:50
+msgid "help_appid"
+msgstr "L'ID di un'applicazione Facebook"
+
+#. Default: "Please select which plugins will be used"
+#: ../controlpanel/likes.py:47
+msgid "help_enabled_plugins"
+msgstr "Prego selezionare quali plugin verranno usati"
+
+#. Default: "Please select content types in which the viewlet will be applied."
+#: ../controlpanel/likes.py:36
+msgid "help_portal_types"
+msgstr "Prego selezionare su quali tipi di contenuto la viewlet verrà applicata"
+
+#. Default: "Choose your button style."
+#: ../controlpanel/likes.py:57
+msgid "help_selected_buttons"
+msgstr "Seleziona lo stile del bottone"
+
+#. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
+#: ../plugins/facebook/controlpanel.py:27
+msgid "help_verb_display"
+msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo 'like' e 'consigliato' sono supportati."
+
+#. Default: "Enter your twitter nick. eg. simplesconsultoria"
+#: ../plugins/twitter/controlpanel.py:20
+msgid "help_your_twitter_nick"
+msgstr "Inserisci il tuo nickname Twitter, per esempio \"simplesconsultoria\""
+
+#: ../controlpanel/likes.py:62
+msgid "horizontal"
+msgstr "orizzonatale"
+
+#: ../controlpanel/likes.py:63
+msgid "vertical"
+msgstr "verticale"
+
