@@ -9,7 +9,7 @@ from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
-import unittest
+import unittest2 as unittest
 
 name = 'Google+'
 
@@ -24,7 +24,7 @@ class PluginTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
-        self.assertTrue(name in self.plugins)
+        self.assertIn(name, self.plugins)
 
     def test_plugin_config(self):
         plugin = self.plugins[name]
@@ -33,23 +33,19 @@ class PluginTest(unittest.TestCase):
 
     def test_plugin_config_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.config_view(),
-                         None)
+        self.assertIsNone(plugin.config_view())
 
     def test_plugin_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.view(),
-                         '@@gplus-plugin')
+        self.assertEqual(plugin.view(), '@@gplus-plugin')
 
     def test_plugin_metadata(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.metadata(),
-                         'metadata')
+        self.assertEqual(plugin.metadata(), 'metadata')
 
     def test_plugin_plugin(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.plugin(),
-                         'plugin')
+        self.assertEqual(plugin.plugin(), 'plugin')
 
 
 class PluginViewsTest(unittest.TestCase):
@@ -82,7 +78,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('g-plusone' in html)
+        self.assertIn('g-plusone', html)
 
     def test_plugin_view_metadata(self):
         plugin = self.plugin
@@ -90,7 +86,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
         metadata = view.metadata()
-        self.assertTrue('js/plusone.js' in metadata)
+        self.assertIn('js/plusone.js', metadata)
 
     def test_plugin_view_typebutton(self):
         portal = self.portal

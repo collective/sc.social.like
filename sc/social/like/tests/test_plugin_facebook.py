@@ -14,7 +14,7 @@ from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
-import unittest
+import unittest2 as unittest
 
 name = 'Facebook'
 
@@ -29,7 +29,7 @@ class PluginTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
-        self.assertTrue(name in self.plugins)
+        self.assertIn(name, self.plugins)
 
     def test_plugin_config(self):
         plugin = self.plugins[name]
@@ -38,23 +38,19 @@ class PluginTest(unittest.TestCase):
 
     def test_plugin_config_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.config_view(),
-                         '@@facebook-config')
+        self.assertEqual(plugin.config_view(), '@@facebook-config')
 
     def test_plugin_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.view(),
-                         '@@facebook-plugin')
+        self.assertEqual(plugin.view(), '@@facebook-plugin')
 
     def test_plugin_metadata(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.metadata(),
-                         'metadata')
+        self.assertEqual(plugin.metadata(), 'metadata')
 
     def test_plugin_plugin(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.plugin(),
-                         'plugin')
+        self.assertEqual(plugin.plugin(), 'plugin')
 
 
 class PluginViewsTest(unittest.TestCase):
@@ -106,7 +102,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('fb-like' in html)
+        self.assertIn('fb-like', html)
 
     def test_plugin_view_metadata(self):
         plugin = self.plugin
@@ -115,15 +111,15 @@ class PluginViewsTest(unittest.TestCase):
         view = portal.restrictedTraverse(plugin_view)
 
         metadata = view.metadata()
-        self.assertTrue('og:site_name' in metadata)
+        self.assertIn('og:site_name', metadata)
 
         # At root, use site logo
         image_url = view.image_url()
-        self.assertTrue('logo.png' in image_url)
+        self.assertIn('logo.png', image_url)
 
         # At root, use website type
         og_type = view.type()
-        self.assertTrue('website' in og_type)
+        self.assertIn('website', og_type)
 
     def test_plugin_view_document(self):
         plugin = self.plugin
@@ -135,16 +131,16 @@ class PluginViewsTest(unittest.TestCase):
 
         # At document, use site logo
         image_url = view.image_url()
-        self.assertTrue('logo.png' in image_url)
+        self.assertIn('logo.png', image_url)
 
         # At document, use article type
         og_type = view.type()
-        self.assertTrue('article' in og_type)
+        self.assertIn('article', og_type)
 
         # At document, default page of portal, use website type
         portal.setDefaultPage(document.id)
         og_type = view.type()
-        self.assertTrue('website' in og_type)
+        self.assertIn('website', og_type)
 
     def test_plugin_view_image(self):
         plugin = self.plugin
@@ -155,7 +151,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At image, use local image
         image_url = view.image_url()
-        self.assertTrue('logo.png' not in image_url)
+        self.assertNotIn('logo.png', image_url)
         self.assertEqual(view.image_width(), 1024)
         self.assertEqual(view.image_height(), 768)
         self.assertEqual(view.image_type(), 'image/png')
@@ -178,7 +174,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At image, use local image
         image_url = view.image_url()
-        self.assertTrue('logo.png' not in image_url)
+        self.assertNotIn('logo.png', image_url)
         self.assertEqual(view.image_width(), 640)
         self.assertEqual(view.image_height(), 480)
 
@@ -201,7 +197,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At newsitem, use image
         image_url = view.image_url()
-        self.assertTrue('logo.png' not in image_url)
+        self.assertNotIn('logo.png', image_url)
 
         self.assertEqual(view.image_width(), 1200)
         self.assertEqual(view.image_height(), 675)
@@ -215,7 +211,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At newsitem, use image
         image_url = view.image_url()
-        self.assertTrue('logo.png' not in image_url)
+        self.assertNotIn('logo.png', image_url)
         self.assertEqual(view.image_width(), 1024)
         self.assertEqual(view.image_height(), 768)
 
@@ -228,7 +224,7 @@ class PluginViewsTest(unittest.TestCase):
         # At newsitem, use image
         self.assertEqual(view.image, None)
         image_url = view.image_url()
-        self.assertTrue('logo.png' in image_url)
+        self.assertIn('logo.png', image_url)
         self.assertEqual(view.image_width(), None)
         self.assertEqual(view.image_height(), None)
 
@@ -242,7 +238,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At newsitem, use image
         image_url = view.image_url()
-        self.assertTrue('logo.png' not in image_url)
+        self.assertNotIn('logo.png', image_url)
 
         self.assertEqual(view.image_width(), 1200)
         self.assertEqual(view.image_height(), 675)
@@ -254,12 +250,12 @@ class PluginViewsTest(unittest.TestCase):
         self.document.setLanguage('pt-br')
         view = document.restrictedTraverse(plugin_view)
         html = view.metadata()
-        self.assertTrue('connect.facebook.net/pt_BR/all.js' in html)
+        self.assertIn('connect.facebook.net/pt_BR/all.js', html)
 
         self.document.setLanguage('en')
         view = document.restrictedTraverse(plugin_view)
         html = view.metadata()
-        self.assertTrue('connect.facebook.net/en_GB/all.js' in html)
+        self.assertIn('connect.facebook.net/en_GB/all.js', html)
 
     def test_plugin_view_typebutton(self):
         portal = self.portal
@@ -302,20 +298,13 @@ class LanguageCodeTest(unittest.TestCase):
 
     def test_facebook_language(self):
         default = 'en_US'
-        self.assertEqual(facebook_language(['pt-br', 'pt'], default),
-                         'pt_BR')
-        self.assertEqual(facebook_language(['de', ], default),
-                         'de_DE')
-        self.assertEqual(facebook_language(['it', ], default),
-                         'it_IT')
-        self.assertEqual(facebook_language(['fi', 'en'], default),
-                         'fi_FI')
-        self.assertEqual(facebook_language(['ga', ], default),
-                         'ga_IE')
-        self.assertEqual(facebook_language(['ji', ], default),
-                         default)
-        self.assertEqual(facebook_language([], default),
-                         default)
+        self.assertEqual(facebook_language(['pt-br', 'pt'], default), 'pt_BR')
+        self.assertEqual(facebook_language(['de', ], default), 'de_DE')
+        self.assertEqual(facebook_language(['it', ], default), 'it_IT')
+        self.assertEqual(facebook_language(['fi', 'en'], default), 'fi_FI')
+        self.assertEqual(facebook_language(['ga', ], default), 'ga_IE')
+        self.assertEqual(facebook_language(['ji', ], default), default)
+        self.assertEqual(facebook_language([], default), default)
 
 
 class ImageResizingTest(unittest.TestCase):

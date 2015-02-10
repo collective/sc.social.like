@@ -18,8 +18,7 @@ class BrowserViewTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Document',
-                                  'my-document')
+        self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']
 
     def view(self, context=None):

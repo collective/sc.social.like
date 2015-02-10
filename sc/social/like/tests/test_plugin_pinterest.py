@@ -10,7 +10,7 @@ from sc.social.like.testing import load_image
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
-import unittest
+import unittest2 as unittest
 
 name = 'Pinterest'
 
@@ -25,7 +25,7 @@ class PluginTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
-        self.assertTrue(name in self.plugins)
+        self.assertIn(name, self.plugins)
 
     def test_plugin_config(self):
         plugin = self.plugins[name]
@@ -34,23 +34,19 @@ class PluginTest(unittest.TestCase):
 
     def test_plugin_config_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.config_view(),
-                         None)
+        self.assertIsNone(plugin.config_view())
 
     def test_plugin_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.view(),
-                         '@@pinterest-plugin')
+        self.assertEqual(plugin.view(), '@@pinterest-plugin')
 
     def test_plugin_metadata(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.metadata(),
-                         None)
+        self.assertIsNone(plugin.metadata())
 
     def test_plugin_plugin(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.plugin(),
-                         'plugin')
+        self.assertEqual(plugin.plugin(), 'plugin')
 
 
 class PluginViewsTest(unittest.TestCase):
@@ -93,8 +89,8 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = newsitem.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('js/pinit.js' in html)
-        self.assertTrue('pin_it_button.png' in html)
+        self.assertIn('js/pinit.js', html)
+        self.assertIn('pin_it_button.png', html)
 
     def test_plugin_view_image(self):
         plugin = self.plugin
@@ -131,7 +127,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At document, return logo
         image_url = view.image_url()
-        self.assertTrue(expected in image_url)
+        self.assertIn(expected, image_url)
 
     def test_plugin_view_typebutton(self):
         portal = self.portal

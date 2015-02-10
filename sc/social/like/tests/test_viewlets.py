@@ -7,7 +7,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from zope.interface import alsoProvides
 
-import unittest
+import unittest2 as unittest
 
 
 class MetadataViewletTestCase(unittest.TestCase):
@@ -19,8 +19,7 @@ class MetadataViewletTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Document',
-                                  'my-document')
+        self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']
 
     def viewlet(self, context=None):
@@ -47,12 +46,12 @@ class MetadataViewletTestCase(unittest.TestCase):
         request = self.layer['request']
         request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
         html = self.document.atct_edit()
-        self.assertFalse('og:site_name' in html)
+        self.assertNotIn('og:site_name', html)
 
     def test_render(self):
         viewlet = self.viewlet(self.document)
         html = viewlet.render()
-        self.assertTrue(len(html) > 0)
+        self.assertGreater(len(html), 0)
 
 
 class LikeViewletTestCase(unittest.TestCase):
@@ -64,8 +63,7 @@ class LikeViewletTestCase(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Document',
-                                  'my-document')
+        self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']
 
     def viewlet(self, context=None):
@@ -86,10 +84,10 @@ class LikeViewletTestCase(unittest.TestCase):
         request = self.layer['request']
         request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
         html = self.document.atct_edit()
-        self.assertFalse('id="viewlet-social-like"' in html)
+        self.assertNotIn('id="viewlet-social-like"', html)
 
     def test_render(self):
         viewlet = self.viewlet(self.document)
         html = viewlet.render()
-        self.assertTrue('id="viewlet-social-like"' in html)
-        self.assertTrue('class="horizontal"' in html)
+        self.assertIn('id="viewlet-social-like"', html)
+        self.assertIn('class="horizontal"', html)

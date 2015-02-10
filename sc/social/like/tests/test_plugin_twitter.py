@@ -10,7 +10,7 @@ from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
-import unittest
+import unittest2 as unittest
 
 name = 'Twitter'
 
@@ -25,7 +25,7 @@ class PluginTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
-        self.assertTrue(name in self.plugins)
+        self.assertIn(name, self.plugins)
 
     def test_plugin_config(self):
         plugin = self.plugins[name]
@@ -34,23 +34,19 @@ class PluginTest(unittest.TestCase):
 
     def test_plugin_config_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.config_view(),
-                         '@@twitter-config')
+        self.assertEqual(plugin.config_view(), '@@twitter-config')
 
     def test_plugin_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.view(),
-                         '@@twitter-plugin')
+        self.assertEqual(plugin.view(), '@@twitter-plugin')
 
     def test_plugin_metadata(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.metadata(),
-                         'metadata')
+        self.assertEqual(plugin.metadata(), 'metadata')
 
     def test_plugin_plugin(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.plugin(),
-                         'plugin')
+        self.assertEqual(plugin.plugin(), 'plugin')
 
 
 class PluginViewsTest(unittest.TestCase):
@@ -90,7 +86,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('twitter-share-button' in html)
+        self.assertIn('twitter-share-button', html)
 
     def test_plugin_twittvia(self):
         plugin = self.plugin
@@ -101,7 +97,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('data-via="@simplesconsult"' in html)
+        self.assertIn('data-via="@simplesconsult"', html)
 
     def test_plugin_urlnoscript_encoding(self):
         plugin = self.plugin
@@ -113,7 +109,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('%20via%20%40simplesconsult">Tweet' in html)
+        self.assertIn('%20via%20%40simplesconsult">Tweet', html)
 
     def test_plugin_language(self):
         plugin = self.plugin
@@ -122,9 +118,9 @@ class PluginViewsTest(unittest.TestCase):
         self.document.setLanguage('pt-br')
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('data-lang="pt-br"' in html)
+        self.assertIn('data-lang="pt-br"', html)
 
         self.document.setLanguage('en')
         view = document.restrictedTraverse(plugin_view)
         html = view.plugin()
-        self.assertTrue('data-lang="en"' in html)
+        self.assertIn('data-lang="en"', html)
