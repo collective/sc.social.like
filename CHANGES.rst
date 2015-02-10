@@ -6,6 +6,12 @@ There's a frood who really knows where his towel is.
 2.0rc2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Do not load social media stuff on non-canonical views
+  (like edit form or similar). This close `#36`__.
+  [keul]
+  
+  __ https://github.com/collective/sc.social.like/issues/36
+
 - Added italian translation.
   [keul]
 
