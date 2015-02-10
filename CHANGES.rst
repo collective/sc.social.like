@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.0rc2 (unreleased)
+2.0 (2015-02-10)
 ^^^^^^^^^^^^^^^^^^^
 
 - Do not load social media stuff on non-canonical views (like edit form or similar). This close `#36`_.
