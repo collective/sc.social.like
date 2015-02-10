@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.0rc2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Added italian translation.
+  [keul]
+
 - Load behavior of all social plugins changed to be async.
   [keul]
 
