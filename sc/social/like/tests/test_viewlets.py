@@ -43,6 +43,12 @@ class MetadataViewletTestCase(unittest.TestCase):
         viewlet = self.viewlet(self.document)
         self.assertTrue(viewlet.enabled())
 
+    def test_disabled_on_edit_document(self):
+        request = self.layer['request']
+        request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
+        html = self.document.atct_edit()
+        self.assertFalse('og:site_name' in html)
+
     def test_render(self):
         viewlet = self.viewlet(self.document)
         html = viewlet.render()
@@ -75,6 +81,12 @@ class LikeViewletTestCase(unittest.TestCase):
     def test_enabled_on_document(self):
         viewlet = self.viewlet(self.document)
         self.assertTrue(viewlet.enabled())
+
+    def test_disabled_on_edit_document(self):
+        request = self.layer['request']
+        request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
+        html = self.document.atct_edit()
+        self.assertFalse('id="viewlet-social-like"' in html)
 
     def test_render(self):
         viewlet = self.viewlet(self.document)

@@ -28,8 +28,11 @@ class IHelperView(Interface):
     def typebutton():
         ''' Button to be used '''
 
-    def enabled():
-        ''' Social Like is enabled for this context '''
+    def enabled(view):
+        '''
+        Social Like is enabled for this context and provided view
+        (when provided)
+        '''
 
     def available_plugins():
         ''' Return available plugins '''

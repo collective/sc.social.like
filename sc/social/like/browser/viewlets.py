@@ -15,6 +15,7 @@ class BaseLikeViewlet(ViewletBase):
         super(BaseLikeViewlet, self).__init__(context, request, view, manager)
         self.context = context
         self.request = request
+        self.view = view
         self.helper = getMultiAdapter((self.context, self.request),
                                       name=u'sl_helper')
         self.typebutton = self.helper.typebutton()
@@ -60,8 +61,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         # contained content types
         if template in ('all_content', 'folder_full_view',):
             return True
-        else:
-            return super(SocialMetadataViewlet, self).enabled()
+        return self.helper.enabled(self.view)
 
 
 class SocialLikesViewlet(BaseLikeViewlet):

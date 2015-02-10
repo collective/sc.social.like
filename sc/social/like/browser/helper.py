@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+
 from Acquisition import aq_inner
+from Products.Five import BrowserView
+from plone.app.layout.globals.interfaces import IViewView
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
-from Products.Five import BrowserView
 from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.interfaces import IHelperView
 from sc.social.like.plugins import IPlugin
@@ -42,7 +44,9 @@ class HelperView(BrowserView):
         return configs.plugins_enabled or []
 
     @memoize
-    def enabled(self):
+    def enabled(self, view=None):
+        if view and not IViewView.providedBy(view):
+            return False
         enabled_portal_types = self.enabled_portal_types()
         return self.context.portal_type in enabled_portal_types
 
