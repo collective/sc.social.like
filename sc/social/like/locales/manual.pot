@@ -14,3 +14,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+msgid "Social: Like Actions"
+msgstr ""
+
+msgid "A simple, yet useful, social networking integration for Plone"
+msgstr ""
