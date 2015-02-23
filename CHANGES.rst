@@ -6,13 +6,14 @@ There's a frood who really knows where his towel is.
 2.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Removed old Facebook specific CSS rule that truncate the new
+  Facebook widget. This close `#38`_.
 
 
 2.0.1 (2015-02-23)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Nothing changed.
 
 
 2.0 (2015-02-10)
@@ -205,3 +206,4 @@ There's a frood who really knows where his towel is.
 * Initial release [cleberjsantos]
 
 .. _`#36`: https://github.com/collective/sc.social.like/issues/36
+.. _`#38`: https://github.com/collective/sc.social.like/issues/38
