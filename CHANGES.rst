@@ -3,14 +3,14 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.1 (unreleased)
-^^^^^^^^^^^^^^^^
+2.0.1 (2015-02-23)
+^^^^^^^^^^^^^^^^^^
 
 - Nothing changed yet.
 
 
 2.0 (2015-02-10)
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 - Do not load social media stuff on non-canonical views (like edit form or similar). This close `#36`_.
   [keul]
