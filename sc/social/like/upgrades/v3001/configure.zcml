@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <gs:upgradeSteps
+        source="3000"
+        destination="3001"
+        profile="sc.social.like:default">
+
+      <gs:upgradeStep
+         title="Cook CSS registry"
+         description=""
+         handler=".handler.cook_css_registry"
+         />
+
+    </gs:upgradeSteps>
+
+</configure>

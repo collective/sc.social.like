@@ -6,13 +6,15 @@ There's a frood who really knows where his towel is.
 2.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Added missing migration step for refreshing CSS registry
+  [keul]
 
 
 2.0.2 (2015-02-23)
 ^^^^^^^^^^^^^^^^^^
 
 - Removed old Facebook specific CSS rule that truncate the new Facebook widget. This close `#38`_.
+  [keul]
 
 
 2.0.1 (2015-02-23)
