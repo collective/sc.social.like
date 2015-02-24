@@ -21,6 +21,7 @@ class PluginView(BrowserView):
     fbaction = ''
     fbadmins = ''
     language = 'en_US'
+    fbshow_share = True
 
     metadata = ViewPageTemplateFile("templates/metadata.pt")
     plugin = ViewPageTemplateFile("templates/plugin.pt")
@@ -46,6 +47,7 @@ class PluginView(BrowserView):
             self.fbaction = self.sheet.getProperty("fbaction", "")
             self.fbapp_id = self.sheet.getProperty("fbapp_id", "")
             self.fbadmins = self.sheet.getProperty("fbadmins", "")
+            self.fbshow_share = self.sheet.getProperty("fbshow_share", False)
             self.button = self.typebutton
 
     def fbjs(self):
