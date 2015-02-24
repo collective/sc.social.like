@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-10 10:34+0000\n"
+"POT-Creation-Date: 2015-02-24 08:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Configure each plugin."
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:73
+#: ../plugins/facebook/controlpanel.py:85
 msgid "Configure settings for Facebook integration."
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Social Like"
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:72
+#: ../plugins/facebook/controlpanel.py:84
 msgid "Social: Facebook settings"
 msgstr ""
 
@@ -97,6 +97,11 @@ msgstr ""
 msgid "Verb to display"
 msgstr ""
 
+#. Default: "Show \"Share\" button"
+#: ../plugins/facebook/controlpanel.py:58
+msgid "fbshow_share"
+msgstr ""
+
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
 #: ../plugins/facebook/controlpanel.py:40
 msgid "help_admins"
@@ -110,6 +115,11 @@ msgstr ""
 #. Default: "Please select which plugins will be used"
 #: ../controlpanel/likes.py:47
 msgid "help_enabled_plugins"
+msgstr ""
+
+#. Default: "Display the \"Share\" button near the default \"Like\" ones"
+#: ../plugins/facebook/controlpanel.py:60
+msgid "help_fbshow_share"
 msgstr ""
 
 #. Default: "Please select content types in which the viewlet will be applied."

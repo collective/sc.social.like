@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-10 10:34+0000\n"
+"POT-Creation-Date: 2015-02-24 08:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -37,7 +37,7 @@ msgstr "Stile del bottone"
 msgid "Configure each plugin."
 msgstr "Configura ogni plugin"
 
-#: ../plugins/facebook/controlpanel.py:73
+#: ../plugins/facebook/controlpanel.py:85
 msgid "Configure settings for Facebook integration."
 msgstr "Configura impostazioni per integrazione con Facebook"
 
@@ -55,7 +55,7 @@ msgstr "Tipi di contenuto"
 
 #: ../plugins/facebook/controlpanel.py:17
 msgid "Like"
-msgstr ""
+msgstr "Mi piace"
 
 #: ../controlpanel/likes.pt:119
 msgid "Plugin-Specific Configuration"
@@ -74,7 +74,7 @@ msgstr "Consigliato"
 msgid "Social Like"
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:72
+#: ../plugins/facebook/controlpanel.py:84
 msgid "Social: Facebook settings"
 msgstr "Social: impostazioni Facebook"
 
@@ -98,6 +98,11 @@ msgstr "Nickname Twitter"
 msgid "Verb to display"
 msgstr "Verbo da visualizzare"
 
+#. Default: "Show \"Share\" button"
+#: ../plugins/facebook/controlpanel.py:58
+msgid "fbshow_share"
+msgstr "Mostra pulsante \"Condividi\""
+
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
 #: ../plugins/facebook/controlpanel.py:40
 msgid "help_admins"
@@ -113,6 +118,11 @@ msgstr "L'ID di un'applicazione Facebook"
 msgid "help_enabled_plugins"
 msgstr "Prego selezionare quali plugin verranno usati"
 
+#. Default: "Display the \"Share\" button near the default \"Like\" ones"
+#: ../plugins/facebook/controlpanel.py:60
+msgid "help_fbshow_share"
+msgstr "Mostra il pulsante \"Condividi\" vicino al pulsante predefinito \"Mi piace\""
+
 #. Default: "Please select content types in which the viewlet will be applied."
 #: ../controlpanel/likes.py:36
 msgid "help_portal_types"
@@ -126,7 +136,7 @@ msgstr "Seleziona lo stile del bottone"
 #. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
 #: ../plugins/facebook/controlpanel.py:27
 msgid "help_verb_display"
-msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo 'like' e 'consigliato' sono supportati."
+msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo 'Mi piace' e 'Consiglia' sono supportati."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
 #: ../plugins/twitter/controlpanel.py:20

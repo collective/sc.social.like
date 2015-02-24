@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-02-10 10:34+0000\n"
+"POT-Creation-Date: 2015-02-24 08:27+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Botoien ixuria"
 msgid "Configure each plugin."
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:73
+#: ../plugins/facebook/controlpanel.py:85
 msgid "Configure settings for Facebook integration."
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr "Gomendatu!"
 msgid "Social Like"
 msgstr "Social Like"
 
-#: ../plugins/facebook/controlpanel.py:72
+#: ../plugins/facebook/controlpanel.py:84
 msgid "Social: Facebook settings"
 msgstr ""
 
@@ -95,6 +95,11 @@ msgstr "Twitter izena"
 msgid "Verb to display"
 msgstr "Erakutsiko den testua"
 
+#. Default: "Show \"Share\" button"
+#: ../plugins/facebook/controlpanel.py:58
+msgid "fbshow_share"
+msgstr ""
+
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
 #: ../plugins/facebook/controlpanel.py:40
 #, fuzzy
@@ -109,6 +114,11 @@ msgstr ""
 #. Default: "Please select which plugins will be used"
 #: ../controlpanel/likes.py:47
 msgid "help_enabled_plugins"
+msgstr ""
+
+#. Default: "Display the \"Share\" button near the default \"Like\" ones"
+#: ../plugins/facebook/controlpanel.py:60
+msgid "help_fbshow_share"
 msgstr ""
 
 #. Default: "Please select content types in which the viewlet will be applied."
