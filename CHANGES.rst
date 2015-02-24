@@ -3,8 +3,11 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.0.3 (unreleased)
-^^^^^^^^^^^^^^^^^^
+2.1 (unreleased)
+^^^^^^^^^^^^^^^^
+
+- Facebook "Share" button now provided. See `#15`_.
+  [keul]
 
 - Added missing migration step for refreshing CSS registry
   [keul]
@@ -214,3 +217,4 @@ There's a frood who really knows where his towel is.
 
 .. _`#36`: https://github.com/collective/sc.social.like/issues/36
 .. _`#38`: https://github.com/collective/sc.social.like/issues/38
+.. _`#15`: https://github.com/collective/sc.social.like/pull/15
