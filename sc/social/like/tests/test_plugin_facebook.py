@@ -96,13 +96,39 @@ class PluginViewsTest(unittest.TestCase):
         view = portal.restrictedTraverse(plugin_view)
         self.assertTrue(isinstance(view, browser.PluginView))
 
-    def test_plugin_view_html(self):
+    def test_plugin_view_html_likeonly(self):
         plugin = self.plugin
         portal = self.portal
+        properties = portal.portal_properties.sc_social_likes_properties 
+        properties.fbbuttons = ('Like',)
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
         self.assertIn('fb-like', html)
+        self.assertNotIn('fb-share-button', html)
+
+    def test_plugin_view_html_shareonly(self):
+        plugin = self.plugin
+        portal = self.portal
+        properties = portal.portal_properties.sc_social_likes_properties 
+        properties.fbbuttons = ('Share',)
+        plugin_view = plugin.view()
+        view = portal.restrictedTraverse(plugin_view)
+        html = view.plugin()
+        self.assertNotIn('fb-like', html)
+        self.assertIn('fb-share-button', html)
+
+    def test_plugin_view_html_both(self):
+        plugin = self.plugin
+        portal = self.portal
+        properties = portal.portal_properties.sc_social_likes_properties
+        properties.fbbuttons = ('Like', 'Share')
+        plugin_view = plugin.view()
+        view = portal.restrictedTraverse(plugin_view)
+        html = view.plugin()
+        self.assertIn('fb-like', html)
+        self.assertIn('data-share', html)
+        self.assertNotIn('fb-share-button', html)
 
     def test_plugin_view_metadata(self):
         plugin = self.plugin
@@ -273,7 +299,7 @@ class PluginViewsTest(unittest.TestCase):
         view = portal.restrictedTraverse(plugin_view)
         self.assertEqual(view.typebutton, 'box_count')
         self.assertEqual(view.width, '55px')
-
+        
 
 class LanguageCodeTest(unittest.TestCase):
 
