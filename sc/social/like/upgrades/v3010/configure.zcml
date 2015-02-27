@@ -29,6 +29,13 @@
           handler=".handler.apply_profile"
           />
 
+      <gs:upgradeStep
+          title="Remove actionicons"
+          description=""
+          handler=".handler.remove_actionicons"
+          />
+
+
     </gs:upgradeSteps>
 
 </configure>
