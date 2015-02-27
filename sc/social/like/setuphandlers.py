@@ -10,7 +10,7 @@ class HiddenProducts(object):
 
     def getNonInstallableProducts(self):
         return ['sc.social.like.upgrades.v2000',
-                'sc.social.like.upgrades.v3000'
+                'sc.social.like.upgrades.v3000',
                 'sc.social.like.upgrades.v3010']
 
 

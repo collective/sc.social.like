@@ -24,7 +24,7 @@
          />
 
       <gs:upgradeStep
-          title="Create fbshow_share property"
+          title="Create fbbuttons property"
           description=""
           handler=".handler.apply_profile"
           />

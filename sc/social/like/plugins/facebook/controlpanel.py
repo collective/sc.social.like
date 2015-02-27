@@ -54,15 +54,15 @@ class IFacebookSchema(Interface):
         required=False,
     )
 
-    fbshow_share = schema.Bool(
-        title=_('fbshow_share',
-                default=u'Show "Share" button'),
+    fbbuttons = schema.Tuple(
+        title=_(u'Facebook buttons'),
         description=_(
-            u'help_fbshow_share',
-            default=u'Display the "Share" button near the default "Like" ones',
+            u'help_fbbuttons',
+            default=u'Display buttons to show',
         ),
-        default=False,
-        required=False,
+        value_type=schema.Choice(values=(_(u'Like'), _(u'Share'))),
+        default=(u"Like", ),
+        required=True,
     )
 
 
@@ -74,7 +74,7 @@ class ControlPanelAdapter(BaseControlPanelAdapter):
     fbaction = PFP(IFacebookSchema['fbaction'])
     fbadmins = PFP(IFacebookSchema['fbadmins'])
     fbapp_id = PFP(IFacebookSchema['fbapp_id'])
-    fbshow_share = PFP(IFacebookSchema['fbshow_share'])
+    fbbuttons = PFP(IFacebookSchema['fbbuttons'])
 
 
 class ProviderControlPanel(ControlPanelForm):
