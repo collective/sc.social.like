@@ -18,6 +18,10 @@ verbs = SimpleVocabulary([
     SimpleTerm(value=u'recommend', title=_(u'Recommend')),
 ])
 
+buttons = SimpleVocabulary([
+    SimpleTerm(value=u'Like', title=_(u'Like')),
+    SimpleTerm(value=u'Share', title=_(u'Share')),
+])
 
 class IFacebookSchema(Interface):
     """ Facebook configurations """
@@ -58,9 +62,9 @@ class IFacebookSchema(Interface):
         title=_(u'Facebook buttons'),
         description=_(
             u'help_fbbuttons',
-            default=u'Display buttons to show',
+            default=u'Select buttons to be shown',
         ),
-        value_type=schema.Choice(values=(_(u'Like'), _(u'Share'))),
+        value_type=schema.Choice(vocabulary=buttons),
         default=(u"Like", ),
         required=True,
     )

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-02-24 08:27+0000\n"
+"POT-Creation-Date: 2015-02-27 23:52+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 msgid "A simple, yet useful, social networking integration for Plone"
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:39
+#: ../plugins/facebook/controlpanel.py:43
 msgid "Admins"
 msgstr "Kudeatzaileak"
 
-#: ../plugins/facebook/controlpanel.py:49
+#: ../plugins/facebook/controlpanel.py:53
 msgid "Application ID"
 msgstr ""
 
-#: ../controlpanel/likes.py:56
+#: ../controlpanel/likes.py:62
 msgid "Button style"
 msgstr "Botoien ixuria"
 
@@ -34,7 +34,7 @@ msgstr "Botoien ixuria"
 msgid "Configure each plugin."
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:85
+#: ../plugins/facebook/controlpanel.py:89
 msgid "Configure settings for Facebook integration."
 msgstr ""
 
@@ -42,13 +42,17 @@ msgstr ""
 msgid "Configure settings for Twitter integration."
 msgstr ""
 
-#: ../controlpanel/likes.py:95
+#: ../controlpanel/likes.py:101
 msgid "Configure settings for social like actions."
 msgstr "Konfiguratu Social Like produktuaren aukerak"
 
-#: ../controlpanel/likes.py:35
+#: ../controlpanel/likes.py:41
 msgid "Content types"
 msgstr "Elementu-motak"
+
+#: ../plugins/facebook/controlpanel.py:62
+msgid "Facebook buttons"
+msgstr ""
 
 #: ../plugins/facebook/controlpanel.py:17
 msgid "Like"
@@ -58,7 +62,7 @@ msgstr "Atsegin dut!"
 msgid "Plugin-Specific Configuration"
 msgstr ""
 
-#: ../controlpanel/likes.py:46
+#: ../controlpanel/likes.py:52
 msgid "Plugins"
 msgstr ""
 
@@ -66,20 +70,23 @@ msgstr ""
 msgid "Recommend"
 msgstr "Gomendatu!"
 
-#: ../profiles/default/actionicons.xml
+#: ../plugins/facebook/controlpanel.py:23
+msgid "Share"
+msgstr ""
+
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
 msgstr "Social Like"
 
-#: ../plugins/facebook/controlpanel.py:84
+#: ../plugins/facebook/controlpanel.py:88
 msgid "Social: Facebook settings"
 msgstr ""
 
-#: ../controlpanel/likes.py:96
+#: ../controlpanel/likes.py:102
 msgid "Social: Like Actions"
 msgstr "Social: \"Atsegin dut\" akzioak"
 
-#: ../controlpanel/likes.py:94
+#: ../controlpanel/likes.py:100
 msgid "Social: Like Actions settings"
 msgstr "Social: \"Atsegin dut\" akzioen konfigurazioa"
 
@@ -91,48 +98,43 @@ msgstr ""
 msgid "Twitter nick"
 msgstr "Twitter izena"
 
-#: ../plugins/facebook/controlpanel.py:26
+#: ../plugins/facebook/controlpanel.py:30
 msgid "Verb to display"
 msgstr "Erakutsiko den testua"
 
-#. Default: "Show \"Share\" button"
-#: ../plugins/facebook/controlpanel.py:58
-msgid "fbshow_share"
-msgstr ""
-
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ../plugins/facebook/controlpanel.py:40
+#: ../plugins/facebook/controlpanel.py:44
 #, fuzzy
 msgid "help_admins"
 msgstr "Facebook kontuaren kudeatzaileen Facebook IDak. Banatu komarekin bat baino gehiagoa badaude."
 
 #. Default: "A Facebook Platform application ID."
-#: ../plugins/facebook/controlpanel.py:50
+#: ../plugins/facebook/controlpanel.py:54
 msgid "help_appid"
 msgstr ""
 
 #. Default: "Please select which plugins will be used"
-#: ../controlpanel/likes.py:47
+#: ../controlpanel/likes.py:53
 msgid "help_enabled_plugins"
 msgstr ""
 
-#. Default: "Display the \"Share\" button near the default \"Like\" ones"
-#: ../plugins/facebook/controlpanel.py:60
-msgid "help_fbshow_share"
+#. Default: "Select buttons to be shown"
+#: ../plugins/facebook/controlpanel.py:63
+msgid "help_fbbuttons"
 msgstr ""
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ../controlpanel/likes.py:36
+#: ../controlpanel/likes.py:42
 msgid "help_portal_types"
 msgstr "Aukeratu zein elementutan agertuko diren loturak"
 
 #. Default: "Choose your button style."
-#: ../controlpanel/likes.py:57
+#: ../controlpanel/likes.py:63
 msgid "help_selected_buttons"
 msgstr "Aukeratu botoiaren itxura"
 
 #. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
-#: ../plugins/facebook/controlpanel.py:27
+#: ../plugins/facebook/controlpanel.py:31
 msgid "help_verb_display"
 msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gomendatu' bakarrik erabili daitezke."
 
@@ -141,11 +143,11 @@ msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gom
 msgid "help_your_twitter_nick"
 msgstr "Idatzi Twitterreko zuren izena. adb. simplesconsultoria"
 
-#: ../controlpanel/likes.py:62
+#: ../controlpanel/likes.py:32
 msgid "horizontal"
 msgstr "Horizontala"
 
-#: ../controlpanel/likes.py:63
+#: ../controlpanel/likes.py:33
 msgid "vertical"
 msgstr "Bertikala"
 

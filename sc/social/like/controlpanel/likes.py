@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
+
 from Acquisition import aq_inner
-from plone.app.controlpanel.form import ControlPanelForm
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty as PFP
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.app.controlpanel.form import ControlPanelForm
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.plugins import IPlugin
 from zope import schema
@@ -13,8 +14,10 @@ from zope.app.form.browser import itemswidgets
 from zope.component import adapts
 from zope.component import getUtilitiesFor
 from zope.formlib.form import FormFields
-from zope.interface import implements
 from zope.interface import Interface
+from zope.interface import implements
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 CONTENT_TYPES = 'plone.app.vocabularies.ReallyUserFriendlyTypes'
 
@@ -26,6 +29,12 @@ class MultiSelectWidget(itemswidgets.MultiSelectWidget):
         super(MultiSelectWidget, self).__init__(field,
                                                 field.value_type.vocabulary,
                                                 request)
+
+
+styles = SimpleVocabulary([
+    SimpleTerm(value=u'horizontal', title=_(u'horizontal')),
+    SimpleTerm(value=u'vertical', title=_(u'vertical')),
+])
 
 
 class IProvidersSchema(Interface):
@@ -60,7 +69,7 @@ class IProvidersSchema(Interface):
         ),
         required=True,
         default=_(u'horizontal'),
-        values=(_(u'horizontal'), _(u'vertical')),
+        vocabulary=styles,
     )
 
 
