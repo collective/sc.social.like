@@ -6,12 +6,17 @@ There's a frood who really knows where his towel is.
 2.1 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Removed deprecated portal_actionicons registration
+  [keul]
+
+- Translation fixes: some label were not translated
+  [keul]
+
 - Facebook "Share" button now provided. See `#15`_.
   [keul]
 
 - Added missing migration step for refreshing CSS registry
   [keul]
-
 
 2.0.2 (2015-02-23)
 ^^^^^^^^^^^^^^^^^^
