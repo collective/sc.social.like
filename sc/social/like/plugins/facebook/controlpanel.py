@@ -18,6 +18,10 @@ verbs = SimpleVocabulary([
     SimpleTerm(value=u'recommend', title=_(u'Recommend')),
 ])
 
+buttons = SimpleVocabulary([
+    SimpleTerm(value=u'Like', title=_(u'Like')),
+    SimpleTerm(value=u'Share', title=_(u'Share')),
+])
 
 class IFacebookSchema(Interface):
     """ Facebook configurations """
@@ -54,6 +58,17 @@ class IFacebookSchema(Interface):
         required=False,
     )
 
+    fbbuttons = schema.Tuple(
+        title=_(u'Facebook buttons'),
+        description=_(
+            u'help_fbbuttons',
+            default=u'Select buttons to be shown',
+        ),
+        value_type=schema.Choice(vocabulary=buttons),
+        default=(u"Like", ),
+        required=True,
+    )
+
 
 class ControlPanelAdapter(BaseControlPanelAdapter):
     """ Facebook control panel adapter """
@@ -63,6 +78,7 @@ class ControlPanelAdapter(BaseControlPanelAdapter):
     fbaction = PFP(IFacebookSchema['fbaction'])
     fbadmins = PFP(IFacebookSchema['fbadmins'])
     fbapp_id = PFP(IFacebookSchema['fbapp_id'])
+    fbbuttons = PFP(IFacebookSchema['fbbuttons'])
 
 
 class ProviderControlPanel(ControlPanelForm):

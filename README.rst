@@ -23,7 +23,9 @@ This package ships with plugins for the following networks:
 Screenshot
 ^^^^^^^^^^
 
-.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot.png
+.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
+
+.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
 
 Don't Panic
 -----------

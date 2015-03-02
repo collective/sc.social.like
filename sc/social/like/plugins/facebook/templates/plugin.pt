@@ -1,10 +1,16 @@
 <tal:fb>
     <!-- Facebook -->
     <div class="fb-like"
-    	 tal:attributes="data-href view/url;
-    	 				 data-send string:false;
-    	 				 data-action view/fbaction;
-    	 				 data-layout view/typebutton;
-    	 				 data-width view/width;
-    	 				 data-show-faces string:false"></div>
+	     tal:condition="view/fbshow_like"
+         tal:attributes="data-href view/url;
+                         data-send string:false;
+                         data-action view/fbaction;
+                         data-layout view/typebutton;
+                         data-width view/width;
+                         data-show-faces string:false;
+                         data-share view/fbshow_share"></div>
+	<div class="fb-share-button"
+		 tal:condition="python: view.fbshow_share and not view.fbshow_like"
+		 tal:attributes="data-layout view/typebutton;
+		                 data-href view/url;"></div>
 </tal:fb>
