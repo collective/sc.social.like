@@ -14,21 +14,23 @@ matrix:
   include:
     - python: 2.6
       env: PLONE_VERSION=4.1
+  fast_finish: true
 install:
-  - sed -ie "s#test-4.3.x#test-$PLONE_VERSION.x#" buildout.cfg
-  - mkdir -p buildout-cache/downloads
-  - python bootstrap.py -c travis.cfg -v 2.2.1
-  - bin/buildout -c travis.cfg annotate
-  - bin/buildout -c travis.cfg -N -q
+  - sed -ie "s#test-4.x#test-$PLONE_VERSION.x#" buildout.cfg
+  - python bootstrap.py
+  - bin/buildout annotate
+  - bin/buildout -Nq
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - firefox -v
 script:
-  - test $QA bin/code-analysis && bin/zopepy setup.py check -mrs || true
+  - bin/code-analysis
+  - bin/zopepy setup.py check -mrs
   - bin/test
 after_success:
-  - test $QA && bin/coverage.sh && pip install -q coveralls && coveralls || true
-after_failure:
-  - firefox -v
+  - bin/coverage.sh
+  - pip install -q coveralls
+  - coveralls
 notifications:
   irc: irc.freenode.org#simplesconsultoria
