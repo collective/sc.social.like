@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.1 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Translations to Brazilian Portuguese and Spanish were updated.
+  [hvelarde]
+
 - Removed deprecated portal_actionicons registration
   [keul]
 
@@ -17,6 +20,7 @@ There's a frood who really knows where his towel is.
 
 - Added missing migration step for refreshing CSS registry
   [keul]
+
 
 2.0.2 (2015-02-23)
 ^^^^^^^^^^^^^^^^^^

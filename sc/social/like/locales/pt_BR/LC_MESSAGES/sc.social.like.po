@@ -1,21 +1,24 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sc.sociallike\n"
+"Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2015-02-27 23:52+0000\n"
-"PO-Revision-Date: 2011-04-15 13:01-0300\n"
-"Last-Translator: Cleber J Santos <cleber@simplesconsultoria.com.br>\n"
+"PO-Revision-Date: 2015-03-02 15:59-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: pt-br\n"
 "Language-Name: Brazilian Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.social.like\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: Portuguese\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "A simple, yet useful, social networking integration for Plone"
-msgstr ""
+msgstr "Uma integração simples, mas útil, de redes sociais no Plone"
 
 #: ../plugins/facebook/controlpanel.py:43
 msgid "Admins"
@@ -23,7 +26,7 @@ msgstr "Administradores"
 
 #: ../plugins/facebook/controlpanel.py:53
 msgid "Application ID"
-msgstr ""
+msgstr "Application ID"
 
 #: ../controlpanel/likes.py:62
 msgid "Button style"
@@ -31,15 +34,15 @@ msgstr "Estilo dos botões"
 
 #: ../controlpanel/likes.pt:123
 msgid "Configure each plugin."
-msgstr ""
+msgstr "Configurar cada plugin."
 
 #: ../plugins/facebook/controlpanel.py:89
 msgid "Configure settings for Facebook integration."
-msgstr ""
+msgstr "Configurações da integração com Facebook."
 
 #: ../plugins/twitter/controlpanel.py:41
 msgid "Configure settings for Twitter integration."
-msgstr ""
+msgstr "Configurações da integração com Twitter."
 
 #: ../controlpanel/likes.py:101
 msgid "Configure settings for social like actions."
@@ -51,7 +54,7 @@ msgstr "Tipos de conteúdo"
 
 #: ../plugins/facebook/controlpanel.py:62
 msgid "Facebook buttons"
-msgstr ""
+msgstr "Botões do Facebook"
 
 #: ../plugins/facebook/controlpanel.py:17
 msgid "Like"
@@ -59,11 +62,11 @@ msgstr "Curtir"
 
 #: ../controlpanel/likes.pt:119
 msgid "Plugin-Specific Configuration"
-msgstr ""
+msgstr "Configuração específica do plugin"
 
 #: ../controlpanel/likes.py:52
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: ../plugins/facebook/controlpanel.py:18
 msgid "Recommend"
@@ -71,7 +74,7 @@ msgstr "Recomendar"
 
 #: ../plugins/facebook/controlpanel.py:23
 msgid "Share"
-msgstr ""
+msgstr "Compartilhar"
 
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
@@ -79,7 +82,7 @@ msgstr "Social Like"
 
 #: ../plugins/facebook/controlpanel.py:88
 msgid "Social: Facebook settings"
-msgstr ""
+msgstr "Configurações do Facebook"
 
 #: ../controlpanel/likes.py:102
 msgid "Social: Like Actions"
@@ -91,7 +94,7 @@ msgstr "Social: Configurações das Ações de Curtir"
 
 #: ../plugins/twitter/controlpanel.py:40
 msgid "Social: Twitter settings"
-msgstr ""
+msgstr "Configurações do Twitter"
 
 #: ../plugins/twitter/controlpanel.py:19
 msgid "Twitter nick"
@@ -105,22 +108,24 @@ msgstr "Verbo a ser exibido"
 #: ../plugins/facebook/controlpanel.py:44
 #, fuzzy
 msgid "help_admins"
-msgstr "Uma lista, separada por vírgulas, dos IDs dos administradores desta página ou o ID de uma aplicação da plataforma Facebook."
+msgstr ""
+"Uma lista, separada por vírgulas, dos IDs dos administradores desta página "
+"ou o ID de uma aplicação da plataforma Facebook."
 
 #. Default: "A Facebook Platform application ID."
 #: ../plugins/facebook/controlpanel.py:54
 msgid "help_appid"
-msgstr ""
+msgstr "ID da aplicação na plataforma Facebook."
 
 #. Default: "Please select which plugins will be used"
 #: ../controlpanel/likes.py:53
 msgid "help_enabled_plugins"
-msgstr ""
+msgstr "Informe os plugins que serão usados"
 
 #. Default: "Select buttons to be shown"
 #: ../plugins/facebook/controlpanel.py:63
 msgid "help_fbbuttons"
-msgstr ""
+msgstr "Selecione os botões que serão mostrados"
 
 #. Default: "Please select content types in which the viewlet will be applied."
 #: ../controlpanel/likes.py:42
@@ -135,7 +140,9 @@ msgstr "Qual o estilo dos botões."
 #. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
 #: ../plugins/facebook/controlpanel.py:31
 msgid "help_verb_display"
-msgstr "Verbo a ser exibido no botão do Facebook. Atualmente apenas 'curtir' e 'recomendar' estão habilitados"
+msgstr ""
+"Verbo a ser exibido no botão do Facebook. Atualmente apenas 'curtir' e "
+"'recomendar' estão habilitados"
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
 #: ../plugins/twitter/controlpanel.py:20
@@ -149,4 +156,3 @@ msgstr "horizontal"
 #: ../controlpanel/likes.py:33
 msgid "vertical"
 msgstr "vertical"
-
