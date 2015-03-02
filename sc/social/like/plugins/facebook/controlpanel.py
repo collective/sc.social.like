@@ -23,6 +23,7 @@ buttons = SimpleVocabulary([
     SimpleTerm(value=u'Share', title=_(u'Share')),
 ])
 
+
 class IFacebookSchema(Interface):
     """ Facebook configurations """
 

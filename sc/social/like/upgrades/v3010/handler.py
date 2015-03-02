@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-
 import logging
 from Products.CMFCore.utils import getToolByName
 from sc.social.like.config import PROJECTNAME
@@ -14,11 +13,13 @@ def cook_css_registry(context):
     css_registry.cookResources()
     logger.info('CSS registry refreshed')
 
+
 def apply_profile(context):
     ''' Apply upgrade profile '''
     profile = 'profile-sc.social.like.upgrades.v3010:default'
     loadMigrationProfile(context, profile)
     logger.info('Applied upgrade profile to version 3010')
+
 
 def remove_actionicons(context):
     ''' Remove registration from deprecated actionicons tool'''

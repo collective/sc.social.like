@@ -99,7 +99,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_likeonly(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties 
+        properties = portal.portal_properties.sc_social_likes_properties
         properties.fbbuttons = ('Like',)
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
@@ -110,7 +110,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_shareonly(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties 
+        properties = portal.portal_properties.sc_social_likes_properties
         properties.fbbuttons = ('Share',)
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
@@ -299,7 +299,7 @@ class PluginViewsTest(unittest.TestCase):
         view = portal.restrictedTraverse(plugin_view)
         self.assertEqual(view.typebutton, 'box_count')
         self.assertEqual(view.width, '55px')
-        
+
 
 class LanguageCodeTest(unittest.TestCase):
 
