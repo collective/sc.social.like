@@ -1,6 +1,47 @@
-#viewlet-social-like>div {float: left;margin-right: 2em;}
-#viewlet-social-like {margin-top: 5px;min-height: 3em;}
-#viewlet-social-like .twitter-count-horizontal {height: 20px !important;}
-#viewlet-social-like .fb_edge_widget_with_comment {position: relative; margin-top: 0px;}
-.twitter-share-button {margin-top: 0.8px;}
-#viewlet-social-like.vertical {min-height: 7em !important;}
+#viewlet-social-like > div
+{
+    float: left;margin-right: 2em;
+}
+
+#viewlet-social-like
+{
+    min-height: 3em;
+    margin-top: 5px;
+}
+
+#viewlet-social-like .twitter-count-horizontal
+{
+    height: 20px !important;
+}
+
+#viewlet-social-like .fb_edge_widget_with_comment
+{
+    position: relative;
+
+    margin-top: 0;
+}
+
+.twitter-share-button
+{
+    margin-top: .8px;
+}
+
+#viewlet-social-like.vertical
+{
+    min-height: 7em !important;
+}
+
+#viewlet-social-like .whatsapp
+{
+    display: inline-block;
+    overflow: hidden;
+
+    width: 25px;
+    height: 25px;
+
+    white-space: nowrap;
+    text-indent: 101%;
+
+    border: 0 !important;
+    background-image: url(++resource++sl_images/ico-whatsapp.png);
+}

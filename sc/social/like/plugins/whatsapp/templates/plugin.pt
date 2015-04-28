@@ -1,0 +1,6 @@
+<tal:wa>
+    <!-- WhatsApp -->
+    <a class="whatsapp"
+       tal:attributes="href view/whatsappurl"
+       >Share in WhatsApp</a>
+</tal:wa>
