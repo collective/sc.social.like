@@ -1,4 +1,4 @@
-<tal:wa>
+<tal:wa condition="view/is_mobile_browser">
     <!-- WhatsApp -->
     <a class="whatsapp"
        tal:attributes="href view/whatsappurl"
