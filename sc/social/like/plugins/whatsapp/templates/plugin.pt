@@ -1,0 +1,6 @@
+<tal:wa condition="view/is_mobile_browser" i18n:domain="sc.social.like">
+    <a class="whatsapp"
+       tal:attributes="href view/whatsappurl"
+       i18n:translate=""
+       >Share in WhatsApp</a>
+</tal:wa>

@@ -21,4 +21,7 @@
   <!-- LinkedIn -->
   <include package=".linkedin" />
 
+  <!-- WhatsApp -->
+  <include package=".whatsapp" />
+
 </configure>

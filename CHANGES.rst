@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.2 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Added WhatsApp plugin (closes `#39`_).
+  [rodfersou]
 
 
 2.1 (2015-03-02)
@@ -232,4 +233,5 @@ There's a frood who really knows where his towel is.
 
 .. _`#36`: https://github.com/collective/sc.social.like/issues/36
 .. _`#38`: https://github.com/collective/sc.social.like/issues/38
+.. _`#39`: https://github.com/collective/sc.social.like/issues/39
 .. _`#15`: https://github.com/collective/sc.social.like/pull/15
