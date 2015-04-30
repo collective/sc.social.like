@@ -60,8 +60,8 @@ class PluginView(BrowserView):
 
         self.context = context
         self.request = request
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
+        self.portal_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
         self.portal = self.portal_state.portal()
         self.site_url = self.portal_state.portal_url()
         self.portal_title = self.portal_state.portal_title()
@@ -79,7 +79,14 @@ class PluginView(BrowserView):
         )
 
     def is_mobile_browser(self):
-        """Check if acessed by mobile browser"""
+        """Return a bool indicating if is the user is usign a mobile
+        browser. This value will be used to define if the viewlet
+        will be rendered or not.
+
+        :returns: True if the user agent matches a mobile browser,
+            False otherwise
+        :rtype: bool
+        """
         user_agent = self.request.environ.get('HTTP_USER_AGENT', '')
         b = reg_b.search(user_agent)
         v = reg_v.search(user_agent[0:4])
