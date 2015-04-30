@@ -14,25 +14,37 @@ networks integration for Plone Content Types.
 
 This package ships with plugins for the following networks:
 	
-    * Facebook
-    * Google+
-    * LinkedIn
-    * Pinterest
-    * Twitter
-    * WhatsApp
+* Facebook
+* Google+
+* LinkedIn
+* Pinterest
+* Twitter
+* WhatsApp (mobile only)
 
-Screenshot
-^^^^^^^^^^
+Mostly Harmless
+---------------
 
-.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
+.. image:: https://secure.travis-ci.org/collective/sc.social.like.png?branch=master
+    :alt: Travis CI badge
+    :target: http://travis-ci.org/collective/sc.social.like
 
-.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
+.. image:: https://coveralls.io/repos/collective/sc.social.like/badge.png?branch=master
+    :alt: Coveralls badge
+    :target: https://coveralls.io/r/collective/sc.social.like
+
+.. image:: https://pypip.in/d/sc.social.like/badge.png
+    :alt: Downloads
+    :target: https://pypi.python.org/pypi/sc.social.like/
+
+Got an idea? Found a bug? Let us know by `opening a support ticket`_.
+
+.. _`opening a support ticket`: https://github.com/collective/sc.social.like/issues
 
 Don't Panic
 -----------
 
-Step 1: Activate it
-^^^^^^^^^^^^^^^^^^^
+Installation
+^^^^^^^^^^^^
 
 To enable this product in a buildout-based installation:
 
@@ -56,8 +68,8 @@ button.
     You may have to empty your browser cache and save your resource registries
     in order to see the effects of the product installation.
 
-Step 2: Configure it
-^^^^^^^^^^^^^^^^^^^^
+Configuration
+^^^^^^^^^^^^^
 
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Social Like' link -- under Add-on Configuration.
@@ -67,21 +79,9 @@ Go to the 'Site Setup' page in the Plone interface and click on the
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
 
-Mostly Harmless
----------------
+Screenshots
+^^^^^^^^^^^
 
-.. image:: https://secure.travis-ci.org/collective/sc.social.like.png?branch=master
-    :alt: Travis CI badge
-    :target: http://travis-ci.org/collective/sc.social.like
+.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
 
-.. image:: https://coveralls.io/repos/collective/sc.social.like/badge.png?branch=master
-    :alt: Coveralls badge
-    :target: https://coveralls.io/r/collective/sc.social.like
-
-.. image:: https://pypip.in/d/sc.social.like/badge.png
-    :target: https://pypi.python.org/pypi/sc.social.like/
-    :alt: Downloads
-
-Got an idea? Found a bug? Let us know by `opening a support ticket`_.
-
-.. _`opening a support ticket`: https://github.com/collective/sc.social.like/issues
+.. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
