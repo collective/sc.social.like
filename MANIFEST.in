@@ -1,3 +1,4 @@
-include *.rst
+global-exclude *.pyc
 graft docs
 graft sc
+include *.rst
