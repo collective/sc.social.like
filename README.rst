@@ -14,11 +14,12 @@ networks integration for Plone Content Types.
 
 This package ships with plugins for the following networks:
 	
-	* Facebook
-	* Google+
-	* LinkedIn
-	* Pinterest
-	* Twitter
+    * Facebook
+    * Google+
+    * LinkedIn
+    * Pinterest
+    * Twitter
+    * WhatsApp
 
 Screenshot
 ^^^^^^^^^^
