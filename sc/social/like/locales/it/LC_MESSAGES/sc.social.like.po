@@ -79,7 +79,7 @@ msgstr "Condividi"
 
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
 msgid "Share in WhatsApp"
-msgstr ""
+msgstr "Condividi in WhatsApp"
 
 #: ./sc/social/like/profiles/default/controlpanel.xml
 msgid "Social Like"
