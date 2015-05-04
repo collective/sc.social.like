@@ -19,7 +19,7 @@ class ITwitterSchema(Interface):
         title=_(u'Twitter nick'),
         description=_(
             u'help_your_twitter_nick',
-            default=u"Enter your twitter nick. eg. simplesconsultoria",
+            default=u'Enter your twitter nick. eg. simplesconsultoria',
         ),
         required=False,
     )

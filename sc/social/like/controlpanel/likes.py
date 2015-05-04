@@ -44,8 +44,8 @@ class IProvidersSchema(Interface):
         title=_(u'Content types'),
         description=_(
             u'help_portal_types',
-            default=u"Please select content types in which the "
-                    u"viewlet will be applied.",
+            default=u'Please select content types in which the '
+                    u'viewlet will be applied.',
         ),
         required=True,
         value_type=schema.Choice(vocabulary=CONTENT_TYPES)
@@ -55,7 +55,7 @@ class IProvidersSchema(Interface):
         title=_(u'Plugins'),
         description=_(
             u'help_enabled_plugins',
-            default=u"Please select which plugins will be used",
+            default=u'Please select which plugins will be used',
         ),
         required=False,
         value_type=schema.Choice(vocabulary='sc.social.likes.plugins')
@@ -65,7 +65,7 @@ class IProvidersSchema(Interface):
         title=_(u'Button style'),
         description=_(
             u'help_selected_buttons',
-            default=u"Choose your button style.",
+            default=u'Choose your button style.',
         ),
         required=True,
         default=_(u'horizontal'),

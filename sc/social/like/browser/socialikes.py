@@ -26,7 +26,7 @@ class SocialLikes(BrowserView):
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         if self.sheet:
             self.enabled_portal_types = self.sheet.getProperty(
-                "enabled_portal_types"
+                'enabled_portal_types'
             )
 
     @property

@@ -7,7 +7,7 @@ from zope.globalrequest import getRequest
 
 def get_images_view(context):
     request = getRequest()
-    key = "cache-view-%s" % (context)
+    key = 'cache-view-%s' % (context)
     cache = IAnnotations(request)
     value = cache.get(key, None)
     if not value:
@@ -21,9 +21,9 @@ def get_images_view(context):
                 if field:
                     field = field[0]
                     # if a content has an image field that isn't an ImageField
-                    # (for example a relation field), set field="" to avoid errors
-                    if schema[field].type not in ["image", "blob"]:
-                        field = ""
+                    # (for example a relation field), set field='' to avoid errors
+                    if schema[field].type not in ['image', 'blob']:
+                        field = ''
         value = (view, field) if (view and field) else (None, None)
         cache[key] = value
     return value
@@ -35,7 +35,7 @@ def get_content_image(context,
                       height=None):
     request = getRequest()
     modification = context.ModificationDate()
-    key = "cache-%s-%s-%s-%s-%s" % (context, modification, scale, width, height)
+    key = 'cache-%s-%s-%s-%s-%s' % (context, modification, scale, width, height)
     cache = IAnnotations(request)
     img = cache.get(key, None)
     if not img:

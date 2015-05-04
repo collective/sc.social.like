@@ -24,8 +24,8 @@ class PluginView(BrowserView):
     fbshow_like = True
     fbshow_share = False
 
-    metadata = ViewPageTemplateFile("templates/metadata.pt")
-    plugin = ViewPageTemplateFile("templates/plugin.pt")
+    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    plugin = ViewPageTemplateFile('templates/plugin.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -45,11 +45,11 @@ class PluginView(BrowserView):
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         self.image = get_content_image(context, width=1200, height=630)
         if self.sheet:
-            self.fbaction = self.sheet.getProperty("fbaction", "")
-            self.fbapp_id = self.sheet.getProperty("fbapp_id", "")
-            self.fbadmins = self.sheet.getProperty("fbadmins", "")
-            self.fbshow_like = 'Like' in self.sheet.getProperty("fbbuttons", [])
-            self.fbshow_share = 'Share' in self.sheet.getProperty("fbbuttons", [])
+            self.fbaction = self.sheet.getProperty('fbaction', '')
+            self.fbapp_id = self.sheet.getProperty('fbapp_id', '')
+            self.fbadmins = self.sheet.getProperty('fbadmins', '')
+            self.fbshow_like = 'Like' in self.sheet.getProperty('fbbuttons', [])
+            self.fbshow_share = 'Share' in self.sheet.getProperty('fbbuttons', [])
             self.button = self.typebutton
 
     def fbjs(self):
@@ -97,7 +97,7 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty("typebutton", "")
+        typebutton = self.sheet.getProperty('typebutton', '')
         if typebutton == 'horizontal':
             typebutton = 'button_count'
             self.width = '90px'
@@ -121,5 +121,5 @@ class PluginView(BrowserView):
 
     def type(self):
         if self._isPortal():
-            return "website"
-        return "article"
+            return 'website'
+        return 'article'

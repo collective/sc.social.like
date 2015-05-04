@@ -76,11 +76,11 @@ class PluginViewsTest(unittest.TestCase):
         self.newsitem = portal['my-newsitem']
         self.newsitem.setImage(load_image(1024, 768))
         self.newsitem_bmp = portal['my-newsitem-bmp']
-        self.newsitem_bmp.setImage(load_image(640, 480, format="BMP"))
+        self.newsitem_bmp.setImage(load_image(640, 480, format='BMP'))
         self.image = portal['my-image']
         self.image.setImage(load_image(1024, 768))
         self.image_bmp = portal['my-image-bmp']
-        self.image_bmp.setImage(load_image(640, 480, format="BMP"))
+        self.image_bmp.setImage(load_image(640, 480, format='BMP'))
 
     def test_config_view(self):
         plugin = self.plugin

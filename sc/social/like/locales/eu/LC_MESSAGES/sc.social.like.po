@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-04-30 19:51+0000\n"
+"POT-Creation-Date: 2015-05-04 23:38+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -137,8 +137,9 @@ msgstr "Aukeratu zein elementutan agertuko diren loturak"
 msgid "help_selected_buttons"
 msgstr "Aukeratu botoiaren itxura"
 
-#. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
+#. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/plugins/facebook/controlpanel.py:32
+#, fuzzy
 msgid "help_verb_display"
 msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gomendatu' bakarrik erabili daitezke."
 

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-04-30 19:51+0000\n"
+"POT-Creation-Date: 2015-05-04 23:38+0000\n"
 "PO-Revision-Date: 2015-03-02 16:03-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -141,10 +141,10 @@ msgstr "Seleccione en cuáles tipos de contenido se mostrará el viewlet social.
 msgid "help_selected_buttons"
 msgstr "Seleccione de la lista."
 
-#. Default: "The verb to display in the facebook button. Currently only 'like' and 'recommend' are supported."
+#. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/plugins/facebook/controlpanel.py:32
 msgid "help_verb_display"
-msgstr "Texto que se mostrará en el botón de Facebook. De momento sólo 'Me gusta y 'Recomendar' están soportados."
+msgstr "Texto que se mostrará en el botón de Facebook. De momento sólo \"Me gusta\" y \"Recomendar\" están soportados."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
 #: ./sc/social/like/plugins/twitter/controlpanel.py:20

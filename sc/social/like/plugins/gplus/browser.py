@@ -12,8 +12,8 @@ class PluginView(BrowserView):
     gp_enabled = True
     language = 'en'
 
-    metadata = ViewPageTemplateFile("templates/metadata.pt")
-    plugin = ViewPageTemplateFile("templates/plugin.pt")
+    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    plugin = ViewPageTemplateFile('templates/plugin.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -32,7 +32,7 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty("typebutton", "")
+        typebutton = self.sheet.getProperty('typebutton', '')
         if typebutton == 'horizontal':
             typebutton = 'medium'
         else:

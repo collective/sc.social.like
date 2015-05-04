@@ -16,8 +16,8 @@ class PluginView(BrowserView):
     pinterest_enabled = False
     language = 'en'
 
-    metadata = ViewPageTemplateFile("templates/metadata.pt")
-    plugin = ViewPageTemplateFile("templates/plugin.pt")
+    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    plugin = ViewPageTemplateFile('templates/plugin.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -44,8 +44,8 @@ class PluginView(BrowserView):
         )
 
     def image_url(self):
-        """ Return url to image
-        """
+        ''' Return url to image
+        '''
         img = self.image
         if img:
             return img.url
@@ -54,7 +54,7 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty("typebutton", "")
+        typebutton = self.sheet.getProperty('typebutton', '')
         if typebutton == 'horizontal':
             typebutton = 'beside'
         else:

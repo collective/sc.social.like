@@ -31,9 +31,9 @@ class IFacebookSchema(Interface):
         title=_(u'Verb to display'),
         description=_(
             u'help_verb_display',
-            default=u"The verb to display in the facebook button. "
-                    u"Currently only 'like' and 'recommend' are "
-                    u"supported.",
+            default=u'The verb to display in the facebook button. '
+                    u'Currently only "like" and "recommend" are '
+                    u'supported.',
         ),
         required=True,
         default=u'like',
@@ -44,8 +44,8 @@ class IFacebookSchema(Interface):
         title=_(u'Admins'),
         description=_(
             u'help_admins',
-            default=u"A comma-separated list of either the "
-                    u"Facebook IDs of page administrators.",
+            default=u'A comma-separated list of either the '
+                    u'Facebook IDs of page administrators.',
         ),
         required=False,
     )
@@ -54,7 +54,7 @@ class IFacebookSchema(Interface):
         title=_(u'Application ID'),
         description=_(
             u'help_appid',
-            default=u"A Facebook Platform application ID.",
+            default=u'A Facebook Platform application ID.',
         ),
         required=False,
     )
@@ -66,7 +66,7 @@ class IFacebookSchema(Interface):
             default=u'Select buttons to be shown',
         ),
         value_type=schema.Choice(vocabulary=buttons),
-        default=(u"Like", ),
+        default=(u'Like', ),
         required=True,
     )
 

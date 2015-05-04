@@ -51,8 +51,8 @@ class PluginView(BrowserView):
     gp_enabled = True
     language = 'en'
 
-    metadata = ViewPageTemplateFile("templates/metadata.pt")
-    plugin = ViewPageTemplateFile("templates/plugin.pt")
+    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    plugin = ViewPageTemplateFile('templates/plugin.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)

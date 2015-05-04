@@ -16,8 +16,8 @@ class PluginView(BrowserView):
     twittvia = ''
     language = 'en'
 
-    metadata = ViewPageTemplateFile("templates/metadata.pt")
-    plugin = ViewPageTemplateFile("templates/plugin.pt")
+    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    plugin = ViewPageTemplateFile('templates/plugin.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -34,8 +34,8 @@ class PluginView(BrowserView):
         self.language = get_language(context)
         self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         if self.sheet:
-            self.typebutton = self.sheet.getProperty("typebutton", "")
-            self.twittvia = self.sheet.getProperty("twittvia", "")
+            self.typebutton = self.sheet.getProperty('typebutton', '')
+            self.twittvia = self.sheet.getProperty('twittvia', '')
         self.urlnoscript = (
             u'http://twitter.com/home?status=' +
             url_quote(u'{0} - {1} via {2}'.format(

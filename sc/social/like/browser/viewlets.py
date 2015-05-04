@@ -49,7 +49,7 @@ class BaseLikeViewlet(ViewletBase):
 class SocialMetadataViewlet(BaseLikeViewlet):
     """Viewlet used to insert metadata into page header
     """
-    render = ViewPageTemplateFile("templates/metadata.pt")
+    render = ViewPageTemplateFile('templates/metadata.pt')
     render_method = 'metadata'
 
     def enabled(self):
@@ -67,5 +67,5 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 class SocialLikesViewlet(BaseLikeViewlet):
     """Viewlet used to display the buttons
     """
-    render = ViewPageTemplateFile("templates/sociallikes.pt")
+    render = ViewPageTemplateFile('templates/sociallikes.pt')
     render_method = 'plugin'
