@@ -45,3 +45,50 @@
     border: 0 !important;
     background-image: url(++resource++sl_images/ico-whatsapp.png);
 }
+
+
+.sociallike-network
+{
+    position: relative;
+
+    overflow: hidden;
+
+    width: 33px;
+    height: 34px;
+}
+
+.sociallike-network > *
+{
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    -webkit-transform: scale(5);
+       -moz-transform: scale(5);
+        -ms-transform: scale(5);
+         -o-transform: scale(5);
+            transform: scale(5);
+    -webkit-transform-origin: left top;
+       -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+         -o-transform-origin: left top;
+            transform-origin: left top;
+
+    opacity: 0;
+}
+
+.sociallike-network-facebook
+{
+    background: url(++resource++sl_images/images.png) 0 0 no-repeat;
+}
+
+.sociallike-network-twitter
+{
+    background: url(++resource++sl_images/images.png) -66px 0 no-repeat;
+}
+
+.sociallike-network-gplus
+{
+    background: url(++resource++sl_images/images.png) -33px 0 no-repeat;
+}
