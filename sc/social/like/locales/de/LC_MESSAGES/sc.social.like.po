@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sc.social 2.2\n"
+"POT-Creation-Date: 2015-05-29 12:59+0000\n"
+"PO-Revision-Date: 2015-05-29 09:50 +0002\n"
+"Last-Translator: Toni Fischer <tf@zettwerk.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.social.like\n"
+
+#: ./../plugins/facebook/controlpanel.py:44
+msgid "Admins"
+msgstr "Administratoren"
+
+#: ./../plugins/facebook/controlpanel.py:54
+msgid "Application ID"
+msgstr "App ID"
+
+#: ./../controlpanel/likes.py:65
+msgid "Button style"
+msgstr "Stil der Buttons"
+
+#: ./../controlpanel/likes.pt:123
+msgid "Configure each plugin."
+msgstr "Konfiguration für jedes Plugin"
+
+#: ./../plugins/facebook/controlpanel.py:90
+msgid "Configure settings for Facebook integration."
+msgstr "Einstellungen für die Facebook Integration."
+
+#: ./../plugins/twitter/controlpanel.py:41
+msgid "Configure settings for Twitter integration."
+msgstr "Einstellungen für die Twitter Integration."
+
+#: ./../controlpanel/likes.py:104
+msgid "Configure settings for social like actions."
+msgstr "Einstellungen für die Social Media \"Like\" Aktionen."
+
+#: ./../controlpanel/likes.py:44
+msgid "Content types"
+msgstr "Inhaltstypen"
+
+#: ./../plugins/facebook/controlpanel.py:63
+msgid "Facebook buttons"
+msgstr "Facbook Buttons"
+
+#: ./../plugins/facebook/controlpanel.py:17
+msgid "Like"
+msgstr "Gefällt mir"
+
+#: ./../controlpanel/likes.pt:119
+msgid "Plugin-Specific Configuration"
+msgstr "Plugin spezifische Einstellungen"
+
+#: ./../controlpanel/likes.py:55
+msgid "Plugins"
+msgstr "Plugins"
+
+#: ./../plugins/facebook/controlpanel.py:18
+msgid "Recommend"
+msgstr "Empfehlen"
+
+#: ./../plugins/facebook/controlpanel.py:23
+msgid "Share"
+msgstr "Teilen"
+
+#: ./../plugins/whatsapp/templates/plugin.pt:2
+msgid "Share in WhatsApp"
+msgstr "In WhatsApp mitteilen"
+
+#: ./../profiles/default/controlpanel.xml
+msgid "Social Like"
+msgstr "Social Like"
+
+#: ./../plugins/facebook/controlpanel.py:89
+msgid "Social: Facebook settings"
+msgstr "Social: Facebook Einstellungen"
+
+#: ./../controlpanel/likes.py:105
+msgid "Social: Like Actions"
+msgstr "Social: Like Aktionen"
+
+#: ./../controlpanel/likes.py:103
+msgid "Social: Like Actions settings"
+msgstr "Social: Like Aktionen Einstellungen"
+
+#: ./../plugins/twitter/controlpanel.py:40
+msgid "Social: Twitter settings"
+msgstr "Social: Twitter Einstellungen"
+
+#: ./../plugins/twitter/controlpanel.py:19
+msgid "Twitter nick"
+msgstr "Twitter Name"
+
+#: ./../plugins/facebook/controlpanel.py:31
+msgid "Verb to display"
+msgstr "Angezeigtes Wort"
+
+#. Default: "A comma-separated list of either the Facebook IDs of page administrators."
+#: ./../plugins/facebook/controlpanel.py:45
+msgid "help_admins"
+msgstr "Eine Komma getrennte Liste von entweder den Facebook IDs der Seiten-Administratoren oder der Facebook App ID."
+
+#. Default: "A Facebook Platform application ID."
+#: ./../plugins/facebook/controlpanel.py:55
+msgid "help_appid"
+msgstr "Eine Facebook App ID."
+
+#. Default: "Please select which plugins will be used"
+#: ./../controlpanel/likes.py:56
+msgid "help_enabled_plugins"
+msgstr "Die gewünschten Plugins auswählen"
+
+#. Default: "Select buttons to be shown"
+#: ./../plugins/facebook/controlpanel.py:64
+msgid "help_fbbuttons"
+msgstr "Welche Buttons sollen angezeigt werden?"
+
+#. Default: "Please select content types in which the viewlet will be applied."
+#: ./../controlpanel/likes.py:45
+msgid "help_portal_types"
+msgstr "Die Inhaltstypen auswählen auf denen das Viewlet angezeigt werden soll."
+
+#. Default: "Choose your button style."
+#: ./../controlpanel/likes.py:66
+msgid "help_selected_buttons"
+msgstr "Wählen Sie den gewünschten Stil für die Buttons aus."
+
+#. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
+#: ./../plugins/facebook/controlpanel.py:32
+msgid "help_verb_display"
+msgstr "Der Ausdruck, welcher im Facebook Button angezeigt werden soll. Zurzeit werden nur \"Gefällt mir\" und \"Empfehlen\" unterstützt."
+
+#. Default: "Enter your twitter nick. eg. simplesconsultoria"
+#: ./../plugins/twitter/controlpanel.py:20
+msgid "help_your_twitter_nick"
+msgstr "Geben Sie Ihren Twitter Namen ein z.B. mmustermann."
+
+#: ./../controlpanel/likes.py:35
+msgid "horizontal"
+msgstr "horizontal"
+
+#: ./../controlpanel/likes.py:36
+msgid "vertical"
+msgstr "vertikal"
+
