@@ -21,5 +21,7 @@
           <element value="Twitter"/>
           <element value="Google+"/>
       </property>
+	  
+      <property name="privacy" type="boolean" value="False"></property>
   </object>
 </object>

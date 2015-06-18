@@ -72,6 +72,20 @@ class IProvidersSchema(Interface):
         vocabulary=styles,
     )
 
+    privacy = schema.Bool(
+        title=_(u'High privacy level'),
+        description=_(
+            u'help_privacy',
+            default=u'If enabled, the site will not provide advanced sharing '
+                    u'widgets but simple links for sharing items will be '
+                    u'used.\n'
+                    u'This will limits user experience and features '
+                    u'(like the share count) but will enhance users privacy: '
+                    u'no 3rd party cookies will be spread to users.'
+        ),
+        default=False,
+    )
+
 
 class BaseControlPanelAdapter(SchemaAdapterBase):
     """ Base control panel adapter """
@@ -90,6 +104,7 @@ class LikeControlPanelAdapter(BaseControlPanelAdapter):
     enabled_portal_types = PFP(IProvidersSchema['enabled_portal_types'])
     typebutton = PFP(IProvidersSchema['typebutton'])
     plugins_enabled = PFP(IProvidersSchema['plugins_enabled'])
+    privacy = PFP(IProvidersSchema['privacy'])
 
 
 class ProvidersControlPanel(ControlPanelForm):

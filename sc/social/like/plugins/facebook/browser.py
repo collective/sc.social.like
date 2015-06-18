@@ -26,6 +26,7 @@ class PluginView(BrowserView):
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
+    link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -123,3 +124,11 @@ class PluginView(BrowserView):
         if self._isPortal():
             return 'website'
         return 'article'
+
+    def share_link(self):
+        return ("https://www.facebook.com/dialog/share?app_id={0}"
+                "&display=popup"
+                "&href={1}"
+                "%2F&redirect_uri={1}").format(self.fbapp_id,
+                                               self.context.absolute_url())
+

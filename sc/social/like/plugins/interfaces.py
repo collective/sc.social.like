@@ -17,6 +17,9 @@ class IPlugin(Interface):
     def plugin():
         ''' Return html render method '''
 
+    def link():
+        ''' Return html render method when high privacy is required'''
+
 
 class IPluginView(Interface):
     ''' A Social Like Plugin Browser View '''

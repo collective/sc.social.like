@@ -19,3 +19,6 @@ class Plugin(object):
 
     def plugin(self):
         return 'plugin'
+
+    def link(self):
+        return 'link'

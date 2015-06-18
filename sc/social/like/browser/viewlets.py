@@ -2,6 +2,7 @@
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
+from plone.memoize.view import memoize
 
 
 class BaseLikeViewlet(ViewletBase):
@@ -20,6 +21,7 @@ class BaseLikeViewlet(ViewletBase):
                                       name=u'sl_helper')
         self.typebutton = self.helper.typebutton()
 
+    @memoize
     def plugins(self):
         context = self.context
         render_method = self.render_method
@@ -28,15 +30,16 @@ class BaseLikeViewlet(ViewletBase):
         for plugin in plugins:
             if plugin and getattr(plugin, render_method)():
                 view = context.restrictedTraverse(plugin.view())
-                html = getattr(view, render_method)()
-                rendered.append({'id': plugin.id,
-                                 'html': html})
+                html_generator = getattr(view, render_method, None)
+                if html_generator:
+                    rendered.append({'id': plugin.id,
+                                     'html': html_generator()})
         return rendered
 
     def enabled(self):
         """Validates if the viewlet should be enabled for this context
         """
-        return self.helper.enabled()
+        return self.helper.enabled() and self.plugins()
 
     # HACK: fixes https://bitbucket.org/takaki/sc.social.like/issue/1
     def update(self):
@@ -68,4 +71,15 @@ class SocialLikesViewlet(BaseLikeViewlet):
     """Viewlet used to display the buttons
     """
     render = ViewPageTemplateFile('templates/sociallikes.pt')
-    render_method = 'plugin'
+    
+    @property
+    def render_method(self):
+        tools = getMultiAdapter((self.context, self.request),
+                                name=u'plone_tools')
+        site_properties = tools.properties()
+        if getattr(site_properties, 'sc_social_likes_properties') \
+                and getattr(site_properties.sc_social_likes_properties,
+                            'privacy') and \
+                site_properties.sc_social_likes_properties.privacy:
+            return 'link'
+        return 'plugin'
