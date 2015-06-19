@@ -67,7 +67,9 @@ class PluginView(BrowserView):
         # See http://stackoverflow.com/questions/10690019/link-to-pin-it-on-pinterest-without-generating-a-button
         url = ("http://pinterest.com/pin/create/button"
                "?url={0}"
-               "&description={1}").format(quote(self.context.absolute_url(),
+               "&media={1}"
+               "&description={2}").format(quote(self.context.absolute_url(),
                                                 safe=''),
+                                          quote(self.image_url(), safe=''),
                                           self.context.Title())
         return url

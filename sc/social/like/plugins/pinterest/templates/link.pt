@@ -5,6 +5,7 @@
        title="Pin it!"
        data-pin-do="buttonPin"
        data-pin-config="above"
+	   tal:attributes="href view/share_link"
        i18n:attributes="title">
         <img src="pin_it_button.png"
              alt="Pin it!"
