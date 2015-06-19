@@ -7,6 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
+from urllib import quote
 from zope.component import getMultiAdapter
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
@@ -126,9 +127,10 @@ class PluginView(BrowserView):
         return 'article'
 
     def share_link(self):
-        return ("https://www.facebook.com/dialog/share?app_id={0}"
-                "&display=popup"
-                "&href={1}"
-                "%2F&redirect_uri={1}").format(self.fbapp_id,
-                                               self.context.absolute_url())
-
+        url = ("https://www.facebook.com/dialog/share?app_id={0}"
+               "&display=popup"
+               "&href={1}"
+               "&redirect_uri={1}").format(self.fbapp_id,
+                                           quote(self.context.absolute_url(),
+                                                 safe=''))
+        return url

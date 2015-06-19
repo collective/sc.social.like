@@ -1,0 +1,12 @@
+<tal:twitter i18n:domain="sc.social.like">
+	<!-- Twitter -->
+	<a href="https://twitter.com/intent/tweet"
+	   title="Tweet it!"
+	   tal:attributes="href view/share_link"
+	   i18n:attributes="title">
+		<img src="share-linkedin.png"
+			 alt="Tweet it!"
+			 i18n:attributes="alt"
+			 tal:attributes="src string:${view/site_url}/++resource++sl_images/share-twitter.png" />
+	</a>
+</tal:twitter>

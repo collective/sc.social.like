@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_language
+from urllib import quote
 from zope.component import getMultiAdapter
 
 
@@ -14,6 +15,7 @@ class PluginView(BrowserView):
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
+    link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -38,3 +40,14 @@ class PluginView(BrowserView):
         else:
             typebutton = 'top'
         return typebutton
+
+    def share_link(self):
+        url = ("https://www.linkedin.com/shareArticle?mini=true"
+               "&url={0}"
+               "&title={1}"
+               "&summary={2}").format(quote(self.context.absolute_url(),
+                                            safe=''),
+                                      quote(self.context.Title()),
+                                      quote(self.context.Description())
+                                      )
+        return url

@@ -73,15 +73,14 @@ class IProvidersSchema(Interface):
     )
 
     privacy = schema.Bool(
-        title=_(u'High privacy level'),
+        title=_(u'Severe privacy'),
         description=_(
             u'help_privacy',
             default=u'If enabled, the site will not provide advanced sharing '
-                    u'widgets but simple links for sharing items will be '
-                    u'used.\n'
+                    u'widgets , instead simple links will be used.\n'
                     u'This will limits user experience and features '
                     u'(like the share count) but will enhance users privacy: '
-                    u'no 3rd party cookies will be spread to users.'
+                    u'no 3rd party cookies will be sent to users.'
         ),
         default=False,
     )

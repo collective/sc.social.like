@@ -1,10 +1,15 @@
 <tal:comment condition="nothing">
 	Simple link sharing will not work is no FB APPID is configured
 </tal:comment>
-<tal:fb tal:condition="view/fbapp_id">
+<tal:fb tal:condition="view/fbapp_id" i18n:domain="sc.social.like">
     <!-- Facebook -->
-
-<a href="https://www.facebook.com/dialog/share?"
-   tal:attributes="href view/share_link">Share me!</a>
-
+	<a href="https://www.facebook.com/dialog/share?"
+	   title="Share on Facebook"
+	   tal:attributes="href view/share_link"
+	   i18n:attributes="title">
+		<img src="share-linkedin.png"
+			 alt="Share on Facebook"
+			 i18n:attributes="alt"
+			 tal:attributes="src string:${view/site_url}/++resource++sl_images/share-facebook.png" />
+	</a>
 </tal:fb>
