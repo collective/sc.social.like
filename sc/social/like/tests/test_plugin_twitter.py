@@ -88,6 +88,16 @@ class PluginViewsTest(unittest.TestCase):
         html = view.plugin()
         self.assertIn('twitter-share-button', html)
 
+    def test_privacy_plugin_view_html(self):
+        plugin = self.plugin
+        portal = self.portal
+        properties = portal.portal_properties.sc_social_likes_properties
+        properties.privacy = True
+        plugin_view = plugin.view()
+        view = portal.restrictedTraverse(plugin_view)
+        html = view.link()
+        self.assertIn('Tweet it!', html)
+
     def test_plugin_twittvia(self):
         plugin = self.plugin
         document = self.document

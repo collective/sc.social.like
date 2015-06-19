@@ -130,6 +130,21 @@ class PluginViewsTest(unittest.TestCase):
         self.assertIn('data-share', html)
         self.assertNotIn('fb-share-button', html)
 
+    def test_privacy_plugin_view_html(self):
+        plugin = self.plugin
+        portal = self.portal
+        properties = portal.portal_properties.sc_social_likes_properties
+        properties.privacy = True
+        plugin_view = plugin.view()
+        view = portal.restrictedTraverse(plugin_view)
+        html = view.link()
+        # Check that an appid is required
+        self.assertEqual('', html.strip())
+        properties.fbapp_id = "12345"
+        view = portal.restrictedTraverse(plugin_view)
+        html = view.link()
+        self.assertIn('Share on Facebook', html)
+
     def test_plugin_view_metadata(self):
         plugin = self.plugin
         portal = self.portal

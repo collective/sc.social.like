@@ -92,6 +92,16 @@ class PluginViewsTest(unittest.TestCase):
         self.assertIn('js/pinit.js', html)
         self.assertIn('pin_it_button.png', html)
 
+    def test_privacy_plugin_view_html(self):
+        plugin = self.plugin
+        portal = self.portal
+        properties = portal.portal_properties.sc_social_likes_properties
+        properties.privacy = True
+        plugin_view = plugin.view()
+        view = portal.restrictedTraverse(plugin_view)
+        html = view.link()
+        self.assertIn('Pin it!', html)
+
     def test_plugin_view_image(self):
         plugin = self.plugin
         image = self.image

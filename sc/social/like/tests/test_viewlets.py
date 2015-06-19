@@ -91,3 +91,18 @@ class LikeViewletTestCase(unittest.TestCase):
         html = viewlet.render()
         self.assertIn('id="viewlet-social-like"', html)
         self.assertIn('class="horizontal"', html)
+
+    def test_rendermethod_default(self):
+        viewlet = self.viewlet(self.document)
+        self.assertEqual(viewlet.render_method, 'plugin')
+
+    def test_rendermethod_privacy(self):
+        self.portal.portal_properties.sc_social_likes_properties.privacy = True
+        viewlet = self.viewlet(self.document)
+        self.assertEqual(viewlet.render_method, 'link')
+
+    def test_rendermethod_privacy_opt_cookie(self):
+        self.portal.portal_properties.sc_social_likes_properties.privacy = False
+        self.request.cookies['social-optout'] = 'true'
+        viewlet = self.viewlet(self.document)
+        self.assertEqual(viewlet.render_method, 'link')
