@@ -79,6 +79,18 @@ Go to the 'Site Setup' page in the Plone interface and click on the
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
 
+Privacy and cookies
+^^^^^^^^^^^^^^^^^^^
+
+Social networks and privacy togheter is a thorny argument, let say that
+social media widget commonly tracks user actions and add 3rd party cookies.
+
+If privacy is something you must care about (for example: if you need to take
+care of the **European Cookie Law**) sc.social.like provide a
+"*Severe privacy*" option.
+When enabled, social media widget are rendered as simple HTML links at the expense
+of features and user experience.
+
 Screenshots
 ^^^^^^^^^^^
 
