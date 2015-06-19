@@ -91,9 +91,15 @@ care of the **European Cookie Law**) sc.social.like provide a
 When enabled, social media widget are rendered as simple HTML links at the expense
 of features and user experience.
 
+This product is also respecting the `Do Not Track`_ browser user's preference.
+If the user configured his browser for beeing not tracked, social media will
+be rendered as the "*Severe privacy*" settings is enabled.
+
 Screenshots
 ^^^^^^^^^^^
 
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
 
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
+
+.. _`Do Not Track`: http://donottrack.us/
