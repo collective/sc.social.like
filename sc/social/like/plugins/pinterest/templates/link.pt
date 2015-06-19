@@ -1,15 +1,15 @@
 <tal:pinterest i18n:domain="sc.social.like">
     <!-- Pinterest -->
-
     <a href="https://www.pinterest.com/pin/create/button/"
-	   title="Pin it!"
+       class="slPrivacy"
+       title="Pin it!"
        data-pin-do="buttonPin"
        data-pin-config="above"
-	   i18n:attributes="title">
+       i18n:attributes="title">
         <img src="pin_it_button.png"
-		     alt="Pin it!"
-			 i18n:attributes="alt"
-		     tal:attributes="src string:${view/site_url}/++resource++sl_images/pin_it_button.png" />
+             alt="Pin it!"
+             i18n:attributes="alt"
+             tal:attributes="src string:${view/site_url}/++resource++sl_images/pin_it_button.png" />
     </a>
 
 </tal:pinterest>
