@@ -71,12 +71,16 @@ class SocialLikesViewlet(BaseLikeViewlet):
     """Viewlet used to display the buttons
     """
     render = ViewPageTemplateFile('templates/sociallikes.pt')
-    
+
     @property
     def render_method(self):
         tools = getMultiAdapter((self.context, self.request),
                                 name=u'plone_tools')
         site_properties = tools.properties()
+        # global cookie settings for privacy level
+        if self.request.cookies.get("social-optout", None)=='true':
+            return 'link'
+        # site specific privacy level check
         if getattr(site_properties, 'sc_social_likes_properties') \
                 and getattr(site_properties.sc_social_likes_properties,
                             'privacy') and \
