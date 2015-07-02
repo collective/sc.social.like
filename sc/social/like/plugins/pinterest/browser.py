@@ -68,8 +68,7 @@ class PluginView(BrowserView):
         url = ("http://pinterest.com/pin/create/button"
                "?url={0}"
                "&media={1}"
-               "&description={2}").format(quote(self.context.absolute_url(),
-                                                safe=''),
+               "&description={2}").format(quote(self.context.absolute_url(), safe=''),
                                           quote(self.image_url(), safe=''),
-                                          self.context.Title())
+                                          quote(self.context.Title()))
         return url

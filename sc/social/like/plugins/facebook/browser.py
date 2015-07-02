@@ -131,6 +131,5 @@ class PluginView(BrowserView):
                "&display=popup"
                "&href={1}"
                "&redirect_uri={1}").format(self.fbapp_id,
-                                           quote(self.context.absolute_url(),
-                                                 safe=''))
+                                           quote(self.context.absolute_url(), safe=''))
         return url

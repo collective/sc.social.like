@@ -2,10 +2,11 @@
     <!-- Pinterest -->
     <a href="https://www.pinterest.com/pin/create/button/"
        class="slPrivacy"
-       title="Pin it!"
+       title="Pin it! (opens in news window)"
        data-pin-do="buttonPin"
        data-pin-config="above"
-	   tal:attributes="href view/share_link"
+       tal:attributes="href view/share_link"
+       onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
        i18n:attributes="title">
         <img src="pin_it_button.png"
              alt="Pin it!"
