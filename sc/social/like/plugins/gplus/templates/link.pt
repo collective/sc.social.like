@@ -2,7 +2,7 @@
     <!-- Google+ -->
     <a href="https://plus.google.com/share"
        class="slPrivacy"
-       title="Share on Google+ (opens in news window)"
+       title="Share on Google+ (open in new window)"
        tal:attributes="href view/share_link"
        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
        i18n:attributes="title">

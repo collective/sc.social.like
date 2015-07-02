@@ -2,7 +2,7 @@
     <!-- Pinterest -->
     <a href="https://www.pinterest.com/pin/create/button/"
        class="slPrivacy"
-       title="Pin it! (opens in news window)"
+       title="Pin it! (open in new window)"
        data-pin-do="buttonPin"
        data-pin-config="above"
        tal:attributes="href view/share_link"

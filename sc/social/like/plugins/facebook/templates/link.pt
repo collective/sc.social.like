@@ -5,7 +5,7 @@
     <!-- Facebook -->
     <a href="https://www.facebook.com/dialog/share?"
        class="slPrivacy"
-       title="Share on Facebook (opens in news window)"
+       title="Share on Facebook (open in new window)"
        tal:attributes="href view/share_link"
        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
        i18n:attributes="title">

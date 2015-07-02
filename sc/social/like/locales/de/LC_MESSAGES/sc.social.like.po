@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social 2.2\n"
-"POT-Creation-Date: 2015-07-02 08:47+0000\n"
+"POT-Creation-Date: 2015-07-02 10:16+0000\n"
 "PO-Revision-Date: 2015-05-29 09:50 +0002\n"
 "Last-Translator: Toni Fischer <tf@zettwerk.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgid "Pin it!"
 msgstr ""
 
 #: ../plugins/pinterest/templates/link.pt:3
-msgid "Pin it! (opens in news window)"
+msgid "Pin it! (open in new window)"
 msgstr ""
 
 #: ../controlpanel/likes.pt:119
@@ -94,7 +94,7 @@ msgid "Share on Facebook"
 msgstr ""
 
 #: ../plugins/facebook/templates/link.pt:6
-msgid "Share on Facebook (opens in news window)"
+msgid "Share on Facebook (open in new window)"
 msgstr ""
 
 #: ../plugins/gplus/templates/link.pt:9
@@ -102,7 +102,7 @@ msgid "Share on Google+"
 msgstr ""
 
 #: ../plugins/gplus/templates/link.pt:3
-msgid "Share on Google+ (opens in news window)"
+msgid "Share on Google+ (open in new window)"
 msgstr ""
 
 #: ../plugins/linkedin/templates/link.pt:9
@@ -110,7 +110,7 @@ msgid "Share on Linkedin"
 msgstr ""
 
 #: ../plugins/linkedin/templates/link.pt:3
-msgid "Share on Linkedin (opens in news window)"
+msgid "Share on Linkedin (open in new window)"
 msgstr ""
 
 #: ../profiles/default/controlpanel.xml
@@ -138,7 +138,7 @@ msgid "Tweet it!"
 msgstr ""
 
 #: ../plugins/twitter/templates/link.pt:3
-msgid "Tweet it! (opens in news window)"
+msgid "Tweet it! (open in new window)"
 msgstr ""
 
 #: ../plugins/twitter/controlpanel.py:19

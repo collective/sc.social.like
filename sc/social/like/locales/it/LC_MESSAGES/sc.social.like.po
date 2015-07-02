@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-07-02 08:47+0000\n"
+"POT-Creation-Date: 2015-07-02 10:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -66,8 +66,8 @@ msgid "Pin it!"
 msgstr ""
 
 #: ../plugins/pinterest/templates/link.pt:3
-msgid "Pin it! (opens in news window)"
-msgstr "Pin it! (apre una nuova finestra)"
+msgid "Pin it! (open in new window)"
+msgstr "Pin it! (apre in una nuova finestra)"
 
 #: ../controlpanel/likes.pt:119
 msgid "Plugin-Specific Configuration"
@@ -98,24 +98,24 @@ msgid "Share on Facebook"
 msgstr "Condividi su Facebook"
 
 #: ../plugins/facebook/templates/link.pt:6
-msgid "Share on Facebook (opens in news window)"
-msgstr "Condividi su Facebook (apre una nuova finestra)"
+msgid "Share on Facebook (open in new window)"
+msgstr "Condividi su Facebook (apre in una nuova finestra)"
 
 #: ../plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
 msgstr "Condividi su Google+"
 
 #: ../plugins/gplus/templates/link.pt:3
-msgid "Share on Google+ (opens in news window)"
-msgstr "Condividi su Google+ (apre una nuova finestra)"
+msgid "Share on Google+ (open in new window)"
+msgstr "Condividi su Google+ (apre in una nuova finestra)"
 
 #: ../plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
 msgstr "Condividi su Linkedin"
 
 #: ../plugins/linkedin/templates/link.pt:3
-msgid "Share on Linkedin (opens in news window)"
-msgstr "Condividi su Linkedin (apre una nuova finestra)"
+msgid "Share on Linkedin (open in new window)"
+msgstr "Condividi su Linkedin (apre in una nuova finestra)"
 
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
@@ -142,8 +142,8 @@ msgid "Tweet it!"
 msgstr ""
 
 #: ../plugins/twitter/templates/link.pt:3
-msgid "Tweet it! (opens in news window)"
-msgstr "Tweet it! (apre una nuova finestra)"
+msgid "Tweet it! (open in new window)"
+msgstr "Tweet it!  (apre in una nuova finestra)"
 
 #: ../plugins/twitter/controlpanel.py:19
 msgid "Twitter nick"
