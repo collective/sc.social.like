@@ -143,7 +143,7 @@ msgstr ""
 
 #: ../plugins/twitter/templates/link.pt:3
 msgid "Tweet it! (open in new window)"
-msgstr "Tweet it!  (apre in una nuova finestra)"
+msgstr "Tweet it! (apre in una nuova finestra)"
 
 #: ../plugins/twitter/controlpanel.py:19
 msgid "Twitter nick"
