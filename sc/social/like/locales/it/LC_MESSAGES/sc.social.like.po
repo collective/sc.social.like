@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-06-19 10:02+0000\n"
+"POT-Creation-Date: 2015-07-02 08:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -61,9 +61,13 @@ msgstr "Bottoni Facebook"
 msgid "Like"
 msgstr "Mi piace"
 
-#: ../plugins/pinterest/templates/link.pt:4
+#: ../plugins/pinterest/templates/link.pt:11
 msgid "Pin it!"
 msgstr ""
+
+#: ../plugins/pinterest/templates/link.pt:3
+msgid "Pin it! (opens in news window)"
+msgstr "Pin it! (apre una nuova finestra)"
 
 #: ../controlpanel/likes.pt:119
 msgid "Plugin-Specific Configuration"
@@ -89,17 +93,29 @@ msgstr "Condividi"
 msgid "Share in WhatsApp"
 msgstr "Condividi in WhatsApp"
 
-#: ../plugins/facebook/templates/link.pt:6
+#: ../plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
 msgstr "Condividi su Facebook"
 
-#: ../plugins/gplus/templates/link.pt:3
+#: ../plugins/facebook/templates/link.pt:6
+msgid "Share on Facebook (opens in news window)"
+msgstr "Condividi su Facebook (apre una nuova finestra)"
+
+#: ../plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
 msgstr "Condividi su Google+"
 
-#: ../plugins/linkedin/templates/link.pt:3
+#: ../plugins/gplus/templates/link.pt:3
+msgid "Share on Google+ (opens in news window)"
+msgstr "Condividi su Google+ (apre una nuova finestra)"
+
+#: ../plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
 msgstr "Condividi su Linkedin"
+
+#: ../plugins/linkedin/templates/link.pt:3
+msgid "Share on Linkedin (opens in news window)"
+msgstr "Condividi su Linkedin (apre una nuova finestra)"
 
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
@@ -121,9 +137,13 @@ msgstr "Social: impostazioni azioni like"
 msgid "Social: Twitter settings"
 msgstr "Social: impostazioni Twitter"
 
-#: ../plugins/twitter/templates/link.pt:3
+#: ../plugins/twitter/templates/link.pt:9
 msgid "Tweet it!"
 msgstr ""
+
+#: ../plugins/twitter/templates/link.pt:3
+msgid "Tweet it! (opens in news window)"
+msgstr "Tweet it! (apre una nuova finestra)"
 
 #: ../plugins/twitter/controlpanel.py:19
 msgid "Twitter nick"

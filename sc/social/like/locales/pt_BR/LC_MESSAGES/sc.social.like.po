@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-06-19 10:02+0000\n"
+"POT-Creation-Date: 2015-07-02 08:47+0000\n"
 "PO-Revision-Date: 2015-03-02 15:59-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -60,8 +60,12 @@ msgstr "Botões do Facebook"
 msgid "Like"
 msgstr "Curtir"
 
-#: ../plugins/pinterest/templates/link.pt:4
+#: ../plugins/pinterest/templates/link.pt:11
 msgid "Pin it!"
+msgstr ""
+
+#: ../plugins/pinterest/templates/link.pt:3
+msgid "Pin it! (opens in news window)"
 msgstr ""
 
 #: ../controlpanel/likes.pt:119
@@ -88,16 +92,28 @@ msgstr "Compartilhar"
 msgid "Share in WhatsApp"
 msgstr "Compartilhar no WhatsApp"
 
-#: ../plugins/facebook/templates/link.pt:6
+#: ../plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
 msgstr ""
 
-#: ../plugins/gplus/templates/link.pt:3
+#: ../plugins/facebook/templates/link.pt:6
+msgid "Share on Facebook (opens in news window)"
+msgstr ""
+
+#: ../plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
 msgstr ""
 
-#: ../plugins/linkedin/templates/link.pt:3
+#: ../plugins/gplus/templates/link.pt:3
+msgid "Share on Google+ (opens in news window)"
+msgstr ""
+
+#: ../plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
+msgstr ""
+
+#: ../plugins/linkedin/templates/link.pt:3
+msgid "Share on Linkedin (opens in news window)"
 msgstr ""
 
 #: ../profiles/default/controlpanel.xml
@@ -120,8 +136,12 @@ msgstr "Social: Configurações das Ações de Curtir"
 msgid "Social: Twitter settings"
 msgstr "Configurações do Twitter"
 
-#: ../plugins/twitter/templates/link.pt:3
+#: ../plugins/twitter/templates/link.pt:9
 msgid "Tweet it!"
+msgstr ""
+
+#: ../plugins/twitter/templates/link.pt:3
+msgid "Tweet it! (opens in news window)"
 msgstr ""
 
 #: ../plugins/twitter/controlpanel.py:19
