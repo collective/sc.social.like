@@ -1,5 +1,5 @@
 <tal:twitter>
-	<!-- Twitter -->
+    <!-- Twitter -->
     <a href="https://twitter.com/share"
        class="twitter-share-button"
        tal:attributes="data-count view/typebutton;

@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.3 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Flake8 cleanup
+  [keul]
+
 - Added the "Severe privacy" mode configuration option.
   [keul]
 

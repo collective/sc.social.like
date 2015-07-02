@@ -109,6 +109,6 @@ class LikeViewletTestCase(unittest.TestCase):
 
     def test_rendermethod_privacy_donottrack(self):
         self.portal.portal_properties.sc_social_likes_properties.privacy = False
-        self.request.environ['HTTP_DNT']='1'
+        self.request.environ['HTTP_DNT'] = '1'
         viewlet = self.viewlet(self.document)
         self.assertEqual(viewlet.render_method, 'link')
