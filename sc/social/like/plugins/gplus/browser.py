@@ -44,8 +44,8 @@ class PluginView(BrowserView):
     def share_link(self):
         # Does we need any special language handler?
         # See https://developers.google.com/+/web/share/?hl=it#available-languages
-        url = ("https://plus.google.com/share"
-               "?url={0}"
-               "&hl={1}").format(quote(self.context.absolute_url(), safe=''),
+        url = ('https://plus.google.com/share'
+               '?url={0}'
+               '&hl={1}').format(quote(self.context.absolute_url(), safe=''),
                                  self.language)
         return url

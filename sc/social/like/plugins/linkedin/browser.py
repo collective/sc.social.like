@@ -42,10 +42,10 @@ class PluginView(BrowserView):
         return typebutton
 
     def share_link(self):
-        url = ("https://www.linkedin.com/shareArticle?mini=true"
-               "&url={0}"
-               "&title={1}"
-               "&summary={2}").format(quote(self.context.absolute_url(),
+        url = ('ttps://www.linkedin.com/shareArticle?mini=true'
+               '&url={0}'
+               '&title={1}'
+               '&summary={2}').format(quote(self.context.absolute_url(),
                                             safe=''),
                                       quote(self.context.Title()),
                                       quote(self.context.Description())

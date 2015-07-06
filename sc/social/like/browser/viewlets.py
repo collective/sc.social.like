@@ -78,8 +78,8 @@ class SocialLikesViewlet(BaseLikeViewlet):
                                 name=u'plone_tools')
         site_properties = tools.properties()
         # global cookie settings for privacy level
-        if self.request.cookies.get("social-optout", None) == 'true' or \
-                self.request.get_header("HTTP_DNT") == '1':
+        if self.request.cookies.get('social-optout', None) == 'true' or \
+                self.request.get_header('HTTP_DNT') == '1':
             return 'link'
         # site specific privacy level check
         if getattr(site_properties, 'sc_social_likes_properties') \

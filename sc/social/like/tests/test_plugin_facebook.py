@@ -140,7 +140,7 @@ class PluginViewsTest(unittest.TestCase):
         html = view.link()
         # Check that an appid is required
         self.assertEqual('', html.strip())
-        properties.fbapp_id = "12345"
+        properties.fbapp_id = '12345'
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Share on Facebook', html)
