@@ -119,7 +119,7 @@ class ProvidersControlPanel(ControlPanelForm):
     form_name = _('Social: Like Actions')
 
     def plugins_configs(self):
-        ''' Return Plugins and their configuration pages '''
+        """ Return Plugins and their configuration pages """
         context = aq_inner(self.context)
         portal_url = getToolByName(context, 'portal_url')()
         registered = dict(getUtilitiesFor(IPlugin))

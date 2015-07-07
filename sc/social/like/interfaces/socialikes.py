@@ -18,28 +18,28 @@ class IHelperView(Interface):
     """
     """
     def configs():
-        ''' Social Like configuration '''
+        """ Social Like configuration """
 
     def enabled_portal_types():
-        ''' Portal Types that will display our viewlet '''
+        """ Portal Types that will display our viewlet """
 
     def plugins_enabled():
-        ''' List of plugins enabled '''
+        """ List of plugins enabled """
 
     def typebutton():
-        ''' Button to be used '''
+        """ Button to be used """
 
     def enabled(view):
-        '''
+        """
         Social Like is enabled for this context and provided view
         (when provided)
-        '''
+        """
 
     def available_plugins():
-        ''' Return available plugins '''
+        """ Return available plugins """
 
     def plugins():
-        ''' Return enabled plugins '''
+        """ Return enabled plugins """
 
     def view_template_id():
-        ''' View or template id for this context '''
+        """ View or template id for this context """

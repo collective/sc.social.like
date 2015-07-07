@@ -3,7 +3,7 @@ from sc.social.like.plugins.interfaces import IPlugin  # noqa
 
 
 class Plugin(object):
-    ''' Social Like Plugin Base Class'''
+    """ Social Like Plugin Base Class"""
 
     id = ''
     name = ''

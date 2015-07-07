@@ -46,8 +46,8 @@ class PluginView(BrowserView):
         )
 
     def image_url(self):
-        ''' Return url to image
-        '''
+        """ Return url to image
+        """
         img = self.image
         if img:
             return img.url
