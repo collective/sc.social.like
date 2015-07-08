@@ -86,7 +86,7 @@ Social networks and privacy togheter is a thorny argument, let say that
 social media widget commonly tracks user actions and add 3rd party cookies.
 
 If privacy is something you must care about (for example: if you need to take
-care of the **European Cookie Law**) sc.social.like provide a
+care of the `European Cookie Law`_) sc.social.like provide a
 "*Severe privacy*" option.
 When enabled, social media widget are rendered as simple HTML links at the expense
 of features and user experience.
@@ -102,4 +102,5 @@ Screenshots
 
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
 
+.. _`European Cookie Law`: http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:32009L0136
 .. _`Do Not Track`: http://donottrack.us/
