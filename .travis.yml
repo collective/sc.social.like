@@ -27,7 +27,7 @@ script:
   - bin/test
 after_success:
   - test $PLONE_VERSION != 4.1 && bin/zopepy setup.py check -mrs
-  - bin/coverage.sh
+  - bin/createcoverage
   - pip install -q coveralls
   - coveralls
 notifications:
