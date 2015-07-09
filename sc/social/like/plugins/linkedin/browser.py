@@ -3,7 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_language
-from urllib import quote
+from urllib import urlencode
 from zope.component import getMultiAdapter
 
 
@@ -42,12 +42,11 @@ class PluginView(BrowserView):
         return typebutton
 
     def share_link(self):
-        url = ('ttps://www.linkedin.com/shareArticle?mini=true'
-               '&url={0}'
-               '&title={1}'
-               '&summary={2}').format(quote(self.context.absolute_url(),
-                                            safe=''),
-                                      quote(self.context.Title()),
-                                      quote(self.context.Description())
-                                      )
+        params = dict(
+            mini='true',
+            url=self.context.absolute_url(),
+            title=self.context.Title(),
+            summary=self.context.Description(),
+        )
+        url = 'https://www.linkedin.com/shareArticle?' + urlencode(params)
         return url

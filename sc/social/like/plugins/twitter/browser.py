@@ -5,7 +5,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.utils import get_language
-from urllib import quote
+from urllib import urlencode
 from zope.component import getMultiAdapter
 
 
@@ -48,10 +48,12 @@ class PluginView(BrowserView):
         )
 
     def share_link(self):
-        url = ('https://twitter.com/intent/tweet'
-               '?text={0}'
-               '&url={1}').format(quote(self.context.Title()),
-                                  quote(self.context.absolute_url(), safe=''))
+        params = dict(
+            text=self.context.Title(),
+            url=self.context.absolute_url(),
+        )
         if self.twittvia:
-            url += '&via={0}'.format(self.twittvia)
+            params['via'] = self.twittvia
+
+        url = 'https://twitter.com/intent/tweet?' + urlencode(params)
         return url
