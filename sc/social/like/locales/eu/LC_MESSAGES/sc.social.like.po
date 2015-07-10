@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-07-02 10:16+0000\n"
+"POT-Creation-Date: 2015-07-10 14:23+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -50,6 +50,10 @@ msgstr "Konfiguratu Social Like produktuaren aukerak"
 msgid "Content types"
 msgstr "Elementu-motak"
 
+#: ../controlpanel/likes.py:76
+msgid "Do not track users"
+msgstr ""
+
 #: ../plugins/facebook/controlpanel.py:64
 msgid "Facebook buttons"
 msgstr ""
@@ -77,10 +81,6 @@ msgstr ""
 #: ../plugins/facebook/controlpanel.py:18
 msgid "Recommend"
 msgstr "Gomendatu!"
-
-#: ../controlpanel/likes.py:76
-msgid "Severe privacy"
-msgstr ""
 
 #: ../plugins/facebook/controlpanel.py:23
 msgid "Share"
@@ -156,9 +156,14 @@ msgstr "Erakutsiko den testua"
 msgid "help_admins"
 msgstr "Facebook kontuaren kudeatzaileen Facebook IDak. Banatu komarekin bat baino gehiagoa badaude."
 
-#. Default: "A Facebook Platform application ID.\nThis is required when high privacy is enabled."
+#. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
 #: ../plugins/facebook/controlpanel.py:55
 msgid "help_appid"
+msgstr ""
+
+#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
+#: ../controlpanel/likes.py:77
+msgid "help_do_not_track"
 msgstr ""
 
 #. Default: "Please select which plugins will be used"
@@ -175,11 +180,6 @@ msgstr ""
 #: ../controlpanel/likes.py:45
 msgid "help_portal_types"
 msgstr "Aukeratu zein elementutan agertuko diren loturak"
-
-#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ../controlpanel/likes.py:77
-msgid "help_privacy"
-msgstr ""
 
 #. Default: "Choose your button style."
 #: ../controlpanel/likes.py:66

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2015-07-02 10:16+0000\n"
+"POT-Creation-Date: 2015-07-10 14:23+0000\n"
 "PO-Revision-Date: 2015-03-02 16:03-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -54,6 +54,10 @@ msgstr "Configuración de las acciones sociales."
 msgid "Content types"
 msgstr "Tipos de contenido"
 
+#: ../controlpanel/likes.py:76
+msgid "Do not track users"
+msgstr ""
+
 #: ../plugins/facebook/controlpanel.py:64
 msgid "Facebook buttons"
 msgstr "Botones de facebook"
@@ -81,10 +85,6 @@ msgstr "Plugins"
 #: ../plugins/facebook/controlpanel.py:18
 msgid "Recommend"
 msgstr "Recomendar"
-
-#: ../controlpanel/likes.py:76
-msgid "Severe privacy"
-msgstr ""
 
 #: ../plugins/facebook/controlpanel.py:23
 msgid "Share"
@@ -160,11 +160,16 @@ msgstr "Texto a mostrar"
 msgid "help_admins"
 msgstr "Una lista de los ID de los administradores de esta página, separados por comas, o el ID de una aplicación de Facebook."
 
-#. Default: "A Facebook Platform application ID.\nThis is required when high privacy is enabled."
+#. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
 #: ../plugins/facebook/controlpanel.py:55
 #, fuzzy
 msgid "help_appid"
 msgstr "El ID de la aplicación en la plataforma Facebook."
+
+#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
+#: ../controlpanel/likes.py:77
+msgid "help_do_not_track"
+msgstr ""
 
 #. Default: "Please select which plugins will be used"
 #: ../controlpanel/likes.py:56
@@ -180,11 +185,6 @@ msgstr "Seleccione los botones que serán mostrados"
 #: ../controlpanel/likes.py:45
 msgid "help_portal_types"
 msgstr "Seleccione en cuáles tipos de contenido se mostrará el viewlet social."
-
-#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ../controlpanel/likes.py:77
-msgid "help_privacy"
-msgstr ""
 
 #. Default: "Choose your button style."
 #: ../controlpanel/likes.py:66

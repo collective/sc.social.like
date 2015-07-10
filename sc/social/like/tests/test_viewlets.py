@@ -97,18 +97,18 @@ class LikeViewletTestCase(unittest.TestCase):
         self.assertEqual(viewlet.render_method, 'plugin')
 
     def test_rendermethod_privacy(self):
-        self.portal.portal_properties.sc_social_likes_properties.privacy = True
+        self.portal.portal_properties.sc_social_likes_properties.do_not_track = True
         viewlet = self.viewlet(self.document)
         self.assertEqual(viewlet.render_method, 'link')
 
     def test_rendermethod_privacy_opt_cookie(self):
-        self.portal.portal_properties.sc_social_likes_properties.privacy = False
+        self.portal.portal_properties.sc_social_likes_properties.do_not_track = False
         self.request.cookies['social-optout'] = 'true'
         viewlet = self.viewlet(self.document)
         self.assertEqual(viewlet.render_method, 'link')
 
     def test_rendermethod_privacy_donottrack(self):
-        self.portal.portal_properties.sc_social_likes_properties.privacy = False
+        self.portal.portal_properties.sc_social_likes_properties.do_not_track = False
         self.request.environ['HTTP_DNT'] = '1'
         viewlet = self.viewlet(self.document)
         self.assertEqual(viewlet.render_method, 'link')

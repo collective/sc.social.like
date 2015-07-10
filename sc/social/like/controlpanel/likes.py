@@ -72,10 +72,10 @@ class IProvidersSchema(Interface):
         vocabulary=styles,
     )
 
-    privacy = schema.Bool(
-        title=_(u'Severe privacy'),
+    do_not_track = schema.Bool(
+        title=_(u'Do not track users'),
         description=_(
-            u'help_privacy',
+            u'help_do_not_track',
             default=u'If enabled, the site will not provide advanced sharing '
                     u'widgets , instead simple links will be used.\n'
                     u'This will limits user experience and features '
@@ -103,7 +103,7 @@ class LikeControlPanelAdapter(BaseControlPanelAdapter):
     enabled_portal_types = PFP(IProvidersSchema['enabled_portal_types'])
     typebutton = PFP(IProvidersSchema['typebutton'])
     plugins_enabled = PFP(IProvidersSchema['plugins_enabled'])
-    privacy = PFP(IProvidersSchema['privacy'])
+    do_not_track = PFP(IProvidersSchema['do_not_track'])
 
 
 class ProvidersControlPanel(ControlPanelForm):

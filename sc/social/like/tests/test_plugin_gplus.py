@@ -84,7 +84,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin = self.plugin
         portal = self.portal
         properties = portal.portal_properties.sc_social_likes_properties
-        properties.privacy = True
+        properties.do_not_track = True
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()

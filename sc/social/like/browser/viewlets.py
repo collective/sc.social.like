@@ -84,7 +84,7 @@ class SocialLikesViewlet(BaseLikeViewlet):
         # site specific privacy level check
         if getattr(site_properties, 'sc_social_likes_properties') \
                 and getattr(site_properties.sc_social_likes_properties,
-                            'privacy') and \
-                site_properties.sc_social_likes_properties.privacy:
+                            'do_not_track') and \
+                site_properties.sc_social_likes_properties.do_not_track:
             return 'link'
         return 'plugin'

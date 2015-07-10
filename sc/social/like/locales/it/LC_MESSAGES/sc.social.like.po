@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-07-02 10:16+0000\n"
+"POT-Creation-Date: 2015-07-10 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -53,6 +53,10 @@ msgstr "Configura impostazioni le le azioni dei social network"
 msgid "Content types"
 msgstr "Tipi di contenuto"
 
+#: ../controlpanel/likes.py:76
+msgid "Do not track users"
+msgstr "Non tracciare gli utenti"
+
 #: ../plugins/facebook/controlpanel.py:64
 msgid "Facebook buttons"
 msgstr "Bottoni Facebook"
@@ -80,10 +84,6 @@ msgstr "Plugin"
 #: ../plugins/facebook/controlpanel.py:18
 msgid "Recommend"
 msgstr "Consigliato"
-
-#: ../controlpanel/likes.py:76
-msgid "Severe privacy"
-msgstr "Privacy rigida"
 
 #: ../plugins/facebook/controlpanel.py:23
 msgid "Share"
@@ -158,12 +158,19 @@ msgstr "Verbo da visualizzare"
 msgid "help_admins"
 msgstr "Una lista separata da virgole di ID Facebook di amministratori della pagina"
 
-#. Default: "A Facebook Platform application ID.\nThis is required when high privacy is enabled."
+#. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
 #: ../plugins/facebook/controlpanel.py:55
 msgid "help_appid"
 msgstr ""
 "L'ID di un'applicazione Facebook.\n"
-"Questa informazione è richiesta quando l'impostazione di privacy avanzata è abilitata."
+"Questa informazione è richiesta quando l'impostazione \"Non tracciare gli utenti\" è abilitata."
+
+#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
+#: ../controlpanel/likes.py:77
+msgid "help_do_not_track"
+msgstr ""
+"Se abilitata, il sito not fornirà i componenti di condivisione avanzati ma saranno usati dei semplici link.\n"
+"Questo limita l'esperienza utente e le funzionalità (come il conteggio delle condivisioni) ma aumenta la privacy degli utenti: nessun cookie di terze party sarà inviato agli utenti."
 
 #. Default: "Please select which plugins will be used"
 #: ../controlpanel/likes.py:56
@@ -179,13 +186,6 @@ msgstr "Seleziona i bottoni da visualizzare"
 #: ../controlpanel/likes.py:45
 msgid "help_portal_types"
 msgstr "Prego selezionare su quali tipi di contenuto la viewlet verrà applicata"
-
-#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ../controlpanel/likes.py:77
-msgid "help_privacy"
-msgstr ""
-"Se abilitata, il sito not fornirà i componenti di condivisione avanzati ma saranno usati dei semplici link.\n"
-"Questo limita l'esperienza utente e le funzionalità (come il conteggio delle condivisioni) ma aumenta la privacy degli utenti: nessun cookie di terze party sarà inviato agli utenti."
 
 #. Default: "Choose your button style."
 #: ../controlpanel/likes.py:66

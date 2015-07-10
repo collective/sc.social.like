@@ -55,7 +55,7 @@ class IFacebookSchema(Interface):
         description=_(
             u'help_appid',
             default=u'A Facebook Platform application ID.\n'
-                    u'This is required when high privacy is enabled.',
+                    u'This is required when \"Do not track users\" option is enabled.',
         ),
         required=False,
     )

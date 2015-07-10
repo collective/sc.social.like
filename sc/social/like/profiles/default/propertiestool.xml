@@ -22,6 +22,6 @@
           <element value="Google+"/>
       </property>
 
-      <property name="privacy" type="boolean" value="False"></property>
+      <property name="do_not_track" type="boolean" value="False"></property>
   </object>
 </object>

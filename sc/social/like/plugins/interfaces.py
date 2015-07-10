@@ -18,7 +18,7 @@ class IPlugin(Interface):
         """ Return html render method """
 
     def link():
-        """ Return html render method when high privacy is required"""
+        """ Return html render method when "do_not_track" is active"""
 
 
 class IPluginView(Interface):
