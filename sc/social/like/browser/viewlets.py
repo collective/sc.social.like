@@ -82,9 +82,9 @@ class SocialLikesViewlet(BaseLikeViewlet):
                 self.request.get_header('HTTP_DNT') == '1':
             return 'link'
         # site specific privacy level check
-        if getattr(site_properties, 'sc_social_likes_properties') \
+        if getattr(site_properties, 'sc_social_likes_properties', None) \
                 and getattr(site_properties.sc_social_likes_properties,
-                            'do_not_track') and \
+                            'do_not_track', None) and \
                 site_properties.sc_social_likes_properties.do_not_track:
             return 'link'
         return 'plugin'
