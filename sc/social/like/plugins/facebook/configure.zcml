@@ -10,7 +10,7 @@
 
   <!-- ControlPanel -->
   <adapter factory=".controlpanel.ControlPanelAdapter" />
-  
+
   <browser:page
     name="facebook-config"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"

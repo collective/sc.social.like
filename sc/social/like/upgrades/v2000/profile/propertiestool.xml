@@ -9,9 +9,9 @@
       <property name="typebutton" type="string" purge="False">horizontal</property>
       <property name="twitter_enabled" type="boolean">True</property>
       <property name="twittvia" type="string" purge="False"></property>
-      <property name="fb_enabled" type="boolean">True</property>      
+      <property name="fb_enabled" type="boolean">True</property>
       <property name="fbaction" type="string" purge="False"></property>
       <property name="fbadmins" type="string" purge="False"></property>
-      <property name="gp_enabled" type="boolean">False</property>      
+      <property name="gp_enabled" type="boolean">False</property>
   </object>
 </object>

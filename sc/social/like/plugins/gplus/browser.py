@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_language
+from urllib import urlencode
 from zope.component import getMultiAdapter
 
 
@@ -14,6 +15,7 @@ class PluginView(BrowserView):
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
+    link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -38,3 +40,13 @@ class PluginView(BrowserView):
         else:
             typebutton = 'tall'
         return typebutton
+
+    def share_link(self):
+        # Does we need any special language handler?
+        # See https://developers.google.com/+/web/share/?hl=it#available-languages
+        params = dict(
+            url=self.context.absolute_url(),
+            hl=self.language,
+        )
+        url = 'https://plus.google.com/share?' + urlencode(params)
+        return url

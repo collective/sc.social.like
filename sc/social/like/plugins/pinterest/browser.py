@@ -4,6 +4,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
+from urllib import urlencode
 from zope.component import getMultiAdapter
 
 BASE_URL = '//pinterest.com/pin/create/button/'
@@ -18,6 +19,7 @@ class PluginView(BrowserView):
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
+    link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -44,8 +46,8 @@ class PluginView(BrowserView):
         )
 
     def image_url(self):
-        ''' Return url to image
-        '''
+        """ Return url to image
+        """
         img = self.image
         if img:
             return img.url
@@ -60,3 +62,13 @@ class PluginView(BrowserView):
         else:
             typebutton = 'above'
         return typebutton
+
+    def share_link(self):
+        # See http://stackoverflow.com/questions/10690019/link-to-pin-it-on-pinterest-without-generating-a-button
+        params = dict(
+            url=self.context.absolute_url(),
+            media=self.image_url(),
+            description=self.context.Title(),
+        )
+        url = 'http://pinterest.com/pin/create/button?' + urlencode(params)
+        return url

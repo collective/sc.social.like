@@ -7,7 +7,7 @@ import logging
 
 
 def apply_profile(context):
-    ''' Apply upgrade profile '''
+    """ Apply upgrade profile """
     logger = logging.getLogger(PROJECTNAME)
     profile = 'profile-sc.social.like.upgrades.v3000:default'
     loadMigrationProfile(context, profile)
@@ -15,7 +15,7 @@ def apply_profile(context):
 
 
 def update_plugins(context):
-    ''' Apply upgrade profile '''
+    """ Apply upgrade profile """
     logger = logging.getLogger(PROJECTNAME)
     pp = getToolByName(context, 'portal_properties')
     sheet = getattr(pp, 'sc_social_likes_properties', None)

@@ -1,0 +1,14 @@
+<tal:linkedin i18n:domain="sc.social.like">
+    <!-- Linkedin -->
+    <a href="https://www.linkedin.com/shareArticle"
+       class="slPrivacy"
+       title="Share on Linkedin (open in new window)"
+       tal:attributes="href view/share_link"
+       onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+       i18n:attributes="title">
+        <img src="share-linkedin.png"
+             alt="Share on Linkedin"
+             i18n:attributes="alt"
+             tal:attributes="src string:${view/site_url}/++resource++sl_images/share-linkedin.png" />
+    </a>
+</tal:linkedin>

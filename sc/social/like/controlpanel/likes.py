@@ -72,6 +72,19 @@ class IProvidersSchema(Interface):
         vocabulary=styles,
     )
 
+    do_not_track = schema.Bool(
+        title=_(u'Do not track users'),
+        description=_(
+            u'help_do_not_track',
+            default=u'If enabled, the site will not provide advanced sharing '
+                    u'widgets , instead simple links will be used.\n'
+                    u'This will limits user experience and features '
+                    u'(like the share count) but will enhance users privacy: '
+                    u'no 3rd party cookies will be sent to users.'
+        ),
+        default=False,
+    )
+
 
 class BaseControlPanelAdapter(SchemaAdapterBase):
     """ Base control panel adapter """
@@ -90,6 +103,7 @@ class LikeControlPanelAdapter(BaseControlPanelAdapter):
     enabled_portal_types = PFP(IProvidersSchema['enabled_portal_types'])
     typebutton = PFP(IProvidersSchema['typebutton'])
     plugins_enabled = PFP(IProvidersSchema['plugins_enabled'])
+    do_not_track = PFP(IProvidersSchema['do_not_track'])
 
 
 class ProvidersControlPanel(ControlPanelForm):
@@ -105,7 +119,7 @@ class ProvidersControlPanel(ControlPanelForm):
     form_name = _('Social: Like Actions')
 
     def plugins_configs(self):
-        ''' Return Plugins and their configuration pages '''
+        """ Return Plugins and their configuration pages """
         context = aq_inner(self.context)
         portal_url = getToolByName(context, 'portal_url')()
         registered = dict(getUtilitiesFor(IPlugin))

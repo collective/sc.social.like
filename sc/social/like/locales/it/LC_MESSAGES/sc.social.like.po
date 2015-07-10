@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-04 23:38+0000\n"
+"POT-Creation-Date: 2015-07-10 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -21,140 +21,192 @@ msgstr ""
 msgid "A simple, yet useful, social networking integration for Plone"
 msgstr "Una semplice ma funzionale integrazione tra Plone e i social network"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:44
+#: ../plugins/facebook/controlpanel.py:44
 msgid "Admins"
 msgstr "Amministratori"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:54
+#: ../plugins/facebook/controlpanel.py:54
 msgid "Application ID"
 msgstr "ID applicazione"
 
-#: ./sc/social/like/controlpanel/likes.py:65
+#: ../controlpanel/likes.py:65
 msgid "Button style"
 msgstr "Stile del bottone"
 
-#: ./sc/social/like/controlpanel/likes.pt:123
+#: ../controlpanel/likes.pt:123
 msgid "Configure each plugin."
 msgstr "Configura ogni plugin"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:90
+#: ../plugins/facebook/controlpanel.py:91
 msgid "Configure settings for Facebook integration."
 msgstr "Configura impostazioni per integrazione con Facebook"
 
-#: ./sc/social/like/plugins/twitter/controlpanel.py:41
+#: ../plugins/twitter/controlpanel.py:41
 msgid "Configure settings for Twitter integration."
 msgstr "Configura impostazioni per integrazione con Twitter"
 
-#: ./sc/social/like/controlpanel/likes.py:104
+#: ../controlpanel/likes.py:118
 msgid "Configure settings for social like actions."
 msgstr "Configura impostazioni le le azioni dei social network"
 
-#: ./sc/social/like/controlpanel/likes.py:44
+#: ../controlpanel/likes.py:44
 msgid "Content types"
 msgstr "Tipi di contenuto"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:63
+#: ../controlpanel/likes.py:76
+msgid "Do not track users"
+msgstr "Non tracciare gli utenti"
+
+#: ../plugins/facebook/controlpanel.py:64
 msgid "Facebook buttons"
 msgstr "Bottoni Facebook"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:17
+#: ../plugins/facebook/controlpanel.py:17
 msgid "Like"
 msgstr "Mi piace"
 
-#: ./sc/social/like/controlpanel/likes.pt:119
+#: ../plugins/pinterest/templates/link.pt:11
+msgid "Pin it!"
+msgstr ""
+
+#: ../plugins/pinterest/templates/link.pt:3
+msgid "Pin it! (open in new window)"
+msgstr "Pin it! (apre in una nuova finestra)"
+
+#: ../controlpanel/likes.pt:119
 msgid "Plugin-Specific Configuration"
 msgstr "Configurazioni specifiche per plugin"
 
-#: ./sc/social/like/controlpanel/likes.py:55
+#: ../controlpanel/likes.py:55
 msgid "Plugins"
 msgstr "Plugin"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:18
+#: ../plugins/facebook/controlpanel.py:18
 msgid "Recommend"
 msgstr "Consigliato"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:23
+#: ../plugins/facebook/controlpanel.py:23
 msgid "Share"
 msgstr "Condividi"
 
-#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: ../plugins/whatsapp/templates/plugin.pt:2
 msgid "Share in WhatsApp"
 msgstr "Condividi in WhatsApp"
 
-#: ./sc/social/like/profiles/default/controlpanel.xml
+#: ../plugins/facebook/templates/link.pt:12
+msgid "Share on Facebook"
+msgstr "Condividi su Facebook"
+
+#: ../plugins/facebook/templates/link.pt:6
+msgid "Share on Facebook (open in new window)"
+msgstr "Condividi su Facebook (apre in una nuova finestra)"
+
+#: ../plugins/gplus/templates/link.pt:9
+msgid "Share on Google+"
+msgstr "Condividi su Google+"
+
+#: ../plugins/gplus/templates/link.pt:3
+msgid "Share on Google+ (open in new window)"
+msgstr "Condividi su Google+ (apre in una nuova finestra)"
+
+#: ../plugins/linkedin/templates/link.pt:9
+msgid "Share on Linkedin"
+msgstr "Condividi su Linkedin"
+
+#: ../plugins/linkedin/templates/link.pt:3
+msgid "Share on Linkedin (open in new window)"
+msgstr "Condividi su Linkedin (apre in una nuova finestra)"
+
+#: ../profiles/default/controlpanel.xml
 msgid "Social Like"
 msgstr ""
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:89
+#: ../plugins/facebook/controlpanel.py:90
 msgid "Social: Facebook settings"
 msgstr "Social: impostazioni Facebook"
 
-#: ./sc/social/like/controlpanel/likes.py:105
+#: ../controlpanel/likes.py:119
 msgid "Social: Like Actions"
 msgstr "Social: azioni di like"
 
-#: ./sc/social/like/controlpanel/likes.py:103
+#: ../controlpanel/likes.py:117
 msgid "Social: Like Actions settings"
 msgstr "Social: impostazioni azioni like"
 
-#: ./sc/social/like/plugins/twitter/controlpanel.py:40
+#: ../plugins/twitter/controlpanel.py:40
 msgid "Social: Twitter settings"
 msgstr "Social: impostazioni Twitter"
 
-#: ./sc/social/like/plugins/twitter/controlpanel.py:19
+#: ../plugins/twitter/templates/link.pt:9
+msgid "Tweet it!"
+msgstr ""
+
+#: ../plugins/twitter/templates/link.pt:3
+msgid "Tweet it! (open in new window)"
+msgstr "Tweet it! (apre in una nuova finestra)"
+
+#: ../plugins/twitter/controlpanel.py:19
 msgid "Twitter nick"
 msgstr "Nickname Twitter"
 
-#: ./sc/social/like/plugins/facebook/controlpanel.py:31
+#: ../plugins/facebook/controlpanel.py:31
 msgid "Verb to display"
 msgstr "Verbo da visualizzare"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ./sc/social/like/plugins/facebook/controlpanel.py:45
+#: ../plugins/facebook/controlpanel.py:45
 msgid "help_admins"
 msgstr "Una lista separata da virgole di ID Facebook di amministratori della pagina"
 
-#. Default: "A Facebook Platform application ID."
-#: ./sc/social/like/plugins/facebook/controlpanel.py:55
+#. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
+#: ../plugins/facebook/controlpanel.py:55
 msgid "help_appid"
-msgstr "L'ID di un'applicazione Facebook"
+msgstr ""
+"L'ID di un'applicazione Facebook.\n"
+"Questa informazione è richiesta quando l'impostazione \"Non tracciare gli utenti\" è abilitata."
+
+#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
+#: ../controlpanel/likes.py:77
+msgid "help_do_not_track"
+msgstr ""
+"Se abilitata, il sito not fornirà i componenti di condivisione avanzati ma saranno usati dei semplici link.\n"
+"Questo limita l'esperienza utente e le funzionalità (come il conteggio delle condivisioni) ma aumenta la privacy degli utenti: nessun cookie di terze party sarà inviato agli utenti."
 
 #. Default: "Please select which plugins will be used"
-#: ./sc/social/like/controlpanel/likes.py:56
+#: ../controlpanel/likes.py:56
 msgid "help_enabled_plugins"
 msgstr "Prego selezionare quali plugin verranno usati"
 
 #. Default: "Select buttons to be shown"
-#: ./sc/social/like/plugins/facebook/controlpanel.py:64
+#: ../plugins/facebook/controlpanel.py:65
 msgid "help_fbbuttons"
 msgstr "Seleziona i bottoni da visualizzare"
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ./sc/social/like/controlpanel/likes.py:45
+#: ../controlpanel/likes.py:45
 msgid "help_portal_types"
 msgstr "Prego selezionare su quali tipi di contenuto la viewlet verrà applicata"
 
 #. Default: "Choose your button style."
-#: ./sc/social/like/controlpanel/likes.py:66
+#: ../controlpanel/likes.py:66
 msgid "help_selected_buttons"
 msgstr "Seleziona lo stile del bottone"
 
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: ./sc/social/like/plugins/facebook/controlpanel.py:32
-#, fuzzy
+#: ../plugins/facebook/controlpanel.py:32
 msgid "help_verb_display"
-msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo 'Mi piace' e 'Consigliato' sono supportati."
+msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo \"Mi piace\" e \"Consigliato\" sono supportati."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/plugins/twitter/controlpanel.py:20
+#: ../plugins/twitter/controlpanel.py:20
 msgid "help_your_twitter_nick"
 msgstr "Inserisci il tuo nickname Twitter, per esempio \"simplesconsultoria\""
 
-#: ./sc/social/like/controlpanel/likes.py:35
+#: ../controlpanel/likes.py:35
 msgid "horizontal"
 msgstr "orizzonatale"
 
-#: ./sc/social/like/controlpanel/likes.py:36
+#: ../controlpanel/likes.py:36
 msgid "vertical"
 msgstr "verticale"
 

@@ -124,7 +124,7 @@
                            i18n:translate="" i18n:domain="sc.social.like">
                           Configure each plugin.
                       </span>
-                    </label>                    
+                    </label>
                     <ul tal:define="plugins view/plugins_configs">
                       <li tal:repeat="plugin plugins">
                         <a tal:attributes="href plugin/url;

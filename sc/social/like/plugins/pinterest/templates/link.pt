@@ -1,0 +1,17 @@
+<tal:pinterest i18n:domain="sc.social.like">
+    <!-- Pinterest -->
+    <a href="https://www.pinterest.com/pin/create/button/"
+       class="slPrivacy"
+       title="Pin it! (open in new window)"
+       data-pin-do="buttonPin"
+       data-pin-config="above"
+       tal:attributes="href view/share_link"
+       onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+       i18n:attributes="title">
+        <img src="pin_it_button.png"
+             alt="Pin it!"
+             i18n:attributes="alt"
+             tal:attributes="src string:${view/site_url}/++resource++sl_images/pin_it_button.png" />
+    </a>
+
+</tal:pinterest>

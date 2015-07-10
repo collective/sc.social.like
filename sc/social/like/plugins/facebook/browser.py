@@ -7,6 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
+from urllib import urlencode
 from zope.component import getMultiAdapter
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
@@ -26,6 +27,7 @@ class PluginView(BrowserView):
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
+    link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
@@ -123,3 +125,14 @@ class PluginView(BrowserView):
         if self._isPortal():
             return 'website'
         return 'article'
+
+    def share_link(self):
+        absolute_url = self.context.absolute_url()
+        params = dict(
+            app_id=self.fbapp_id,
+            display='popup',
+            href=absolute_url,
+            redirect_uri=absolute_url,
+        )
+        url = 'https://www.facebook.com/dialog/share?' + urlencode(params)
+        return url
