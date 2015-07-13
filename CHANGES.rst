@@ -6,7 +6,9 @@ There's a frood who really knows where his towel is.
 2.3 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Added the "Severe privacy" mode configuration option.
+- Added the "Do not track users" configuration option, to prevent social
+  networks from sending cookies to site's visitors.
+  This will replace social badges with simple links.
   [keul]
 
 - Added German translations.
