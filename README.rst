@@ -87,7 +87,7 @@ social media widget commonly tracks user actions and add 3rd party cookies.
 
 If privacy is something you must care about (for example: if you need to take
 care of the `European Cookie Law`_) sc.social.like provide a
-"*Severe privacy*" option.
+"*Do not track users*" option.
 When enabled, social media widget are rendered as simple HTML links at the expense
 of features and user experience.
 
