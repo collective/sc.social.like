@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2015-07-10 14:23+0000\n"
-"PO-Revision-Date: 2015-03-02 15:59-0300\n"
+"PO-Revision-Date: 2015-07-14 09:13-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -13,8 +13,8 @@ msgstr ""
 "Language-Name: Brazilian Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.social.like\n"
-"X-Generator: Poedit 1.5.4\n"
-"Language: Portuguese\n"
+"X-Generator: Poedit 1.7.5\n"
+"Language: pt\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "A simple, yet useful, social networking integration for Plone"
@@ -54,7 +54,7 @@ msgstr "Tipos de conteúdo"
 
 #: ../controlpanel/likes.py:76
 msgid "Do not track users"
-msgstr ""
+msgstr "No rastrear os usuários"
 
 #: ../plugins/facebook/controlpanel.py:64
 msgid "Facebook buttons"
@@ -66,11 +66,11 @@ msgstr "Curtir"
 
 #: ../plugins/pinterest/templates/link.pt:11
 msgid "Pin it!"
-msgstr ""
+msgstr "Pin it!"
 
 #: ../plugins/pinterest/templates/link.pt:3
 msgid "Pin it! (open in new window)"
-msgstr ""
+msgstr "Pin it! (abre em uma nova janela)"
 
 #: ../controlpanel/likes.pt:119
 msgid "Plugin-Specific Configuration"
@@ -94,27 +94,27 @@ msgstr "Compartilhar no WhatsApp"
 
 #: ../plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
-msgstr ""
+msgstr "Compartilhar no Facebook"
 
 #: ../plugins/facebook/templates/link.pt:6
 msgid "Share on Facebook (open in new window)"
-msgstr ""
+msgstr "Compartilhar no Facebook (abre em uma nova janela)"
 
 #: ../plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
-msgstr ""
+msgstr "Compartilhar no Google+"
 
 #: ../plugins/gplus/templates/link.pt:3
 msgid "Share on Google+ (open in new window)"
-msgstr ""
+msgstr "Compartilhar no Google+ (abre em uma nova janela)"
 
 #: ../plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
-msgstr ""
+msgstr "Compartilhar no LinkedIn"
 
 #: ../plugins/linkedin/templates/link.pt:3
 msgid "Share on Linkedin (open in new window)"
-msgstr ""
+msgstr "Compartilhar no LinkedIn (abre em uma nova janela)"
 
 #: ../profiles/default/controlpanel.xml
 msgid "Social Like"
@@ -138,11 +138,11 @@ msgstr "Configurações do Twitter"
 
 #: ../plugins/twitter/templates/link.pt:9
 msgid "Tweet it!"
-msgstr ""
+msgstr "Tweet it!"
 
 #: ../plugins/twitter/templates/link.pt:3
 msgid "Tweet it! (open in new window)"
-msgstr ""
+msgstr "Tweet it! (abre em uma nova janela)"
 
 #: ../plugins/twitter/controlpanel.py:19
 msgid "Twitter nick"
@@ -160,14 +160,13 @@ msgstr "Uma lista, separada por vírgulas, dos IDs dos administradores desta pá
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
 #: ../plugins/facebook/controlpanel.py:55
-#, fuzzy
 msgid "help_appid"
-msgstr "ID da aplicação na plataforma Facebook."
+msgstr "ID da aplicação na plataforma Facebook. Isso é requerido quando a opcão de \"Não rastrear os usuários\" está habilitada."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: ../controlpanel/likes.py:77
 msgid "help_do_not_track"
-msgstr ""
+msgstr "Se habilitado, o site no provera os widgets avançados, mas simples links para os serviços. Isso limitará a experiência de usuário e as funcionalidades (como a conta de compartilhamentos) mas respeitará a privacidade dos usuários: nos se enviaram cookies a terceiros."
 
 #. Default: "Please select which plugins will be used"
 #: ../controlpanel/likes.py:56
@@ -207,4 +206,3 @@ msgstr "horizontal"
 #: ../controlpanel/likes.py:36
 msgid "vertical"
 msgstr "vertical"
-
