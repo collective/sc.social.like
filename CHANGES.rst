@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.3 (unreleased)
+2.3 (2015-07-14)
 ^^^^^^^^^^^^^^^^
 
 - Added the "Do not track users" configuration option, to prevent social
