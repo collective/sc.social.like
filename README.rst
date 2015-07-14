@@ -13,7 +13,7 @@ Life, the Universe, and Everything
 networks integration for Plone Content Types.
 
 This package ships with plugins for the following networks:
-	
+
 * Facebook
 * Google+
 * LinkedIn
@@ -24,17 +24,14 @@ This package ships with plugins for the following networks:
 Mostly Harmless
 ---------------
 
-.. image:: https://secure.travis-ci.org/collective/sc.social.like.png?branch=master
-    :alt: Travis CI badge
+.. image:: http://img.shields.io/pypi/v/sc.social.like.svg
+    :target: https://pypi.python.org/pypi/sc.social.like
+
+.. image:: https://img.shields.io/travis/collective/sc.social.like/master.svg
     :target: http://travis-ci.org/collective/sc.social.like
 
-.. image:: https://coveralls.io/repos/collective/sc.social.like/badge.png?branch=master
-    :alt: Coveralls badge
+.. image:: https://img.shields.io/coveralls/collective/sc.social.like/master.svg
     :target: https://coveralls.io/r/collective/sc.social.like
-
-.. image:: https://pypip.in/d/sc.social.like/badge.png
-    :alt: Downloads
-    :target: https://pypi.python.org/pypi/sc.social.like/
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
