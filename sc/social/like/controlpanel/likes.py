@@ -92,7 +92,7 @@ class BaseControlPanelAdapter(SchemaAdapterBase):
     def __init__(self, context):
         super(BaseControlPanelAdapter, self).__init__(context)
         portal_properties = getToolByName(context, 'portal_properties')
-        self.context = portal_properties.sc_social_likes_properties
+        self.context = portal_properties.get('sc_social_likes_properties', None)
 
 
 class LikeControlPanelAdapter(BaseControlPanelAdapter):
