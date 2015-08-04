@@ -52,7 +52,7 @@ def uninstall(context):
     portal_conf.unregisterConfiglet('@@likes-providers')
 
     # Remove tweetmeme_properties in portal properties
-    pp = getToolByName('portal_properties')
+    pp = getToolByName(portal, 'portal_properties')
 
     try:
         if hasattr(pp, 'sc_social_likes_properties'):

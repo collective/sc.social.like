@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.4 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix uninstall error.
+  [bsuttor]
 
 
 2.3 (2015-07-14)
