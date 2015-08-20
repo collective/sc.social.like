@@ -1,0 +1,205 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sc.social 2.2\n"
+"POT-Creation-Date: 2015-07-10 14:23+0000\n"
+"PO-Revision-Date: 2015-05-29 09:50 +0002\n"
+"Last-Translator: Fred van Dijk <f.van.dijk@zestsoftware.nl>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language: nl\n"
+"Language-Name: Nederlands\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.social.like\n"
+"X-Is-Fallback-For: nl-be nl-nl\n"
+
+msgid "A simple, yet useful, social networking integration for Plone"
+msgstr "Een eenvoudige maar bruikbare Social Media integratie voor Plone"
+
+#: ../plugins/facebook/controlpanel.py:44
+msgid "Admins"
+msgstr "Beheerders"
+
+#: ../plugins/facebook/controlpanel.py:54
+msgid "Application ID"
+msgstr "App ID"
+
+#: ../controlpanel/likes.py:65
+msgid "Button style"
+msgstr "Knopstijl"
+
+#: ../controlpanel/likes.pt:123
+msgid "Configure each plugin."
+msgstr "Configuratie voor elke plugin."
+
+#: ../plugins/facebook/controlpanel.py:91
+msgid "Configure settings for Facebook integration."
+msgstr "Configuratie voor Facebook."
+
+#: ../plugins/twitter/controlpanel.py:41
+msgid "Configure settings for Twitter integration."
+msgstr "Configuratie voor Twitter."
+
+#: ../controlpanel/likes.py:118
+msgid "Configure settings for social like actions."
+msgstr "Configuratie voor de Social Media \"Like\" acties."
+
+#: ../controlpanel/likes.py:44
+msgid "Content types"
+msgstr "Contenttypes"
+
+#: ../controlpanel/likes.py:76
+msgid "Do not track users"
+msgstr "Volg geen gebruikers (tracking)"
+
+#: ../plugins/facebook/controlpanel.py:64
+msgid "Facebook buttons"
+msgstr "Facebook knoppen"
+
+#: ../plugins/facebook/controlpanel.py:17
+msgid "Like"
+msgstr "Vind ik leuk (Like)"
+
+#: ../plugins/pinterest/templates/link.pt:11
+msgid "Pin it!"
+msgstr "Pin vast!"
+
+#: ../plugins/pinterest/templates/link.pt:3
+msgid "Pin it! (open in new window)"
+msgstr "Pin vast! (open in nieuw venster)"
+
+#: ../controlpanel/likes.pt:119
+msgid "Plugin-Specific Configuration"
+msgstr "Plugin specifieke configuratie"
+
+#: ../controlpanel/likes.py:55
+msgid "Plugins"
+msgstr "Plugins"
+
+#: ../plugins/facebook/controlpanel.py:18
+msgid "Recommend"
+msgstr "Aanbevelen"
+
+#: ../plugins/facebook/controlpanel.py:23
+msgid "Share"
+msgstr "Delen"
+
+#: ../plugins/whatsapp/templates/plugin.pt:2
+msgid "Share in WhatsApp"
+msgstr "In WhatsApp delen"
+
+#: ../plugins/facebook/templates/link.pt:12
+msgid "Share on Facebook"
+msgstr "Delen op Facebook"
+
+#: ../plugins/facebook/templates/link.pt:6
+msgid "Share on Facebook (open in new window)"
+msgstr "Delen op Facebook (open in nieuw venster)"
+
+#: ../plugins/gplus/templates/link.pt:9
+msgid "Share on Google+"
+msgstr "Delen op Google+"
+
+#: ../plugins/gplus/templates/link.pt:3
+msgid "Share on Google+ (open in new window)"
+msgstr "Delen op Google+ (open in nieuw venster)"
+
+#: ../plugins/linkedin/templates/link.pt:9
+msgid "Share on Linkedin"
+msgstr "Delen op Linkedin"
+
+#: ../plugins/linkedin/templates/link.pt:3
+msgid "Share on Linkedin (open in new window)"
+msgstr "Delen op Linkedin (open in nieuw venster)"
+
+#: ../profiles/default/controlpanel.xml
+msgid "Social Like"
+msgstr "Social Like"
+
+#: ../plugins/facebook/controlpanel.py:90
+msgid "Social: Facebook settings"
+msgstr "Social: Facebook configuratie"
+
+#: ../controlpanel/likes.py:119
+msgid "Social: Like Actions"
+msgstr "Social: Like acties"
+
+#: ../controlpanel/likes.py:117
+msgid "Social: Like Actions settings"
+msgstr "Social: Like acties configuratie"
+
+#: ../plugins/twitter/controlpanel.py:40
+msgid "Social: Twitter settings"
+msgstr "Social: Twitter configuratie"
+
+#: ../plugins/twitter/templates/link.pt:9
+msgid "Tweet it!"
+msgstr "Tweet het!"
+
+#: ../plugins/twitter/templates/link.pt:3
+msgid "Tweet it! (open in new window)"
+msgstr "Tweet het! (open in nieuw venster)"
+
+#: ../plugins/twitter/controlpanel.py:19
+msgid "Twitter nick"
+msgstr "Twitter naam (nick)"
+
+#: ../plugins/facebook/controlpanel.py:31
+msgid "Verb to display"
+msgstr "Te tonen werkwoord"
+
+#. Default: "A comma-separated list of either the Facebook IDs of page administrators."
+#: ../plugins/facebook/controlpanel.py:45
+msgid "help_admins"
+msgstr "Een komma-gescheiden lijst van de Facebook ID's van de paginabeheerders of het Facebook App ID."
+
+#. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
+#: ../plugins/facebook/controlpanel.py:55
+msgid "help_appid"
+msgstr "Een Facebook App ID. Dit is een verplichtt wanneer \"Volg geen gebruikers (tracking)\" is ingeschakeld."
+
+#. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
+#: ../controlpanel/likes.py:77
+msgid "help_do_not_track"
+msgstr "Hiermee zal de website geen geavanceerde 'delen' widgets tonen, er komen alleen direct links te staan. Dit geeft een slechtere gebruikerservaring en functies als het aantal malen gedeeld staan uit, maar het verbetert de privacy van gebruikes. Geen 3rd party cookies worden hiermee gezet."
+
+#. Default: "Please select which plugins will be used"
+#: ../controlpanel/likes.py:56
+msgid "help_enabled_plugins"
+msgstr "Selecteer de ingeschakelde plugins. "
+
+#. Default: "Select buttons to be shown"
+#: ../plugins/facebook/controlpanel.py:65
+msgid "help_fbbuttons"
+msgstr "Te tonen knoppen"
+
+#. Default: "Please select content types in which the viewlet will be applied."
+#: ../controlpanel/likes.py:45
+msgid "help_portal_types"
+msgstr "Kies de contenttypes waarbij de Social Media knoppen getoond worden."
+
+#. Default: "Choose your button style."
+#: ../controlpanel/likes.py:66
+msgid "help_selected_buttons"
+msgstr "Kies de grafische stijl voor de knoppen."
+
+#. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
+#: ../plugins/facebook/controlpanel.py:32
+msgid "help_verb_display"
+msgstr "Het werkwoord dat in de Facebook knop komt te staan. Op het moment zijn alelen \"Vind ik leuk\" en \"Aanbevelen\" beschikbaar."
+
+#. Default: "Enter your twitter nick. eg. simplesconsultoria"
+#: ../plugins/twitter/controlpanel.py:20
+msgid "help_your_twitter_nick"
+msgstr "Vul de twitternaam in. Bijvoorbeeld planetplone"
+
+#: ../controlpanel/likes.py:35
+msgid "horizontal"
+msgstr "horizontaal"
+
+#: ../controlpanel/likes.py:36
+msgid "vertical"
+msgstr "verticaal"
+
