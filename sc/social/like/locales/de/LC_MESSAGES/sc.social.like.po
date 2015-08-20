@@ -55,7 +55,7 @@ msgstr ""
 
 #: ../plugins/facebook/controlpanel.py:64
 msgid "Facebook buttons"
-msgstr "Facbook Buttons"
+msgstr "Facebook Buttons"
 
 #: ../plugins/facebook/controlpanel.py:17
 msgid "Like"
