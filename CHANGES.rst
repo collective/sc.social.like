@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.4 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Add Dutch translations.
+  [fredvd]
+
 - Fix uninstall error.
   [bsuttor]
 
