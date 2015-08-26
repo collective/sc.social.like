@@ -2,7 +2,7 @@
      tal:attributes="class view/typebutton"
      style="display:none" i18n:domain="sc.social.like" tal:condition="view/enabled">
   <tal:plugin tal:repeat="plugin view/plugins">
-    <div tal:attributes="class string:sociallike-network-${plugin/id}">
+    <div tal:attributes="class string:sociallike-network sociallike-network-${plugin/id}">
       <tal:replace replace="structure plugin/html" />
     </div>
   </tal:plugin>
