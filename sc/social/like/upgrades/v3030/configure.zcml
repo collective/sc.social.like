@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+    <gs:upgradeSteps
+        source="3020"
+        destination="3030"
+        profile="sc.social.like:default">
+
+      <gs:upgradeStep
+         title="Move mobile detection client-side"
+         description="Fix caching issues with WhatsApp button."
+         handler=".move_mobile_detection_client_side"
+         />
+
+      <gs:upgradeStep
+         title="Cook CSS resources"
+         description="There were changes in the CSS files, so we need to cook the resources."
+         handler="..cook_css_resources"
+         />
+
+      <gs:upgradeStep
+         title="Cook JS resources"
+         description="There were changes in the JS files, so we need to cook the resources."
+         handler="..cook_javascript_resources"
+         />
+
+    </gs:upgradeSteps>
+
+</configure>

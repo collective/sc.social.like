@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.testing import z2
 
 import os.path
 
@@ -36,4 +38,8 @@ INTEGRATION_TESTING = IntegrationTesting(
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,),
     name='sc.social.like:Functional',
+)
+ROBOT_TESTING = FunctionalTesting(
+    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
+    name='sc.social.like:Robot',
 )
