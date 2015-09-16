@@ -6,6 +6,13 @@ There's a frood who really knows where his towel is.
 2.4 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Drop explicit support for Plone 4.1 and Python 2.6;
+  package should work, but we are not testing anymore with those versions so compatibility is not guaranteed.
+  [hvelarde]
+
+- Fix caching issues with WhatsApp button by moving mobile detection client-side (closes `#56`_).
+  [rodfersou]
+
 - Add Dutch translations.
   [fredvd]
 
@@ -253,7 +260,8 @@ There's a frood who really knows where his towel is.
 
 * Initial release [cleberjsantos]
 
+.. _`#15`: https://github.com/collective/sc.social.like/pull/15
 .. _`#36`: https://github.com/collective/sc.social.like/issues/36
 .. _`#38`: https://github.com/collective/sc.social.like/issues/38
 .. _`#39`: https://github.com/collective/sc.social.like/issues/39
-.. _`#15`: https://github.com/collective/sc.social.like/pull/15
+.. _`#56`: https://github.com/collective/sc.social.like/issues/56

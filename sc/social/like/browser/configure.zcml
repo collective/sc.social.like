@@ -54,4 +54,11 @@
         permission="zope.Public"
         />
 
+    <browser:resourceDirectory
+        name="sl_scripts"
+        directory="scripts"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+
 </configure>
