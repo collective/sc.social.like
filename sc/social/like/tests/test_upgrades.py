@@ -46,14 +46,14 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
 
     def test_upgrade_to_3030_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
-        self.assertTrue(int(version) >= int(self.to_version))
+        self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self.total_steps, 3)
 
     def test_move_mobile_detection_client_side(self):
         # check if the upgrade step is registered
         title = u'Move mobile detection client-side'
         step = self.get_upgrade_step(title)
-        self.assertTrue(step is not None)
+        self.assertIsNotNone(step)
 
         js_tool = api.portal.get_tool('portal_javascripts')
         JS_ID = '++resource++sl_scripts/social_like.js'
@@ -65,4 +65,4 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
         self.execute_upgrade_step(step)
 
         # Check
-        self.assertTrue(JS_ID in js_tool.getResourceIds())
+        self.assertIn(JS_ID, js_tool.getResourceIds())

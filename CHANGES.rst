@@ -6,6 +6,10 @@ There's a frood who really knows where his towel is.
 2.4 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Drop explicit support for Plone 4.1 and Python 2.6;
+  package should work, but we are not testing anymore with those versions so compatibility is not guaranteed.
+  [hvelarde]
+
 - Fix caching issues with WhatsApp button by moving mobile detection client-side (closes `#56`_).
   [rodfersou]
 
