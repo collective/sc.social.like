@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.4 (unreleased)
+2.4 (2015-09-17)
 ^^^^^^^^^^^^^^^^
 
 - Drop explicit support for Plone 4.1 and Python 2.6;
