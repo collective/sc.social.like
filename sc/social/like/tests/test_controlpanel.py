@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.testing import logout
-from Products.CMFCore.utils import getToolByName
+from sc.social.like.config import PROJECTNAME
 from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.controlpanel.likes import ProvidersControlPanel
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -15,6 +16,7 @@ class ControlPanelTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.controlpanel = self.portal['portal_controlpanel']
         self.adapter = LikeControlPanelAdapter(self.portal)
         self.sheet = self.portal.portal_properties.sc_social_likes_properties
 
@@ -38,11 +40,20 @@ class ControlPanelTest(unittest.TestCase):
         with self.assertRaises(Unauthorized):
             self.portal.restrictedTraverse('@@likes-providers')
 
-    def test_configlet_install(self):
-        controlpanel = getToolByName(self.portal, 'portal_controlpanel')
-        installed = [a.getAction(self)['id']
-                     for a in controlpanel.listActions()]
-        self.assertIn('sociallikes', installed)
+    def test_configlet_installed(self):
+        actions = [a.getAction(self)['id']
+                   for a in self.controlpanel.listActions()]
+        self.assertIn('sociallikes', actions)
+
+    def test_configlet_removed_on_uninstall(self):
+        qi = self.portal['portal_quickinstaller']
+
+        with api.env.adopt_roles(['Manager']):
+            qi.uninstallProducts(products=[PROJECTNAME])
+
+        actions = [a.getAction(self)['id']
+                   for a in self.controlpanel.listActions()]
+        self.assertNotIn('sociallikes', actions)
 
     def test_enabled_portal_types(self):
         adapter = self.adapter
