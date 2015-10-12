@@ -155,7 +155,7 @@
 
             </form>
 
-            <script type="text/javascript"
+            <script type="application/javascript"
                 tal:define="extra_script view/extra_script | nothing"
                 tal:condition="extra_script"
                 tal:content="structure extra_script">
