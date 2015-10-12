@@ -1,8 +1,8 @@
 <tal:gp>
-  <script type="text/javascript">
+  <script type="application/javascript">
     (function() {
         var po = document.createElement('script');
-        po.type = 'text/javascript';
+        po.type = 'application/javascript';
         po.async = true;
         po.src = '//apis.google.com/js/plusone.js';
         var head = document.getElementsByTagName('head')[0];
