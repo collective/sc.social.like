@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-from Products.CMFQuickInstallerTool import interfaces as qi_interfaces
 from Products.CMFPlone import interfaces as plone_interfaces
+from Products.CMFQuickInstallerTool import interfaces as qi_interfaces
 from zope.interface import implements
 
 
@@ -12,6 +12,7 @@ class HiddenProducts(object):
                 'sc.social.like.upgrades.v3000',
                 'sc.social.like.upgrades.v3010',
                 'sc.social.like.upgrades.v3020',
+                'sc.social.like:base',
                 ]
 
 
@@ -25,4 +26,5 @@ class HiddenProfiles(object):
             u'sc.social.like.upgrades.v3000:default',
             u'sc.social.like.upgrades.v3010:default',
             u'sc.social.like.upgrades.v3020:default',
+            u'sc.social.like:base',
         ]
