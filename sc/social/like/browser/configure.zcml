@@ -1,9 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="sc.social.like">
 
     <browser:page
@@ -40,11 +42,24 @@
         permission="zope2.View"
         />
 
+    <plone:static
+        name="sl_images"
+        directory="images"
+        type="plone"
+        />
+
     <browser:resourceDirectory
         name="sl_images"
         directory="images"
         layer="..interfaces.ISocialLikeLayer"
         permission="zope.Public"
+        zcml:condition="not-have plone-5"
+        />
+
+    <plone:static
+        name="sl_stylesheets"
+        directory="stylesheets"
+        type="plone"
         />
 
     <browser:resourceDirectory
@@ -52,6 +67,13 @@
         directory="stylesheets"
         layer="..interfaces.ISocialLikeLayer"
         permission="zope.Public"
+        zcml:condition="not-have plone-5"
+        />
+
+    <plone:static
+        name="sl_scripts"
+        directory="scripts"
+        type="plone"
         />
 
     <browser:resourceDirectory
@@ -59,6 +81,7 @@
         directory="scripts"
         layer="..interfaces.ISocialLikeLayer"
         permission="zope.Public"
+        zcml:condition="not-have plone-5"
         />
 
 </configure>
