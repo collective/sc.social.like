@@ -1,13 +1,32 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="sc.social.like">
 
     <!-- Profiles -->
 
     <gs:registerProfile
+        zcml:condition="not-have plone-5"
         name="default"
         title="Social: Like Actions"
+        directory="profiles/plone4"
+        description="A simple, yet useful, social networking integration for Plone"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <gs:registerProfile
+        zcml:condition="have plone-5"
+        name="default"
+        title="Social: Like Actions"
+        directory="profiles/plone5"
+        description="A simple, yet useful, social networking integration for Plone"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <gs:registerProfile
+        name="base"
+        title="Social: Like Actions Basic Setup"
         directory="profiles/default"
         description="A simple, yet useful, social networking integration for Plone"
         provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -21,6 +40,8 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         />
+
+
 
     <!-- Upgrades -->
     <include package=".upgrades" />
