@@ -3,8 +3,11 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.5 (unreleased)
-^^^^^^^^^^^^^^^^
+2.4.1 (unreleased)
+^^^^^^^^^^^^^^^^^^
+
+- Update package classifiers; Plone 5 was included by mistake in the list of supported versions.
+  [hvelarde]
 
 - Use "application/javascript" media type instead of the obsolete "text/javascript".
   [hvelarde]
