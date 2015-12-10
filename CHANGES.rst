@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.4.1 (unreleased)
+2.4.1 (2015-12-10)
 ^^^^^^^^^^^^^^^^^^
 
 - Update package classifiers; Plone 5 was included by mistake in the list of supported versions.
