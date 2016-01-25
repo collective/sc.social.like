@@ -4,7 +4,7 @@
     i18n:domain="sc.social.like">
   <configlet title="Social Like" action_id="sociallikes"
      appId="sc.social.like" category="Products" condition_expr=""
-     url_expr="string:${portal_url}/@@likes-providers"
+     url_expr="string:${portal_url}/@@like-controlpanel"
      icon_expr="string:${portal_url}/++resource++sl_images/ico-sociallike.png"
      visible="True" i18n:attributes="title">
     <permission>Manage portal</permission>
