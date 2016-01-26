@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.pinterest import browser
 from sc.social.like.plugins.interfaces import IPlugin
@@ -55,7 +54,6 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.adapter = LikeControlPanelAdapter(self.portal)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.setup_content(self.portal)
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
