@@ -1,12 +1,11 @@
 # -*- coding:utf-8 -*-
-from plone.registry.interfaces import IRegistry
+from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
-from zope.component import getUtility
 
 
 BASE_URL = '//pinterest.com/pin/create/button/'
@@ -56,8 +55,7 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        registry = getUtility(IRegistry)
-        typebutton = registry.get('sc.social.like.typebutton')
+        typebutton = api.portal.get_registry_record('sc.social.like.typebutton')
         if typebutton == 'horizontal':
             typebutton = 'beside'
         else:
