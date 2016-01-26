@@ -1,12 +1,14 @@
 # -*- coding:utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.utils import get_language
 from urllib import urlencode
+from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 
 
 class PluginView(BrowserView):
@@ -23,7 +25,6 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
 
         self.context = context
         self.request = request
@@ -34,10 +35,6 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = get_language(context)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-        if self.sheet:
-            self.typebutton = self.sheet.getProperty('typebutton', '')
-            self.twittvia = self.sheet.getProperty('twittvia', '')
         self.urlnoscript = (
             u'http://twitter.com/home?status=' +
             url_quote(u'{0} - {1} via {2}'.format(
@@ -46,6 +43,16 @@ class PluginView(BrowserView):
                 self.twittvia)
             )
         )
+
+    @Lazy
+    def typebutton(self):
+        registry = getUtility(IRegistry)
+        return registry.get('sc.social.like.typebutton')
+
+    @Lazy
+    def twittvia(self):
+        registry = getUtility(IRegistry)
+        return registry.get('sc.social.like.twittvia')
 
     def share_link(self):
         params = dict(

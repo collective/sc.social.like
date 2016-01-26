@@ -5,4 +5,7 @@
   <records interface="sc.social.like.controlpanel.ISocialLikeControlPanel"
            prefix="sc.social.like" />
 
+  <records interface="sc.social.like.plugins.twitter.ITwitterControlPanel"
+           prefix="sc.social.like" />
+
 </registry>
