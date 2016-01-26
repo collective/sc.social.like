@@ -39,7 +39,7 @@ class BaseLikeViewlet(ViewletBase):
     def enabled(self):
         """Validates if the viewlet should be enabled for this context
         """
-        return self.helper.enabled() and self.plugins()
+        return self.helper.enabled() and bool(self.plugins())
 
     # HACK: fixes https://bitbucket.org/takaki/sc.social.like/issue/1
     def update(self):
