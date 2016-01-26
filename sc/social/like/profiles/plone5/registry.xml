@@ -18,9 +18,9 @@
       <element>sc-social-like</element>
     </value>
     <value key="enabled">True</value>
-  </records>
-  <value key="jscompilation">++plone++static/sc-social-like-bundle-compiled.js</value>
-  <value key="csscompilation">++plone++static/sc-social-like-bundle-compiled.css</value>
-  <value key="last_compilation">2015-10-17T18:07:27.183553</value>
+    <value key="jscompilation">++plone++sl_scripts/social_like.js</value>
+    <value key="csscompilation">++plone++sl_stylesheets/social_like.css</value>
+    <value key="last_compilation">2015-01-26 12:07:27</value>
+   </records>
 
 </registry>
