@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from datetime import date
-from plone import api
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
@@ -24,7 +22,7 @@ styles = SimpleVocabulary([
 
 
 def default_enabled_portal_types():
-    return ('Document', 'Event', 'News Item')
+    return ('Document', 'Event', 'News Item', 'File')
 
 
 class ISocialLikeControlPanel(Interface):

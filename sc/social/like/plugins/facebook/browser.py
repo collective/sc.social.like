@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_parent, aq_inner
-from plone.registry.interfaces import IRegistry
+from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
@@ -10,7 +10,6 @@ from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
-from zope.component import getUtility
 
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
@@ -96,8 +95,7 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        registry = getUtility(IRegistry)
-        typebutton = registry.get('sc.social.like.typebutton')
+        typebutton = api.portal.get_registry_record('sc.social.like.typebutton')
 
         if typebutton == 'horizontal':
             typebutton = 'button_count'
@@ -109,23 +107,19 @@ class PluginView(BrowserView):
 
     @property
     def fbaction(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.fbaction')
+        return api.portal.get_registry_record('sc.social.like.fbaction')
 
     @property
     def fbapp_id(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.fbapp_id')
+        return api.portal.get_registry_record('sc.social.like.fbapp_id')
 
     @property
     def fbadmins(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.fbadmins')
+        return api.portal.get_registry_record('sc.social.like.fbadmins')
 
     @property
     def fbbuttons(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.fbbuttons')
+        return api.portal.get_registry_record('sc.social.like.fbbuttons')
 
     def _isPortalDefaultView(self):
         context = self.context

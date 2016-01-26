@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from plone.app.layout.globals.interfaces import IViewView
@@ -9,8 +10,6 @@ from sc.social.like.plugins import IPlugin
 from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
 from zope.interface import implements
-from plone.registry.interfaces import IRegistry
-from zope.component import getUtility
 
 
 class HelperView(BrowserView):
@@ -30,13 +29,11 @@ class HelperView(BrowserView):
 
     @memoize_contextless
     def enabled_portal_types(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.enabled_portal_types')
+        return api.portal.get_registry_record('sc.social.like.enabled_portal_types')
 
     @memoize_contextless
     def plugins_enabled(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.plugins_enabled')
+        return api.portal.get_registry_record('sc.social.like.plugins_enabled')
 
     @memoize
     def enabled(self, view=None):
@@ -63,13 +60,11 @@ class HelperView(BrowserView):
 
     @memoize_contextless
     def typebutton(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.typebutton')
+        return api.portal.get_registry_record('sc.social.like.typebutton')
 
     @memoize_contextless
     def do_not_track(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.do_not_track')
+        return api.portal.get_registry_record('sc.social.like.do_not_track')
 
     @memoize
     def view_template_id(self):

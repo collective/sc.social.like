@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from plone.registry.interfaces import IRegistry
+from plone import api
 from Products.Five import BrowserView
 from sc.social.like.interfaces import ISocialLikes
-from zope.component import getUtility
 from zope.interface import implements
 
 
@@ -29,5 +28,4 @@ class SocialLikes(BrowserView):
 
     @property
     def enabled_portal_types(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.enabled_portal_types')
+        return api.portal.get_registry_record('sc.social.like.enabled_portal_types')

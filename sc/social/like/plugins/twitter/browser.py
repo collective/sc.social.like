@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from plone.registry.interfaces import IRegistry
+from plone import api
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -7,7 +7,6 @@ from Products.PythonScripts.standard import url_quote
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
-from zope.component import getUtility
 
 
 class PluginView(BrowserView):
@@ -45,13 +44,11 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.typebutton')
+        return api.portal.get_registry_record('sc.social.like.typebutton')
 
     @property
     def twittvia(self):
-        registry = getUtility(IRegistry)
-        return registry.get('sc.social.like.twittvia')
+        return api.portal.get_registry_record('sc.social.like.twittvia')
 
     def share_link(self):
         params = dict(
