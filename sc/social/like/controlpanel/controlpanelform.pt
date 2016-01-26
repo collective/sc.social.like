@@ -6,8 +6,8 @@
       tal:omit-tag="">
   <metal:block use-macro="context/@@ploneform-macros/titlelessform">
     <metal:slot fill-slot="formtop">
-        <ul tal:define="plugins view/plugins_configs">
-          <li>[home]</li>
+        <ul id="social-plugin-setting-nav" tal:define="plugins view/plugins_configs">
+          <li i18n:translate="">Main Settings</li>
         <li tal:repeat="plugin plugins">
           <a tal:attributes="href plugin/url;
                              title plugin/name;"

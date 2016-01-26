@@ -49,3 +49,15 @@
 {
     display: inline-block;
 }
+#social-plugin-setting-nav {
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+#social-plugin-setting-nav li {
+    display: inline-block;
+    margin-right: 1em;
+}
+#social-plugin-setting-nav li a {
+    border: 0;
+}
