@@ -4,6 +4,7 @@ from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.z3cform import layout
 from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.plugins import IPlugin
 from zope import schema
@@ -76,8 +77,10 @@ class ISocialLikeControlPanel(Interface):
 
 class SocialLikeControlPanelForm(RegistryEditForm):
     schema = ISocialLikeControlPanel
-    schema_prefix = "sc.social.like"
+    schema_prefix = 'sc.social.like'
     label = u'Social Like Settings'
+
+    template = ViewPageTemplateFile('controlpanelform.pt')
 
     def plugins_configs(self):
         """ Return Plugins and their configuration pages """
@@ -97,3 +100,4 @@ class SocialLikeControlPanelForm(RegistryEditForm):
 
 SocialLikeControlPanelView = layout.wrap_form(
     SocialLikeControlPanelForm, ControlPanelFormWrapper)
+
