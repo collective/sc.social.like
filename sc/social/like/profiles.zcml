@@ -27,7 +27,7 @@
     <gs:registerProfile
         name="base"
         title="Social: Like Actions Basic Setup"
-        directory="profiles/default"
+        directory="profiles/base"
         description="A simple, yet useful, social networking integration for Plone"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
