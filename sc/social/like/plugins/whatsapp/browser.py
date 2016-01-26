@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -19,7 +18,6 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
 
         self.context = context
         self.request = request
@@ -30,7 +28,6 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = get_language(context)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         self.whatsappurl = (
             u'whatsapp://send?text=' +
             url_quote(

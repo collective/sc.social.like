@@ -1,11 +1,13 @@
 # -*- coding:utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+from plone.registry.interfaces import IRegistry
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
+from zope.component import getUtility
+
 
 BASE_URL = '//pinterest.com/pin/create/button/'
 PARAMS = '?url=%s&media=%s&description=%s'
@@ -23,7 +25,6 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
 
         self.context = context
         self.request = request
@@ -35,7 +36,6 @@ class PluginView(BrowserView):
         self.url = context.absolute_url()
         self.image = get_content_image(context, scale='large')
         self.language = get_language(context)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
 
     def share_url(self):
         template = BASE_URL + PARAMS
@@ -56,7 +56,8 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty('typebutton', '')
+        registry = getUtility(IRegistry)
+        typebutton = registry.get('sc.social.like.typebutton')
         if typebutton == 'horizontal':
             typebutton = 'beside'
         else:
