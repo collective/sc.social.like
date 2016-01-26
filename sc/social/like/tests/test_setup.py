@@ -25,8 +25,7 @@ class InstallTestCase(unittest.TestCase):
         self.assertTrue(qi.isProductInstalled(PROJECTNAME))
 
     def test_portal_properties(self):
-        portal_properties = self.portal['portal_properties']
-        self.assertIn('sc_social_likes_properties', portal_properties)
+        self.assertTrue(api.portal.get_registry_record('sc.social.like.enabled_portal_types'))
 
     def test_addon_layer(self):
         layers = [l.getName() for l in registered_layers()]

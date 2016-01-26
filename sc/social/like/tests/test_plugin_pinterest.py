@@ -64,9 +64,9 @@ class PluginViewsTest(unittest.TestCase):
         portal.invokeFactory('News Item', 'my-newsitem')
         portal.invokeFactory('Image', 'my-image')
         self.newsitem = portal['my-newsitem']
-        self.newsitem.setImage(load_image(1024, 768))
-        self.image = portal['my-image']
-        self.image.setImage(load_image(1024, 768))
+        # self.newsitem.setImage(load_image(1024, 768))
+        # self.image = portal['my-image']
+        # self.image.setImage(load_image(1024, 768))
 
     def image_url(self, obj, field='image', scale='large'):
 
@@ -93,8 +93,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_privacy_plugin_view_html(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.do_not_track = True
+        api.portal.set_registry_record('sc.social.like.do_not_track', True)
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
