@@ -1,17 +1,13 @@
 # -*- coding:utf-8 -*-
-
-from plone.app.controlpanel.form import ControlPanelForm
-from Products.CMFDefault.formlib.schema import ProxyFieldProperty as PFP
-from Products.CMFPlone.interfaces import IPloneSiteRoot
+from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
+from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.z3cform import layout
 from sc.social.like import LikeMessageFactory as _
-from sc.social.like.controlpanel.likes import BaseControlPanelAdapter
 from zope import schema
-from zope.component import adapts
-from zope.formlib.form import FormFields
-from zope.interface import implements
 from zope.interface import Interface
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
 
 verbs = SimpleVocabulary([
     SimpleTerm(value=u'like', title=_(u'Like')),
@@ -24,7 +20,7 @@ buttons = SimpleVocabulary([
 ])
 
 
-class IFacebookSchema(Interface):
+class IFacebookControlPanel(Interface):
     """ Facebook configurations """
 
     fbaction = schema.Choice(
@@ -72,20 +68,14 @@ class IFacebookSchema(Interface):
     )
 
 
-class ControlPanelAdapter(BaseControlPanelAdapter):
-    """ Facebook control panel adapter """
-    adapts(IPloneSiteRoot)
-    implements(IFacebookSchema)
-
-    fbaction = PFP(IFacebookSchema['fbaction'])
-    fbadmins = PFP(IFacebookSchema['fbadmins'])
-    fbapp_id = PFP(IFacebookSchema['fbapp_id'])
-    fbbuttons = PFP(IFacebookSchema['fbbuttons'])
-
-
-class ProviderControlPanel(ControlPanelForm):
+class FacebookControlPanelForm(RegistryEditForm):
     """ """
-    form_fields = FormFields(IFacebookSchema)
-
+    schema = IFacebookControlPanel
+    schema_prefix = "sc.social.like"
     label = _('Social: Facebook settings')
+
     description = _('Configure settings for Facebook integration.')
+
+
+FacebookControlPanelView = layout.wrap_form(
+    FacebookControlPanelForm, ControlPanelFormWrapper)
