@@ -15,6 +15,9 @@ There's a frood who really knows where his towel is.
 - Update package classifiers; Plone 5 was included by mistake in the list of supported versions.
   [hvelarde]
 
+- Moved controlpanel to registry entries for Plone 5, keeping compatibility for Plone 4 too
+  [agitator]
+
 - Update resource registries for Plone 5, keeping compatibility for Plone 4 too
   [agitator]
 
