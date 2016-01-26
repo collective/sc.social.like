@@ -6,7 +6,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.utils import get_language
 from urllib import urlencode
-from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
@@ -44,12 +43,12 @@ class PluginView(BrowserView):
             )
         )
 
-    @Lazy
+    @property
     def typebutton(self):
         registry = getUtility(IRegistry)
         return registry.get('sc.social.like.typebutton')
 
-    @Lazy
+    @property
     def twittvia(self):
         registry = getUtility(IRegistry)
         return registry.get('sc.social.like.twittvia')
