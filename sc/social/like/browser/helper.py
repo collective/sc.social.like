@@ -5,7 +5,6 @@ from Products.Five import BrowserView
 from plone.app.layout.globals.interfaces import IViewView
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
-# from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.interfaces import IHelperView
 from sc.social.like.plugins import IPlugin
 from zope.component import getMultiAdapter
