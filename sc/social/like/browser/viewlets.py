@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
@@ -74,8 +75,6 @@ class SocialLikesViewlet(BaseLikeViewlet):
 
     @property
     def render_method(self):
-        tools = getMultiAdapter((self.context, self.request),
-                                name=u'plone_tools')
         # global cookie settings for privacy level
         if self.request.cookies.get('social-optout', None) == 'true' or \
                 self.request.get_header('HTTP_DNT') == '1':
