@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from sc.social.like.interfaces import ISocialLikeLayer

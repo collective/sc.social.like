@@ -63,6 +63,7 @@ setup(name='sc.social.like',
       extras_require={
           'test': [
               'plone.browserlayer',
+              'plone.app.contenttypes',
               'plone.app.robotframework',
               'plone.app.testing [robot] >=4.2.2',
               'robotsuite',

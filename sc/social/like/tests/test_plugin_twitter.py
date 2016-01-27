@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from sc.social.like.interfaces import ISocialLikeLayer
@@ -64,12 +65,12 @@ class PluginViewsTest(unittest.TestCase):
         portal.invokeFactory('Document', 'my-document')
         self.document = portal['my-document']
 
-    def test_config_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        config_view = plugin.config_view()
-        view = portal.restrictedTraverse(config_view)
-        self.assertTrue(isinstance(view, controlpanel.ProviderControlPanel))
+#    def test_config_view(self):
+#        plugin = self.plugin
+#        portal = self.portal
+#        config_view = plugin.config_view()
+#        view = portal.restrictedTraverse(config_view)
+#        self.assertTrue(isinstance(view, controlpanel.ProviderControlPanel))
 
     def test_plugin_view(self):
         plugin = self.plugin
@@ -95,28 +96,28 @@ class PluginViewsTest(unittest.TestCase):
         html = view.link()
         self.assertIn('Tweet it!', html)
 
-    # def test_plugin_twittvia(self):
-    #     plugin = self.plugin
-    #     document = self.document
-    #     adapter = controlpanel.ControlPanelAdapter(self.portal)
-    #     adapter.twittvia = u'@simplesconsult'
+#    def test_plugin_twittvia(self):
+#        plugin = self.plugin
+#        document = self.document
+#        adapter = controlpanel.ControlPanelAdapter(self.portal)
+#        adapter.twittvia = u'@simplesconsult'
 
-    #     plugin_view = plugin.view()
-    #     view = document.restrictedTraverse(plugin_view)
-    #     html = view.plugin()
-    #     self.assertIn('data-via="@simplesconsult"', html)
+#        plugin_view = plugin.view()
+#        view = document.restrictedTraverse(plugin_view)
+#        html = view.plugin()
+#        self.assertIn('data-via="@simplesconsult"', html)
 
-    # def test_plugin_urlnoscript_encoding(self):
-    #     plugin = self.plugin
-    #     document = self.document
-    #     document.setTitle(u'Notícia')
-    #     adapter = controlpanel.ControlPanelAdapter(self.portal)
-    #     adapter.twittvia = u'@simplesconsult'
+#    def test_plugin_urlnoscript_encoding(self):
+#        plugin = self.plugin
+#        document = self.document
+#        document.setTitle(u'Notícia')
+#        adapter = controlpanel.ControlPanelAdapter(self.portal)
+#        adapter.twittvia = u'@simplesconsult'
 
-    #     plugin_view = plugin.view()
-    #     view = document.restrictedTraverse(plugin_view)
-    #     html = view.plugin()
-    #     self.assertIn('%20via%20%40simplesconsult">Tweet', html)
+#        plugin_view = plugin.view()
+#        view = document.restrictedTraverse(plugin_view)
+#        html = view.plugin()
+#        self.assertIn('%20via%20%40simplesconsult">Tweet', html)
 
     def test_plugin_language(self):
         plugin = self.plugin
