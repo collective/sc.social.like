@@ -3,10 +3,11 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.4.2 (unreleased)
-^^^^^^^^^^^^^^^^^^
+2.5 (unreleased)
+^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Package is now compatible with Plone 5.
+  [agitator, hvelarde]
 
 
 2.4.1 (2015-12-10)
@@ -14,12 +15,6 @@ There's a frood who really knows where his towel is.
 
 - Update package classifiers; Plone 5 was included by mistake in the list of supported versions.
   [hvelarde]
-
-- Moved controlpanel to registry entries for Plone 5, keeping compatibility for Plone 4 too
-  [agitator]
-
-- Update resource registries for Plone 5, keeping compatibility for Plone 4 too
-  [agitator]
 
 - Use "application/javascript" media type instead of the obsolete "text/javascript".
   [hvelarde]
