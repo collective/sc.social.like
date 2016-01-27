@@ -3,7 +3,7 @@ from plone.browserlayer.utils import registered_layers
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.testing import INTEGRATION_TESTING
 
-import unittest2 as unittest
+import unittest
 
 JAVASCRIPTS = [
 ]

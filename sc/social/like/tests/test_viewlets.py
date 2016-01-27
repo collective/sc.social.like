@@ -7,7 +7,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from zope.interface import alsoProvides
 
-import unittest2 as unittest
+import unittest
 
 
 class MetadataViewletTestCase(unittest.TestCase):
