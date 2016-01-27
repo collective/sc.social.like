@@ -76,15 +76,11 @@ class SocialLikesViewlet(BaseLikeViewlet):
     def render_method(self):
         tools = getMultiAdapter((self.context, self.request),
                                 name=u'plone_tools')
-        site_properties = tools.properties()
         # global cookie settings for privacy level
         if self.request.cookies.get('social-optout', None) == 'true' or \
                 self.request.get_header('HTTP_DNT') == '1':
             return 'link'
         # site specific privacy level check
-        if getattr(site_properties, 'sc_social_likes_properties', None) \
-                and getattr(site_properties.sc_social_likes_properties,
-                            'do_not_track', None) and \
-                site_properties.sc_social_likes_properties.do_not_track:
+        if api.portal.get_registry_record('sc.social.like.do_not_track'):
             return 'link'
         return 'plugin'
