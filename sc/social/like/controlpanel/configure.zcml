@@ -3,7 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser">
 
     <browser:page
-        name="like-controlpanel"
+        name="sociallikes-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
         class=".likes.SocialLikeControlPanelView"

@@ -2,6 +2,7 @@
 from Acquisition import aq_inner
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.directives import form
 from plone.z3cform import layout
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -9,10 +10,8 @@ from sc.social.like import LikeMessageFactory as _
 from sc.social.like.plugins import IPlugin
 from zope import schema
 from zope.component import getUtilitiesFor
-from zope.interface import Interface
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
 
 CONTENT_TYPES = 'plone.app.vocabularies.ReallyUserFriendlyTypes'
 
@@ -26,7 +25,7 @@ def default_enabled_portal_types():
     return ('Document', 'Event', 'News Item', 'File')
 
 
-class ISocialLikeControlPanel(Interface):
+class ISocialLikeControlPanel(form.Schema):
 
     enabled_portal_types = schema.Tuple(
         title=_(u'Content types'),
@@ -97,7 +96,5 @@ class SocialLikeControlPanelForm(RegistryEditForm):
                                 'url': url})
         return plugins
 
-
 SocialLikeControlPanelView = layout.wrap_form(
     SocialLikeControlPanelForm, ControlPanelFormWrapper)
-
