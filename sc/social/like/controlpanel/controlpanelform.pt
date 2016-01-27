@@ -7,7 +7,8 @@
   <metal:block use-macro="context/@@ploneform-macros/titlelessform">
     <metal:slot fill-slot="formtop">
         <ul id="social-plugin-setting-nav" tal:define="plugins view/plugins_configs">
-          <li i18n:translate="">Main Settings</li>
+          <li><a href="" tal:attributes="href string:${context/portal_url}/@@like-controlpanel"
+                 i18n:translate="">Main Settings</a></li>
         <li tal:repeat="plugin plugins">
           <a tal:attributes="href plugin/url;
                              title plugin/name;"
