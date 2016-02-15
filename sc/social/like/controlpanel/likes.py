@@ -2,7 +2,7 @@
 from Acquisition import aq_inner
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
-from plone.directives import form
+from plone.supermodel import model
 from plone.z3cform import layout
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -25,7 +25,7 @@ def default_enabled_portal_types():
     return ('Document', 'Event', 'News Item', 'File')
 
 
-class ISocialLikeControlPanel(form.Schema):
+class ISocialLikeControlPanel(model.Schema):
 
     enabled_portal_types = schema.Tuple(
         title=_(u'Content types'),
