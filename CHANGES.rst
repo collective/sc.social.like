@@ -12,6 +12,9 @@ There's a frood who really knows where his towel is.
 2.6b1 (2016-12-21)
 ^^^^^^^^^^^^^^^^^^
 
+- Add Twitter Cards metadata (closes `#65`_).
+  [rodfersou]
+
 - Code clean up; tests related with loading BMP images were removed as make no sense.
   [hvelarde]
 
@@ -243,4 +246,5 @@ Previous entries can be found in the HISTORY.rst file.
 .. _`#39`: https://github.com/collective/sc.social.like/issues/39
 .. _`#52`: https://github.com/collective/sc.social.like/issues/52
 .. _`#56`: https://github.com/collective/sc.social.like/issues/56
+.. _`#65`: https://github.com/collective/sc.social.like/issues/65
 .. _`#83`: https://github.com/collective/sc.social.like/issues/83

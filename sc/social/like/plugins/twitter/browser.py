@@ -6,6 +6,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.interfaces import ISocialLikeSettings
+from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
@@ -22,6 +23,8 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         self.context = context
+        self.title = context.title
+        self.description = context.Description()
         self.request = request
         # FIXME: the following could rise unexpected exceptions
         #        move it to a new setup() method
@@ -33,6 +36,7 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = get_language(context)
+        self.image = get_content_image(context)
         self.urlnoscript = (
             u'http://twitter.com/home?status=' +
             url_quote(u'{0} - {1} via {2}'.format(
@@ -41,6 +45,10 @@ class PluginView(BrowserView):
                 self.via)
             )
         )
+
+    def metadata_enabled(self):
+        """Disable metadata on Plone 5"""
+        return not api.env.plone_version().startswith('5')
 
     @property
     def typebutton(self):
@@ -68,3 +76,10 @@ class PluginView(BrowserView):
 
         url = 'https://twitter.com/intent/tweet?' + urlencode(params)
         return url
+
+    def image_url(self):
+        """ Return url to image
+        """
+        img = self.image
+        if img:
+            return img.url

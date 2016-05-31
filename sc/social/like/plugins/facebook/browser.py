@@ -46,6 +46,10 @@ class PluginView(BrowserView):
         self.image = get_content_image(context, width=1200, height=630)
         self.typebutton  # XXX: needed to initialize self.width
 
+    def metadata_enabled(self):
+        """Disable metadata on Plone 5"""
+        return not api.env.plone_version().startswith('5')
+
     def fbjs(self):
         js_source = """
     (function() {{

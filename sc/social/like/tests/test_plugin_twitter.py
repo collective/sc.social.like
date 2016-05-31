@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
@@ -6,6 +7,8 @@ from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import load_image
+from sc.social.like.tests.api_hacks import set_image_field
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
 from zope.interface import alsoProvides
@@ -63,9 +66,37 @@ class PluginViewsTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
+        with api.env.adopt_roles(['Manager']):
+            self.image = api.content.create(
+                self.portal, 'Image', id='test-image')
+
+        set_image_field(self.image, load_image(1024, 768), 'image/png')
+
     def setup_content(self, portal):
         portal.invokeFactory('Document', 'my-document')
         self.document = portal['my-document']
+
+    def test_plugin_view_metadata(self):
+        plugin = self.plugin
+        image = self.image
+        plugin_view = plugin.view()
+        view = image.restrictedTraverse(plugin_view)
+        view.title = 'Twitter Title'
+        view.description = 'Twitter Description'
+        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
+        api.portal.set_registry_record(record, 'plone')
+
+        metadata = view.metadata()
+        self.assertIn(
+            '<meta name="twitter:card" content="summary_large_image" />', metadata)
+        self.assertIn(
+            '<meta name="twitter:image" content="http://nohost/plone/test-image/@@images', metadata)
+        self.assertIn(
+            '<meta name="twitter:site" content="@plone" />', metadata)
+        self.assertIn(
+            '<meta name="twitter:title" content="Twitter Title" />', metadata)
+        self.assertIn(
+            '<meta name="twitter:description" content="Twitter Description" />', metadata)
 
     def test_plugin_view_html(self):
         plugin = self.plugin

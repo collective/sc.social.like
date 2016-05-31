@@ -1,4 +1,4 @@
-<tal:fb>
+<tal:fb condition="view/metadata_enabled">
   <meta property="og:site_name" tal:attributes="content view/portal_title" />
   <meta property="og:url" tal:attributes="content view/url" />
   <meta property="og:type" tal:attributes="content view/type" />

@@ -1,0 +1,7 @@
+<tal:twitter condition="view/metadata_enabled">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" tal:attributes="content view/image_url" tal:condition="view/image_url" />
+  <meta name="twitter:site" tal:attributes="content string:@${view/via}" />
+  <meta name="twitter:title" tal:attributes="content view/title" />
+  <meta name="twitter:description" tal:attributes="content view/description" />
+</tal:twitter>
