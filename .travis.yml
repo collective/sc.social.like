@@ -9,12 +9,14 @@ env:
   - PLONE_VERSION=4.3
   - PLONE_VERSION=5.0
 matrix:
+  allow_failures:
+    - env: PLONE_VERSION=5.0
   fast_finish: true
 install:
   - sed -ie "s#test-4.x#test-$PLONE_VERSION.x#" buildout.cfg
   - python bootstrap.py
   - bin/buildout annotate
-  - bin/buildout -Nq
+  - bin/buildout
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -23,9 +25,9 @@ script:
   - bin/code-analysis
   - bin/test
 after_success:
-  - test $PLONE_VERSION != 4.1 && bin/zopepy setup.py check -mrs
+  - bin/zopepy setup.py check -mrs
   - bin/createcoverage
-  - pip install -q coveralls
+  - pip install coveralls
   - coveralls
 notifications:
   irc: irc.freenode.org#simplesconsultoria
