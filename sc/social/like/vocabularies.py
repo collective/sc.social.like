@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from plone.memoize import forever
+from sc.social.like import LikeMessageFactory as _
 from sc.social.like.plugins import IPlugin
 from zope.component import getUtilitiesFor
 from zope.interface import implements
@@ -29,3 +30,20 @@ class PluginsVocabulary(object):
         return self.plugins()
 
 PluginsVocabularyFactory = PluginsVocabulary()
+
+
+TypeButtonVocabulary = SimpleVocabulary([
+    SimpleTerm(value=u'horizontal', title=_(u'horizontal')),
+    SimpleTerm(value=u'vertical', title=_(u'vertical')),
+])
+
+
+FacebookVerbsVocabulary = SimpleVocabulary([
+    SimpleTerm(value=u'like', title=_(u'Like')),
+    SimpleTerm(value=u'recommend', title=_(u'Recommend')),
+])
+
+FacebookButtonsVocabulary = SimpleVocabulary([
+    SimpleTerm(value=u'Like', title=_(u'Like')),
+    SimpleTerm(value=u'Share', title=_(u'Share')),
+])

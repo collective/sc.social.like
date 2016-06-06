@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-
 from Acquisition import aq_inner
-from Products.Five import BrowserView
 from plone.app.layout.globals.interfaces import IViewView
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
+from plone.registry.interfaces import IRegistry
+from Products.Five import BrowserView
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import IHelperView
 from sc.social.like.plugins import IPlugin
 from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
+from zope.component import getUtility
 from zope.interface import implements
 
 
@@ -30,13 +31,15 @@ class HelperView(BrowserView):
 
     @memoize_contextless
     def configs(self):
-        adapter = LikeControlPanelAdapter(self.portal)
-        return adapter
+        registry = getUtility(IRegistry)
+        # do not fail if the upgrade step has not being run
+        settings = registry.forInterface(ISocialLikeSettings, check=False)
+        return settings
 
     @memoize_contextless
     def enabled_portal_types(self):
         configs = self.configs()
-        return configs.enabled_portal_types
+        return configs.enabled_portal_types or []
 
     @memoize_contextless
     def plugins_enabled(self):

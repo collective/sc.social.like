@@ -24,10 +24,6 @@ class InstallTestCase(unittest.TestCase):
         qi = getattr(self.portal, 'portal_quickinstaller')
         self.assertTrue(qi.isProductInstalled(PROJECTNAME))
 
-    def test_portal_properties(self):
-        portal_properties = self.portal['portal_properties']
-        self.assertIn('sc_social_likes_properties', portal_properties)
-
     def test_addon_layer(self):
         layers = [l.getName() for l in registered_layers()]
         self.assertIn('ISocialLikeLayer', layers)
@@ -58,10 +54,6 @@ class UninstallTest(unittest.TestCase):
     def test_addon_layer_removed(self):
         layers = [l.getName() for l in registered_layers()]
         self.assertNotIn('ISocialLikeLayer', layers)
-
-    def test_portal_properties_removed(self):
-        portal_properties = self.portal['portal_properties']
-        self.assertNotIn('sc_social_likes_properties', portal_properties)
 
     def test_jsregistry_removed(self):
         resource_ids = self.portal.portal_javascripts.getResourceIds()

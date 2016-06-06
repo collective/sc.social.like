@@ -61,4 +61,11 @@
         permission="zope.Public"
         />
 
+    <browser:page
+        name="sociallike-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class="sc.social.like.controlpanel.SocialLikeSettingsControlPanel"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

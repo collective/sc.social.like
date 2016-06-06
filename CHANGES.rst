@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.4.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Use Plone's registry instead of the ``portal_properties`` tool to store package configuration (closes `#1`_).
+  [hvelarde]
 
 
 2.4.1 (2015-12-10)
@@ -276,6 +277,7 @@ There's a frood who really knows where his towel is.
 
 * Initial release [cleberjsantos]
 
+.. _`#1`: https://github.com/collective/sc.social.like/issues/1
 .. _`#15`: https://github.com/collective/sc.social.like/pull/15
 .. _`#36`: https://github.com/collective/sc.social.like/issues/36
 .. _`#38`: https://github.com/collective/sc.social.like/issues/38

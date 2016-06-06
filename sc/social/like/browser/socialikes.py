@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_inner
+from plone import api
+from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
-from Products.CMFCore.utils import getToolByName
-
-from zope.interface import implements
-from zope.i18nmessageid import MessageFactory
-
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import ISocialLikes
-
-_ = MessageFactory('sc.social.like')
+from zope.interface import implements
 
 
 class SocialLikes(BrowserView):
@@ -16,23 +12,17 @@ class SocialLikes(BrowserView):
     """
     implements(ISocialLikes)
 
-    enabled_portal_types = []
-
-    def __init__(self, context, request, *args, **kwargs):
-        super(SocialLikes, self).__init__(context, request, *args, **kwargs)
-        context = aq_inner(context)
+    def __init__(self, context, request):
         self.context = context
-        pp = getToolByName(context, 'portal_properties')
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-        if self.sheet:
-            self.enabled_portal_types = self.sheet.getProperty(
-                'enabled_portal_types'
-            )
+        self.request = request
 
     @property
     def enabled(self):
-        """Validates if social bookmarks should be enabled
-           for this context"""
-        context = self.context
-        enabled_portal_types = self.enabled_portal_types
-        return context.portal_type in enabled_portal_types
+        """Validates if social bookmarks should be enabled in this context."""
+        record = ISocialLikeSettings.__identifier__ + '.enabled_portal_types'
+        try:
+            enabled_portal_types = api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            enabled_portal_types = []
+
+        return self.context.portal_type in enabled_portal_types
