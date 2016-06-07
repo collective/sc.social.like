@@ -1,0 +1,22 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone.z3cform"
+      tal:omit-tag="">
+  <metal:block use-macro="context/@@ploneform-macros/titlelessform">
+    <metal:slot fill-slot="formtop">
+        <ul id="social-plugin-setting-nav" tal:define="plugins view/plugins_configs">
+          <li><a href="" tal:attributes="href string:${context/portal_url}/@@like-controlpanel"
+                 i18n:translate="">Main Settings</a></li>
+        <li tal:repeat="plugin plugins">
+          <a tal:attributes="href plugin/url;
+                             title plugin/name;"
+             tal:content="plugin/name">
+            Facebook
+          </a>
+        </li>
+      </ul>
+    </metal:slot>
+  </metal:block>
+</div>

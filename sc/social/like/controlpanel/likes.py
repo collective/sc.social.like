@@ -1,35 +1,19 @@
-# -*- coding:utf-8 -*-
-
+# -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFDefault.formlib.schema import ProxyFieldProperty as PFP
-from Products.CMFDefault.formlib.schema import SchemaAdapterBase
-from Products.CMFPlone.interfaces import IPloneSiteRoot
+from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
+from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.supermodel import model
+from plone.z3cform import layout
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.controlpanel.form import ControlPanelForm
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.plugins import IPlugin
 from zope import schema
-from zope.app.form.browser import itemswidgets
-from zope.component import adapts
 from zope.component import getUtilitiesFor
-from zope.formlib.form import FormFields
-from zope.interface import Interface
-from zope.interface import implements
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 CONTENT_TYPES = 'plone.app.vocabularies.ReallyUserFriendlyTypes'
-
-
-class MultiSelectWidget(itemswidgets.MultiSelectWidget):
-    """ """
-    def __init__(self, field, request):
-        """Initialize the widget."""
-        super(MultiSelectWidget, self).__init__(field,
-                                                field.value_type.vocabulary,
-                                                request)
-
 
 styles = SimpleVocabulary([
     SimpleTerm(value=u'horizontal', title=_(u'horizontal')),
@@ -37,8 +21,11 @@ styles = SimpleVocabulary([
 ])
 
 
-class IProvidersSchema(Interface):
-    """ General Configurations """
+def default_enabled_portal_types():
+    return ('Document', 'Event', 'News Item', 'File')
+
+
+class ISocialLikeControlPanel(model.Schema):
 
     enabled_portal_types = schema.Tuple(
         title=_(u'Content types'),
@@ -48,6 +35,7 @@ class IProvidersSchema(Interface):
                     u'viewlet will be applied.',
         ),
         required=True,
+        defaultFactory=default_enabled_portal_types,
         value_type=schema.Choice(vocabulary=CONTENT_TYPES)
     )
 
@@ -86,37 +74,12 @@ class IProvidersSchema(Interface):
     )
 
 
-class BaseControlPanelAdapter(SchemaAdapterBase):
-    """ Base control panel adapter """
+class SocialLikeControlPanelForm(RegistryEditForm):
+    schema = ISocialLikeControlPanel
+    schema_prefix = 'sc.social.like'
+    label = u'Social Like Settings'
 
-    def __init__(self, context):
-        super(BaseControlPanelAdapter, self).__init__(context)
-        portal_properties = getToolByName(context, 'portal_properties')
-        self.context = portal_properties.get('sc_social_likes_properties', None)
-
-
-class LikeControlPanelAdapter(BaseControlPanelAdapter):
-    """ Like control panel adapter """
-    adapts(IPloneSiteRoot)
-    implements(IProvidersSchema)
-
-    enabled_portal_types = PFP(IProvidersSchema['enabled_portal_types'])
-    typebutton = PFP(IProvidersSchema['typebutton'])
-    plugins_enabled = PFP(IProvidersSchema['plugins_enabled'])
-    do_not_track = PFP(IProvidersSchema['do_not_track'])
-
-
-class ProvidersControlPanel(ControlPanelForm):
-    """ """
-    template = ViewPageTemplateFile('likes.pt')
-    form_fields = FormFields(IProvidersSchema)
-
-    form_fields['enabled_portal_types'].custom_widget = MultiSelectWidget
-    form_fields['plugins_enabled'].custom_widget = MultiSelectWidget
-
-    label = _('Social: Like Actions settings')
-    description = _('Configure settings for social like actions.')
-    form_name = _('Social: Like Actions')
+    template = ViewPageTemplateFile('controlpanelform.pt')
 
     def plugins_configs(self):
         """ Return Plugins and their configuration pages """
@@ -132,3 +95,6 @@ class ProvidersControlPanel(ControlPanelForm):
                 plugins.append({'name': name,
                                 'url': url})
         return plugins
+
+SocialLikeControlPanelView = layout.wrap_form(
+    SocialLikeControlPanelForm, ControlPanelFormWrapper)

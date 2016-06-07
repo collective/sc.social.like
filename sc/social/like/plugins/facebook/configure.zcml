@@ -8,13 +8,10 @@
       factory="sc.social.like.plugins.facebook.Facebook"
       name="Facebook" />
 
-  <!-- ControlPanel -->
-  <adapter factory=".controlpanel.ControlPanelAdapter" />
-
   <browser:page
     name="facebook-config"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    class=".controlpanel.ProviderControlPanel"
+    class=".controlpanel.FacebookControlPanelForm"
     layer="sc.social.like.interfaces.ISocialLikeLayer"
     permission="cmf.ManagePortal"
     />

@@ -2,13 +2,11 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser">
 
-  <adapter factory=".likes.LikeControlPanelAdapter" />
-
-  <browser:page
-    name="likes-providers"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    class=".likes.ProvidersControlPanel"
-    permission="cmf.ManagePortal"
+    <browser:page
+        name="sociallike-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        class=".likes.SocialLikeControlPanelView"
     />
 
 </configure>

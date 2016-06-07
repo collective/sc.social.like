@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-
+from plone import api
 from Acquisition import aq_inner
 from Products.Five import BrowserView
 from plone.app.layout.globals.interfaces import IViewView
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
 from sc.social.like.interfaces import IHelperView
 from sc.social.like.plugins import IPlugin
 from zope.component import getMultiAdapter
@@ -29,19 +28,12 @@ class HelperView(BrowserView):
                                              name=u'plone_context_state')
 
     @memoize_contextless
-    def configs(self):
-        adapter = LikeControlPanelAdapter(self.portal)
-        return adapter
-
-    @memoize_contextless
     def enabled_portal_types(self):
-        configs = self.configs()
-        return configs.enabled_portal_types
+        return api.portal.get_registry_record('sc.social.like.enabled_portal_types')
 
     @memoize_contextless
     def plugins_enabled(self):
-        configs = self.configs()
-        return configs.plugins_enabled or []
+        return api.portal.get_registry_record('sc.social.like.plugins_enabled')
 
     @memoize
     def enabled(self, view=None):
@@ -58,7 +50,7 @@ class HelperView(BrowserView):
     @memoize_contextless
     def plugins(self):
         available = self.available_plugins()
-        enabled = self.plugins_enabled()
+        enabled = self.plugins_enabled() or ()
         plugins = []
         for plugin_id in enabled:
             plugin = available.get(plugin_id, None)
@@ -68,8 +60,11 @@ class HelperView(BrowserView):
 
     @memoize_contextless
     def typebutton(self):
-        configs = self.configs()
-        return configs.typebutton
+        return api.portal.get_registry_record('sc.social.like.typebutton')
+
+    @memoize_contextless
+    def do_not_track(self):
+        return api.portal.get_registry_record('sc.social.like.do_not_track')
 
     @memoize
     def view_template_id(self):

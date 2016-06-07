@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.app.testing import logout
 from sc.social.like.config import PROJECTNAME
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
-from sc.social.like.controlpanel.likes import ProvidersControlPanel
 from sc.social.like.testing import INTEGRATION_TESTING
-from zope.component import getMultiAdapter
 
 import unittest
 
@@ -17,28 +13,19 @@ class ControlPanelTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.controlpanel = self.portal['portal_controlpanel']
-        self.adapter = LikeControlPanelAdapter(self.portal)
-        self.sheet = self.portal.portal_properties.sc_social_likes_properties
 
-    def test_controlpanel_view(self):
-        view = getMultiAdapter(
-            (self.portal, self.portal.REQUEST), name='likes-providers')
+    def test_controlpanel_has_view(self):
+        request = self.layer['request']
+        view = api.content.get_view(u'sociallikes-settings', self.portal, request)
         view = view.__of__(self.portal)
         self.assertTrue(view())
-        self.assertTrue(isinstance(view, ProvidersControlPanel))
-
-    def test_controlpanel_plugins_configs(self):
-        view = getMultiAdapter(
-            (self.portal, self.portal.REQUEST), name='likes-providers')
-        configs = view.plugins_configs()
-        self.assertEqual(len(configs), 2)
 
     def test_controlpanel_view_protected(self):
-        # control panel view can not be accessed by anonymous users
         from AccessControl import Unauthorized
+        from plone.app.testing import logout
         logout()
         with self.assertRaises(Unauthorized):
-            self.portal.restrictedTraverse('@@likes-providers')
+            self.portal.restrictedTraverse('@@sociallikes-settings')
 
     def test_configlet_installed(self):
         actions = [a.getAction(self)['id']
@@ -55,29 +42,48 @@ class ControlPanelTest(unittest.TestCase):
                    for a in self.controlpanel.listActions()]
         self.assertNotIn('sociallikes', actions)
 
-    def test_enabled_portal_types(self):
-        adapter = self.adapter
-        adapter.enabled_portal_types = ()
-        self.assertEqual(len(adapter.enabled_portal_types), 0)
-        adapter.enabled_portal_types = ('Document', 'Event')
 
-        self.assertEqual(len(adapter.enabled_portal_types), 2)
+class RegistryTestCase(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+
+    def test_enabled_portal_types_record(self):
+        record = 'sc.social.like.enabled_portal_types'
         self.assertEqual(
-            adapter.enabled_portal_types, self.sheet.enabled_portal_types)
+            api.portal.get_registry_record(record),
+            ('Document', 'Event', 'News Item', 'File')
+        )
 
-    def test_plugins_enabled(self):
-        adapter = self.adapter
-        adapter.plugins_enabled = ()
-        self.assertEqual(len(adapter.plugins_enabled), 0)
-        adapter.plugins_enabled = ('Facebook', 'Twitter')
+    def test_plugins_enabled_record(self):
+        record = 'sc.social.like.plugins_enabled'
+        self.assertEqual(
+            api.portal.get_registry_record(record), None)  # FIXME
 
-        self.assertEqual(len(adapter.plugins_enabled), 2)
-        self.assertEqual(adapter.plugins_enabled, self.sheet.plugins_enabled)
+    def test_typebutton_record(self):
+        record = 'sc.social.like.typebutton'
+        self.assertEqual(
+            api.portal.get_registry_record(record), u'horizontal')
 
-    def test_typebutton(self):
-        adapter = self.adapter
-        adapter.typebutton = 'horizontal'
-        self.assertEqual(adapter.typebutton, self.sheet.typebutton)
+    def test_do_not_track_record(self):
+        record = 'sc.social.like.do_not_track'
+        self.assertFalse(api.portal.get_registry_record(record))
 
-        adapter.typebutton = 'vertical'
-        self.assertEqual(adapter.typebutton, self.sheet.typebutton)
+    def test_records_removed_on_uninstall(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+
+        qi = self.portal['portal_quickinstaller']
+        with api.env.adopt_roles(['Manager']):
+            qi.uninstallProducts(products=[PROJECTNAME])
+
+        registry = getUtility(IRegistry)
+        unexpected = (
+            'sc.social.like.enabled_portal_types',
+            'sc.social.like.plugins_enabled',
+            'sc.social.like.typebutton',
+            'sc.social.like.do_not_track',
+        )
+        self.assertNotIn(unexpected, registry.records)

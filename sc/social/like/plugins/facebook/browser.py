@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_parent, aq_inner
+from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
@@ -9,6 +10,7 @@ from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
+
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
 PARAMS = 'locale=%s&href=%s&send=false&layout=%s&show_faces=true&action=%s'
@@ -31,7 +33,6 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
 
         self.context = context
         self.title = context.title
@@ -44,15 +45,10 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = facebook_language(get_language(context), self.language)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         self.image = get_content_image(context, width=1200, height=630)
-        if self.sheet:
-            self.fbaction = self.sheet.getProperty('fbaction', '')
-            self.fbapp_id = self.sheet.getProperty('fbapp_id', '')
-            self.fbadmins = self.sheet.getProperty('fbadmins', '')
-            self.fbshow_like = 'Like' in self.sheet.getProperty('fbbuttons', [])
-            self.fbshow_share = 'Share' in self.sheet.getProperty('fbbuttons', [])
-            self.button = self.typebutton
+        self.fbshow_like = 'Like' in self.fbbuttons
+        self.fbshow_share = 'Share' in self.fbbuttons
+        self.button = self.typebutton
 
     def fbjs(self):
         js_source = """
@@ -99,7 +95,8 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty('typebutton', '')
+        typebutton = api.portal.get_registry_record('sc.social.like.typebutton')
+
         if typebutton == 'horizontal':
             typebutton = 'button_count'
             self.width = '90px'
@@ -107,6 +104,22 @@ class PluginView(BrowserView):
             typebutton = 'box_count'
             self.width = '55px'
         return typebutton
+
+    @property
+    def fbaction(self):
+        return api.portal.get_registry_record('sc.social.like.fbaction')
+
+    @property
+    def fbapp_id(self):
+        return api.portal.get_registry_record('sc.social.like.fbapp_id')
+
+    @property
+    def fbadmins(self):
+        return api.portal.get_registry_record('sc.social.like.fbadmins')
+
+    @property
+    def fbbuttons(self):
+        return api.portal.get_registry_record('sc.social.like.fbbuttons')
 
     def _isPortalDefaultView(self):
         context = self.context

@@ -12,6 +12,7 @@ following people:
 - Rodrigo Ferreira de Souza
 - Luciano Camargo Cruz
 - Thomas Desvenain
+- Peter Holzer
 
 Development sponsored by:
 

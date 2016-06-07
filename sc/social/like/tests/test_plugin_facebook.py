@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like import utils
+from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.facebook import browser
 from sc.social.like.plugins.facebook import controlpanel
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.plugins.facebook.utils import fix_iso
 from sc.social.like.plugins.interfaces import IPlugin
-from sc.social.like.testing import load_image
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import load_image
+from sc.social.like.tests.utils import set_image_field
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
@@ -59,7 +60,6 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.adapter = LikeControlPanelAdapter(self.portal)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.setup_content(self.portal)
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
@@ -74,13 +74,13 @@ class PluginViewsTest(unittest.TestCase):
         portal.invokeFactory('Image', 'my-image-bmp')
         self.document = portal['my-document']
         self.newsitem = portal['my-newsitem']
-        self.newsitem.setImage(load_image(1024, 768))
+        set_image_field(self.newsitem, load_image(1024, 768))
         self.newsitem_bmp = portal['my-newsitem-bmp']
-        self.newsitem_bmp.setImage(load_image(640, 480, format='BMP'))
+        set_image_field(self.newsitem_bmp, load_image(640, 480, format='BMP'))
         self.image = portal['my-image']
-        self.image.setImage(load_image(1024, 768))
+        set_image_field(self.image, load_image(1024, 768))
         self.image_bmp = portal['my-image-bmp']
-        self.image_bmp.setImage(load_image(640, 480, format='BMP'))
+        set_image_field(self.image_bmp, load_image(640, 480, format='BMP'))
 
     def test_config_view(self):
         plugin = self.plugin
@@ -99,8 +99,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_likeonly(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.fbbuttons = ('Like',)
+        api.portal.set_registry_record('sc.social.like.fbbuttons', ('Like',))
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
@@ -110,8 +109,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_shareonly(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.fbbuttons = ('Share',)
+        api.portal.set_registry_record('sc.social.like.fbbuttons', ('Share',))
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
@@ -121,8 +119,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_both(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.fbbuttons = ('Like', 'Share')
+        api.portal.set_registry_record('sc.social.like.fbbuttons', ('Like', 'Share'))
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
@@ -133,14 +130,13 @@ class PluginViewsTest(unittest.TestCase):
     def test_privacy_plugin_view_html(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.do_not_track = True
+        api.portal.set_registry_record('sc.social.like.do_not_track', True)
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
         # Check that an appid is required
         self.assertEqual('', html.strip())
-        properties.fbapp_id = '12345'
+        api.portal.set_registry_record('sc.social.like.fbapp_id', u'12345')
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Share on Facebook', html)
@@ -198,7 +194,7 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_type(), 'image/png')
 
         # Set a larger image
-        image.setImage(load_image(1920, 1080))
+        set_image_field(image, load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
@@ -220,7 +216,7 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_height(), 480)
 
         # Set a larger image
-        image.setImage(load_image(1920, 1080))
+        set_image_field(image, load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
@@ -231,7 +227,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_image_large(self):
         plugin = self.plugin
         image = self.image
-        image.setImage(load_image(1920, 1080))
+        set_image_field(image, load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
@@ -272,7 +268,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_newsitem_large(self):
         plugin = self.plugin
         newsitem = self.newsitem
-        newsitem.setImage(load_image(1920, 1080))
+        set_image_field(newsitem, load_image(1920, 1080))
 
         plugin_view = plugin.view()
         view = newsitem.restrictedTraverse(plugin_view)

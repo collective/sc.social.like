@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+from plone import api
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -23,7 +23,6 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
 
         self.context = context
         self.request = request
@@ -34,10 +33,6 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = get_language(context)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
-        if self.sheet:
-            self.typebutton = self.sheet.getProperty('typebutton', '')
-            self.twittvia = self.sheet.getProperty('twittvia', '')
         self.urlnoscript = (
             u'http://twitter.com/home?status=' +
             url_quote(u'{0} - {1} via {2}'.format(
@@ -46,6 +41,14 @@ class PluginView(BrowserView):
                 self.twittvia)
             )
         )
+
+    @property
+    def typebutton(self):
+        return api.portal.get_registry_record('sc.social.like.typebutton')
+
+    @property
+    def twittvia(self):
+        return api.portal.get_registry_record('sc.social.like.twittvia')
 
     def share_link(self):
         params = dict(

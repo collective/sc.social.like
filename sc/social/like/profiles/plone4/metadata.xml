@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<metadata>
+  <version>3100</version>
+  <dependencies>
+     <dependency>profile-sc.social.like:base</dependency>
+  </dependencies>
+</metadata>

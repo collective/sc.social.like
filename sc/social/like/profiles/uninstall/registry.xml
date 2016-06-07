@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records interface="sc.social.like.controlpanel.ISocialLikeControlPanel"
+           prefix="sc.social.like"
+           remove="True"/>
+
+  <records interface="sc.social.like.plugins.twitter.ITwitterControlPanel"
+           prefix="sc.social.like"
+           remove="True"/>
+
+  <records interface="sc.social.like.plugins.facebook.IFacebookControlPanel"
+           prefix="sc.social.like"
+           remove="True"/>
+
+</registry>

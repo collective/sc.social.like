@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.utils import get_language
@@ -19,7 +19,6 @@ class PluginView(BrowserView):
 
     def __init__(self, context, request):
         super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
 
         self.context = context
         self.request = request
@@ -30,11 +29,10 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = get_language(context)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty('typebutton', '')
+        typebutton = api.portal.get_registry_record('sc.social.like.typebutton')
         if typebutton == 'horizontal':
             typebutton = 'right'
         else:

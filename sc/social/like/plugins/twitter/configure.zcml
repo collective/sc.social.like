@@ -8,13 +8,10 @@
       factory="sc.social.like.plugins.twitter.Twitter"
       name="Twitter" />
 
-  <!-- ControlPanel -->
-  <adapter factory=".controlpanel.ControlPanelAdapter" />
-
   <browser:page
     name="twitter-config"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    class=".controlpanel.ProviderControlPanel"
+    class=".controlpanel.TwitterControlPanelForm"
     layer="sc.social.like.interfaces.ISocialLikeLayer"
     permission="cmf.ManagePortal"
     />
