@@ -13,7 +13,7 @@ matrix:
     - env: PLONE_VERSION=5.0
   fast_finish: true
 install:
-  - sed -ie "s#test-4.x#test-$PLONE_VERSION.x#" buildout.cfg
+  - sed -ie "s#test-4.3.x.cfg#test-$PLONE_VERSION.x.cfg#" buildout.cfg
   - python bootstrap.py
   - bin/buildout annotate
   - bin/buildout
