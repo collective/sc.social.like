@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social 2.2\n"
-"POT-Creation-Date: 2015-07-10 14:23+0000\n"
+"POT-Creation-Date: 2016-06-09 12:47+0000\n"
 "PO-Revision-Date: 2015-05-29 09:50 +0002\n"
 "Last-Translator: Toni Fischer <tf@zettwerk.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,192 +14,195 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.social.like\n"
 
+#: ./sc/social/like/profiles.zcml:14
 msgid "A simple, yet useful, social networking integration for Plone"
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:44
+#: ./sc/social/like/interfaces.py:128
 msgid "Admins"
 msgstr "Administratoren"
 
-#: ../plugins/facebook/controlpanel.py:54
+#: ./sc/social/like/interfaces.py:139
 msgid "Application ID"
 msgstr "App ID"
 
-#: ../controlpanel/likes.py:65
+#: ./sc/social/like/interfaces.py:85
 msgid "Button style"
 msgstr "Stil der Buttons"
 
-#: ../controlpanel/likes.pt:123
-msgid "Configure each plugin."
-msgstr "Konfiguration für jedes Plugin"
-
-#: ../plugins/facebook/controlpanel.py:91
-msgid "Configure settings for Facebook integration."
-msgstr "Einstellungen für die Facebook Integration."
-
-#: ../plugins/twitter/controlpanel.py:41
-msgid "Configure settings for Twitter integration."
-msgstr "Einstellungen für die Twitter Integration."
-
-#: ../controlpanel/likes.py:118
-msgid "Configure settings for social like actions."
-msgstr "Einstellungen für die Social Media \"Like\" Aktionen."
-
-#: ../controlpanel/likes.py:44
+#: ./sc/social/like/interfaces.py:61
 msgid "Content types"
 msgstr "Inhaltstypen"
 
-#: ../controlpanel/likes.py:76
+#: ./sc/social/like/interfaces.py:96
 msgid "Do not track users"
 msgstr ""
 
-#: ../plugins/facebook/controlpanel.py:64
+#: ./sc/social/like/interfaces.py:150
 msgid "Facebook buttons"
 msgstr "Facebook Buttons"
 
-#: ../plugins/facebook/controlpanel.py:17
+#: ./sc/social/like/vocabularies.py:42
 msgid "Like"
 msgstr "Gefällt mir"
 
-#: ../plugins/pinterest/templates/link.pt:11
+#: ./sc/social/like/plugins/pinterest/templates/link.pt:11
 msgid "Pin it!"
 msgstr ""
 
-#: ../plugins/pinterest/templates/link.pt:3
+#: ./sc/social/like/plugins/pinterest/templates/link.pt:3
 msgid "Pin it! (open in new window)"
 msgstr ""
 
-#: ../controlpanel/likes.pt:119
-msgid "Plugin-Specific Configuration"
-msgstr "Plugin spezifische Einstellungen"
-
-#: ../controlpanel/likes.py:55
+#: ./sc/social/like/interfaces.py:74
 msgid "Plugins"
 msgstr "Plugins"
 
-#: ../plugins/facebook/controlpanel.py:18
+#: ./sc/social/like/vocabularies.py:43
 msgid "Recommend"
 msgstr "Empfehlen"
 
-#: ../plugins/facebook/controlpanel.py:23
+#: ./sc/social/like/profiles.zcml:23
+msgid "Removes Social: Like Actions"
+msgstr ""
+
+#: ./sc/social/like/controlpanel.py:13
+msgid "Settings for the sc.social.like package"
+msgstr ""
+
+#: ./sc/social/like/vocabularies.py:48
 msgid "Share"
 msgstr "Teilen"
 
-#: ../plugins/whatsapp/templates/plugin.pt:2
+#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
 msgid "Share in WhatsApp"
 msgstr "In WhatsApp mitteilen"
 
-#: ../plugins/facebook/templates/link.pt:12
+#: ./sc/social/like/plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
 msgstr ""
 
-#: ../plugins/facebook/templates/link.pt:6
+#: ./sc/social/like/plugins/facebook/templates/link.pt:6
 msgid "Share on Facebook (open in new window)"
 msgstr ""
 
-#: ../plugins/gplus/templates/link.pt:9
+#: ./sc/social/like/plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
 msgstr ""
 
-#: ../plugins/gplus/templates/link.pt:3
+#: ./sc/social/like/plugins/gplus/templates/link.pt:3
 msgid "Share on Google+ (open in new window)"
 msgstr ""
 
-#: ../plugins/linkedin/templates/link.pt:9
+#: ./sc/social/like/plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
 msgstr ""
 
-#: ../plugins/linkedin/templates/link.pt:3
+#: ./sc/social/like/plugins/linkedin/templates/link.pt:3
 msgid "Share on Linkedin (open in new window)"
 msgstr ""
 
-#: ../profiles/default/controlpanel.xml
+#: ./sc/social/like/controlpanel.py:12
+#: ./sc/social/like/profiles/default/controlpanel.xml
 msgid "Social Like"
 msgstr "Social Like"
 
-#: ../plugins/facebook/controlpanel.py:90
-msgid "Social: Facebook settings"
-msgstr "Social: Facebook Einstellungen"
-
-#: ../controlpanel/likes.py:119
+#: ./sc/social/like/profiles.zcml:14
 msgid "Social: Like Actions"
 msgstr "Social: Like Aktionen"
 
-#: ../controlpanel/likes.py:117
-msgid "Social: Like Actions settings"
-msgstr "Social: Like Aktionen Einstellungen"
-
-#: ../plugins/twitter/controlpanel.py:40
-msgid "Social: Twitter settings"
-msgstr "Social: Twitter Einstellungen"
-
-#: ../plugins/twitter/templates/link.pt:9
+#: ./sc/social/like/plugins/twitter/templates/link.pt:9
 msgid "Tweet it!"
 msgstr ""
 
-#: ../plugins/twitter/templates/link.pt:3
+#: ./sc/social/like/plugins/twitter/templates/link.pt:3
 msgid "Tweet it! (open in new window)"
 msgstr ""
 
-#: ../plugins/twitter/controlpanel.py:19
+#: ./sc/social/like/interfaces.py:164
 msgid "Twitter nick"
 msgstr "Twitter Name"
 
-#: ../plugins/facebook/controlpanel.py:31
+#: ./sc/social/like/profiles.zcml:23
+msgid "Uninstall Social: Like Actions"
+msgstr ""
+
+#: ./sc/social/like/upgrades/v2000/configure.zcml:13
+#: ./sc/social/like/upgrades/v3000/configure.zcml:13
+#: ./sc/social/like/upgrades/v3010/configure.zcml:13
+msgid "Upgrade Social: Like Actions"
+msgstr ""
+
+#: ./sc/social/like/upgrades/v2000/configure.zcml:13
+msgid "Upgrade Social: Like Actions (v2000)"
+msgstr ""
+
+#: ./sc/social/like/upgrades/v3000/configure.zcml:13
+msgid "Upgrade Social: Like Actions (v3000)"
+msgstr ""
+
+#: ./sc/social/like/upgrades/v3010/configure.zcml:13
+msgid "Upgrade Social: Like Actions (v3010)"
+msgstr ""
+
+#: ./sc/social/like/upgrades/v3020/configure.zcml:13
+msgid "Upgrade Social: Like Actions (v3020)"
+msgstr ""
+
+#: ./sc/social/like/interfaces.py:115
 msgid "Verb to display"
 msgstr "Angezeigtes Wort"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ../plugins/facebook/controlpanel.py:45
+#: ./sc/social/like/interfaces.py:129
 msgid "help_admins"
 msgstr "Eine Komma getrennte Liste von entweder den Facebook IDs der Seiten-Administratoren oder der Facebook App ID."
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
-#: ../plugins/facebook/controlpanel.py:55
+#: ./sc/social/like/interfaces.py:140
 #, fuzzy
 msgid "help_appid"
 msgstr "Eine Facebook App ID."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ../controlpanel/likes.py:77
+#: ./sc/social/like/interfaces.py:97
 msgid "help_do_not_track"
 msgstr ""
 
 #. Default: "Please select which plugins will be used"
-#: ../controlpanel/likes.py:56
+#: ./sc/social/like/interfaces.py:75
 msgid "help_enabled_plugins"
 msgstr "Die gewünschten Plugins auswählen"
 
 #. Default: "Select buttons to be shown"
-#: ../plugins/facebook/controlpanel.py:65
+#: ./sc/social/like/interfaces.py:151
 msgid "help_fbbuttons"
 msgstr "Welche Buttons sollen angezeigt werden?"
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ../controlpanel/likes.py:45
+#: ./sc/social/like/interfaces.py:62
 msgid "help_portal_types"
 msgstr "Die Inhaltstypen auswählen auf denen das Viewlet angezeigt werden soll."
 
 #. Default: "Choose your button style."
-#: ../controlpanel/likes.py:66
+#: ./sc/social/like/interfaces.py:86
 msgid "help_selected_buttons"
 msgstr "Wählen Sie den gewünschten Stil für die Buttons aus."
 
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: ../plugins/facebook/controlpanel.py:32
+#: ./sc/social/like/interfaces.py:116
 msgid "help_verb_display"
 msgstr "Der Ausdruck, welcher im Facebook Button angezeigt werden soll. Zurzeit werden nur \"Gefällt mir\" und \"Empfehlen\" unterstützt."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ../plugins/twitter/controlpanel.py:20
+#: ./sc/social/like/interfaces.py:165
 msgid "help_your_twitter_nick"
 msgstr "Geben Sie Ihren Twitter Namen ein z.B. mmustermann."
 
-#: ../controlpanel/likes.py:35
+#: ./sc/social/like/vocabularies.py:36
 msgid "horizontal"
 msgstr "horizontal"
 
-#: ../controlpanel/likes.py:36
+#: ./sc/social/like/vocabularies.py:37
 msgid "vertical"
 msgstr "vertikal"
-
