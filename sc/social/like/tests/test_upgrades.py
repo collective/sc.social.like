@@ -66,3 +66,93 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
 
         # Check
         self.assertIn(JS_ID, js_tool.getResourceIds())
+
+
+class To3040TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3030', u'3040')
+
+    def test_upgrade_to_3040_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 2)
+
+    def test_update_configlet_information(self):
+        # check if the upgrade step is registered
+        title = u'Update configlet information'
+        step = self.get_upgrade_step(title)
+        assert step is not None
+
+        # simulate state on previous version
+        controlpanel = api.portal.get_tool(name='portal_controlpanel')
+        configlet = controlpanel.getActionObject('Products/sociallikes')
+        configlet.setActionExpression('string:${portal_url}/@@likes-providers')
+        assert configlet.getActionExpression().endswith('@@likes-providers')
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        configlet = controlpanel.getActionObject('Products/sociallikes')
+        self.assertTrue(
+            configlet.getActionExpression().endswith('@@sociallike-settings'))
+
+    def test_migrate_settings_to_registry(self):
+        # check if the upgrade step is registered
+        title = u'Migrate package settings to registry'
+        step = self.get_upgrade_step(title)
+        assert step is not None
+
+        # simulate state on previous version
+        from plone.registry.interfaces import IRegistry
+        from sc.social.like.config import PROJECTNAME
+        from sc.social.like.interfaces import ISocialLikeSettings
+        from zope.component import getUtility
+
+        # restore old property sheet
+        portal_properties = api.portal.get_tool(name='portal_properties')
+        portal_properties.manage_addPropertySheet('sc_social_likes_properties')
+        old_props = portal_properties['sc_social_likes_properties']
+        enabled_portal_types = ('Event', 'Document', 'News Item', 'File')
+        old_props.manage_addProperty(
+            'enabled_portal_types', enabled_portal_types, 'lines')
+        old_props.manage_addProperty('typebutton', 'horizontal', 'string')
+        old_props.manage_addProperty('twittvia', '', 'string')
+        old_props.manage_addProperty('fbaction', '', 'string')
+        old_props.manage_addProperty('fbadmins', '', 'string')
+        old_props.manage_addProperty('fbapp_id', '', 'string')
+        old_props.manage_addProperty('fbbuttons', ('Like',), 'lines')
+        plugins_enabled = ('Facebook', 'Twitter', 'Google+')
+        old_props.manage_addProperty(
+            'plugins_enabled', plugins_enabled, 'lines')
+        old_props.manage_addProperty('do_not_track', False, 'boolean')
+
+        # simulate assignment via form using field type TextLine (unicode)
+        # we are now using and ASCIILine field (str)
+        old_props.twittvia = u'hvelarde'
+        old_props.fbadmins = u'hvelarde'
+        old_props.fbapp_id = None  # form had no default values
+
+        # remove registry settings
+        profile = 'profile-{0}:uninstall'.format(PROJECTNAME)
+        setup_tool = api.portal.get_tool(name='portal_setup')
+        setup_tool.runImportStepFromProfile(profile, 'plone.app.registry')
+        registry = getUtility(IRegistry)
+        with self.assertRaises(KeyError):
+            registry.forInterface(ISocialLikeSettings)
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        self.assertNotIn('sc_social_likes_properties', portal_properties)
+
+        settings = registry.forInterface(ISocialLikeSettings)
+        self.assertEqual(settings.enabled_portal_types, enabled_portal_types)
+        self.assertEqual(settings.plugins_enabled, plugins_enabled)
+        self.assertEqual(settings.typebutton, u'horizontal')
+        self.assertFalse(settings.do_not_track)
+        self.assertEqual(settings.fbaction, u'like')
+        self.assertEqual(settings.facebook_username, 'hvelarde')
+        self.assertEqual(settings.facebook_app_id, '')
+        self.assertEqual(settings.fbbuttons, (u'Like',))
+        self.assertEqual(settings.twitter_username, 'hvelarde')

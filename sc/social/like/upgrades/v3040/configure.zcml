@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+  <genericsetup:upgradeSteps
+      source="3030"
+      destination="3040"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeStep
+        title="Update configlet information"
+        description=""
+        handler=".update_configlet_information"
+        />
+
+    <genericsetup:upgradeStep
+        title="Migrate package settings to registry"
+        description=""
+        handler=".migrate_settings_to_registry"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

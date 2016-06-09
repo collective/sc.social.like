@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
+from plone.registry.interfaces import IRegistry
 from sc.social.like.interfaces import ISocialLikeLayer
-from sc.social.like.plugins.twitter import browser
-from sc.social.like.plugins.twitter import controlpanel
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
+from zope.component import getUtility
 from zope.interface import alsoProvides
 
 import unittest
@@ -21,6 +21,7 @@ class PluginTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
@@ -31,10 +32,6 @@ class PluginTest(unittest.TestCase):
         plugin = self.plugins[name]
         self.assertEqual(plugin.name, name)
         self.assertEqual(plugin.id, 'twitter')
-
-    def test_plugin_config_view(self):
-        plugin = self.plugins[name]
-        self.assertEqual(plugin.config_view(), '@@twitter-config')
 
     def test_plugin_view(self):
         plugin = self.plugins[name]
@@ -55,9 +52,12 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.adapter = LikeControlPanelAdapter(self.portal)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.setup_content(self.portal)
+
+        self.registry = getUtility(IRegistry)
+        self.settings = self.registry.forInterface(ISocialLikeSettings)
+
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
@@ -65,20 +65,6 @@ class PluginViewsTest(unittest.TestCase):
     def setup_content(self, portal):
         portal.invokeFactory('Document', 'my-document')
         self.document = portal['my-document']
-
-    def test_config_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        config_view = plugin.config_view()
-        view = portal.restrictedTraverse(config_view)
-        self.assertTrue(isinstance(view, controlpanel.ProviderControlPanel))
-
-    def test_plugin_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertTrue(isinstance(view, browser.PluginView))
 
     def test_plugin_view_html(self):
         plugin = self.plugin
@@ -91,18 +77,17 @@ class PluginViewsTest(unittest.TestCase):
     def test_privacy_plugin_view_html(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.do_not_track = True
+        self.settings.do_not_track = True
+
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Tweet it!', html)
 
-    def test_plugin_twittvia(self):
+    def test_plugin_twitter_username(self):
         plugin = self.plugin
         document = self.document
-        adapter = controlpanel.ControlPanelAdapter(self.portal)
-        adapter.twittvia = u'@simplesconsult'
+        self.settings.twitter_username = '@simplesconsult'
 
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
@@ -113,8 +98,7 @@ class PluginViewsTest(unittest.TestCase):
         plugin = self.plugin
         document = self.document
         document.setTitle(u'Notícia')
-        adapter = controlpanel.ControlPanelAdapter(self.portal)
-        adapter.twittvia = u'@simplesconsult'
+        self.settings.twitter_username = '@simplesconsult'
 
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)

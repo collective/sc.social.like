@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from sc.social.like.controlpanel.likes import LikeControlPanelAdapter
-from sc.social.like.interfaces import ISocialLikeLayer
+from plone.registry.interfaces import IRegistry
 from sc.social.like import utils
+from sc.social.like.interfaces import ISocialLikeLayer
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook import browser
-from sc.social.like.plugins.facebook import controlpanel
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.plugins.facebook.utils import fix_iso
 from sc.social.like.plugins.interfaces import IPlugin
-from sc.social.like.testing import load_image
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import load_image
 from zope.component import getUtilitiesFor
+from zope.component import getUtility
 from zope.interface import alsoProvides
+
 
 import unittest
 
@@ -36,10 +38,6 @@ class PluginTest(unittest.TestCase):
         self.assertEqual(plugin.name, name)
         self.assertEqual(plugin.id, 'facebook')
 
-    def test_plugin_config_view(self):
-        plugin = self.plugins[name]
-        self.assertEqual(plugin.config_view(), '@@facebook-config')
-
     def test_plugin_view(self):
         plugin = self.plugins[name]
         self.assertEqual(plugin.view(), '@@facebook-plugin')
@@ -59,9 +57,13 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.adapter = LikeControlPanelAdapter(self.portal)
+        self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.setup_content(self.portal)
+
+        self.registry = getUtility(IRegistry)
+        self.settings = self.registry.forInterface(ISocialLikeSettings)
+
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
@@ -82,13 +84,6 @@ class PluginViewsTest(unittest.TestCase):
         self.image_bmp = portal['my-image-bmp']
         self.image_bmp.setImage(load_image(640, 480, format='BMP'))
 
-    def test_config_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        config_view = plugin.config_view()
-        view = portal.restrictedTraverse(config_view)
-        self.assertTrue(isinstance(view, controlpanel.ProviderControlPanel))
-
     def test_plugin_view(self):
         plugin = self.plugin
         portal = self.portal
@@ -99,8 +94,8 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_likeonly(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.fbbuttons = ('Like',)
+        self.settings.fbbuttons = ('Like',)
+
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
@@ -110,8 +105,8 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_shareonly(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.fbbuttons = ('Share',)
+        self.settings.fbbuttons = ('Share',)
+
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
@@ -121,8 +116,8 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_html_both(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.fbbuttons = ('Like', 'Share')
+        self.settings.fbbuttons = ('Like', 'Share')
+
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.plugin()
@@ -133,14 +128,14 @@ class PluginViewsTest(unittest.TestCase):
     def test_privacy_plugin_view_html(self):
         plugin = self.plugin
         portal = self.portal
-        properties = portal.portal_properties.sc_social_likes_properties
-        properties.do_not_track = True
+        self.settings.do_not_track = True
+
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
-        # Check that an appid is required
+        # Check that an app_id is required
         self.assertEqual('', html.strip())
-        properties.fbapp_id = '12345'
+        self.settings.facebook_app_id = '12345'
         view = portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Share on Facebook', html)
@@ -304,13 +299,11 @@ class PluginViewsTest(unittest.TestCase):
 
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.button, 'button_count')
         self.assertEqual(view.typebutton, 'button_count')
         self.assertEqual(view.width, '90px')
 
         # Change to vertical
-        adapter = self.adapter
-        adapter.typebutton = 'vertical'
+        self.settings.typebutton = 'vertical'
         view = portal.restrictedTraverse(plugin_view)
         self.assertEqual(view.typebutton, 'box_count')
         self.assertEqual(view.width, '55px')

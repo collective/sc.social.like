@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
+from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.app.layout.viewlets import ViewletBase
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import getMultiAdapter
 from plone.memoize.view import memoize
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.interfaces import ISocialLikeSettings
+from zope.component import getMultiAdapter
 
 
 class BaseLikeViewlet(ViewletBase):
@@ -74,17 +77,19 @@ class SocialLikesViewlet(BaseLikeViewlet):
 
     @property
     def render_method(self):
-        tools = getMultiAdapter((self.context, self.request),
-                                name=u'plone_tools')
-        site_properties = tools.properties()
         # global cookie settings for privacy level
         if self.request.cookies.get('social-optout', None) == 'true' or \
                 self.request.get_header('HTTP_DNT') == '1':
             return 'link'
+
         # site specific privacy level check
-        if getattr(site_properties, 'sc_social_likes_properties', None) \
-                and getattr(site_properties.sc_social_likes_properties,
-                            'do_not_track', None) and \
-                site_properties.sc_social_likes_properties.do_not_track:
+        record = ISocialLikeSettings.__identifier__ + '.do_not_track'
+        try:
+            do_not_track = api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            do_not_track = False
+
+        if do_not_track:
             return 'link'
+
         return 'plugin'

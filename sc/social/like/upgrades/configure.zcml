@@ -9,5 +9,6 @@
     <include package=".v3010" />
     <include package=".v3020" />
     <include package=".v3030" />
+    <include package=".v3040" />
 
 </configure>

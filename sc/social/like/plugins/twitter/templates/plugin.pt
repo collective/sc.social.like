@@ -3,7 +3,7 @@
     <a href="https://twitter.com/share"
        class="twitter-share-button"
        tal:attributes="data-count view/typebutton;
-                       data-via   view/twittvia;
+                       data-via   view/via;
                        data-url   view/url;
                        data-lang  view/language;
                        data-text  here/Title;">Tweet</a>

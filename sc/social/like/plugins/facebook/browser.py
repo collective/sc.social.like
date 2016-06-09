@@ -1,9 +1,12 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_parent, aq_inner
+from plone import api
+from plone.api.exc import InvalidParameterError
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
@@ -16,27 +19,21 @@ PARAMS = 'locale=%s&href=%s&send=false&layout=%s&show_faces=true&action=%s'
 
 class PluginView(BrowserView):
 
-    enabled_portal_types = []
-    typebutton = ''
     fb_enabled = False
-    fbaction = ''
-    fbadmins = ''
     language = 'en_US'
-    fbshow_like = True
-    fbshow_share = False
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
-        super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
-
         self.context = context
+        self.request = request
+        # FIXME: the following could rise unexpected exceptions
+        #        move it to a new setup() method
+        #        see: http://docs.plone.org/develop/plone/views/browserviews.html#creating-a-view
         self.title = context.title
         self.description = context.Description()
-        self.request = request
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
         self.portal = self.portal_state.portal()
@@ -44,15 +41,8 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = facebook_language(get_language(context), self.language)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
         self.image = get_content_image(context, width=1200, height=630)
-        if self.sheet:
-            self.fbaction = self.sheet.getProperty('fbaction', '')
-            self.fbapp_id = self.sheet.getProperty('fbapp_id', '')
-            self.fbadmins = self.sheet.getProperty('fbadmins', '')
-            self.fbshow_like = 'Like' in self.sheet.getProperty('fbbuttons', [])
-            self.fbshow_share = 'Share' in self.sheet.getProperty('fbbuttons', [])
-            self.button = self.typebutton
+        self.typebutton  # XXX: needed to initialize self.width
 
     def fbjs(self):
         js_source = """
@@ -99,7 +89,12 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty('typebutton', '')
+        record = ISocialLikeSettings.__identifier__ + '.typebutton'
+        try:
+            typebutton = api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            typebutton = ''
+
         if typebutton == 'horizontal':
             typebutton = 'button_count'
             self.width = '90px'
@@ -107,6 +102,46 @@ class PluginView(BrowserView):
             typebutton = 'box_count'
             self.width = '55px'
         return typebutton
+
+    @property
+    def fbaction(self):
+        record = ISocialLikeSettings.__identifier__ + '.fbaction'
+        try:
+            return api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return ''
+
+    @property
+    def app_id(self):
+        record = ISocialLikeSettings.__identifier__ + '.facebook_app_id'
+        try:
+            return api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return ''
+
+    @property
+    def admins(self):
+        record = ISocialLikeSettings.__identifier__ + '.facebook_username'
+        try:
+            return api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return ''
+
+    @property
+    def fbshow_like(self):
+        record = ISocialLikeSettings.__identifier__ + '.fbbuttons'
+        try:
+            return 'Like' in api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return False
+
+    @property
+    def fbshow_share(self):
+        record = ISocialLikeSettings.__identifier__ + '.fbbuttons'
+        try:
+            return 'Share' in api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return False
 
     def _isPortalDefaultView(self):
         context = self.context
@@ -129,7 +164,7 @@ class PluginView(BrowserView):
     def share_link(self):
         absolute_url = self.context.absolute_url()
         params = dict(
-            app_id=self.fbapp_id,
+            app_id=self.app_id,
             display='popup',
             href=absolute_url,
             redirect_uri=absolute_url,

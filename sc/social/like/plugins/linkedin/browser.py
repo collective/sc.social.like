@@ -1,7 +1,9 @@
 # -*- coding:utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+from plone import api
+from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
@@ -9,7 +11,6 @@ from zope.component import getMultiAdapter
 
 class PluginView(BrowserView):
 
-    typebutton = ''
     linkedin_enabled = True
     language = 'en'
 
@@ -18,11 +19,11 @@ class PluginView(BrowserView):
     link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
-        super(PluginView, self).__init__(context, request)
-        pp = getToolByName(context, 'portal_properties')
-
         self.context = context
         self.request = request
+        # FIXME: the following could rise unexpected exceptions
+        #        move it to a new setup() method
+        #        see: http://docs.plone.org/develop/plone/views/browserviews.html#creating-a-view
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
         self.portal = self.portal_state.portal()
@@ -30,11 +31,15 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.language = get_language(context)
-        self.sheet = getattr(pp, 'sc_social_likes_properties', None)
 
     @property
     def typebutton(self):
-        typebutton = self.sheet.getProperty('typebutton', '')
+        record = ISocialLikeSettings.__identifier__ + '.typebutton'
+        try:
+            typebutton = api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            typebutton = ''
+
         if typebutton == 'horizontal':
             typebutton = 'right'
         else:

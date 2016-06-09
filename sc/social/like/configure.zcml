@@ -7,11 +7,10 @@
 
     <five:registerPackage package="." />
 
-    <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
+    <include package="Products.CMFCore" file="permissions.zcml" />
 
     <include file="profiles.zcml" />
     <include package=".browser" />
-    <include package=".controlpanel" />
     <include package=".plugins" />
 
     <i18n:registerTranslations directory="locales" />
