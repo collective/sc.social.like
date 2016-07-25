@@ -24,4 +24,7 @@
   <!-- WhatsApp -->
   <include package=".whatsapp" />
 
+  <!-- Telegram -->
+  <include package=".telegram" />
+
 </configure>
