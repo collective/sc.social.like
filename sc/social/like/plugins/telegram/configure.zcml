@@ -1,16 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="sc.social.like">
+    xmlns:browser="http://namespaces.zope.org/browser">
 
-  <!-- Register Plugin -->
-  <utility factory="sc.social.like.plugins.telegram.Telegram"
-    name="Telegram" />
+  <utility factory="sc.social.like.plugins.telegram.Telegram" name="Telegram" />
 
-  <!-- Metadata -->
-  <browser:page name="telegram-plugin"
+  <browser:page
+    name="telegram-plugin"
     for="*"
-    class=".browser.PluginView"
+    class=".PluginView"
     layer="sc.social.like.interfaces.ISocialLikeLayer"
     allowed_interface='sc.social.like.plugins.interfaces.IPluginView'
     permission="zope2.View"

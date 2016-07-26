@@ -1,6 +1,0 @@
-<tal:wa i18n:domain="sc.social.like">
-    <a tal:attributes="href view/telegramurl;
-                       class view/klass"
-       i18n:translate=""
-       >Share</a>
-</tal:wa>
