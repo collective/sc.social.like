@@ -31,21 +31,54 @@
     min-height: 7em !important;
 }
 
+#viewlet-social-like .whatsapp,
+#viewlet-social-like .telegram
+{
+    font-size: 82%;
+
+    display: inline-block;
+    overflow: hidden;
+
+    height: 20px;
+    padding: 0 5px 0 24px;
+
+    white-space: nowrap;
+
+    color: #fff !important;
+    border: 0 !important;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+}
+#viewlet-social-like .whatsapp.link,
+#viewlet-social-like .telegram.link
+{
+    width: 0;
+    padding: 0 20px;
+
+    text-indent: -200%;
+
+    background-position: 45%;
+}
 #viewlet-social-like .whatsapp
 {
     display: none;
-    overflow: hidden;
 
-    width: 25px;
-    height: 25px;
-
-    white-space: nowrap;
-    text-indent: 101%;
-
-    border: 0 !important;
-    background-image: url(++resource++sl_images/ico-whatsapp.png);
+    background-color: #199e0e;
+    background-image: url(++resource++sl_images/ico-whatsapp.svg);
+    background-position: 2px 2px;
+}
+#viewlet-social-like .whatsapp:hover,
+#viewlet-social-like .telegram:hover
+{
+    color: #fff !important;
 }
 #viewlet-social-like .whatsapp.active
 {
     display: inline-block;
+}
+#viewlet-social-like .telegram
+{
+    background-color: #31a4d5;
+    background-image: url(++resource++sl_images/ico-telegram.svg);
 }

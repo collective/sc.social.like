@@ -1,27 +1,11 @@
-<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="sc.social.like">
+<configure xmlns="http://namespaces.zope.org/zope">
 
-  <!-- Facebook -->
   <include package=".facebook" />
-
-  <!-- Twitter -->
   <include package=".twitter" />
-
-  <!-- Google+ -->
   <include package=".gplus" />
-
-  <!-- Pinterest -->
   <include package=".pinterest" />
-
-  <!-- LinkedIn -->
   <include package=".linkedin" />
-
-  <!-- WhatsApp -->
   <include package=".whatsapp" />
+  <include package=".telegram" />
 
 </configure>

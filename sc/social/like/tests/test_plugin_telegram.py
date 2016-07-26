@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone import api
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.interfaces import IPlugin
-from sc.social.like.plugins.whatsapp import browser
+from sc.social.like.plugins.telegram import PluginView
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
 from zope.interface import alsoProvides
 
 import unittest
 
-name = 'WhatsApp'
+name = 'Telegram'
 
 
 class PluginTest(unittest.TestCase):
@@ -28,7 +27,7 @@ class PluginTest(unittest.TestCase):
     def test_plugin_config(self):
         plugin = self.plugins[name]
         self.assertEqual(plugin.name, name)
-        self.assertEqual(plugin.id, 'whatsapp')
+        self.assertEqual(plugin.id, 'telegram')
 
     def test_plugin_config_view(self):
         plugin = self.plugins[name]
@@ -36,7 +35,7 @@ class PluginTest(unittest.TestCase):
 
     def test_plugin_view(self):
         plugin = self.plugins[name]
-        self.assertEqual(plugin.view(), '@@whatsapp-plugin')
+        self.assertEqual(plugin.view(), '@@telegram-plugin')
 
     def test_plugin_metadata(self):
         plugin = self.plugins[name]
@@ -54,38 +53,29 @@ class PluginViewsTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.setup_content(self.portal)
         alsoProvides(self.request, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
-    def setup_content(self, portal):
-        portal.invokeFactory('Document', 'my-document')
-        self.document = portal['my-document']
+        with api.env.adopt_roles(['Manager']):
+            self.document = api.content.create(
+                self.portal, 'Document', 'my-document')
 
     def test_plugin_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertTrue(isinstance(view, browser.PluginView))
+        plugin = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin)
+        self.assertTrue(isinstance(view, PluginView))
 
     def test_plugin_view_html(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
+        plugin = self.plugin.view()
+        view = self.document.restrictedTraverse(plugin)
         html = view.plugin()
-        self.assertIn('whatsapp', html)
+        self.assertIn('telegram', html)
 
     def test_plugin_urlnoscript_encoding(self):
-        plugin = self.plugin
-        document = self.document
-        document.setTitle(u'Notícia')
-
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
+        plugin = self.plugin.view()
+        self.document.setTitle(u'Notícia')
+        view = self.document.restrictedTraverse(plugin)
         html = view.plugin()
         self.assertIn(
-            'Not%C3%ADcia%20-%20http%3A//nohost/plone/my-document" class="whatsapp">Share', html)
+            'http%3A//nohost/plone/my-document" class="telegram">Share', html)
