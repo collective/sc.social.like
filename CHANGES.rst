@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.4.2 (unreleased)
+2.5 (2016-07-26)
 ^^^^^^^^^^^^^^^^^^
 
 - Added Telegram plugin (closes `#52`_).
