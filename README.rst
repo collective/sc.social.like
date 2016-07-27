@@ -9,15 +9,13 @@ Social: Like Actions (sc.social.like)
 Life, the Universe, and Everything
 ----------------------------------
 
-**Social: Like Actions** is a Plone package (add-on) providing simple social
-networks integration for Plone Content Types.
-
-This package ships with plugins for the following networks:
+This package provides integration for the following social networks in Plone:
 
 * Facebook
 * Google+
 * LinkedIn
 * Pinterest
+* Telegram
 * Twitter
 * WhatsApp (mobile only)
 
@@ -61,10 +59,6 @@ Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
 Check the box next to ``Social: Like Actions`` and click the 'Activate'
 button.
 
-.. Note::
-    You may have to empty your browser cache and save your resource registries
-    in order to see the effects of the product installation.
-
 Configuration
 ^^^^^^^^^^^^^
 
@@ -79,18 +73,16 @@ will be displayed and for which content types.
 Privacy and cookies
 ^^^^^^^^^^^^^^^^^^^
 
-Social networks and privacy togheter is a thorny argument, let say that
-social media widget commonly tracks user actions and add 3rd party cookies.
+Social media widgets commonly track user actions and add third party cookies.
 
-If privacy is something you must care about (for example: if you need to take
-care of the `European Cookie Law`_) sc.social.like provide a
-"*Do not track users*" option.
-When enabled, social media widget are rendered as simple HTML links at the expense
-of features and user experience.
+If privacy is something you must care about
+(for instance, if you need to comply with the `European Cookie Law <http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:32009L0136>`_),
+sc.social.like provides a "*Do not track users*" option.
+When enabled, social media widgets will be rendered as simple HTML links at the expense of features and user experience.
 
-This product is also respecting the `Do Not Track`_ browser user's preference.
-If the user configured his browser for beeing not tracked, social media will
-be rendered as the "*Severe privacy*" settings is enabled.
+This product is also respects the `Do Not Track <http://donottrack.us/>`_ user's browser preference.
+If the user configured the browser for not being tracked,
+social media will be rendered as if the "*Severe privacy*" setting was enabled.
 
 Screenshots
 ^^^^^^^^^^^
@@ -98,6 +90,3 @@ Screenshots
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
 
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
-
-.. _`European Cookie Law`: http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:32009L0136
-.. _`Do Not Track`: http://donottrack.us/
