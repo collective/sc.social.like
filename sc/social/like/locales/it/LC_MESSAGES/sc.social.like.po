@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-06-09 12:47+0000\n"
+"POT-Creation-Date: 2016-07-27 12:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -74,12 +74,18 @@ msgstr ""
 msgid "Settings for the sc.social.like package"
 msgstr ""
 
+#: ./sc/social/like/plugins/telegram/plugin.pt:2
+#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
 #: ./sc/social/like/vocabularies.py:48
 msgid "Share"
 msgstr "Condividi"
 
+#: ./sc/social/like/plugins/telegram/plugin.pt:2
+msgid "Share on Telegram"
+msgstr ""
+
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-msgid "Share in WhatsApp"
+msgid "Share on WhatsApp"
 msgstr "Condividi in WhatsApp"
 
 #: ./sc/social/like/plugins/facebook/templates/link.pt:12

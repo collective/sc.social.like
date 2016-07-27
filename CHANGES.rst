@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.6 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Add `title` attributes to Telegram and WhatsApp share links.
+  [hvelarde]
+
 - Enforce constraints on `enabled_portal_types` field to avoid `WrongType` error while running upgrade step to v3040.
   [hvelarde]
 

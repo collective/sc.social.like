@@ -1,6 +1,5 @@
-<tal:wa i18n:domain="sc.social.like">
-    <a tal:attributes="href view/whatsappurl;
-                       class view/klass"
-       i18n:translate=""
-       >Share</a>
-</tal:wa>
+<tal:whatsapp i18n:domain="sc.social.like">
+  <a title="Share on WhatsApp" i18n:attributes="title"
+      tal:attributes="href view/whatsappurl; class view/klass"
+      i18n:translate="">Share</a>
+</tal:whatsapp>
