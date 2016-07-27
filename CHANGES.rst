@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.6 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Do not fail on adding Facebook's 'Like' button while running upgrade step to v3010.
+  [fredvd, hvelarde]
 
 
 2.5 (2016-07-26)
