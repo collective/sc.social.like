@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.6 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Enforce constraints on `enabled_portal_types` field to avoid `WrongType` error while running upgrade step to v3040.
+  [hvelarde]
+
 - Do not fail on adding Facebook's 'Like' button while running upgrade step to v3010.
   [fredvd, hvelarde]
 

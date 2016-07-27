@@ -17,6 +17,18 @@ def update_configlet_information(setup_tool):
         logger.info('Configlet information updated')
 
 
+def _enforce_type_constraints(portal_types):
+    """Return ReallyUserFriendlyTypes only. Old field values were not
+    restricted in any way; new field values must be terms of this
+    vocabulary.
+    """
+    from zope.component import getUtility
+    from zope.schema.interfaces import IVocabularyFactory
+    name = 'plone.app.vocabularies.ReallyUserFriendlyTypes'
+    friendly_types = getUtility(IVocabularyFactory, name)(None)
+    return tuple([i for i in portal_types if i in friendly_types])
+
+
 def migrate_settings_to_registry(setup_tool):
     """Migrate settings to registry."""
     profile = 'profile-{0}:default'.format(PROJECTNAME)
@@ -26,7 +38,9 @@ def migrate_settings_to_registry(setup_tool):
         old_props = portal_properties.sc_social_likes_properties
         registry = getUtility(IRegistry)
         settings = registry.forInterface(ISocialLikeSettings)
-        settings.enabled_portal_types = old_props.enabled_portal_types
+        # ignore types not allowed
+        types_ = _enforce_type_constraints(old_props.enabled_portal_types)
+        settings.enabled_portal_types = types_
         settings.plugins_enabled = old_props.plugins_enabled
         settings.typebutton = old_props.typebutton
         settings.do_not_track = old_props.do_not_track
