@@ -5,6 +5,8 @@ There's a frood who really knows where his towel is.
 
 2.6 (unreleased)
 ^^^^^^^^^^^^^^^^
+- Don't fail in the twitter plugin if the Title has non ascii characters.
+  [csenger]
 
 - Add `title` attributes to Telegram and WhatsApp share links.
   [hvelarde]
