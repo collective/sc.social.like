@@ -60,7 +60,7 @@ class PluginView(BrowserView):
 
     def share_link(self):
         params = dict(
-            text=self.context.Title(),
+            text=safe_unicode(self.context.Title()).encode('utf-8'),
             url=self.context.absolute_url(),
         )
         if self.via:
