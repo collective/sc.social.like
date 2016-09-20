@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
+from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFCore.utils import getToolByName
 from sc.social.like.config import PROJECTNAME
-from plone.app.upgrade.utils import loadMigrationProfile
 
 import logging
 

@@ -1,13 +1,13 @@
 # -*- coding:utf-8 -*-
-from Products.CMFPlone.utils import safe_unicode
+from plone import api
 from plone.api.exc import InvalidParameterError
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
-from plone import api
 
 
 class PluginView(BrowserView):

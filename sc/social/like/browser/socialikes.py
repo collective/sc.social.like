@@ -2,8 +2,8 @@
 from plone import api
 from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
-from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import ISocialLikes
+from sc.social.like.interfaces import ISocialLikeSettings
 from zope.interface import implementer
 
 

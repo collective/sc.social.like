@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
-from Acquisition import aq_parent, aq_inner
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from plone import api
 from plone.api.exc import InvalidParameterError
 from Products.CMFCore.interfaces import ISiteRoot

@@ -5,8 +5,8 @@ from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
 from plone.registry.interfaces import IRegistry
 from Products.Five import BrowserView
-from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import IHelperView
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins import IPlugin
 from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor

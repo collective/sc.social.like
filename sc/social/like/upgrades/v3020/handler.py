@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
-import logging
-from sc.social.like.config import PROJECTNAME
 from plone.app.upgrade.utils import loadMigrationProfile
+from sc.social.like.config import PROJECTNAME
+
+import logging
 
 logger = logging.getLogger(PROJECTNAME)
 

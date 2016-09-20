@@ -3,8 +3,8 @@ from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import PROJECTNAME
-from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import ISocialLikeLayer
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtility
 from zope.interface import alsoProvides
