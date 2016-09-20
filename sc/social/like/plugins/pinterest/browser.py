@@ -10,7 +10,7 @@ from urllib import urlencode
 from zope.component import getMultiAdapter
 
 BASE_URL = '//pinterest.com/pin/create/button/'
-PARAMS = '?url=%s&media=%s&description=%s'
+PARAMS = '?url={0}&media={1}&description={2}'
 
 
 class PluginView(BrowserView):
@@ -39,7 +39,7 @@ class PluginView(BrowserView):
 
     def share_url(self):
         template = BASE_URL + PARAMS
-        return template % (
+        return template.format(
             self.url,
             self.image_url(),
             self.context.Title(),
@@ -52,7 +52,7 @@ class PluginView(BrowserView):
         if img:
             return img.url
         else:
-            return '%s/logo.png' % self.site_url
+            return '{0}/logo.png'.format(self.site_url)
 
     @property
     def typebutton(self):
