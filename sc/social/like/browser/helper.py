@@ -11,13 +11,13 @@ from sc.social.like.plugins import IPlugin
 from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 
 
+@implementer(IHelperView)
 class HelperView(BrowserView):
     """ Social Like configuration helpers
     """
-    implements(IHelperView)
 
     def __init__(self, context, request, *args, **kwargs):
         super(HelperView, self).__init__(context, request, *args, **kwargs)

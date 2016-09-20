@@ -4,13 +4,13 @@ from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import ISocialLikes
-from zope.interface import implements
+from zope.interface import implementer
 
 
+@implementer(ISocialLikes)
 class SocialLikes(BrowserView):
     """
     """
-    implements(ISocialLikes)
 
     def __init__(self, context, request):
         self.context = context
