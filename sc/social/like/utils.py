@@ -1,13 +1,14 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
+from Products.CMFPlone.utils import safe_hasattr
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 
 
 def get_images_view(context):
     request = getRequest()
-    key = 'cache-view-%s' % (context)
+    key = 'cache-view-' + str(context)
     cache = IAnnotations(request)
     value = cache.get(key, None)
     if not value:
@@ -35,7 +36,8 @@ def get_content_image(context,
                       height=None):
     request = getRequest()
     modification = context.ModificationDate()
-    key = 'cache-%s-%s-%s-%s-%s' % (context, modification, scale, width, height)
+    key = 'cache-{0}-{1}-{2}-{3}-{4}'.format(
+        context, modification, scale, width, height)
     cache = IAnnotations(request)
     img = cache.get(key, None)
     if not img:
@@ -74,7 +76,7 @@ def get_language(context):
     if IBaseContent.providedBy(content):
         language = content.Language()
     else:
-        language = content.language if hasattr(content, 'language') else ''
+        language = content.language if safe_hasattr(content, 'language') else ''
     return language if language else default_language
 
 

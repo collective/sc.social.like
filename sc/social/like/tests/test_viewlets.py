@@ -4,8 +4,8 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from sc.social.like.browser.viewlets import SocialLikesViewlet
 from sc.social.like.browser.viewlets import SocialMetadataViewlet
-from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.interfaces import ISocialLikeLayer
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.interface import alsoProvides
 

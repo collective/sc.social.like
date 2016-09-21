@@ -9,10 +9,10 @@ class Plugin(object):
     name = ''
 
     def config_view(self):
-        return '@@%s-config' % self.id
+        return '@@{0}-config'.format(self.id)
 
     def view(self):
-        return '@@%s-plugin' % self.id
+        return '@@{0}-plugin'.format(self.id)
 
     def metadata(self):
         return 'metadata'

@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
-from Acquisition import aq_parent, aq_inner
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from plone import api
 from plone.api.exc import InvalidParameterError
 from Products.CMFCore.interfaces import ISiteRoot
@@ -14,7 +15,7 @@ from urllib import urlencode
 from zope.component import getMultiAdapter
 
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
-PARAMS = 'locale=%s&href=%s&send=false&layout=%s&show_faces=true&action=%s'
+PARAMS = 'locale={0}&href={1}&send=false&layout={2}&show_faces=true&action={3}'
 
 
 class PluginView(BrowserView):
@@ -46,14 +47,14 @@ class PluginView(BrowserView):
 
     def fbjs(self):
         js_source = """
-    (function() {
+    (function() {{
         var po = document.createElement('script');
         po.async = true;
-        po.src = document.location.protocol + '//connect.facebook.net/%s/all.js#xfbml=1';
+        po.src = document.location.protocol + '//connect.facebook.net/{0}/all.js#xfbml=1';
         var head = document.getElementsByTagName('head')[0];
         head.appendChild(po);
-    }());
-    """ % self.language
+    }}());
+    """.format(self.language)
         return js_source
 
     def image_height(self):
@@ -85,7 +86,7 @@ class PluginView(BrowserView):
         if img:
             return img.url
         else:
-            return '%s/logo.png' % self.site_url
+            return '{0}/logo.png'.format(self.site_url)
 
     @property
     def typebutton(self):

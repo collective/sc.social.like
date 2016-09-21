@@ -15,7 +15,6 @@ from zope.component import getUtilitiesFor
 from zope.component import getUtility
 from zope.interface import alsoProvides
 
-
 import unittest
 
 name = 'Facebook'

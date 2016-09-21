@@ -8,7 +8,7 @@ def fix_iso(code):
     if code.find('-') > -1:
         # we have a iso code like pt-br and FB_LOCALES uses pt_BR
         code = code.split('-')
-        code = '%s_%s' % (code[0], code[1].upper())
+        code = '{0}_{1}'.format(code[0], code[1].upper())
         # Deal with Umbrella locations (Arabic and Spanish)
         if code.startswith('es_'):
             if code not in FB_LOCALES:
@@ -26,8 +26,8 @@ def fix_iso(code):
             # We have several choices...
             # try to find a xx_XX combination if possible.
             # if not, return the first one..
-            if '%s_%s' % (code.lower(), code.upper()) in FB_LOCALES:
-                code = '%s_%s' % (code.lower(), code.upper())
+            if '{0}_{1}'.format(code.lower(), code.upper()) in FB_LOCALES:
+                code = '{0}_{1}'.format(code.lower(), code.upper())
             else:
                 code = available[0]
     return code

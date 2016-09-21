@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.app.layout.viewlets import ViewletBase
