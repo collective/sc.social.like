@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
+from Products.CMFPlone.utils import safe_hasattr
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 
@@ -75,7 +76,7 @@ def get_language(context):
     if IBaseContent.providedBy(content):
         language = content.Language()
     else:
-        language = content.language if hasattr(content, 'language') else ''
+        language = content.language if safe_hasattr(content, 'language') else ''
     return language if language else default_language
 
 
