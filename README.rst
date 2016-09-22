@@ -90,3 +90,21 @@ Screenshots
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
 
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
+
+Tiles
+^^^^^
+
+If collective.cover is installed, two new tiles will be available: Facebook and Twitter.
+
+The Facebook tile is TBA.
+
+The Twitter tile embeds a timeline.
+Embedded timelines are an easy way to embed multiple tweets on your website in a compact, single-column view.
+You can set the width, height and tweet limit, and you can use a widget ID.
+A Twitter username must be defined in the Social Like configlet to use this tile.
+
+TODO:
+
+* [ ] Upgrade step
+* [ ] Twitter: allow to remove a display component of a timeline (chrome)
+* [ ] Twitter: refresh the tile after editing it

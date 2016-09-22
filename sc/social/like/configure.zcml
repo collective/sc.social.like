@@ -12,6 +12,7 @@
     <include file="profiles.zcml" />
     <include package=".browser" />
     <include package=".plugins" />
+    <include package=".tiles" zcml:condition="installed collective.cover" />
 
     <i18n:registerTranslations directory="locales" />
 

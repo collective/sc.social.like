@@ -6,6 +6,8 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="sc.social.like">
 
+    <browser:resourceDirectory name="sc.social.like" directory="static" />
+
     <browser:page
         for="*"
         name="social_likes_view"

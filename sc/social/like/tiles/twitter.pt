@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sc.social.like">
+  <body>
+    <div class="tile-twitter tile-content">
+      <p tal:condition="python:view.is_empty and view.is_compose_mode()">
+        To use this tile you must define a Twitter username in the Social Like configlet.
+      </p>
+      <a href="https://twitter.com/plone" class="twitter-timeline" height="500"
+          tal:define="data view/get_data"
+          tal:condition="not:view/is_empty"
+          tal:content="string:Tweets by ${view/username}"
+          tal:attributes="href string://twitter.com/${view/username};
+                          width data/width;
+                          height data/height;
+                          data-aria-polite data/aria_polite;
+                          data-widget-id data/widget_id;
+                          data-width data/width;
+                          data-height data/height;
+                          data-chrome data/chrome;
+                          data-tweet-limit data/tweet_limit;">Tweets by plone</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </body>
+</html>
