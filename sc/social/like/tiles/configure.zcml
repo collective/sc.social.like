@@ -8,6 +8,18 @@
 
   <plone:tile
       add_permission="cmf.ModifyPortalContent"
+      class=".facebook.FacebookTile"
+      description="A tile that embeds a Facebook Page."
+      for="*"
+      icon="++resource++sc.social.like/tile-facebook.png"
+      name="sc.social.like.facebook"
+      permission="zope2.View"
+      schema=".facebook.IFacebookTile"
+      title="Facebook Tile"
+      />
+
+  <plone:tile
+      add_permission="cmf.ModifyPortalContent"
       class=".twitter.TwitterTile"
       description="A tile that embeds a Twitter timeline."
       for="*"
