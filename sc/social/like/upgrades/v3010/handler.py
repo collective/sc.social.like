@@ -1,11 +1,7 @@
 # -*- coding:utf-8 -*-
 from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFCore.utils import getToolByName
-from sc.social.like.config import PROJECTNAME
-
-import logging
-
-logger = logging.getLogger(PROJECTNAME)
+from sc.social.like.logger import logger
 
 
 def cook_css_registry(context):

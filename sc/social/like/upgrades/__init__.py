@@ -1,10 +1,6 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from sc.social.like.config import PROJECTNAME
-
-import logging
-
-logger = logging.getLogger(PROJECTNAME)
+from sc.social.like.logger import logger
 
 
 def cook_css_resources(context):

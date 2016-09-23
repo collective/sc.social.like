@@ -1,14 +1,11 @@
 # -*- coding:utf-8 -*-
 from plone.app.upgrade.utils import loadMigrationProfile
 from Products.CMFCore.utils import getToolByName
-from sc.social.like.config import PROJECTNAME
-
-import logging
+from sc.social.like.logger import logger
 
 
 def apply_profile(context):
     """ Apply upgrade profile """
-    logger = logging.getLogger(PROJECTNAME)
     profile = 'profile-sc.social.like.upgrades.v3000:default'
     loadMigrationProfile(context, profile)
     logger.info('Applied upgrade profile to version 3000')
@@ -16,7 +13,6 @@ def apply_profile(context):
 
 def update_plugins(context):
     """ Apply upgrade profile """
-    logger = logging.getLogger(PROJECTNAME)
     pp = getToolByName(context, 'portal_properties')
     sheet = getattr(pp, 'sc_social_likes_properties', None)
     plugins_enabled = []
