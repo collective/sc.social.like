@@ -1,10 +1,6 @@
 # -*- coding:utf-8 -*-
 from plone.app.upgrade.utils import loadMigrationProfile
-from sc.social.like.config import PROJECTNAME
-
-import logging
-
-logger = logging.getLogger(PROJECTNAME)
+from sc.social.like.logger import logger
 
 
 def add_privacy_setting(context):

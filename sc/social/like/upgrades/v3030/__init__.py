@@ -1,9 +1,6 @@
 # -*- coding:utf-8 -*-
 from sc.social.like.config import PROJECTNAME
-
-import logging
-
-logger = logging.getLogger(PROJECTNAME)
+from sc.social.like.logger import logger
 
 
 def move_mobile_detection_client_side(setup_tool):
