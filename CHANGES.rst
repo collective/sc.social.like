@@ -3,8 +3,8 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.6 (unreleased)
-^^^^^^^^^^^^^^^^
+2.6a1 (2016-09-23)
+^^^^^^^^^^^^^^^^^^
 
 - Add Facebook and Twitter tiles for collective.cover.
   The Facebook tile embeds a Facebook Page.
