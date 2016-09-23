@@ -100,8 +100,8 @@ The Facebook tile embeds a Facebook Page.
 You can set the width and height, and you can control some other aspects of the widget.
 A Facebook application ID must be defined in the Social Like configlet in order to use this tile.
 
-The Twitter tile embeds a timeline.
-Embedded timelines are an easy way to embed multiple tweets on your website in a compact, single-column view.
+The Twitter tile embeds a Twitter timeline.
+Timelines are an easy way to embed multiple tweets on your website in a compact, single-column view.
 You can set the width, height and tweet limit, and you can use a widget ID.
 A Twitter username must be defined in the Social Like configlet in order to use this tile.
 
@@ -117,4 +117,4 @@ TODO:
 * [ ] Facebook: return a comma-separated string of tabs to render
 * [ ] Twitter: allow to remove a display component of a timeline (chrome)
 * [ ] Twitter: refresh the tile after editing it
-* [ ] Upgrade step
+* [ ] RobotFramework tests for both tiles

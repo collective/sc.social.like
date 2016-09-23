@@ -156,3 +156,33 @@ class To3040TestCase(UpgradeTestCaseBase):
         self.assertEqual(settings.facebook_app_id, '')
         self.assertEqual(settings.fbbuttons, (u'Like',))
         self.assertEqual(settings.twitter_username, 'hvelarde')
+
+
+class To3041TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3040', u'3041')
+
+    def test_upgrade_to_3041_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
+
+    def test_register_cover_tiles(self):
+        # check if the upgrade step is registered
+        title = u'Register collective.cover tiles'
+        step = self.get_upgrade_step(title)
+        assert step is not None
+
+        # simulate state on previous version
+        from sc.social.like.config import TILES
+        registered = api.portal.get_registry_record('plone.app.tiles')
+        [registered.remove(t) for t in TILES if t in registered]
+        # there are no elements in common
+        assert set(registered) & set(TILES) == set([])
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        registered = api.portal.get_registry_record('plone.app.tiles')
+        [self.assertIn(t, registered) for t in TILES]

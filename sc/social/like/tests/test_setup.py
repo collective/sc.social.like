@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.browserlayer.utils import registered_layers
 from sc.social.like.config import PROJECTNAME
+from sc.social.like.config import TILES
+from sc.social.like.testing import HAS_COVER
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.testing import IS_PLONE_5
 
@@ -35,6 +38,11 @@ class InstallTestCase(unittest.TestCase):
         resource_ids = self.portal.portal_css.getResourceIds()
         self.assertIn(CSS, resource_ids)
 
+    @unittest.skipUnless(HAS_COVER, 'plone.app.tiles must be installed')
+    def test_tiles(self):
+        registered = api.portal.get_registry_record('plone.app.tiles')
+        [self.assertIn(t, registered) for t in TILES]
+
 
 class UninstallTest(unittest.TestCase):
 
@@ -61,3 +69,8 @@ class UninstallTest(unittest.TestCase):
     def test_cssregistry_removed(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         self.assertNotIn(CSS, resource_ids)
+
+    @unittest.skipUnless(HAS_COVER, 'plone.app.tiles must be installed')
+    def test_tiles_removed(self):
+        registered = api.portal.get_registry_record('plone.app.tiles')
+        [self.assertNotIn(t, registered) for t in TILES]
