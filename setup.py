@@ -17,7 +17,7 @@ setup(name='sc.social.like',
                      Content Types""",
       long_description=long_description,
       classifiers=[
-          "Development Status :: 5 - Production/Stable",
+          "Development Status :: 4 - Beta",
           "Environment :: Web Environment",
           "Framework :: Plone",
           "Framework :: Plone :: 4.2",
