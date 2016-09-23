@@ -90,3 +90,31 @@ Screenshots
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot1.png
 
 .. image:: https://github.com/collective/sc.social.like/raw/master/docs/screenshot2.png
+
+Tiles
+^^^^^
+
+If collective.cover is installed, two new tiles will be available: Facebook and Twitter.
+
+The Facebook tile embeds a Facebook Page.
+You can set the width and height, and you can control some other aspects of the widget.
+A Facebook application ID must be defined in the Social Like configlet in order to use this tile.
+
+The Twitter tile embeds a Twitter timeline.
+Timelines are an easy way to embed multiple tweets on your website in a compact, single-column view.
+You can set the width, height and tweet limit, and you can use a widget ID.
+A Twitter username must be defined in the Social Like configlet in order to use this tile.
+
+.. figure:: https://github.com/collective/sc.social.like/raw/master/docs/tiles.png
+    :align: center
+    :height: 600px
+    :width: 800px
+
+    The Twitter and Facebook tiles.
+
+TODO:
+
+* [ ] Facebook: return a comma-separated string of tabs to render
+* [ ] Twitter: allow to remove a display component of a timeline (chrome)
+* [ ] Twitter: refresh the tile after editing it
+* [ ] RobotFramework tests for both tiles

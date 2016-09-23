@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="sc.social.like">
+
+  <include package="plone.tiles" file="meta.zcml" />
+
+  <plone:tile
+      add_permission="cmf.ModifyPortalContent"
+      class=".facebook.FacebookTile"
+      description="A tile that embeds a Facebook Page."
+      for="*"
+      icon="++resource++sc.social.like/tile-facebook.png"
+      name="sc.social.like.facebook"
+      permission="zope2.View"
+      schema=".facebook.IFacebookTile"
+      title="Facebook Tile"
+      />
+
+  <plone:tile
+      add_permission="cmf.ModifyPortalContent"
+      class=".twitter.TwitterTile"
+      description="A tile that embeds a Twitter timeline."
+      for="*"
+      icon="++resource++sc.social.like/tile-twitter.png"
+      name="sc.social.like.twitter"
+      permission="zope2.View"
+      schema=".twitter.ITwitterTile"
+      title="Twitter Tile"
+      />
+
+</configure>

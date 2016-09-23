@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.social.like">
+
+  <genericsetup:upgradeSteps
+      source="3040"
+      destination="3041"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeStep
+        title="Register collective.cover tiles"
+        description=""
+        handler=".register_cover_tiles"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

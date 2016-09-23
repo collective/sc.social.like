@@ -6,6 +6,11 @@ There's a frood who really knows where his towel is.
 2.6 (unreleased)
 ^^^^^^^^^^^^^^^^
 
+- Add Facebook and Twitter tiles for collective.cover.
+  The Facebook tile embeds a Facebook Page.
+  The Twitter tile embeds a Twitter timeline.
+  [hvelarde]
+
 - Add `title` attributes to Telegram and WhatsApp share links.
   [hvelarde]
 
