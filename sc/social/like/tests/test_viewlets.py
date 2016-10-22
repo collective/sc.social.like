@@ -8,7 +8,6 @@ from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.interface import alsoProvides
-
 import unittest
 
 
@@ -48,9 +47,15 @@ class MetadataViewletTestCase(unittest.TestCase):
         self.assertTrue(viewlet.enabled())
 
     def test_disabled_on_edit_document(self):
-        request = self.layer['request']
-        request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
-        html = self.document.atct_edit()
+        view = api.content.get_view(
+            name='edit',
+            context=self.document,
+            request=self.request
+        )
+        # label and contents has to exist for called render edit view on test
+        view.label = 'test'
+        view.contents = '<p>test</p>'
+        html = view.render()
         self.assertNotIn('og:site_name', html)
 
     def test_render(self):
@@ -87,9 +92,14 @@ class LikeViewletTestCase(unittest.TestCase):
         self.assertTrue(viewlet.enabled())
 
     def test_disabled_on_edit_document(self):
-        request = self.layer['request']
-        request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
-        html = self.document.atct_edit()
+        view = api.content.get_view(
+            name='edit',
+            context=self.document,
+            request=self.request
+        )
+        view.label = 'test'
+        view.contents = '<p>test</p>'
+        html = view.render()
         self.assertNotIn('id="viewlet-social-like"', html)
 
     def test_render(self):
