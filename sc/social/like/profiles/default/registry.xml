@@ -12,4 +12,15 @@
       <element>sc.social.like.twitter</element>
     </value>
   </record>
+
+  <records prefix="plone.bundles/sociallike"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="merge_with">default</value>
+    <value key="enabled">True</value>
+    <value key="compile">False</value>
+    <value key="jscompilation">++resource++sl_scripts/social_like.js</value>
+    <value key="csscompilation">++resource++sl_stylesheets/social_like.css</value>
+    <value key="last_compilation">2016-10-22 00:00:00</value>
+  </records>
+
 </registry>
