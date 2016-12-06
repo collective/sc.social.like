@@ -10,6 +10,7 @@ from plone.testing import z2
 import os.path
 import pkg_resources
 
+
 try:
     pkg_resources.get_distribution('collective.cover')
 except pkg_resources.DistributionNotFound:

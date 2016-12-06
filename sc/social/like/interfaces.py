@@ -11,6 +11,8 @@ from zope.interface import Interface
 
 # BBB: for compatibility with installations made before 2.5.0
 import sys
+
+
 sys.modules['sc.social.like.interfaces.socialikes'] = sys.modules[__name__]
 
 

@@ -14,6 +14,7 @@ from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
 
+
 BASE_URL = 'https://www.facebook.com/plugins/like.php?'
 PARAMS = 'locale={0}&href={1}&send=false&layout={2}&show_faces=true&action={3}'
 
