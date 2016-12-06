@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.6b1 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Added ``mock`` to ``test`` extras.  [maurits]
+- Fix package dependencies.
+  [maurits, hvelarde]
 
 
 2.6a1 (2016-09-23)
