@@ -9,6 +9,7 @@ from sc.social.like.testing import IS_PLONE_5
 
 import unittest
 
+
 JAVASCRIPT = '++resource++sl_scripts/social_like.js'
 CSS = '++resource++sl_stylesheets/social_like.css'
 

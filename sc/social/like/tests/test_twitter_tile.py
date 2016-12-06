@@ -6,6 +6,7 @@ from sc.social.like.testing import INTEGRATION_TESTING
 
 import unittest
 
+
 if HAS_COVER:
     from collective.cover.tests.base import TestTileMixin
     from sc.social.like.tiles.twitter import ITwitterTile

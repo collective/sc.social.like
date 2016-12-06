@@ -9,6 +9,7 @@ from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
 
+
 BASE_URL = '//pinterest.com/pin/create/button/'
 PARAMS = '?url={0}&media={1}&description={2}'
 

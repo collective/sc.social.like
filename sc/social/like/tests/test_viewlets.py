@@ -11,6 +11,7 @@ from zope.interface import alsoProvides
 
 import unittest
 
+
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
 
 
