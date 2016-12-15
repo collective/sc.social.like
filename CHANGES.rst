@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.6b1 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Show image metadata for dexterity content types (fixes `#87`_).
+  [rodfersou]
+
 - Fix package dependencies.
   [maurits, hvelarde]
 
@@ -231,3 +234,4 @@ Previous entries can be found in the HISTORY.rst file.
 .. _`#39`: https://github.com/collective/sc.social.like/issues/39
 .. _`#52`: https://github.com/collective/sc.social.like/issues/52
 .. _`#56`: https://github.com/collective/sc.social.like/issues/56
+.. _`#87`: https://github.com/collective/sc.social.like/issues/87
