@@ -6,7 +6,7 @@ There's a frood who really knows where his towel is.
 2.6b1 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Hide social like for unpublished content (closes `#83`_).
+- Do not show social like viewlet for unpublished content (closes `#83`_).
   [rodfersou]
 
 - Fix package dependencies.

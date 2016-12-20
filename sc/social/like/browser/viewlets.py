@@ -41,13 +41,13 @@ class BaseLikeViewlet(ViewletBase):
         return rendered
 
     def enabled(self):
-        """Validates if the viewlet should be enabled for this context
-        """
+        """Check if the viewlet should be visible on this context."""
         try:
-            published = (api.content.get_state(self.context) == 'published')
-        except WorkflowException:  # no workflows
+            published = api.content.get_state(self.context) == 'published'
+        except WorkflowException:
+            # no workflow on context, like in site root
             published = True
-        return (self.helper.enabled() and self.plugins() and published)
+        return all([published, self.helper.enabled(), self.plugins()])
 
     # HACK: fixes https://bitbucket.org/takaki/sc.social.like/issue/1
     def update(self):
