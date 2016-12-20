@@ -70,6 +70,7 @@ class LikeViewletTestCase(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']
+        api.content.transition(obj=self.document, transition='publish')
 
     def viewlet(self, context=None):
         context = context or self.portal

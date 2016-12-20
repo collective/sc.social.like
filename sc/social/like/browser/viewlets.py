@@ -3,6 +3,7 @@ from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize.view import memoize
+from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
 from zope.component import getMultiAdapter
@@ -40,9 +41,13 @@ class BaseLikeViewlet(ViewletBase):
         return rendered
 
     def enabled(self):
-        """Validates if the viewlet should be enabled for this context
-        """
-        return self.helper.enabled() and self.plugins()
+        """Check if the viewlet should be visible on this context."""
+        try:
+            published = api.content.get_state(self.context) == 'published'
+        except WorkflowException:
+            # no workflow on context, like in site root
+            published = True
+        return all([published, self.helper.enabled(), self.plugins()])
 
     # HACK: fixes https://bitbucket.org/takaki/sc.social.like/issue/1
     def update(self):
