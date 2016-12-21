@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.6b1 (unreleased)
+2.6b1 (2016-12-21)
 ^^^^^^^^^^^^^^^^^^
 
 - Code clean up; tests related with loading BMP images were removed as make no sense.
