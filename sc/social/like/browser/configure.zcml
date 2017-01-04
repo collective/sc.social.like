@@ -52,16 +52,20 @@
     <browser:resourceDirectory
         name="sl_stylesheets"
         directory="stylesheets"
-        layer="..interfaces.ISocialLikeLayer"
         permission="zope.Public"
         />
+        <!-- Registry need browserlayer, but it seems registry is installed before
+        layer="..interfaces.ISocialLikeLayer"
+        -->
 
     <browser:resourceDirectory
         name="sl_scripts"
         directory="scripts"
-        layer="..interfaces.ISocialLikeLayer"
         permission="zope.Public"
         />
+        <!-- Registry need browserlayer, but it seems registry is installed before
+        layer="..interfaces.ISocialLikeLayer"
+        -->
 
     <browser:page
         name="sociallike-settings"

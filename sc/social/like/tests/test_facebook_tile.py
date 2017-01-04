@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from mock import Mock
 from plone import api
 from sc.social.like.testing import HAS_COVER
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -9,6 +8,7 @@ import unittest
 
 if HAS_COVER:
     from collective.cover.tests.base import TestTileMixin
+    from mock import Mock
     from sc.social.like.tiles.facebook import IFacebookTile
     from sc.social.like.tiles.facebook import FacebookTile
 else:

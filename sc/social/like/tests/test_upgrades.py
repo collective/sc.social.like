@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import IS_PLONE_5
 
 import unittest
 
@@ -49,6 +50,7 @@ class Upgrade1to2TestCase(UpgradeTestCaseBase):
         self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self.total_steps, 3)
 
+    @unittest.skipIf(IS_PLONE_5, 'No portal_javascript in Plone 5')
     def test_move_mobile_detection_client_side(self):
         # check if the upgrade step is registered
         title = u'Move mobile detection client-side'

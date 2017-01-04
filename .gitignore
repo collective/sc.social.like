@@ -17,3 +17,5 @@ Makefile
 .pydevproject
 .project
 .settings
+share/
+src/
