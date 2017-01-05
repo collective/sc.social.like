@@ -9,6 +9,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
+from sc.social.like.testing import IS_PLONE_5  # TODO: move to config.py
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
@@ -46,9 +47,9 @@ class PluginView(BrowserView):
         self.image = get_content_image(context, width=1200, height=630)
         self.typebutton  # XXX: needed to initialize self.width
 
-    def metadata_enabled(self):
-        """Disable metadata on Plone 5"""
-        return not api.env.plone_version().startswith('5')
+    @property
+    def is_plone_5(self):
+        return IS_PLONE_5
 
     def fbjs(self):
         js_source = """

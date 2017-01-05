@@ -1,4 +1,7 @@
-<tal:fb condition="view/metadata_enabled">
+<tal:comment replace="nothing">
+  Plone 5 already includes metadata for Facebook and Twitter.
+</tal:comment>
+<tal:fb condition="not:view/is_plone_5">
   <meta property="og:site_name" tal:attributes="content view/portal_title" />
   <meta property="og:url" tal:attributes="content view/url" />
   <meta property="og:type" tal:attributes="content view/type" />

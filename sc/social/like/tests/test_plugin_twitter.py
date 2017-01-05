@@ -68,7 +68,7 @@ class PluginViewsTest(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.image = api.content.create(
-                self.portal, 'Image', id='test-image')
+                self.portal, 'Image', title='Lorem Ipsum', description='Neque Porro')
 
         set_image_field(self.image, load_image(1024, 768), 'image/png')
 
@@ -77,26 +77,24 @@ class PluginViewsTest(unittest.TestCase):
         self.document = portal['my-document']
 
     def test_plugin_view_metadata(self):
-        plugin = self.plugin
-        image = self.image
-        plugin_view = plugin.view()
-        view = image.restrictedTraverse(plugin_view)
-        view.title = 'Twitter Title'
-        view.description = 'Twitter Description'
+
+        def get_meta_content(name):
+            """Return the content attribute of the meta tag specified by name."""
+            return html.find('*/meta[@name="{0}"]'.format(name)).attrib['content']
+
+        view = self.image.restrictedTraverse(self.plugin.view())
         record = ISocialLikeSettings.__identifier__ + '.twitter_username'
         api.portal.set_registry_record(record, 'plone')
 
-        metadata = view.metadata()
-        self.assertIn(
-            '<meta name="twitter:card" content="summary_large_image" />', metadata)
-        self.assertIn(
-            '<meta name="twitter:image" content="http://nohost/plone/test-image/@@images', metadata)
-        self.assertIn(
-            '<meta name="twitter:site" content="@plone" />', metadata)
-        self.assertIn(
-            '<meta name="twitter:title" content="Twitter Title" />', metadata)
-        self.assertIn(
-            '<meta name="twitter:description" content="Twitter Description" />', metadata)
+        from lxml import etree
+        html = etree.HTML(view.metadata())
+
+        self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
+        expected = r'http://nohost/plone/lorem-ipsum/@@images/[0-9a-f--]+.png'
+        self.assertRegexpMatches(get_meta_content('twitter:image'), expected)
+        self.assertEqual(get_meta_content('twitter:site'), '@plone')
+        self.assertEqual(get_meta_content('twitter:title'), 'Lorem Ipsum')
+        self.assertEqual(get_meta_content('twitter:description'), 'Neque Porro')
 
     def test_plugin_view_html(self):
         plugin = self.plugin

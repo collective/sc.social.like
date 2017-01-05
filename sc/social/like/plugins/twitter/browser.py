@@ -6,6 +6,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.interfaces import ISocialLikeSettings
+from sc.social.like.testing import IS_PLONE_5  # TODO: move to config.py
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
@@ -46,9 +47,9 @@ class PluginView(BrowserView):
             )
         )
 
-    def metadata_enabled(self):
-        """Disable metadata on Plone 5"""
-        return not api.env.plone_version().startswith('5')
+    @property
+    def is_plone_5(self):
+        return IS_PLONE_5
 
     @property
     def typebutton(self):
@@ -78,8 +79,5 @@ class PluginView(BrowserView):
         return url
 
     def image_url(self):
-        """ Return url to image
-        """
-        img = self.image
-        if img:
-            return img.url
+        """Return image URL."""
+        return self.image.url if self.image else None
