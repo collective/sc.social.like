@@ -128,3 +128,13 @@ class PluginViewsTest(unittest.TestCase):
         view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
         self.assertIn('data-lang="en"', html)
+
+    def test_share_link(self):
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
+        share_link = view.share_link
+        self.assertTrue(share_link().endswith('text=Lorem+Ipsum'))
+
+        # unicode
+        self.newsitem.setTitle(u'¡Notícia de última hora!')
+        self.assertTrue(share_link().endswith(
+            'text=%C2%A1Not%C3%ADcia+de+%C3%BAltima+hora%21'))

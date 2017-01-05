@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.6rc1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Don't fail in the Twitter plugin if the title has non-ASCII characters.
+  [csenger, hvelarde]
+
 - Add metadata for Twitter Cards (closes `#65`_).
   [rodfersou]
 
