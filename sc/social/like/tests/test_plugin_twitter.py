@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -56,25 +54,22 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.setup_content(self.portal)
+        alsoProvides(self.layer['request'], ISocialLikeLayer)
+
+        with api.env.adopt_roles(['Manager']):
+            self.newsitem = api.content.create(
+                self.portal,
+                type='News Item',
+                title='Lorem Ipsum',
+                description='Neque Porro',
+            )
+        set_image_field(self.newsitem, load_image(1024, 768), 'image/png')
 
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
 
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
-
-        with api.env.adopt_roles(['Manager']):
-            self.image = api.content.create(
-                self.portal, 'Image', title='Lorem Ipsum', description='Neque Porro')
-
-        set_image_field(self.image, load_image(1024, 768), 'image/png')
-
-    def setup_content(self, portal):
-        portal.invokeFactory('Document', 'my-document')
-        self.document = portal['my-document']
 
     def test_plugin_view_metadata(self):
 
@@ -82,7 +77,7 @@ class PluginViewsTest(unittest.TestCase):
             """Return the content attribute of the meta tag specified by name."""
             return html.find('*/meta[@name="{0}"]'.format(name)).attrib['content']
 
-        view = self.image.restrictedTraverse(self.plugin.view())
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
         record = ISocialLikeSettings.__identifier__ + '.twitter_username'
         api.portal.set_registry_record(record, 'plone')
 
@@ -97,54 +92,39 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(get_meta_content('twitter:description'), 'Neque Porro')
 
     def test_plugin_view_html(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
         self.assertIn('twitter-share-button', html)
 
     def test_privacy_plugin_view_html(self):
-        plugin = self.plugin
-        portal = self.portal
         self.settings.do_not_track = True
 
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        view = self.portal.restrictedTraverse(self.plugin.view())
         html = view.link()
         self.assertIn('Tweet it!', html)
 
     def test_plugin_twitter_username(self):
-        plugin = self.plugin
-        document = self.document
         self.settings.twitter_username = '@simplesconsult'
 
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
         self.assertIn('data-via="@simplesconsult"', html)
 
     def test_plugin_urlnoscript_encoding(self):
-        plugin = self.plugin
-        document = self.document
-        document.setTitle(u'Notícia')
+        self.newsitem.setTitle(u'Notícia')
         self.settings.twitter_username = '@simplesconsult'
 
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
         self.assertIn('%20via%20%40simplesconsult">Tweet', html)
 
     def test_plugin_language(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        self.document.setLanguage('pt-br')
-        view = document.restrictedTraverse(plugin_view)
+        self.newsitem.setLanguage('pt-br')
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
         self.assertIn('data-lang="pt-br"', html)
 
-        self.document.setLanguage('en')
-        view = document.restrictedTraverse(plugin_view)
+        self.newsitem.setLanguage('en')
+        view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
         self.assertIn('data-lang="en"', html)
