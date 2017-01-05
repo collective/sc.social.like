@@ -7,5 +7,6 @@
     <include package=".v3030" />
     <include package=".v3040" />
     <include package=".v3041" />
+    <include package=".v3042" />
 
 </configure>

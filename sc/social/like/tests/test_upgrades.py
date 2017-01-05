@@ -186,3 +186,14 @@ class To3041TestCase(UpgradeTestCaseBase):
 
         registered = api.portal.get_registry_record('plone.app.tiles')
         [self.assertIn(t, registered) for t in TILES]
+
+
+class To3042TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3041', u'3042')
+
+    def test_upgrade_to_3042_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
