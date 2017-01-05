@@ -6,14 +6,12 @@ There's a frood who really knows where his towel is.
 2.6rc1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add metadata for Twitter Cards (closes `#65`_).
+  [rodfersou]
 
 
 2.6b1 (2016-12-21)
 ^^^^^^^^^^^^^^^^^^
-
-- Add metadata for Twitter Cards (closes `#65`_).
-  [rodfersou]
 
 - Code clean up; tests related with loading BMP images were removed as make no sense.
   [hvelarde]
