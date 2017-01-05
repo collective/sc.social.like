@@ -8,6 +8,7 @@ from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.plugins.pinterest import browser
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.testing import load_image
+from sc.social.like.tests.api_hacks import set_image_field
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
 from zope.interface import alsoProvides
@@ -72,15 +73,9 @@ class PluginViewsTest(unittest.TestCase):
         portal.invokeFactory('News Item', 'my-newsitem')
         portal.invokeFactory('Image', 'my-image')
         self.newsitem = portal['my-newsitem']
-        self.newsitem.setImage(load_image(1024, 768))
+        set_image_field(self.newsitem, load_image(1024, 768), 'image/png')
         self.image = portal['my-image']
-        self.image.setImage(load_image(1024, 768))
-
-    def image_url(self, obj, field='image', scale='large'):
-
-        view = obj.unrestrictedTraverse('@@images')
-        scale = view.scale(fieldname='image', scale='large')
-        return scale.url
+        set_image_field(self.image, load_image(1024, 768), 'image/png')
 
     def test_plugin_view(self):
         plugin = self.plugin
@@ -111,26 +106,24 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_image(self):
         plugin = self.plugin
         image = self.image
-        expected = self.image_url(image)
 
         plugin_view = plugin.view()
         view = image.restrictedTraverse(plugin_view)
 
         # At image, use local image
-        image_url = view.image_url()
-        self.assertEqual(expected, image_url)
+        expected = r'http://nohost/plone/my-image/@@images/[0-9a-f--]+.png'
+        self.assertRegexpMatches(view.image_url(), expected)
 
     def test_plugin_view_newsitem(self):
         plugin = self.plugin
         newsitem = self.newsitem
-        expected = self.image_url(newsitem)
 
         plugin_view = plugin.view()
         view = newsitem.restrictedTraverse(plugin_view)
 
         # At newsitem, use image
-        image_url = view.image_url()
-        self.assertEqual(expected, image_url)
+        expected = r'http://nohost/plone/my-newsitem/@@images/[0-9a-f--]+.png'
+        self.assertRegexpMatches(view.image_url(), expected)
 
     def test_plugin_view_document(self):
         plugin = self.plugin
