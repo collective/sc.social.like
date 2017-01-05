@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.browserlayer.utils import registered_layers
+from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.config import TILES
 from sc.social.like.testing import HAS_COVER
 from sc.social.like.testing import INTEGRATION_TESTING
-from sc.social.like.testing import IS_PLONE_5
 
 import unittest
 

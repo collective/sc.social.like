@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from plone import api
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
@@ -17,8 +16,6 @@ except pkg_resources.DistributionNotFound:
     HAS_COVER = False
 else:
     HAS_COVER = True
-
-IS_PLONE_5 = api.env.plone_version().startswith('5')
 
 
 def load_image(width, height, format='PNG'):

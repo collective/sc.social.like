@@ -5,8 +5,8 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
+from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
-from sc.social.like.testing import IS_PLONE_5  # TODO: move to config.py
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
