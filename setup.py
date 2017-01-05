@@ -66,10 +66,12 @@ setup(name='sc.social.like',
       extras_require={
           'test': [
               'AccessControl',
+              'lxml',
               'mock',
               'plone.app.robotframework',
               'plone.app.testing [robot] >=4.2.2',
               'plone.browserlayer',
+              'plone.namedfile [blobs]',
               'plone.testing',
               'robotsuite',
           ],

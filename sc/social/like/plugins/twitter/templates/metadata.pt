@@ -1,0 +1,10 @@
+<tal:comment replace="nothing">
+  Plone 5 already includes metadata for Facebook and Twitter.
+</tal:comment>
+<tal:twitter condition="not:view/is_plone_5">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" tal:condition="view/image_url" tal:attributes="content view/image_url" />
+  <meta name="twitter:site" tal:attributes="content string:@${view/via}" />
+  <meta name="twitter:title" tal:attributes="content view/title" />
+  <meta name="twitter:description" tal:attributes="content view/description" />
+</tal:twitter>
