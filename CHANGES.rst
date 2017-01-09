@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.6rc1 (unreleased)
+2.7b1 (2017-01-09)
 ^^^^^^^^^^^^^^^^^^^
 
 - Add missing upgrade step to cook CSS resources.
