@@ -15,4 +15,13 @@ $(function(){
   if ($.browser.mobile) {
     $('#viewlet-social-like .whatsapp').addClass('active', 3000);
   }
+
+  if ($.fn.prepOverlay !== undefined) {
+    $('#viewlet-social-like .share-by-email').prepOverlay({
+      subtype: 'ajax',
+      filter: '#content-core',
+      formselector: 'form'
+    });
+  }
 });
+
