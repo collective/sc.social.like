@@ -19,7 +19,7 @@ Test Email Plugin
     Go to Homepage
     Create Document  Extra! Extra!
     Publish Content
-    Wait until page contains  ${email_locator}
+    Wait until keyword succeeds  1  5  Element Should Be Visible  ${email_locator}
     Close all browsers
 
 *** Keywords ***
@@ -38,6 +38,7 @@ Create Document
     Page Should Contain  Changes saved.
 
 Open Workflow Menu
+    Sleep  1s  Wait for contentmenu to load
     Open Menu  plone-contentmenu-workflow
 
 Publish Content
