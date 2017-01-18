@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone import api
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.email import browser
 from sc.social.like.plugins.interfaces import IPlugin
@@ -22,30 +21,26 @@ class PluginTest(unittest.TestCase):
         self.portal = self.layer['portal']
         alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
+        self.plugin = self.plugins[name]
 
     def test_plugin_available(self):
         self.assertIn(name, self.plugins)
 
     def test_plugin_config(self):
-        plugin = self.plugins[name]
-        self.assertEqual(plugin.name, name)
-        self.assertEqual(plugin.id, 'email')
+        self.assertEqual(self.plugin.name, name)
+        self.assertEqual(self.plugin.id, 'email')
 
     def test_plugin_config_view(self):
-        plugin = self.plugins[name]
-        self.assertIsNone(plugin.config_view())
+        self.assertIsNone(self.plugin.config_view())
 
     def test_plugin_view(self):
-        plugin = self.plugins[name]
-        self.assertEqual(plugin.view(), '@@email-plugin')
+        self.assertEqual(self.plugin.view(), '@@email-plugin')
 
     def test_plugin_metadata(self):
-        plugin = self.plugins[name]
-        self.assertEqual(plugin.metadata(), 'metadata')
+        self.assertEqual(self.plugin.metadata(), 'metadata')
 
     def test_plugin_plugin(self):
-        plugin = self.plugins[name]
-        self.assertEqual(plugin.plugin(), 'plugin')
+        self.assertEqual(self.plugin.plugin(), 'plugin')
 
 
 class PluginViewsTest(unittest.TestCase):
@@ -55,39 +50,31 @@ class PluginViewsTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.setup_content(self.portal)
         alsoProvides(self.request, ISocialLikeLayer)
+
+        with api.env.adopt_roles(['Manager']):
+            self.document = api.content.create(
+                self.portal,
+                type='Document',
+                title='Lorem Ipsum',
+                description='Neque Porro',
+            )
+
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
-    def setup_content(self, portal):
-        portal.invokeFactory('Document', 'my-document')
-        self.document = portal['my-document']
-
     def test_plugin_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        view = self.document.restrictedTraverse(self.plugin.view())
         self.assertTrue(isinstance(view, browser.PluginView))
 
     def test_plugin_view_html(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-        html = view.plugin()
-        self.assertIn('email', html)
+        view = self.document.restrictedTraverse(self.plugin.view())
 
-    def test_plugin_urlnoscript_encoding(self):
-        plugin = self.plugin
-        document = self.document
-        document.setTitle(u'Notícia')
+        from lxml import etree
+        html = etree.HTML(view.plugin())
+        a = html.find('*/a')
 
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-        html = view.plugin()
-        self.assertIn(
-            ('<a title="Share by Email" class="share-by-email pat-plone-modal" '
-             'href="http://nohost/plone/sendto_form">Share</a>'), html)
+        self.assertEqual(
+            a.attrib['href'], 'http://nohost/plone/lorem-ipsum/sendto_form')
+        self.assertEqual(a.attrib['title'], 'Share by email')
+        self.assertIn('pat-plone-modal', a.attrib['class'])

@@ -11,5 +11,4 @@ class Email(Plugin):
     name = 'Email'
 
     def config_view(self):
-        # No configuration view
-        return None
+        return None  # no configuration view

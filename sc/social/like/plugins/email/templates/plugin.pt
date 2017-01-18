@@ -1,6 +1,0 @@
-<tal:email i18n:domain="sc.social.like">
-  <a title="Share by Email" i18n:attributes="title"
-     class="share-by-email pat-plone-modal"
-     tal:attributes="href view/sendto_form"
-     i18n:translate="">Share</a>
-</tal:email>

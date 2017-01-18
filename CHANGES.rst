@@ -7,7 +7,7 @@ There's a frood who really knows where his towel is.
 ^^^^^^^^^^^^^^^^^^
 
 - Add email plugin (closes `#91`_).
-  [rodfersou]
+  [rodfersou, hvelarde]
 
 
 2.7b1 (2017-01-09)
