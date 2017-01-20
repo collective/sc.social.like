@@ -1,0 +1,94 @@
+#viewlet-social-like > div
+{
+    float: left;margin-right: 2em;
+}
+
+#viewlet-social-like
+{
+    min-height: 3em;
+    margin-top: 5px;
+}
+
+#viewlet-social-like .twitter-count-horizontal
+{
+    height: 20px !important;
+}
+
+#viewlet-social-like .fb_edge_widget_with_comment
+{
+    position: relative;
+
+    margin-top: 0;
+}
+
+.twitter-share-button
+{
+    margin-top: .8px;
+}
+
+#viewlet-social-like.vertical
+{
+    min-height: 7em !important;
+}
+
+#viewlet-social-like .whatsapp,
+#viewlet-social-like .telegram,
+#viewlet-social-like .share-by-email
+{
+    font-size: 82%;
+
+    display: inline-block;
+    overflow: hidden;
+
+    height: 20px;
+    padding: 0 5px 0 24px;
+
+    white-space: nowrap;
+
+    color: #fff !important;
+    border: 0 !important;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+}
+#viewlet-social-like .whatsapp.link,
+#viewlet-social-like .telegram.link,
+#viewlet-social-like .share-by-email.link
+{
+    width: 0;
+    padding: 0 20px;
+
+    text-indent: -200%;
+
+    background-position: 45%;
+}
+#viewlet-social-like .whatsapp
+{
+    display: none;
+
+    background-color: #199e0e;
+    background-image: url(img/ico-whatsapp.svg);
+    background-position: 2px 2px;
+}
+#viewlet-social-like .whatsapp:hover,
+#viewlet-social-like .telegram:hover,
+#viewlet-social-like .share-by-email:hover
+{
+    color: #fff !important;
+}
+#viewlet-social-like .whatsapp.active
+{
+    display: inline-block;
+}
+#viewlet-social-like .telegram
+{
+    background-color: #31a4d5;
+    background-image: url(img/ico-telegram.svg);
+}
+#viewlet-social-like .share-by-email
+{
+    color: #000 !important;
+    background-color: #c1c1c1;
+    background-image: url(img/ico-email.svg);
+    background-position: 4px 3px;
+}
