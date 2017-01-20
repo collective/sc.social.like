@@ -8,7 +8,10 @@ Library  ${CURDIR}/ManagePluginUtils.py
 *** Variables ***
 
 ${title_selector} =  input#title
-${email_locator}  css=#viewlet-social-like .share-by-email
+${email_locator} =  css=#viewlet-social-like .share-by-email
+${send_to_selector} =  css=#send_to_address
+${send_from_selector} =  css=#send_from_address
+${email} =  admin@plone.org
 
 *** Test cases ***
 
@@ -20,6 +23,12 @@ Test Email Plugin
     Create Document  Extra! Extra!
     Publish Content
     Wait until keyword succeeds  1  5  Element Should Be Visible  ${email_locator}
+    Sleep  1s  Wait for social like to load
+    Click Link  ${email_locator}
+    Input Text  ${send_to_selector}  ${email}
+    Input Text  ${send_from_selector}  ${email}
+    Click Button  Send
+    Page Should not Contain Element  css=.portalMessage.error
     Close all browsers
 
 *** Keywords ***
@@ -35,7 +44,7 @@ Create Document
     Click Add Document
     Input Text  css=${title_selector}  ${title}
     Click Button  Save
-    Page Should Contain  Changes saved.
+    Wait until page contains  Changes saved.
 
 Open Workflow Menu
     Sleep  1s  Wait for contentmenu to load
