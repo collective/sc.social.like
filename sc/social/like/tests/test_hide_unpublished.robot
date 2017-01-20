@@ -6,7 +6,7 @@ Library  Remote  ${PLONE_URL}/RobotRemote
 
 *** Variables ***
 
-${title_selector} =  input#title
+${title_selector} =  input#title,input#form-widgets-IDublinCore-title
 ${facebook_locator}  css=#viewlet-social-like .sociallike-network-facebook
 
 *** Test cases ***
@@ -34,7 +34,7 @@ Create Document
     Click Add Document
     Input Text  css=${title_selector}  ${title}
     Click Button  Save
-    Page Should Contain  Changes saved.
+    Page Should Contain Element  css=.portalMessage.info
 
 Open Workflow Menu
     Open Menu  plone-contentmenu-workflow
