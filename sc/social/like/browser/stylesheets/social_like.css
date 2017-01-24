@@ -47,6 +47,7 @@
 
     color: #fff !important;
     border: 0 !important;
+    border-bottom: none !important;
     border-radius: 3px;
     background-repeat: no-repeat;
     background-size: 16px;
@@ -60,7 +61,7 @@
 
     text-indent: -200%;
 
-    background-position: 45%;
+    background-position: 50%;
 }
 #viewlet-social-like .whatsapp
 {
@@ -84,11 +85,12 @@
 {
     background-color: #31a4d5;
     background-image: url(++resource++sl_images/ico-telegram.svg);
+    background-size: 19px;
 }
 #viewlet-social-like .share-by-email
 {
-    color: #000 !important;
-    background-color: #c1c1c1;
-    background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22114%22%20height%3D%22114%22%3E%3Cpath%20stroke%3D%22%23000%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20d%3D%22M7%2020h98v72H7zl44%2044q5%204%2010%200l44-44M7%2092l36-36m26%200l36%2036%22%2F%3E%3C%2Fsvg%3E);
-    background-position: 4px 3px;
+    background-color: #205c90;
+    background-image: url(++resource++sl_images/ico-email.svg);
+    background-position: 5px 3px;
+    background-size: 14px;
 }
