@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2016-09-23 15:27+0000\n"
+"POT-Creation-Date: 2017-02-01 18:40+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -31,19 +31,19 @@ msgstr ""
 msgid "A timeline widget is a live region of a page which may receive updates as new tweets become available. When specified as polite, assistive technologies will notify users of updates but generally do not interrupt the current task, and updates take low priority. When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:128
+#: ./sc/social/like/interfaces.py:130
 msgid "Admins"
 msgstr "Kudeatzaileak"
 
-#: ./sc/social/like/interfaces.py:139
+#: ./sc/social/like/interfaces.py:141
 msgid "Application ID"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:85
+#: ./sc/social/like/interfaces.py:87
 msgid "Button style"
 msgstr "Botoien ixuria"
 
-#: ./sc/social/like/interfaces.py:61
+#: ./sc/social/like/interfaces.py:63
 msgid "Content types"
 msgstr "Elementu-motak"
 
@@ -52,11 +52,15 @@ msgid "Crop and hides the main timeline scrollbar"
 msgstr ""
 
 #: ./sc/social/like/tiles/twitter.py:74
-msgid "Display an expanded timeline of between 1 and 20 tweets.Leave it empty to use the default or to set the height of the widget."
+msgid "Display an expanded timeline of between 1 and 20 tweets. Leave it empty to use the default or to set the height of the widget."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:96
+#: ./sc/social/like/interfaces.py:98
 msgid "Do not track users"
+msgstr ""
+
+#: ./sc/social/like/plugins/email/plugin.pt:2
+msgid "Email"
 msgstr ""
 
 #: ./sc/social/like/tiles/facebook.py:25
@@ -71,7 +75,7 @@ msgstr ""
 msgid "Facebook Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:150
+#: ./sc/social/like/interfaces.py:152
 msgid "Facebook buttons"
 msgstr ""
 
@@ -112,7 +116,7 @@ msgstr ""
 msgid "Pin it! (open in new window)"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:74
+#: ./sc/social/like/interfaces.py:76
 msgid "Plugins"
 msgstr ""
 
@@ -235,7 +239,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:164
+#: ./sc/social/like/interfaces.py:166
 msgid "Twitter nick"
 msgstr "Twitter izena"
 
@@ -243,29 +247,7 @@ msgstr "Twitter izena"
 msgid "Uninstall Social: Like Actions"
 msgstr ""
 
-#: ./sc/social/like/upgrades/v2000/configure.zcml:13
-#: ./sc/social/like/upgrades/v3000/configure.zcml:13
-#: ./sc/social/like/upgrades/v3010/configure.zcml:13
-msgid "Upgrade Social: Like Actions"
-msgstr ""
-
-#: ./sc/social/like/upgrades/v2000/configure.zcml:13
-msgid "Upgrade Social: Like Actions (v2000)"
-msgstr ""
-
-#: ./sc/social/like/upgrades/v3000/configure.zcml:13
-msgid "Upgrade Social: Like Actions (v3000)"
-msgstr ""
-
-#: ./sc/social/like/upgrades/v3010/configure.zcml:13
-msgid "Upgrade Social: Like Actions (v3010)"
-msgstr ""
-
-#: ./sc/social/like/upgrades/v3020/configure.zcml:13
-msgid "Upgrade Social: Like Actions (v3020)"
-msgstr ""
-
-#: ./sc/social/like/interfaces.py:115
+#: ./sc/social/like/interfaces.py:117
 msgid "Verb to display"
 msgstr "Erakutsiko den testua"
 
@@ -283,49 +265,49 @@ msgid "Width"
 msgstr ""
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ./sc/social/like/interfaces.py:129
+#: ./sc/social/like/interfaces.py:131
 #, fuzzy
 msgid "help_admins"
 msgstr "Facebook kontuaren kudeatzaileen Facebook IDak. Banatu komarekin bat baino gehiagoa badaude."
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
-#: ./sc/social/like/interfaces.py:140
+#: ./sc/social/like/interfaces.py:142
 msgid "help_appid"
 msgstr ""
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ./sc/social/like/interfaces.py:97
+#: ./sc/social/like/interfaces.py:99
 msgid "help_do_not_track"
 msgstr ""
 
 #. Default: "Please select which plugins will be used"
-#: ./sc/social/like/interfaces.py:75
+#: ./sc/social/like/interfaces.py:77
 msgid "help_enabled_plugins"
 msgstr ""
 
 #. Default: "Select buttons to be shown"
-#: ./sc/social/like/interfaces.py:151
+#: ./sc/social/like/interfaces.py:153
 msgid "help_fbbuttons"
 msgstr ""
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ./sc/social/like/interfaces.py:62
+#: ./sc/social/like/interfaces.py:64
 msgid "help_portal_types"
 msgstr "Aukeratu zein elementutan agertuko diren loturak"
 
 #. Default: "Choose your button style."
-#: ./sc/social/like/interfaces.py:86
+#: ./sc/social/like/interfaces.py:88
 msgid "help_selected_buttons"
 msgstr "Aukeratu botoiaren itxura"
 
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: ./sc/social/like/interfaces.py:116
+#: ./sc/social/like/interfaces.py:118
 #, fuzzy
 msgid "help_verb_display"
 msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gomendatu' bakarrik erabili daitezke."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:165
+#: ./sc/social/like/interfaces.py:167
 msgid "help_your_twitter_nick"
 msgstr "Idatzi Twitterreko zuren izena. adb. simplesconsultoria"
 

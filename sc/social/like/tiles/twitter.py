@@ -72,7 +72,7 @@ class ITwitterTile(IPersistentCoverTile):
     tweet_limit = schema.Int(
         title=_(u'Tweet limit'),
         description=_(
-            u'Display an expanded timeline of between 1 and 20 tweets.'
+            u'Display an expanded timeline of between 1 and 20 tweets. '
             u'Leave it empty to use the default or to set the height of the widget.'
         ),
         required=False,

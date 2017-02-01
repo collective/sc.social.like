@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.7b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Update Brazilian Portuguese and Spanish translations.
+  [hvelarde]
+
 - Add support to share content by email (closes `#91`_).
   [rodfersou, hvelarde]
 
