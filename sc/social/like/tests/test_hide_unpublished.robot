@@ -34,7 +34,7 @@ Create Document
     Click Add Document
     Input Text  css=${title_selector}  ${title}
     Click Button  Save
-    Page Should Contain Element  css=.portalMessage.info
+    Page Should Contain  ${title}
 
 Open Workflow Menu
     Open Menu  plone-contentmenu-workflow

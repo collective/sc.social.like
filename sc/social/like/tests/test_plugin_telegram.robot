@@ -34,3 +34,4 @@ Create NewsItem
     Click Add NewsItem
     Input Text  css=${title_selector}  ${title}
     Click Button  Save
+    Page Should Contain  ${title}
