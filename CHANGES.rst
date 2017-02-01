@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.7b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add email plugin (closes `#91`_).
+  [rodfersou, hvelarde]
 
 
 2.7b1 (2017-01-09)
@@ -258,3 +259,4 @@ Previous entries can be found in the HISTORY.rst file.
 .. _`#56`: https://github.com/collective/sc.social.like/issues/56
 .. _`#65`: https://github.com/collective/sc.social.like/issues/65
 .. _`#83`: https://github.com/collective/sc.social.like/issues/83
+.. _`#91`: https://github.com/collective/sc.social.like/issues/91

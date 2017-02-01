@@ -8,5 +8,6 @@
     <include package=".v3040" />
     <include package=".v3041" />
     <include package=".v3042" />
+    <include package=".v3043" />
 
 </configure>

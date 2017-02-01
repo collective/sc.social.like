@@ -32,7 +32,8 @@
 }
 
 #viewlet-social-like .whatsapp,
-#viewlet-social-like .telegram
+#viewlet-social-like .telegram,
+#viewlet-social-like .share-by-email
 {
     font-size: 82%;
 
@@ -46,19 +47,21 @@
 
     color: #fff !important;
     border: 0 !important;
+    border-bottom: none !important;
     border-radius: 3px;
     background-repeat: no-repeat;
     background-size: 16px;
 }
 #viewlet-social-like .whatsapp.link,
-#viewlet-social-like .telegram.link
+#viewlet-social-like .telegram.link,
+#viewlet-social-like .share-by-email.link
 {
     width: 0;
     padding: 0 20px;
 
     text-indent: -200%;
 
-    background-position: 45%;
+    background-position: 50%;
 }
 #viewlet-social-like .whatsapp
 {
@@ -69,7 +72,8 @@
     background-position: 2px 2px;
 }
 #viewlet-social-like .whatsapp:hover,
-#viewlet-social-like .telegram:hover
+#viewlet-social-like .telegram:hover,
+#viewlet-social-like .share-by-email:hover
 {
     color: #fff !important;
 }
@@ -81,4 +85,12 @@
 {
     background-color: #31a4d5;
     background-image: url(++resource++sl_images/ico-telegram.svg);
+    background-size: 19px;
+}
+#viewlet-social-like .share-by-email
+{
+    background-color: #205c90;
+    background-image: url(++resource++sl_images/ico-email.svg);
+    background-position: 5px 3px;
+    background-size: 14px;
 }

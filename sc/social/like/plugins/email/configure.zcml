@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <utility factory="sc.social.like.plugins.email.Email" name="Email" />
+
+  <browser:page
+      name="email-plugin"
+      for="*"
+      class=".browser.PluginView"
+      layer="sc.social.like.interfaces.ISocialLikeLayer"
+      allowed_interface='sc.social.like.plugins.interfaces.IPluginView'
+      permission="zope2.View"
+      />
+
+</configure>

@@ -160,6 +160,10 @@ msgstr ""
 msgid "Share"
 msgstr "Compartilhar"
 
+#: sc/social/like/plugins/email/plugin.pt:2
+msgid "Share by email"
+msgstr "Compartilhar por email"
+
 #: ./sc/social/like/plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
 msgstr "Compartilhar no Facebook"

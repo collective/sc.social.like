@@ -1,0 +1,7 @@
+<tal:email i18n:domain="sc.social.like">
+  <a title="Share by email"
+      tal:attributes="href string:${context/absolute_url}/sendto_form;
+                      class view/klass"
+      i18n:attributes="title"
+      i18n:translate="">Email</a>
+</tal:email>
