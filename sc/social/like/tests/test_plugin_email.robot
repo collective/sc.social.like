@@ -7,7 +7,7 @@ Library  ${CURDIR}/ManagePluginUtils.py
 
 *** Variables ***
 
-${title_selector} =  input#title
+${title_selector} =  input#title,input#form-widgets-IDublinCore-title
 ${email_locator} =  css=#viewlet-social-like .share-by-email
 ${send_to_selector} =  css=#send_to_address
 ${send_from_selector} =  css=#send_from_address
@@ -44,7 +44,7 @@ Create Document
     Click Add Document
     Input Text  css=${title_selector}  ${title}
     Click Button  Save
-    Wait until page contains  Changes saved.
+    Page Should Contain  ${title}
 
 Open Workflow Menu
     Sleep  1s  Wait for contentmenu to load

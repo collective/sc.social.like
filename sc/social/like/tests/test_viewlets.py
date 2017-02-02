@@ -50,7 +50,10 @@ class MetadataViewletTestCase(unittest.TestCase):
     def test_disabled_on_edit_document(self):
         request = self.layer['request']
         request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
-        html = self.document.atct_edit()
+        try:
+            html = self.document.atct_edit()  # Archetypes
+        except AttributeError:
+            html = self.document.restrictedTraverse('@@edit')()  # Dexterity
         self.assertNotIn('og:site_name', html)
 
     def test_render(self):
@@ -89,7 +92,10 @@ class LikeViewletTestCase(unittest.TestCase):
     def test_disabled_on_edit_document(self):
         request = self.layer['request']
         request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
-        html = self.document.atct_edit()
+        try:
+            html = self.document.atct_edit()  # Archetypes
+        except AttributeError:
+            html = self.document.restrictedTraverse('@@edit')()  # Dexterity
         self.assertNotIn('id="viewlet-social-like"', html)
 
     def test_render(self):

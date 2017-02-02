@@ -6,7 +6,7 @@ Library  Remote  ${PLONE_URL}/RobotRemote
 
 *** Variables ***
 
-${title_selector} =  input#title
+${title_selector} =  input#title,input#form-widgets-IDublinCore-title
 ${telegram_locator}  css=#viewlet-social-like .telegram
 
 *** Test cases ***
@@ -34,4 +34,4 @@ Create NewsItem
     Click Add NewsItem
     Input Text  css=${title_selector}  ${title}
     Click Button  Save
-    Page Should Contain  Changes saved.
+    Page Should Contain  ${title}
