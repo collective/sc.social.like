@@ -29,23 +29,4 @@
           />
     </gs:upgradeSteps>
 
-    <gs:upgradeSteps
-        source="2001"
-        destination="3000"
-        profile="sc.social.like:default">
-
-      <gs:upgradeStep
-          title="Create plugins_enabled property"
-          description=""
-          handler=".handler.apply_profile"
-          />
-
-      <gs:upgradeStep
-          title="Update plugins_enabled property with existing values"
-          description="If properties for Facebook, Google+ and Twitter have been set, update them."
-          handler=".handler.update_plugins"
-          />
-    </gs:upgradeSteps>
-
-
 </configure>
