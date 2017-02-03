@@ -65,7 +65,12 @@ Configuration
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Social Like' link -- under Add-on Configuration.
 
-.. image:: https://github.com/collective/sc.social.like/raw/master/docs/control_panel.png
+.. figure:: https://github.com/collective/sc.social.like/raw/master/docs/control-panel.png
+    :align: center
+    :height: 1024px
+    :width: 768px
+
+    The control panel configlet.
 
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
