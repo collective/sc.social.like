@@ -8,7 +8,7 @@
       profile="sc.social.like:default">
 
     <genericsetup:upgradeDepends
-        title="Add registry setting"
+        title="Add registry setting to show/hide number of likes"
         description="Add fbshowlikes setting to the registry"
         import_steps="plone.app.registry"
         />

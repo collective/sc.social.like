@@ -94,6 +94,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'fbbuttons'))
         self.assertEqual(self.settings.fbbuttons, (u'Like',))
 
+    def test_fbshowlikes_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'fbshowlikes'))
+        self.assertEqual(self.settings.fbshowlikes, True)
+
     def test_twitter_username_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'twitter_username'))
         self.assertEqual(self.settings.twitter_username, '')
@@ -113,6 +117,7 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.facebook_username',
             ISocialLikeSettings.__identifier__ + '.facebook_app_id',
             ISocialLikeSettings.__identifier__ + '.fbbuttons',
+            ISocialLikeSettings.__identifier__ + '.fbshowlikes',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
         ]
 
