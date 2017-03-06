@@ -6,7 +6,9 @@ There's a frood who really knows where his towel is.
 2.8b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add Facebook control panel setting for showing/hiding the number of likes. By
+  default the Facebook plugin still shows the likes.
+  [fredvd]
 
 
 2.8b1 (2017-02-03)

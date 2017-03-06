@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-02-01 18:40+0000\n"
+"POT-Creation-Date: 2017-03-06 14:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -18,308 +18,317 @@ msgstr ""
 "Domain: sc.social.like\n"
 "X-Is-Fallback-For: it-ch it-it\n"
 
-#: ./sc/social/like/profiles.zcml:14
+#: ../profiles.zcml:14
 msgid "A simple, yet useful, social networking integration for Plone"
 msgstr "Una semplice ma funzionale integrazione tra Plone e i social network"
 
-#: ./sc/social/like/tiles/configure.zcml:19
+#: ../tiles/configure.zcml:19
 msgid "A tile that embeds a Facebook Page."
 msgstr ""
 
-#: ./sc/social/like/tiles/configure.zcml:31
+#: ../tiles/configure.zcml:31
 msgid "A tile that embeds a Twitter timeline."
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:86
+#: ../tiles/twitter.py:86
 msgid "A timeline widget is a live region of a page which may receive updates as new tweets become available. When specified as polite, assistive technologies will notify users of updates but generally do not interrupt the current task, and updates take low priority. When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:130
+#: ../interfaces.py:130
 msgid "Admins"
 msgstr "Amministratori"
 
-#: ./sc/social/like/interfaces.py:141
+#: ../interfaces.py:141
 msgid "Application ID"
 msgstr "ID applicazione"
 
-#: ./sc/social/like/interfaces.py:87
+#: ../interfaces.py:87
 msgid "Button style"
 msgstr "Stile del bottone"
 
-#: ./sc/social/like/interfaces.py:63
+#: ../interfaces.py:63
 msgid "Content types"
 msgstr "Tipi di contenuto"
 
-#: ./sc/social/like/tiles/twitter.py:26
+#: ../tiles/twitter.py:26
 msgid "Crop and hides the main timeline scrollbar"
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:74
+#: ../tiles/twitter.py:74
 msgid "Display an expanded timeline of between 1 and 20 tweets. Leave it empty to use the default or to set the height of the widget."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:98
+#: ../interfaces.py:98
 msgid "Do not track users"
 msgstr "Non tracciare gli utenti"
 
-#: ./sc/social/like/plugins/email/plugin.pt:2
+#: ../plugins/email/plugin.pt:2
 msgid "Email"
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:25
+#: ../tiles/facebook.py:25
 msgid "Events"
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:35
+#: ../tiles/facebook.py:35
 msgid "Facebook Page"
 msgstr ""
 
-#: ./sc/social/like/tiles/configure.zcml:19
+#: ../tiles/configure.zcml:19
 msgid "Facebook Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:152
+#: ../interfaces.py:152
 msgid "Facebook buttons"
 msgstr "Bottoni Facebook"
 
-#: ./sc/social/like/tiles/facebook.py:53
-#: ./sc/social/like/tiles/twitter.py:54
+#: ../tiles/facebook.py:53
+#: ../tiles/twitter.py:54
 msgid "Height"
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:72
+#: ../tiles/facebook.py:72
 msgid "Hide cover photo in the header"
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:82
+#: ../tiles/facebook.py:82
 msgid "Hide the custom call to action button (if available)"
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:24
+#: ../tiles/twitter.py:24
 msgid "Hide the timeline footer"
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:23
+#: ../tiles/twitter.py:23
 msgid "Hide the timeline header"
 msgstr ""
 
-#: ./sc/social/like/vocabularies.py:41
+#: ../vocabularies.py:41
 msgid "Like"
 msgstr "Mi piace"
 
-#: ./sc/social/like/tiles/facebook.py:26
+#: ../tiles/facebook.py:26
 msgid "Messages"
 msgstr ""
 
-#: ./sc/social/like/plugins/pinterest/templates/link.pt:11
+#: ../plugins/pinterest/templates/link.pt:11
 msgid "Pin it!"
 msgstr ""
 
-#: ./sc/social/like/plugins/pinterest/templates/link.pt:3
+#: ../plugins/pinterest/templates/link.pt:3
 msgid "Pin it! (open in new window)"
 msgstr "Pin it! (apre in una nuova finestra)"
 
-#: ./sc/social/like/interfaces.py:76
+#: ../interfaces.py:76
 msgid "Plugins"
 msgstr "Plugin"
 
-#: ./sc/social/like/vocabularies.py:42
+#: ../vocabularies.py:42
 msgid "Recommend"
 msgstr "Consigliato"
 
-#: ./sc/social/like/tiles/twitter.py:25
+#: ../tiles/twitter.py:25
 msgid "Remove all borders within the widget"
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:27
+#: ../tiles/twitter.py:27
 msgid "Remove the widget's background color"
 msgstr ""
 
-#: ./sc/social/like/profiles.zcml:23
+#: ../profiles.zcml:23
 msgid "Removes Social: Like Actions"
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:55
+#: ../tiles/twitter.py:55
 msgid "Set the height of a displayed widget, overriding the value stored with the widget ID. Must be greater than 200 pixels. Note: this parameter does not apply if a tweet limit has been specified."
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:54
+#: ../tiles/facebook.py:54
 msgid "Set the height of a displayed widget, overriding the value stored with the widget ID. Must be greater than 70 pixels. "
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:42
+#: ../tiles/facebook.py:42
 msgid "Set the maximum width of the widget between 180 and 500 pixels. Leave it empty to automatically adjust the widget to the width of the tile."
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:43
+#: ../tiles/twitter.py:43
 msgid "Set the maximum width of the widget between 180 and 520 pixels. Leave it empty to automatically adjust the widget to the width of the tile."
 msgstr ""
 
-#: ./sc/social/like/controlpanel.py:13
+#: ../controlpanel.py:13
 msgid "Settings for the sc.social.like package"
 msgstr ""
 
-#: ./sc/social/like/plugins/telegram/plugin.pt:2
-#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-#: ./sc/social/like/vocabularies.py:47
+#: ../plugins/telegram/plugin.pt:2
+#: ../plugins/whatsapp/templates/plugin.pt:2
+#: ../vocabularies.py:47
 msgid "Share"
 msgstr "Condividi"
 
-#: ./sc/social/like/plugins/email/plugin.pt:2
+#: ../plugins/email/plugin.pt:2
 msgid "Share by email"
 msgstr ""
 
-#: ./sc/social/like/plugins/facebook/templates/link.pt:12
+#: ../plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
 msgstr "Condividi su Facebook"
 
-#: ./sc/social/like/plugins/facebook/templates/link.pt:6
+#: ../plugins/facebook/templates/link.pt:6
 msgid "Share on Facebook (open in new window)"
 msgstr "Condividi su Facebook (apre in una nuova finestra)"
 
-#: ./sc/social/like/plugins/gplus/templates/link.pt:9
+#: ../plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
 msgstr "Condividi su Google+"
 
-#: ./sc/social/like/plugins/gplus/templates/link.pt:3
+#: ../plugins/gplus/templates/link.pt:3
 msgid "Share on Google+ (open in new window)"
 msgstr "Condividi su Google+ (apre in una nuova finestra)"
 
-#: ./sc/social/like/plugins/linkedin/templates/link.pt:9
+#: ../plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
 msgstr "Condividi su Linkedin"
 
-#: ./sc/social/like/plugins/linkedin/templates/link.pt:3
+#: ../plugins/linkedin/templates/link.pt:3
 msgid "Share on Linkedin (open in new window)"
 msgstr "Condividi su Linkedin (apre in una nuova finestra)"
 
-#: ./sc/social/like/plugins/telegram/plugin.pt:2
+#: ../plugins/telegram/plugin.pt:2
 msgid "Share on Telegram"
 msgstr ""
 
-#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: ../plugins/whatsapp/templates/plugin.pt:2
 msgid "Share on WhatsApp"
 msgstr "Condividi in WhatsApp"
 
-#: ./sc/social/like/tiles/facebook.py:77
+#: ../interfaces.py:163
+msgid "Show number of likes"
+msgstr ""
+
+#: ../tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:87
+#: ../tiles/facebook.py:87
 msgid "Show small header"
 msgstr ""
 
-#: ./sc/social/like/controlpanel.py:12
-#: ./sc/social/like/profiles/default/controlpanel.xml
+#: ../controlpanel.py:12
+#: ../profiles/default/controlpanel.xml
 msgid "Social Like"
 msgstr ""
 
-#: ./sc/social/like/profiles.zcml:14
+#: ../profiles.zcml:14
 msgid "Social: Like Actions"
 msgstr "Social: azioni di like"
 
-#: ./sc/social/like/tiles/facebook.py:36
+#: ../tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:24
+#: ../tiles/facebook.py:24
 msgid "Timeline"
 msgstr ""
 
-#: ./sc/social/like/plugins/twitter/templates/link.pt:9
+#: ../plugins/twitter/templates/link.pt:9
 msgid "Tweet it!"
 msgstr ""
 
-#: ./sc/social/like/plugins/twitter/templates/link.pt:3
+#: ../plugins/twitter/templates/link.pt:3
 msgid "Tweet it! (open in new window)"
 msgstr "Tweet it! (apre in una nuova finestra)"
 
-#: ./sc/social/like/tiles/twitter.py:73
+#: ../tiles/twitter.py:73
 msgid "Tweet limit"
 msgstr ""
 
-#: ./sc/social/like/tiles/configure.zcml:31
+#: ../tiles/configure.zcml:31
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:166
+#: ../interfaces.py:176
 msgid "Twitter nick"
 msgstr "Nickname Twitter"
 
-#: ./sc/social/like/profiles.zcml:23
+#: ../profiles.zcml:23
 msgid "Uninstall Social: Like Actions"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:117
+#: ../interfaces.py:117
 msgid "Verb to display"
 msgstr "Verbo da visualizzare"
 
-#: ./sc/social/like/tiles/twitter.py:85
+#: ../tiles/twitter.py:85
 msgid "WAI-ARIA politeness"
 msgstr ""
 
-#: ./sc/social/like/tiles/twitter.py:36
+#: ../tiles/twitter.py:36
 msgid "Widget ID"
 msgstr ""
 
-#: ./sc/social/like/tiles/facebook.py:41
-#: ./sc/social/like/tiles/twitter.py:42
+#: ../tiles/facebook.py:41
+#: ../tiles/twitter.py:42
 msgid "Width"
 msgstr ""
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ./sc/social/like/interfaces.py:131
+#: ../interfaces.py:131
 msgid "help_admins"
 msgstr "Una lista separata da virgole di ID Facebook di amministratori della pagina"
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
-#: ./sc/social/like/interfaces.py:142
+#: ../interfaces.py:142
 msgid "help_appid"
 msgstr ""
 "L'ID di un'applicazione Facebook.\n"
 "Questa informazione è richiesta quando l'impostazione \"Non tracciare gli utenti\" è abilitata."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ./sc/social/like/interfaces.py:99
+#: ../interfaces.py:99
 msgid "help_do_not_track"
 msgstr ""
 "Se abilitata, il sito not fornirà i componenti di condivisione avanzati ma saranno usati dei semplici link.\n"
 "Questo limita l'esperienza utente e le funzionalità (come il conteggio delle condivisioni) ma aumenta la privacy degli utenti: nessun cookie di terze party sarà inviato agli utenti."
 
 #. Default: "Please select which plugins will be used"
-#: ./sc/social/like/interfaces.py:77
+#: ../interfaces.py:77
 msgid "help_enabled_plugins"
 msgstr "Prego selezionare quali plugin verranno usati"
 
 #. Default: "Select buttons to be shown"
-#: ./sc/social/like/interfaces.py:153
+#: ../interfaces.py:153
 msgid "help_fbbuttons"
 msgstr "Seleziona i bottoni da visualizzare"
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ./sc/social/like/interfaces.py:64
+#: ../interfaces.py:64
 msgid "help_portal_types"
 msgstr "Prego selezionare su quali tipi di contenuto la viewlet verrà applicata"
 
 #. Default: "Choose your button style."
-#: ./sc/social/like/interfaces.py:88
+#: ../interfaces.py:88
 msgid "help_selected_buttons"
 msgstr "Seleziona lo stile del bottone"
 
+#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#: ../interfaces.py:164
+msgid "help_show_likes"
+msgstr ""
+
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: ./sc/social/like/interfaces.py:118
+#: ../interfaces.py:118
 msgid "help_verb_display"
 msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo \"Mi piace\" e \"Consigliato\" sono supportati."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:167
+#: ../interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Inserisci il tuo nickname Twitter, per esempio \"simplesconsultoria\""
 
-#: ./sc/social/like/vocabularies.py:35
+#: ../vocabularies.py:35
 msgid "horizontal"
 msgstr "orizzonatale"
 
-#: ./sc/social/like/vocabularies.py:36
+#: ../vocabularies.py:36
 msgid "vertical"
 msgstr "verticale"
