@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-02-01 18:40+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -198,6 +198,10 @@ msgstr ""
 msgid "Share on WhatsApp"
 msgstr ""
 
+#: ./sc/social/like/interfaces.py:163
+msgid "Show number of likes"
+msgstr ""
+
 #: ./sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
 msgstr ""
@@ -239,7 +243,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:166
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Twitter izena"
 
@@ -300,6 +304,11 @@ msgstr "Aukeratu zein elementutan agertuko diren loturak"
 msgid "help_selected_buttons"
 msgstr "Aukeratu botoiaren itxura"
 
+#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#: ./sc/social/like/interfaces.py:164
+msgid "help_show_likes"
+msgstr ""
+
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 #, fuzzy
@@ -307,7 +316,7 @@ msgid "help_verb_display"
 msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gomendatu' bakarrik erabili daitezke."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:167
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Idatzi Twitterreko zuren izena. adb. simplesconsultoria"
 

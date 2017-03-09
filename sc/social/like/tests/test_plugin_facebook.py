@@ -272,6 +272,20 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.typebutton, 'box_count')
         self.assertEqual(view.width, '55px')
 
+        # disable show number of likes on vertical
+        self.settings.typebutton = 'vertical'
+        self.settings.fbshowlikes = False
+        view = portal.restrictedTraverse(plugin_view)
+        self.assertEqual(view.typebutton, 'button')
+        self.assertEqual(view.width, '55px')
+
+        # horizontal without numbers is also button
+        self.settings.typebutton = 'horizontal'
+        self.settings.fbshowlikes = False
+        view = portal.restrictedTraverse(plugin_view)
+        self.assertEqual(view.typebutton, 'button')
+        self.assertEqual(view.width, '55px')
+
 
 class LanguageCodeTest(unittest.TestCase):
 

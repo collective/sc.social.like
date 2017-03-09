@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="3043"
+      destination="3044"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeDepends
+        title="Add registry setting to show/hide number of likes"
+        description="Add fbshowlikes setting to the registry"
+        import_steps="plone.app.registry"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-02-01 18:40+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -201,6 +201,10 @@ msgstr ""
 msgid "Share on WhatsApp"
 msgstr "Condividi in WhatsApp"
 
+#: ./sc/social/like/interfaces.py:163
+msgid "Show number of likes"
+msgstr ""
+
 #: ./sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
 msgstr ""
@@ -242,7 +246,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:166
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Nickname Twitter"
 
@@ -306,13 +310,18 @@ msgstr "Prego selezionare su quali tipi di contenuto la viewlet verrà applicata
 msgid "help_selected_buttons"
 msgstr "Seleziona lo stile del bottone"
 
+#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#: ./sc/social/like/interfaces.py:164
+msgid "help_show_likes"
+msgstr ""
+
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 msgid "help_verb_display"
 msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo \"Mi piace\" e \"Consigliato\" sono supportati."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:167
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Inserisci il tuo nickname Twitter, per esempio \"simplesconsultoria\""
 

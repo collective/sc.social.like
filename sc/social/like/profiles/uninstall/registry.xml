@@ -10,5 +10,6 @@
   <record name="sc.social.like.interfaces.ISocialLikeSettings.facebook_username" delete="true"/>
   <record name="sc.social.like.interfaces.ISocialLikeSettings.facebook_app_id" delete="true"/>
   <record name="sc.social.like.interfaces.ISocialLikeSettings.fbbuttons" delete="true"/>
+  <record name="sc.social.like.interfaces.ISocialLikeSettings.fbshowlikes" delete="true"/>
   <record name="sc.social.like.interfaces.ISocialLikeSettings.twitter_username" delete="true"/>
 </registry>

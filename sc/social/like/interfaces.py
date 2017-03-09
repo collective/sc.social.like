@@ -110,7 +110,7 @@ class ISocialLikeSettings(model.Schema):
     model.fieldset(
         'facebook',
         label=u'Facebook',
-        fields=['fbaction', 'facebook_username', 'facebook_app_id', 'fbbuttons'],
+        fields=['fbaction', 'facebook_username', 'facebook_app_id', 'fbbuttons', 'fbshowlikes'],
     )
 
     fbaction = schema.Choice(
@@ -157,6 +157,16 @@ class ISocialLikeSettings(model.Schema):
         value_type=schema.Choice(vocabulary=FacebookButtonsVocabulary),
         required=True,
         default=(u'Like', ),
+    )
+
+    fbshowlikes = schema.Bool(
+        title=_(u'Show number of likes'),
+        description=_(
+            u'help_show_likes',
+            default=u'If enabled, the facebook button will show the number of '
+                    u'facebook users who have already liked this page.'
+        ),
+        default=True,
     )
 
     model.fieldset(

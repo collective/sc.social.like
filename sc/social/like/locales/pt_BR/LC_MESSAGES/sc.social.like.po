@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-02-01 18:40+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: 2017-02-01 16:38-0200\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -200,6 +200,10 @@ msgstr "Compartilhar no Telegram"
 msgid "Share on WhatsApp"
 msgstr "Compartilhar no WhatsApp"
 
+#: ./sc/social/like/interfaces.py:163
+msgid "Show number of likes"
+msgstr ""
+
 #: ./sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
 msgstr "Mostrar as imagens do perfil dos amigos que curtam isso"
@@ -241,7 +245,7 @@ msgstr "Limite de tweets"
 msgid "Twitter Tile"
 msgstr "Tile do Tweeter"
 
-#: ./sc/social/like/interfaces.py:166
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Usuário do Twitter"
 
@@ -302,6 +306,11 @@ msgstr "Indique quais tipos de conteúdo terão o viewlet de ações sociais."
 msgid "help_selected_buttons"
 msgstr "Qual o estilo dos botões."
 
+#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#: ./sc/social/like/interfaces.py:164
+msgid "help_show_likes"
+msgstr ""
+
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 #, fuzzy
@@ -309,7 +318,7 @@ msgid "help_verb_display"
 msgstr "Verbo a ser exibido no botão do Facebook. Atualmente apenas \"curtir\" e \"recomendar\" estão habilitados"
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:167
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Informe seu usuário do Twitter. Ex: simplesconsultoria"
 

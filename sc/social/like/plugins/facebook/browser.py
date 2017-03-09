@@ -96,18 +96,26 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        record = ISocialLikeSettings.__identifier__ + '.typebutton'
+        typerecord = ISocialLikeSettings.__identifier__ + '.typebutton'
+        showlikesrecord = ISocialLikeSettings.__identifier__ + '.fbshowlikes'
+
         try:
-            typebutton = api.portal.get_registry_record(record)
+            typebutton = api.portal.get_registry_record(typerecord)
+            fbshowlikes = api.portal.get_registry_record(showlikesrecord)
         except InvalidParameterError:
             typebutton = ''
-
-        if typebutton == 'horizontal':
+            fbshowlikes = True
+        if typebutton == 'horizontal' and fbshowlikes:
             typebutton = 'button_count'
             self.width = '90px'
-        else:
+        elif typebutton == 'vertical' and fbshowlikes:
             typebutton = 'box_count'
             self.width = '55px'
+        else:
+            # no counts, show simple button
+            typebutton = 'button'
+            self.width = '55px'
+
         return typebutton
 
     @property

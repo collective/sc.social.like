@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-02-01 18:40+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,6 +197,10 @@ msgstr ""
 msgid "Share on WhatsApp"
 msgstr ""
 
+#: ./sc/social/like/interfaces.py:163
+msgid "Show number of likes"
+msgstr ""
+
 #: ./sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
 msgstr ""
@@ -238,7 +242,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:166
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr ""
 
@@ -298,13 +302,18 @@ msgstr ""
 msgid "help_selected_buttons"
 msgstr ""
 
+#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#: ./sc/social/like/interfaces.py:164
+msgid "help_show_likes"
+msgstr ""
+
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 msgid "help_verb_display"
 msgstr ""
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:167
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr ""
 

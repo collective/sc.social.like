@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-02-01 18:40+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: 2017-02-01 16:38-0200\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -202,6 +202,10 @@ msgstr "Compartir en Telegram"
 msgid "Share on WhatsApp"
 msgstr "Compartir en WhatsApp"
 
+#: ./sc/social/like/interfaces.py:163
+msgid "Show number of likes"
+msgstr ""
+
 #: ./sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
 msgstr "Mostrar las fotos del perfil de los amigos que  recomienden esto"
@@ -243,7 +247,7 @@ msgstr "Límite de tweets"
 msgid "Twitter Tile"
 msgstr "Tile de Twitter"
 
-#: ./sc/social/like/interfaces.py:166
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Nombre de usuario en Twitter"
 
@@ -304,13 +308,18 @@ msgstr "Seleccione en cuáles tipos de contenido se mostrará el viewlet social.
 msgid "help_selected_buttons"
 msgstr "Seleccione de la lista."
 
+#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#: ./sc/social/like/interfaces.py:164
+msgid "help_show_likes"
+msgstr ""
+
 #. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 msgid "help_verb_display"
 msgstr "Texto que se mostrará en el botón de Facebook. De momento sólo \"Me gusta\" y \"Recomendar\" están soportados."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:167
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Introduzca su nombre de usuario de Twitter. Ejemplo: simplesconsultoria"
 
