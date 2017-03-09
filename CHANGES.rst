@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.8b2 (unreleased)
+2.9 (2017-03-09)
 ^^^^^^^^^^^^^^^^^^
 
 - Add Facebook control panel setting for showing/hiding the number of likes. By
