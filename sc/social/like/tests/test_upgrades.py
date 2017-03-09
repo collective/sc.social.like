@@ -225,15 +225,15 @@ class To3044TestCase(UpgradeTestCaseBase):
         step = self.get_upgrade_step(title)
         assert step is not None
 
-        # remove registry settings
+        # simulate state on previous version
         from plone.registry.interfaces import IRegistry
-        from sc.social.like.config import PROJECTNAME
         from sc.social.like.interfaces import ISocialLikeSettings
         from zope.component import getUtility
-        profile = 'profile-{0}:uninstall'.format(PROJECTNAME)
-        setup_tool = api.portal.get_tool(name='portal_setup')
-        setup_tool.runImportStepFromProfile(profile, 'plone.app.registry')
         registry = getUtility(IRegistry)
+        record = ISocialLikeSettings.__identifier__ + '.fbshowlikes'
+        del registry.records[record]
+        assert record not in registry
+
         with self.assertRaises(KeyError):
             registry.forInterface(ISocialLikeSettings)
 
