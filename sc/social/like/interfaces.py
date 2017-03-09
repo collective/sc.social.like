@@ -117,7 +117,7 @@ class ISocialLikeSettings(model.Schema):
         title=_(u'Verb to display'),
         description=_(
             u'help_verb_display',
-            default=u'The verb to display in the facebook button. '
+            default=u'The verb to display in the Facebook button. '
                     u'Currently only "like" and "recommend" are '
                     u'supported.',
         ),
@@ -163,8 +163,8 @@ class ISocialLikeSettings(model.Schema):
         title=_(u'Show number of likes'),
         description=_(
             u'help_show_likes',
-            default=u'If enabled, the facebook button will show the number of '
-                    u'facebook users who have already liked this page.'
+            default=u'If enabled, the Facebook button will show the number of '
+                    u'Facebook users who have already liked this page.'
         ),
         default=True,
     )

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-03-06 16:27+0000\n"
-"PO-Revision-Date: 2017-02-01 16:38-0200\n"
+"POT-Creation-Date: 2017-03-09 18:00+0000\n"
+"PO-Revision-Date: 2017-03-09 15:34-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -83,8 +83,7 @@ msgstr "Tile de Facebook"
 msgid "Facebook buttons"
 msgstr "Botones de facebook"
 
-#: ./sc/social/like/tiles/facebook.py:53
-#: ./sc/social/like/tiles/twitter.py:54
+#: ./sc/social/like/tiles/facebook.py:53 sc/social/like/tiles/twitter.py:54
 msgid "Height"
 msgstr "Altura"
 
@@ -204,7 +203,7 @@ msgstr "Compartir en WhatsApp"
 
 #: ./sc/social/like/interfaces.py:163
 msgid "Show number of likes"
-msgstr ""
+msgstr "Mostrar número de recomendaciones"
 
 #: ./sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
@@ -267,8 +266,7 @@ msgstr "Cortesía WAI-ARIA"
 msgid "Widget ID"
 msgstr "ID del widget"
 
-#: ./sc/social/like/tiles/facebook.py:41
-#: ./sc/social/like/tiles/twitter.py:42
+#: ./sc/social/like/tiles/facebook.py:41 sc/social/like/tiles/twitter.py:42
 msgid "Width"
 msgstr "Ancho"
 
@@ -308,12 +306,12 @@ msgstr "Seleccione en cuáles tipos de contenido se mostrará el viewlet social.
 msgid "help_selected_buttons"
 msgstr "Seleccione de la lista."
 
-#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#. Default: "If enabled, the Facebook button will show the number of Facebook users who have already liked this page."
 #: ./sc/social/like/interfaces.py:164
 msgid "help_show_likes"
-msgstr ""
+msgstr "Si está habilitado, el botón de Facebook mostrará el número de usuarios que han recomendado una página."
 
-#. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
+#. Default: "The verb to display in the Facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 msgid "help_verb_display"
 msgstr "Texto que se mostrará en el botón de Facebook. De momento sólo \"Me gusta\" y \"Recomendar\" están soportados."

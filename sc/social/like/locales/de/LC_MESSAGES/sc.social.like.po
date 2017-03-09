@@ -303,12 +303,12 @@ msgstr "Die Inhaltstypen auswählen auf denen das Viewlet angezeigt werden soll.
 msgid "help_selected_buttons"
 msgstr "Wählen Sie den gewünschten Stil für die Buttons aus."
 
-#. Default: "If enabled, the facebook button will show the number of facebook users who have already liked this page."
+#. Default: "If enabled, the Facebook button will show the number of Facebook users who have already liked this page."
 #: ./sc/social/like/interfaces.py:164
 msgid "help_show_likes"
 msgstr ""
 
-#. Default: "The verb to display in the facebook button. Currently only \"like\" and \"recommend\" are supported."
+#. Default: "The verb to display in the Facebook button. Currently only \"like\" and \"recommend\" are supported."
 #: ./sc/social/like/interfaces.py:118
 msgid "help_verb_display"
 msgstr "Der Ausdruck, welcher im Facebook Button angezeigt werden soll. Zurzeit werden nur \"Gefällt mir\" und \"Empfehlen\" unterstützt."
