@@ -4,6 +4,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from sc.social.like.browser.viewlets import SocialLikesViewlet
 from sc.social.like.browser.viewlets import SocialMetadataViewlet
+from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -47,6 +48,8 @@ class MetadataViewletTestCase(unittest.TestCase):
         viewlet = self.viewlet(self.document)
         self.assertTrue(viewlet.enabled())
 
+    # FIXME: we need to rethink this feature
+    @unittest.skipIf(IS_PLONE_5, 'Plone 5 includes metadata by default')
     def test_disabled_on_edit_document(self):
         request = self.layer['request']
         request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')

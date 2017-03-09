@@ -3,6 +3,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from sc.social.like import utils
+from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook import browser
@@ -135,6 +136,8 @@ class PluginViewsTest(unittest.TestCase):
         html = view.link()
         self.assertIn('Share on Facebook', html)
 
+    # FIXME: we need to rethink this feature
+    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
     def test_plugin_view_metadata(self):
         plugin = self.plugin
         portal = self.portal
@@ -243,6 +246,8 @@ class PluginViewsTest(unittest.TestCase):
         self.assertEqual(view.image_width(), 1200)
         self.assertEqual(view.image_height(), 675)
 
+    # FIXME: we need to rethink this feature
+    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
     def test_plugin_language(self):
         plugin = self.plugin
         document = self.document

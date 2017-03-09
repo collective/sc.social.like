@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.registry.interfaces import IRegistry
+from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
@@ -71,6 +72,8 @@ class PluginViewsTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
+    # FIXME: we need to rethink this feature
+    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
     def test_plugin_view_metadata(self):
 
         def get_meta_content(name):
@@ -83,7 +86,6 @@ class PluginViewsTest(unittest.TestCase):
 
         from lxml import etree
         html = etree.HTML(view.metadata())
-
         self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
         expected = r'http://nohost/plone/lorem-ipsum/@@images/[0-9a-f--]+.png'
         self.assertRegexpMatches(get_meta_content('twitter:image'), expected)
