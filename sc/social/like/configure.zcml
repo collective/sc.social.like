@@ -22,4 +22,9 @@
        name="sc.social.likes.plugins"
        />
 
+  <subscriber
+      for="plone.registry.interfaces.IRecordModifiedEvent"
+      handler=".subscribers.social_media_record_synchronizer"
+      />
+
 </configure>

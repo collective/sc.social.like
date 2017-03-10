@@ -6,7 +6,9 @@ There's a frood who really knows where his towel is.
 2.10 (unreleased)
 ^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- In Plone 5, keep in sync some redundant fields found in the new Social Media configlet.
+  Changes on ``facebook_app_id``, ``facebook_username``, or ``twitter_username`` fields will be reflected in both configlets (fixes `#100`_).
+  [hvelarde]
 
 
 2.9 (2017-03-09)
@@ -277,3 +279,4 @@ Previous entries can be found in the HISTORY.rst file.
 .. _`#65`: https://github.com/collective/sc.social.like/issues/65
 .. _`#83`: https://github.com/collective/sc.social.like/issues/83
 .. _`#91`: https://github.com/collective/sc.social.like/issues/91
+.. _`#100`: https://github.com/collective/sc.social.like/issues/100
