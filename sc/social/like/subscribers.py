@@ -38,10 +38,10 @@ def social_media_record_synchronizer(event):
     if _FLAG:
         return
 
-    logger.info(u'Processing: ' + repr(event.record))
+    logger.debug(u'Processing: ' + repr(event.record))
     field = event.record.fieldName
     if field not in FIELDS:
-        logger.info(u'No need to synchronize')
+        logger.debug(u'Field name not being tracked')
         return
 
     # find out which record we need to synchronize
@@ -54,8 +54,7 @@ def social_media_record_synchronizer(event):
         # Plone record modified; synchronize sc.social.like record
         record = ISocialLikeSettings.__identifier__ + '.' + field
     else:
-        # unsupported interface name
-        logger.info(u'No need to synchronize')
+        logger.debug(u'Schema not being tracked')
         return
 
     registry = getUtility(IRegistry)
@@ -69,6 +68,5 @@ def social_media_record_synchronizer(event):
         registry[record] = unicode(event.record.value)
     _FLAG = False
 
-    msg = '{0} was synchronized; new value is "{1}"'
-    logger.info(
-        msg.format(repr(registry.records[record]), event.record.value))
+    logger.debug('{0} was synchronized; new value is "{1}"'.format(
+        repr(registry.records[record]), event.record.value))
