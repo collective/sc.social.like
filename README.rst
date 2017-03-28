@@ -89,6 +89,13 @@ This product is also respects the `Do Not Track <http://donottrack.us/>`_ user's
 If the user configured the browser for not being tracked,
 social media will be rendered as if the "*Severe privacy*" setting was enabled.
 
+Social media and Plone 5
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Plone 5 includes some configuration fields already available in this package on a new Social Media configlet.
+A synchronization of the values of those redundant fields takes place behind the scenes every time you change the Twitter username, the Facebook App ID or the Facebook username,
+using either the new Social Media configlet or the Social Like configlet.
+
 Screenshots
 ^^^^^^^^^^^
 
