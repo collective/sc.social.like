@@ -5,7 +5,7 @@ cache:
   directories:
     - eggs
 addons:
-  firefox: latest-esr
+  firefox: 45.8.0esr
 env:
 - PLONE_VERSION=4.2 TEST_EGGS=Pillow
 - PLONE_VERSION=4.3 TEST_EGGS=collective.cover[test]
