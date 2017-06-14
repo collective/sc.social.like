@@ -158,6 +158,14 @@ class PluginView(BrowserView):
         except InvalidParameterError:
             return False
 
+    @property
+    def fbstupid_counter_fix(self):
+        record = ISocialLikeSettings.__identifier__ + '.fbstupidcounterfix'
+        try:
+            return api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return False
+
     def _isPortalDefaultView(self):
         context = self.context
         if ISiteRoot.providedBy(aq_parent(aq_inner(context))):

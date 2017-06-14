@@ -9,8 +9,14 @@
                          data-width view/width;
                          data-show-faces string:false;
                          data-share view/fbshow_share"></div>
-    <div class="fb-share-button"
-         tal:condition="python: view.fbshow_share and not view.fbshow_like"
-         tal:attributes="data-layout view/typebutton;
-                         data-href view/url;"></div>
+    <div class="fb-stupid-counter-fix"
+         tal:omit-tag="not:view/fbstupid_counter_fix">
+        <div class="fb-share-button"
+             tal:condition="python: view.fbshow_share and not view.fbshow_like"
+             tal:attributes="data-layout view/typebutton;
+                             data-href view/url;"></div>
+        <div class="fb-stupid-counter-widget"
+            tal:condition="view/fbstupid_counter_fix"
+             i18n:translate>Share <span class="count">0</span></div>
+    </div>
 </tal:fb>
