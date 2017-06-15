@@ -106,10 +106,12 @@
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     z-index: 100;
 }
 .fb-stupid-counter-fix .fb-stupid-counter-widget {
-    background: #4267b2;
+    background: #4267b2 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAM1BMVEUAAAD///////////////////////////////////////////////////////////////+3leKCAAAAEHRSTlMA9/T9cvBY5MTFJi6EKQIePgkTlgAAAEtJREFUeNqNy0kOwDAIQ1GTsXO5/2lbWUW1sspfwRNgppL8KxVC7PkVgrPlvG53gY2TALCagBlgChz2EY7xJQcwuaw/VELrAb1hogdjoAYvvbHk/QAAAABJRU5ErkJggg==) 3px 2px no-repeat;
     color: #fff;
     cursor: pointer;
     font-family: Helvetica, Arial, sans-serif;
@@ -120,6 +122,7 @@
     font-size: 11px;
     height: 20px;
     padding: 0 4px 0 24px;
+    line-height: 21px;
 }
 .fb-stupid-counter-fix .fb-stupid-counter-widget .count {
     font-weight: normal;
