@@ -1,15 +1,4 @@
 <?xml version="1.0"?>
 <registry>
   <records interface="sc.social.like.controlpanel.ISocialLikeSettings" remove="true" />
-  <!-- BBB: compatibility with Plone 4.2 (plone.app.registry <1.2) -->
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.enabled_portal_types" delete="true" />
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.plugins_enabled" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.typebutton" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.do_not_track" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.fbaction" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.facebook_username" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.facebook_app_id" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.fbbuttons" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.fbshowlikes" delete="true"/>
-  <record name="sc.social.like.interfaces.ISocialLikeSettings.twitter_username" delete="true"/>
 </registry>
