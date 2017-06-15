@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social 2.2\n"
-"POT-Creation-Date: 2017-03-06 16:27+0000\n"
+"POT-Creation-Date: 2017-06-15 12:21+0000\n"
 "PO-Revision-Date: 2015-05-29 09:50 +0002\n"
 "Last-Translator: Fred van Dijk <f.van.dijk@zestsoftware.nl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,9 +157,9 @@ msgstr "Zet de maximale breedte van het widget tussen 180 en 520 pixels. Laat le
 msgid "Settings for the sc.social.like package"
 msgstr "Instellingen voor sc.social.like"
 
+#: ./sc/social/like/plugins/facebook/templates/plugin.pt:20
 #: ./sc/social/like/plugins/telegram/plugin.pt:2
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-#: ./sc/social/like/vocabularies.py:47
 msgid "Share"
 msgstr "Delen"
 
@@ -220,6 +220,10 @@ msgstr "Social Like"
 msgid "Social: Like Actions"
 msgstr "Social: Like acties"
 
+#: ./sc/social/like/interfaces.py:173
+msgid "Stupid share count fix"
+msgstr "Domme share count fix"
+
 #: ./sc/social/like/tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
 msgstr "De URL van de Facebookpagina"
@@ -244,7 +248,7 @@ msgstr "Tweet limiet"
 msgid "Twitter Tile"
 msgstr "Twittertegel"
 
-#: ./sc/social/like/interfaces.py:176
+#: ./sc/social/like/interfaces.py:186
 msgid "Twitter nick"
 msgstr "Twitter naam (nick)"
 
@@ -278,6 +282,11 @@ msgstr "Een komma-gescheiden lijst van de Facebook ID's van de paginabeheerders 
 #: ./sc/social/like/interfaces.py:142
 msgid "help_appid"
 msgstr "Een Facebook App ID. Dit is een verplichtt wanneer \"Volg geen gebruikers (tracking)\" is ingeschakeld."
+
+#. Default: "Use a custom widget that sum share count from both HTTP and HTTPS shares."
+#: ./sc/social/like/interfaces.py:174
+msgid "help_counter_fixes"
+msgstr "Gebruik een aangepaste widget die de somtelling telt van zowel HTTP als HTTPS-aandelen."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: ./sc/social/like/interfaces.py:99
@@ -315,7 +324,7 @@ msgid "help_verb_display"
 msgstr "Het werkwoord dat in de Facebook knop komt te staan. Op het moment zijn alelen \"Vind ik leuk\" en \"Aanbevelen\" beschikbaar."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:177
+#: ./sc/social/like/interfaces.py:187
 msgid "help_your_twitter_nick"
 msgstr "Vul de twitternaam in. Bijvoorbeeld planetplone"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social 2.2\n"
-"POT-Creation-Date: 2017-03-06 16:27+0000\n"
+"POT-Creation-Date: 2017-06-15 12:21+0000\n"
 "PO-Revision-Date: 2015-05-29 09:50 +0002\n"
 "Last-Translator: Toni Fischer <tf@zettwerk.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,9 +155,9 @@ msgstr ""
 msgid "Settings for the sc.social.like package"
 msgstr ""
 
+#: ./sc/social/like/plugins/facebook/templates/plugin.pt:20
 #: ./sc/social/like/plugins/telegram/plugin.pt:2
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-#: ./sc/social/like/vocabularies.py:47
 msgid "Share"
 msgstr "Teilen"
 
@@ -218,6 +218,10 @@ msgstr "Social Like"
 msgid "Social: Like Actions"
 msgstr "Social: Like Aktionen"
 
+#: ./sc/social/like/interfaces.py:173
+msgid "Stupid share count fix"
+msgstr "Dumme Aktienzählung fix"
+
 #: ./sc/social/like/tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
 msgstr ""
@@ -242,7 +246,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:176
+#: ./sc/social/like/interfaces.py:186
 msgid "Twitter nick"
 msgstr "Twitter Name"
 
@@ -277,6 +281,11 @@ msgstr "Eine Komma getrennte Liste von entweder den Facebook IDs der Seiten-Admi
 #, fuzzy
 msgid "help_appid"
 msgstr "Eine Facebook App ID."
+
+#. Default: "Use a custom widget that sum share count from both HTTP and HTTPS shares."
+#: ./sc/social/like/interfaces.py:174
+msgid "help_counter_fixes"
+msgstr "Verwenden Sie ein benutzerdefiniertes Widget, das die Anzahl der Anzahl von HTTP- und HTTPS-Freigaben angibt."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: ./sc/social/like/interfaces.py:99
@@ -314,7 +323,7 @@ msgid "help_verb_display"
 msgstr "Der Ausdruck, welcher im Facebook Button angezeigt werden soll. Zurzeit werden nur \"Gefällt mir\" und \"Empfehlen\" unterstützt."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:177
+#: ./sc/social/like/interfaces.py:187
 msgid "help_your_twitter_nick"
 msgstr "Geben Sie Ihren Twitter Namen ein z.B. mmustermann."
 
