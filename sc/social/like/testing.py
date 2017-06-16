@@ -57,6 +57,7 @@ class Fixture(PloneSandboxLayer):
         self.applyProfile(portal, 'sc.social.like:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
+
 FIXTURE = Fixture()
 
 INTEGRATION_TESTING = IntegrationTesting(

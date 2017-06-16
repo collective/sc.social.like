@@ -49,7 +49,12 @@ class ControlPanelTestCase(unittest.TestCase):
 
     @unittest.skipIf(not IS_PLONE_5, 'This test is for Plone 5 only')
     def test_modify_plone_settings(self):
-        self.registry['plone.twitter_username'] = u'hvelarde'
+        from zope.schema.interfaces import WrongType
+        try:
+            self.registry['plone.twitter_username'] = 'hvelarde'
+        except WrongType:
+            # in Plone 5.0 this field type was TextLine
+            self.registry['plone.twitter_username'] = u'hvelarde'
         self.assertEqual(self.settings.twitter_username, 'hvelarde')
         # changing other fields don't break anything
         self.registry['plone.share_social_data'] = False
