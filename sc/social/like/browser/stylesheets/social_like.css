@@ -1,96 +1,124 @@
-#viewlet-social-like > div
-{
-    float: left;margin-right: 2em;
+#viewlet-social-like > div {
+  float: left;
+
+  margin-right: 2em;
 }
 
-#viewlet-social-like
-{
-    min-height: 3em;
-    margin-top: 5px;
+#viewlet-social-like {
+  min-height: 3em;
+  margin-top: 5px;
 }
 
-#viewlet-social-like .twitter-count-horizontal
-{
-    height: 20px !important;
+#viewlet-social-like .twitter-count-horizontal {
+  height: 20px !important;
 }
 
-#viewlet-social-like .fb_edge_widget_with_comment
-{
-    position: relative;
+#viewlet-social-like .fb_edge_widget_with_comment {
+  position: relative;
 
-    margin-top: 0;
+  margin-top: 0;
 }
 
-.twitter-share-button
-{
-    margin-top: .8px;
+.twitter-share-button {
+  margin-top: .8px;
 }
 
-#viewlet-social-like.vertical
-{
-    min-height: 7em !important;
+#viewlet-social-like.vertical {
+  min-height: 7em !important;
 }
 
 #viewlet-social-like .whatsapp,
 #viewlet-social-like .telegram,
-#viewlet-social-like .share-by-email
-{
-    font-size: 82%;
+#viewlet-social-like .share-by-email {
+  font-size: 82%;
 
-    display: inline-block;
-    overflow: hidden;
+  display: inline-block;
+  overflow: hidden;
 
-    height: 20px;
-    padding: 0 5px 0 24px;
+  height: 20px;
+  padding: 0 5px 0 24px;
 
-    white-space: nowrap;
+  white-space: nowrap;
 
-    color: #fff !important;
-    border: 0 !important;
-    border-bottom: none !important;
-    border-radius: 3px;
-    background-repeat: no-repeat;
-    background-size: 16px;
+  color: #FFF !important;
+  border: 0 !important;
+  border-bottom: none !important;
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-size: 16px;
 }
 #viewlet-social-like .whatsapp.link,
 #viewlet-social-like .telegram.link,
-#viewlet-social-like .share-by-email.link
-{
-    width: 0;
-    padding: 0 20px;
+#viewlet-social-like .share-by-email.link {
+  width: 0;
+  padding: 0 20px;
 
-    text-indent: -200%;
+  text-indent: -200%;
 
-    background-position: 50%;
+  background-position: 50%;
 }
-#viewlet-social-like .whatsapp
-{
-    display: none;
+#viewlet-social-like .whatsapp {
+  display: none;
 
-    background-color: #199e0e;
-    background-image: url(++resource++sl_images/ico-whatsapp.svg);
-    background-position: 2px 2px;
+  background-color: #199E0E;
+  background-image: url(++resource++sl_images/ico-whatsapp.svg);
+  background-position: 2px 2px;
 }
 #viewlet-social-like .whatsapp:hover,
 #viewlet-social-like .telegram:hover,
-#viewlet-social-like .share-by-email:hover
-{
-    color: #fff !important;
+#viewlet-social-like .share-by-email:hover {
+  color: #FFF !important;
 }
-#viewlet-social-like .whatsapp.active
-{
-    display: inline-block;
+#viewlet-social-like .whatsapp.active {
+  display: inline-block;
 }
-#viewlet-social-like .telegram
-{
-    background-color: #31a4d5;
-    background-image: url(++resource++sl_images/ico-telegram.svg);
-    background-size: 19px;
+#viewlet-social-like .telegram {
+  background-color: #31A4D5;
+  background-image: url(++resource++sl_images/ico-telegram.svg);
+  background-size: 19px;
 }
-#viewlet-social-like .share-by-email
-{
-    background-color: #205c90;
-    background-image: url(++resource++sl_images/ico-email.svg);
-    background-position: 5px 3px;
-    background-size: 14px;
+#viewlet-social-like .share-by-email {
+  background-color: #205C90;
+  background-image: url(++resource++sl_images/ico-email.svg);
+  background-position: 5px 3px;
+  background-size: 14px;
+}
+
+/* Facebook stupid counter fix widget*/
+.fb-stupid-counter-fix {
+  position: relative;
+
+  float: left;
+
+  margin-right: 2em;
+}
+.fb-stupid-counter-fix .fb-share-button {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  opacity: 0;
+}
+.fb-stupid-counter-fix .fb-stupid-counter-widget {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 21px;
+
+  height: 20px;
+  margin: 0;
+  padding: 0 4px 0 24px;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  color: #FFF;
+  border-radius: 3px;
+  background: #4267B2 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAM1BMVEUAAAD///////////////////////////////////////////////////////////////+3leKCAAAAEHRSTlMA9/T9cvBY5MTFJi6EKQIePgkTlgAAAEtJREFUeNqNy0kOwDAIQ1GTsXO5/2lbWUW1sspfwRNgppL8KxVC7PkVgrPlvG53gY2TALCagBlgChz2EY7xJQcwuaw/VELrAb1hogdjoAYvvbHk/QAAAABJRU5ErkJggg==) 3px 2px no-repeat;
+}
+.fb-stupid-counter-fix .fb-stupid-counter-widget .count {
+  font-weight: normal;
 }

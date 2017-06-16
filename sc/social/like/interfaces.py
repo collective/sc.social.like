@@ -169,6 +169,16 @@ class ISocialLikeSettings(model.Schema):
         default=True,
     )
 
+    fbstupidcounterfix = schema.Bool(
+        title=_(u'Stupid share count fix'),
+        description=_(
+            u'help_counter_fixes',
+            default=u'Use a custom widget that sum share count from both '
+                    u'HTTP and HTTPS shares.'
+        ),
+        default=False,
+    )
+
     model.fieldset(
         'twitter', label=u'Twitter', fields=['twitter_username'])
 
