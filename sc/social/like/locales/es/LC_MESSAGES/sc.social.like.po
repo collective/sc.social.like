@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-06-15 12:21+0000\n"
+"POT-Creation-Date: 2017-03-09 18:00+0000\n"
 "PO-Revision-Date: 2017-03-09 15:34-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -83,8 +83,7 @@ msgstr "Tile de Facebook"
 msgid "Facebook buttons"
 msgstr "Botones de facebook"
 
-#: ./sc/social/like/tiles/facebook.py:53
-#: ./sc/social/like/tiles/twitter.py:54
+#: ./sc/social/like/tiles/facebook.py:53 sc/social/like/tiles/twitter.py:54
 msgid "Height"
 msgstr "Altura"
 
@@ -160,9 +159,9 @@ msgstr "Especificar la anchura máxima del widget entre 180 y 520 píxeles. Deja
 msgid "Settings for the sc.social.like package"
 msgstr "Configuración de sc.social.like."
 
-#: ./sc/social/like/plugins/facebook/templates/plugin.pt:20
 #: ./sc/social/like/plugins/telegram/plugin.pt:2
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: ./sc/social/like/vocabularies.py:47
 msgid "Share"
 msgstr "Compartir"
 
@@ -223,10 +222,6 @@ msgstr "Social Like"
 msgid "Social: Like Actions"
 msgstr "Social Like"
 
-#: ./sc/social/like/interfaces.py:173
-msgid "Stupid share count fix"
-msgstr "Estúpido recuento de cuota"
-
 #: ./sc/social/like/tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
 msgstr "El URL de la página de Facebook."
@@ -251,7 +246,7 @@ msgstr "Límite de tweets"
 msgid "Twitter Tile"
 msgstr "Tile de Twitter"
 
-#: ./sc/social/like/interfaces.py:186
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Nombre de usuario en Twitter"
 
@@ -271,8 +266,7 @@ msgstr "Cortesía WAI-ARIA"
 msgid "Widget ID"
 msgstr "ID del widget"
 
-#: ./sc/social/like/tiles/facebook.py:41
-#: ./sc/social/like/tiles/twitter.py:42
+#: ./sc/social/like/tiles/facebook.py:41 sc/social/like/tiles/twitter.py:42
 msgid "Width"
 msgstr "Ancho"
 
@@ -286,11 +280,6 @@ msgstr "Una lista de los ID de los administradores de esta página, separados po
 #: ./sc/social/like/interfaces.py:142
 msgid "help_appid"
 msgstr "El ID de la aplicación en la plataforma Facebook. Esto es necesario cuando la opción \"No rastrear usuarios\" está habilitada."
-
-#. Default: "Use a custom widget that sum share count from both HTTP and HTTPS shares."
-#: ./sc/social/like/interfaces.py:174
-msgid "help_counter_fixes"
-msgstr "Utilice un widget personalizado que suma el recuento de cuotas de las acciones HTTP y HTTPS."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: ./sc/social/like/interfaces.py:99
@@ -328,7 +317,7 @@ msgid "help_verb_display"
 msgstr "Texto que se mostrará en el botón de Facebook. De momento sólo \"Me gusta\" y \"Recomendar\" están soportados."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:187
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Introduzca su nombre de usuario de Twitter. Ejemplo: simplesconsultoria"
 

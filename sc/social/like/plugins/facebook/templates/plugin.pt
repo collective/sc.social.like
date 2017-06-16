@@ -1,4 +1,4 @@
-<tal:fb i18n:domain="sc.social.like">
+<tal:fb>
     <!-- Facebook -->
     <div class="fb-like"
          tal:condition="view/fbshow_like"
@@ -16,8 +16,7 @@
              tal:attributes="data-layout view/typebutton;
                              data-href view/url;"></div>
         <div class="fb-stupid-counter-widget"
-            tal:condition="view/fbstupid_counter_fix">
-            <span i18n:translate="" tal:omit-tag="">Share</span> <span class="count">0</span>
-        </div>
+            tal:condition="view/fbstupid_counter_fix"
+             i18n:translate>Share <span class="count">0</span></div>
     </div>
 </tal:fb>

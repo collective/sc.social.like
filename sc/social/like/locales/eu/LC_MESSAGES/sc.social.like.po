@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-06-15 12:21+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: 2011-12-12 13:30+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
@@ -156,9 +156,9 @@ msgstr ""
 msgid "Settings for the sc.social.like package"
 msgstr ""
 
-#: ./sc/social/like/plugins/facebook/templates/plugin.pt:20
 #: ./sc/social/like/plugins/telegram/plugin.pt:2
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: ./sc/social/like/vocabularies.py:47
 msgid "Share"
 msgstr ""
 
@@ -219,10 +219,6 @@ msgstr "Social Like"
 msgid "Social: Like Actions"
 msgstr "Social: \"Atsegin dut\" akzioak"
 
-#: ./sc/social/like/interfaces.py:173
-msgid "Stupid share count fix"
-msgstr "Stupid share zenbaketa konponketa"
-
 #: ./sc/social/like/tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
 msgstr ""
@@ -247,7 +243,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:186
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Twitter izena"
 
@@ -282,11 +278,6 @@ msgstr "Facebook kontuaren kudeatzaileen Facebook IDak. Banatu komarekin bat bai
 #: ./sc/social/like/interfaces.py:142
 msgid "help_appid"
 msgstr ""
-
-#. Default: "Use a custom widget that sum share count from both HTTP and HTTPS shares."
-#: ./sc/social/like/interfaces.py:174
-msgid "help_counter_fixes"
-msgstr "Erabili widget pertsonalizatu bat dagoela batura share zenbatu bai HTTP eta HTTPS akzio batetik."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: ./sc/social/like/interfaces.py:99
@@ -325,7 +316,7 @@ msgid "help_verb_display"
 msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gomendatu' bakarrik erabili daitezke."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:187
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Idatzi Twitterreko zuren izena. adb. simplesconsultoria"
 

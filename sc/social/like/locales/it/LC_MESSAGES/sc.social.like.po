@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-06-15 12:21+0000\n"
+"POT-Creation-Date: 2017-03-06 16:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -159,9 +159,9 @@ msgstr ""
 msgid "Settings for the sc.social.like package"
 msgstr ""
 
-#: ./sc/social/like/plugins/facebook/templates/plugin.pt:20
 #: ./sc/social/like/plugins/telegram/plugin.pt:2
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: ./sc/social/like/vocabularies.py:47
 msgid "Share"
 msgstr "Condividi"
 
@@ -222,10 +222,6 @@ msgstr ""
 msgid "Social: Like Actions"
 msgstr "Social: azioni di like"
 
-#: ./sc/social/like/interfaces.py:173
-msgid "Stupid share count fix"
-msgstr "Corrispondenza conteggio stupefacente"
-
 #: ./sc/social/like/tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
 msgstr ""
@@ -250,7 +246,7 @@ msgstr ""
 msgid "Twitter Tile"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:186
+#: ./sc/social/like/interfaces.py:176
 msgid "Twitter nick"
 msgstr "Nickname Twitter"
 
@@ -286,11 +282,6 @@ msgid "help_appid"
 msgstr ""
 "L'ID di un'applicazione Facebook.\n"
 "Questa informazione è richiesta quando l'impostazione \"Non tracciare gli utenti\" è abilitata."
-
-#. Default: "Use a custom widget that sum share count from both HTTP and HTTPS shares."
-#: ./sc/social/like/interfaces.py:174
-msgid "help_counter_fixes"
-msgstr "Utilizza un widget personalizzato che include la quota di quota da entrambe le condivisioni HTTP e HTTPS."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: ./sc/social/like/interfaces.py:99
@@ -330,7 +321,7 @@ msgid "help_verb_display"
 msgstr "Il verbo da visualizzare nel bottone di Facebook. Al momento solo \"Mi piace\" e \"Consigliato\" sono supportati."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:187
+#: ./sc/social/like/interfaces.py:177
 msgid "help_your_twitter_nick"
 msgstr "Inserisci il tuo nickname Twitter, per esempio \"simplesconsultoria\""
 
