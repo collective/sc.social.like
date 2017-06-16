@@ -3,11 +3,9 @@ from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import PROJECTNAME
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtility
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -19,7 +17,6 @@ class ControlPanelTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.request, ISocialLikeLayer)
         self.controlpanel = self.portal['portal_controlpanel']
 
     def test_controlpanel_has_view(self):
