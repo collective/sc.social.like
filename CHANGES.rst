@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.10 (unreleased)
 ^^^^^^^^^^^^^^^^^
 
+- Drop support for Plone 4.2.
+  [rodfersou]
+
 - In Plone 5, keep in sync some redundant fields found in the new Social Media configlet.
   Changes on ``facebook_app_id``, ``facebook_username``, or ``twitter_username`` fields will be reflected in both configlets (fixes `#100`_).
   [hvelarde]

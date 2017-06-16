@@ -2,9 +2,7 @@
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from sc.social.like.browser.socialikes import SocialLikes
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.testing import INTEGRATION_TESTING
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -16,7 +14,6 @@ class BrowserViewTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']

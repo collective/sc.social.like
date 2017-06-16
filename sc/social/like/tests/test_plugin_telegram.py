@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.plugins.telegram import PluginView
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -19,7 +17,6 @@ class PluginTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
@@ -54,7 +51,6 @@ class PluginViewsTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.request, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 

@@ -5,10 +5,8 @@ from plone.app.testing import TEST_USER_ID
 from sc.social.like.browser.viewlets import SocialLikesViewlet
 from sc.social.like.browser.viewlets import SocialMetadataViewlet
 from sc.social.like.config import IS_PLONE_5
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -23,7 +21,6 @@ class MetadataViewletTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']
@@ -72,7 +69,6 @@ class LikeViewletTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Document', 'my-document')
         self.document = self.portal['my-document']

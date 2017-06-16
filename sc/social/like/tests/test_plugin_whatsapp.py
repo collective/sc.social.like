@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.plugins.whatsapp import browser
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtilitiesFor
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -20,7 +18,6 @@ class PluginTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
@@ -57,7 +54,6 @@ class PluginViewsTest(unittest.TestCase):
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.setup_content(self.portal)
-        alsoProvides(self.request, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 

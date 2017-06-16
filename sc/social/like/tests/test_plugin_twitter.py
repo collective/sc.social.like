@@ -2,7 +2,6 @@
 from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import IS_PLONE_5
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -10,7 +9,6 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -25,7 +23,6 @@ class PluginTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
@@ -55,7 +52,6 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        alsoProvides(self.layer['request'], ISocialLikeLayer)
 
         with api.env.adopt_roles(['Manager']):
             self.newsitem = api.content.create(

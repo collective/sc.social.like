@@ -4,7 +4,6 @@ from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from sc.social.like import utils
 from sc.social.like.config import IS_PLONE_5
-from sc.social.like.interfaces import ISocialLikeLayer
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook import browser
 from sc.social.like.plugins.facebook.utils import facebook_language
@@ -15,7 +14,6 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -29,7 +27,6 @@ class PluginTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
 
     def test_plugin_available(self):
@@ -66,7 +63,6 @@ class PluginViewsTest(unittest.TestCase):
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
 
-        alsoProvides(self.portal.REQUEST, ISocialLikeLayer)
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
