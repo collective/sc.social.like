@@ -3,13 +3,13 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <genericsetup:upgradeSteps
-      source="3043"
-      destination="3044"
+      source="3044"
+      destination="3045"
       profile="sc.social.like:default">
 
     <genericsetup:upgradeDepends
-        title="Add registry setting to show/hide number of likes"
-        description="Add fbshowlikes setting to the registry"
+        title="Add registry setting to flag HTTP to HTTPS migration"
+        description="Add fbhttpsmigrationdate setting to the registry."
         import_profile="sc.social.like:default"
         import_steps="plone.app.registry"
         />
