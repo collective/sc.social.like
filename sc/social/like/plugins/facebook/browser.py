@@ -13,6 +13,7 @@ from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
 from urllib import urlencode
+from urlparse import urlparse
 from zope.component import getMultiAdapter
 
 
@@ -46,6 +47,22 @@ class PluginView(BrowserView):
         self.language = facebook_language(get_language(context), self.language)
         self.image = get_content_image(context, width=1200, height=630)
         self.typebutton  # XXX: needed to initialize self.width
+
+    @property
+    def canonical_url(self):
+        record = ISocialLikeSettings.__identifier__ + '.fbhttpsmigrationdate'
+        try:
+            migration_date = api.portal.get_registry_record(record)
+        except InvalidParameterError:
+            return self.url
+        if migration_date is None:
+            return self.url
+        parsed = urlparse(self.url)
+        effective_date = self.context.effective().asdatetime().date()
+        if effective_date < migration_date:
+            return parsed._replace(scheme='http').geturl()
+        else:
+            return parsed._replace(scheme='https').geturl()
 
     @property
     def is_plone_5(self):

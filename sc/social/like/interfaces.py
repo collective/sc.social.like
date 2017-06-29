@@ -169,6 +169,17 @@ class ISocialLikeSettings(model.Schema):
         default=True,
     )
 
+    fbhttpsmigrationdate = schema.Date(
+        title=_(u'Date when site migrate from HTTP to HTTPS'),
+        description=_(
+            u'help_https_migration_date',
+            default=u'If site protocol migrate from HTTP to HTTPS, dates before this date '
+                    u'will point Canonical URL to HTTP version and after to HTTPS version '
+                    u'of this page.'
+        ),
+        default=None,
+    )
+
     model.fieldset(
         'twitter', label=u'Twitter', fields=['twitter_username'])
 

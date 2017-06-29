@@ -245,3 +245,38 @@ class To3044TestCase(UpgradeTestCaseBase):
         # Test if our setting is there and set
         settings = registry.forInterface(ISocialLikeSettings)
         self.assertEqual(settings.fbshowlikes, True)
+
+
+class To3045TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3044', u'3045')
+
+    def test_upgrade_to_3043_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
+
+    def test_add_fbshowlikes_record(self):
+        title = u'Add registry setting to flag HTTP to HTTPS migration'
+        step = self.get_upgrade_step(title)
+        assert step is not None
+
+        # simulate state on previous version
+        from plone.registry.interfaces import IRegistry
+        from sc.social.like.interfaces import ISocialLikeSettings
+        from zope.component import getUtility
+        registry = getUtility(IRegistry)
+        record = ISocialLikeSettings.__identifier__ + '.fbhttpsmigrationdate'
+        del registry.records[record]
+        assert record not in registry
+
+        with self.assertRaises(KeyError):
+            registry.forInterface(ISocialLikeSettings)
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        # Test if our setting is there and set
+        settings = registry.forInterface(ISocialLikeSettings)
+        self.assertEqual(settings.fbhttpsmigrationdate, None)

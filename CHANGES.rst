@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.10 (unreleased)
 ^^^^^^^^^^^^^^^^^
 
+- Support facebook configuration when migrate from HTTP to HTTPS (closes `#104`_).
+  [rodfersou]
+
 - Drop support for Plone 4.2.
   [rodfersou]
 
@@ -283,3 +286,4 @@ Previous entries can be found in the HISTORY.rst file.
 .. _`#83`: https://github.com/collective/sc.social.like/issues/83
 .. _`#91`: https://github.com/collective/sc.social.like/issues/91
 .. _`#100`: https://github.com/collective/sc.social.like/issues/100
+.. _`#104`: https://github.com/collective/sc.social.like/issues/104

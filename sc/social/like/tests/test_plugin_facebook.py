@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from DateTime import DateTime
+from datetime import date
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
@@ -150,6 +152,25 @@ class PluginViewsTest(unittest.TestCase):
         # At root, use website type
         og_type = view.type()
         self.assertIn('website', og_type)
+
+    # FIXME: we need to rethink this feature
+    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
+    def test_https_migration(self):
+        plugin = self.plugin
+        portal = self.portal
+        plugin_view = plugin.view()
+        view = portal.restrictedTraverse(plugin_view)
+
+        metadata = view.metadata()
+        expected = '<meta property="og:url" content="http://'
+        self.assertIn(expected, metadata)
+
+        self.portal.setEffectiveDate(DateTime())
+        self.settings.fbhttpsmigrationdate = date.today()
+
+        metadata = view.metadata()
+        expected = '<meta property="og:url" content="https://'
+        self.assertIn(expected, metadata)
 
     def test_plugin_view_document(self):
         plugin = self.plugin
