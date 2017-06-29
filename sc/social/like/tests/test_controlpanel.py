@@ -95,6 +95,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'fbshowlikes'))
         self.assertEqual(self.settings.fbshowlikes, True)
 
+    def test_fbhttpsmigrationdate_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'fbhttpsmigrationdate'))
+        self.assertEqual(self.settings.fbhttpsmigrationdate, None)
+
     def test_twitter_username_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'twitter_username'))
         self.assertEqual(self.settings.twitter_username, '')
@@ -115,6 +119,7 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.facebook_app_id',
             ISocialLikeSettings.__identifier__ + '.fbbuttons',
             ISocialLikeSettings.__identifier__ + '.fbshowlikes',
+            ISocialLikeSettings.__identifier__ + '.fbhttpsmigrationdate',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
         ]
 
