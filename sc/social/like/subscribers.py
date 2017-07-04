@@ -5,6 +5,13 @@ Plone 5 includes a new social media configlet that duplicates some
 records already included in this package. To deal with that we use
 an event subscriber declared in this module to synchronize the values
 of the redundant records on every change.
+
+Facebook needs a canonical URL to ensure that all actions such as likes
+and shares aggregate at the same URL rather than spreading across
+multiple versions of a page. We populate a field with this value at
+creation time using an event handler bounded to IObjectAddedEvent
+because on IObjectCreatedEvent the container of the object is not
+available and we can not get its virtual path.
 """
 from plone import api
 from plone.registry.interfaces import IRegistry
@@ -73,3 +80,14 @@ def social_media_record_synchronizer(event):
 
     logger.debug('{0} was synchronized; new value is "{1}"'.format(
         repr(registry.records[record]), event.record.value))
+
+
+def assign_canonical_url(obj, event):
+    """Assing canonical URL to the object after it is created."""
+    record = ISocialLikeSettings.__identifier__ + '.canonical_domain'
+    canonical_domain = api.portal.get_registry_record(record)
+
+    # we can't assign a canonical_url without a canonical_domain
+    if canonical_domain:
+        obj.canonical_url = '{0}/{1}'.format(canonical_domain, obj.virtual_url_path())
+        logger.info('canonical_url set for {0}'.format(obj.canonical_url))

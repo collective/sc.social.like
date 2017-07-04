@@ -27,4 +27,13 @@
       handler=".subscribers.social_media_record_synchronizer"
       />
 
+  <subscriber
+      zcml:condition="installed plone.app.dexterity"
+      for="sc.social.like.behaviors.ISocialMedia
+           zope.lifecycleevent.IObjectAddedEvent"
+      handler=".subscribers.assign_canonical_url"
+      />
+
+  <include file="behaviors.zcml" />
+
 </configure>
