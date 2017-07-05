@@ -27,7 +27,7 @@ def get_valid_objects(brains):
 
 
 class ICanonicalURLUpdater(model.Schema):
-    """ Define reporter form fields """
+    """A form to update the canonical url of portal objects based on a date."""
 
     canonical_domain = schema.URI(
         title=_(u'Canonical domain'),
@@ -53,7 +53,7 @@ class ICanonicalURLUpdater(model.Schema):
 
 
 class CanonicalURLUpdater(form.Form):
-    """A form to update the canonical url for portal objects."""
+    """A form to update the canonical url of portal objects based on a date."""
 
     fields = field.Fields(ICanonicalURLUpdater)
     label = _(u'This form is used to update the canonical URL of objects providing the Social Media behavior')
