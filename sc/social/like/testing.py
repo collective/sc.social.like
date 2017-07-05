@@ -19,10 +19,10 @@ try:
     pkg_resources.get_distribution('plone.app.contenttypes')
 except pkg_resources.DistributionNotFound:
     from plone.app.testing import PLONE_FIXTURE
-    DEXTERITY = False
+    HAS_DEXTERITY = False
 else:
     from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE
-    DEXTERITY = True
+    HAS_DEXTERITY = True
 
 try:
     pkg_resources.get_distribution('collective.cover')

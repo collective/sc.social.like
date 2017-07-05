@@ -2,14 +2,14 @@
 """Test for the canonical URL updater form."""
 from DateTime import DateTime
 from plone import api
-from sc.social.like.testing import DEXTERITY
+from sc.social.like.testing import HAS_DEXTERITY
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.tests.utils import enable_social_media_behavior
 
 import unittest
 
 
-if not DEXTERITY:
+if not HAS_DEXTERITY:
     # skip all tests if not running on Dexterity-based content types
     def test_suite():
         return unittest.TestSuite()

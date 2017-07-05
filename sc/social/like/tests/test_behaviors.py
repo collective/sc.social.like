@@ -3,7 +3,7 @@ from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.interfaces import ISocialLikeSettings
-from sc.social.like.testing import DEXTERITY
+from sc.social.like.testing import HAS_DEXTERITY
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.tests.utils import enable_social_media_behavior
 from zope.component import getUtility
@@ -11,7 +11,7 @@ from zope.component import getUtility
 import unittest
 
 
-if not DEXTERITY:
+if not HAS_DEXTERITY:
     # skip all tests if not running on Dexterity-based content types
     def test_suite():
         return unittest.TestSuite()
