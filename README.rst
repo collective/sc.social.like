@@ -90,6 +90,9 @@ To enable this feature you must apply the Social Media behavior to your content 
 If you later migrate your site to HTTPS just change the value of the canonical domain (e.g. ``https://www.example.org``).
 All content created before the change will still reflect the old schema in their canonical url as expected.
 
+The package also includes a helper view to populate content created before release 2.10.
+You can access this view by pointing your browser at ``/@@canonical-url-updater``.
+
 Privacy and cookies
 ^^^^^^^^^^^^^^^^^^^
 
