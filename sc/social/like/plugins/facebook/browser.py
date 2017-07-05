@@ -52,6 +52,9 @@ class PluginView(BrowserView):
     def canonical_url(self):
         if ISocialMedia.providedBy(self.context):
             return self.context.canonical_url
+        else:
+            # use current URL if the object don't provide the behavior
+            return self.url
 
     @property
     def is_plone_5(self):
@@ -183,7 +186,7 @@ class PluginView(BrowserView):
         return 'article'
 
     def share_link(self):
-        absolute_url = self.context.absolute_url()
+        absolute_url = self.url
         params = dict(
             app_id=self.app_id,
             display='popup',

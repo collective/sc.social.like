@@ -78,7 +78,10 @@ will be displayed and for which content types.
 Canonical URL and migration to HTTPS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: This feature is only available for Dexterity-based content types.
+.. note::
+    This feature is only available for Dexterity-based content types.
+    If you're using Archetypes-based content types or if you don't apply the Social Media behavior to your Dexterity-based content type,
+    the current URL will still be used as the canonical URL.
 
 The first time someone shares a link, the Facebook crawler will scrape the HTML code at that URL to gather, cache and display info about the content on Facebook.
 Facebook uses the ``og:url`` tag included in the HTML code to aggregate likes and shares at the same URL rather than spreading across multiple versions of a page.

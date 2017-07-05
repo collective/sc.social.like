@@ -3,7 +3,7 @@
 </tal:comment>
 <tal:fb condition="not:view/is_plone_5">
   <meta property="og:site_name" tal:attributes="content view/portal_title" />
-  <meta tal:condition="view/canonical_url" property="og:url" tal:attributes="content view/canonical_url" />
+  <meta property="og:url" tal:attributes="content view/canonical_url" />
   <meta property="og:type" tal:attributes="content view/type" />
   <meta property="og:locale" tal:attributes="content view/language" />
   <meta property="og:title" tal:attributes="content view/title" />

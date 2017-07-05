@@ -6,7 +6,7 @@ There's a frood who really knows where his towel is.
 2.10 (unreleased)
 ^^^^^^^^^^^^^^^^^
 
-- Fix support for canonical URL in Facebook's Open Graph;
+- Fix support for canonical URL in Facebook's Open Graph for Dexterity-based content types;
   previously the current URL was incorrectly used as the canonical URL of an item leading to zeroed counters when moving content around or when changing the schema to access the site (HTTP to HTTPS).
   Check package documentation for more information on how to use this new feature (fixes `#104 <https://github.com/collective/sc.social.like/issues/104>`_).
   [hvelarde]
