@@ -33,10 +33,10 @@ class ICanonicalURLUpdater(model.Schema):
         title=_(u'Canonical domain'),
         description=_(
             u'help_canonical_domain',
-            u'The canonical domain will be used to construct the canonical URL (og:url property) of portal objects. '
-            u'Use the domain name of your site (e.g. http://www.example.org or https://www.example.org). '
-            u'Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. '
-            u'Check <a href="https://pypi.python.org/pypi/sc.social.like">package documentation</a> for more information on how to use this feature.'
+            default=u'The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. '
+                    u'Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). '
+                    u'Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. '
+                    u'Check <a href="https://pypi.python.org/pypi/sc.social.like">package documentation</a> for more information on how to use this feature.'
         ),
         required=True,
         constraint=validate_canonical_domain,
@@ -56,7 +56,7 @@ class CanonicalURLUpdater(form.Form):
     """A form to update the canonical url for portal objects."""
 
     fields = field.Fields(ICanonicalURLUpdater)
-    label = _(u'This form is used to update the canonical URL of object providing the Social Media behavior.')
+    label = _(u'This form is used to update the canonical URL of objects providing the Social Media behavior')
     ignoreContext = True
 
     def update(self):

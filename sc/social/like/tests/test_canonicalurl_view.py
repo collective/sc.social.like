@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Test for the canonical URL updater form."""
 from DateTime import DateTime
 from plone import api
 from sc.social.like.testing import DEXTERITY
@@ -56,4 +57,6 @@ class CanonicalURLUpdaterTestCase(unittest.TestCase):
             self.portal['foo'].canonical_url, 'https://example.org/plone/foo')
         self.assertEqual(
             self.portal['bar'].canonical_url, 'https://example.org/plone/bar')
+        # objects created after the specified date will have their
+        # canonical URL unchaged
         self.assertIsNone(self.portal['baz'].canonical_url)

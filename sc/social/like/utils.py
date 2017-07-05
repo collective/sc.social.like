@@ -110,5 +110,5 @@ def validate_canonical_domain(value):
     _ = urlparse(value)
     if not all([_.scheme, _.netloc]) or any([_.path, _.params, _.query, _.fragment]):
         raise Invalid(
-            u'Canonical domain should only include scheme and netloc (e.g. http://example.org)')
+            u'Canonical domain should only include scheme and netloc (e.g. <strong>http://www.example.org</strong>)')
     return True

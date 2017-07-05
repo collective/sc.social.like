@@ -91,3 +91,8 @@ def assign_canonical_url(obj, event):
     if canonical_domain:
         obj.canonical_url = '{0}/{1}'.format(canonical_domain, obj.virtual_url_path())
         logger.info('canonical_url set for {0}'.format(obj.canonical_url))
+    else:
+        logger.warn(
+            'Canonical domain not set in Social Media configlet; '
+            "Facebook's Open Graph canonical URL (og:orl) will not be available"
+        )

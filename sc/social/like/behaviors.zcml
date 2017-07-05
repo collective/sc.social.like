@@ -8,7 +8,7 @@
 
   <plone:behavior
       title="Social Media"
-      description="Add support for social media widgets and metadata."
+      description="Add support for Social Media widgets and metadata."
       provides="sc.social.like.behaviors.ISocialMedia"
       for="plone.dexterity.interfaces.IDexterityContent"
       i18n:attributes="title; description"

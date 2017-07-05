@@ -51,7 +51,7 @@ class PluginView(BrowserView):
     @property
     def canonical_url(self):
         if ISocialMedia.providedBy(self.context):
-            return self.context.canonical_url()
+            return self.context.canonical_url
 
     @property
     def is_plone_5(self):
