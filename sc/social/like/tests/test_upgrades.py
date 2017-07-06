@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from sc.social.like.config import IS_PLONE_5
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
+from zope.component import getUtility
 
 import unittest
 
@@ -108,8 +110,6 @@ class To3040TestCase(UpgradeTestCaseBase):
         # simulate state on previous version
         from plone.registry.interfaces import IRegistry
         from sc.social.like.config import PROJECTNAME
-        from sc.social.like.interfaces import ISocialLikeSettings
-        from zope.component import getUtility
 
         # restore old property sheet
         portal_properties = api.portal.get_tool(name='portal_properties')
@@ -229,8 +229,6 @@ class To3044TestCase(UpgradeTestCaseBase):
 
         # simulate state on previous version
         from plone.registry.interfaces import IRegistry
-        from sc.social.like.interfaces import ISocialLikeSettings
-        from zope.component import getUtility
         registry = getUtility(IRegistry)
         record = ISocialLikeSettings.__identifier__ + '.fbshowlikes'
         del registry.records[record]
@@ -245,3 +243,45 @@ class To3044TestCase(UpgradeTestCaseBase):
         # Test if our setting is there and set
         settings = registry.forInterface(ISocialLikeSettings)
         self.assertEqual(settings.fbshowlikes, True)
+
+
+class To3045TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3044', u'3045')
+
+    def test_upgrade_to_3045_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
+
+    def test_enable_social_media_behavior(self):
+        title = u'Enable Social Media behavior'
+        step = self.get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # check state of previous version
+        from plone.dexterity.interfaces import IDexterityFTI
+        from sc.social.like.behaviors import ISocialMedia
+        from zope.component import queryUtility
+        enabled_portal_types = api.portal.get_registry_record(
+            name='enabled_portal_types', interface=ISocialLikeSettings)
+
+        # check behavior is not enabled for Dexterity-based content types
+        for t in enabled_portal_types:
+            fti = queryUtility(IDexterityFTI, name=t)
+            if fti is None:
+                continue  # not a Dexterity-based content type
+            behaviors = list(fti.behaviors)
+            self.assertNotIn(ISocialMedia.__identifier__, behaviors)
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        # check behavior is now enabled for Dexterity-based content types
+        for t in enabled_portal_types:
+            fti = queryUtility(IDexterityFTI, name=t)
+            if fti is None:
+                continue  # not a Dexterity-based content type
+            behaviors = list(fti.behaviors)
+            self.assertIn(ISocialMedia.__identifier__, behaviors)
