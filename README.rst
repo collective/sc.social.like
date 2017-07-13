@@ -87,7 +87,7 @@ The first time someone shares a link, the Facebook crawler will scrape the HTML 
 Facebook uses the ``og:url`` tag included in the HTML code to aggregate likes and shares at the same URL rather than spreading across multiple versions of a page.
 If you move your content around or if you migrate your site schema from HTTP to HTTPS those counters will be zeroed.
 
-To solve this issue this package includes a mechanism to store the URL of the content at creation time to use it as the canonical URL even after renaming or migrating the schema.
+To solve this issue this package includes a mechanism to store the URL of the content at publication time to use it as the canonical URL even after renaming or migrating the schema.
 To enable this feature you must apply the Social Media behavior to your content type and provide the canonical domain (e.g. ``http://www.example.org``) to be used on the site in the control panel configlet.
 
 If you later migrate your site to HTTPS just change the value of the canonical domain (e.g. ``https://www.example.org``).

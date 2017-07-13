@@ -30,7 +30,7 @@
   <subscriber
       zcml:condition="installed plone.app.dexterity"
       for="sc.social.like.behaviors.ISocialMedia
-           zope.lifecycleevent.IObjectAddedEvent"
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
       handler=".subscribers.assign_canonical_url"
       />
 

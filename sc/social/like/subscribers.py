@@ -83,11 +83,19 @@ def social_media_record_synchronizer(event):
 
 
 def assign_canonical_url(obj, event):
-    """Assing canonical URL to the object after it is created."""
-    record = ISocialLikeSettings.__identifier__ + '.canonical_domain'
-    canonical_domain = api.portal.get_registry_record(record)
+    """Assing canonical URL to the object after it is published."""
+    if event.status['review_state'] not in ('published', ):
+        # don't a assign a canonical URL as this is not a public state
+        return
 
-    # we can't assign a canonical_url without a canonical_domain
+    record = ISocialLikeSettings.__identifier__ + '.canonical_domain'
+    try:
+        canonical_domain = api.portal.get_registry_record(record)
+    except api.exc.InvalidParameterError:
+        # package is not installed or record deleted; do nothing
+        return
+
+    # we can't assign a canonical URL without a canonical domain
     if canonical_domain:
         obj.canonical_url = '{0}/{1}'.format(canonical_domain, obj.virtual_url_path())
         logger.info('canonical_url set for {0}'.format(obj.canonical_url))

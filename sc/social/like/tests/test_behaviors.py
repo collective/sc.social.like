@@ -35,4 +35,18 @@ class BehaviorsTestCase(unittest.TestCase):
         self.assertTrue(ISocialMedia.providedBy(self.obj))
 
     def test_canonical_url(self):
+        # canonical URL is empty after creation
+        self.assertIsNone(self.obj.canonical_url)
+        # canonical URL is filled after publishing
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.obj, 'publish')
         self.assertEqual(self.obj.canonical_url, 'http://example.org/plone/foo')
+
+    def test_canonical_url_with_package_uninstalled(self):
+        from sc.social.like.config import PROJECTNAME
+        qi = self.portal['portal_quickinstaller']
+        qi.uninstallProducts(products=[PROJECTNAME])
+        # don't fail if packege uninstalled
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.obj, 'publish')
+        self.assertIsNone(self.obj.canonical_url)
