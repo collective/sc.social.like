@@ -75,6 +75,27 @@ Go to the 'Site Setup' page in the Plone interface and click on the
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
 
+Canonical URL and migration to HTTPS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+    This feature is only available for Dexterity-based content types.
+    If you're using Archetypes-based content types or if you don't apply the Social Media behavior to your Dexterity-based content type,
+    the current URL will still be used as the canonical URL.
+
+The first time someone shares a link, the Facebook crawler will scrape the HTML code at that URL to gather, cache and display info about the content on Facebook.
+Facebook uses the ``og:url`` tag included in the HTML code to aggregate likes and shares at the same URL rather than spreading across multiple versions of a page.
+If you move your content around or if you migrate your site schema from HTTP to HTTPS those counters will be zeroed.
+
+To solve this issue this package includes a mechanism to store the URL of the content at publication time to use it as the canonical URL even after renaming or migrating the schema.
+To enable this feature you must apply the Social Media behavior to your content type and provide the canonical domain (e.g. ``http://www.example.org``) to be used on the site in the control panel configlet.
+
+If you later migrate your site to HTTPS just change the value of the canonical domain (e.g. ``https://www.example.org``).
+All content created before the change will still reflect the old schema in their canonical url as expected.
+
+The package also includes a helper view to populate content created before release 2.10.
+You can access this view by pointing your browser at ``/@@canonical-url-updater``.
+
 Privacy and cookies
 ^^^^^^^^^^^^^^^^^^^
 

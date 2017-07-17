@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="sc.social.like">
+
+  <include package="plone.behavior" file="meta.zcml" />
+
+  <plone:behavior
+      title="Social Media"
+      description="Add support for Social Media widgets and metadata."
+      provides="sc.social.like.behaviors.ISocialMedia"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      i18n:attributes="title; description"
+      />
+
+</configure>

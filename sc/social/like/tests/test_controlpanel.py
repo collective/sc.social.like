@@ -75,6 +75,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'do_not_track'))
         self.assertFalse(self.settings.do_not_track)
 
+    def test_canonical_domain_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'canonical_domain'))
+        self.assertIsNone(self.settings.canonical_domain)
+
     def test_fbaction_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fbaction'))
         self.assertEqual(self.settings.fbaction, u'like')
@@ -110,6 +114,7 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.plugins_enabled',
             ISocialLikeSettings.__identifier__ + '.typebutton',
             ISocialLikeSettings.__identifier__ + '.do_not_track',
+            ISocialLikeSettings.__identifier__ + '.canonical_domain',
             ISocialLikeSettings.__identifier__ + '.fbaction',
             ISocialLikeSettings.__identifier__ + '.facebook_username',
             ISocialLikeSettings.__identifier__ + '.facebook_app_id',

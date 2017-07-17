@@ -3,6 +3,7 @@ from plone.supermodel import model
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import DEFAULT_ENABLED_CONTENT_TYPES
 from sc.social.like.config import DEFAULT_PLUGINS_ENABLED
+from sc.social.like.utils import validate_canonical_domain
 from sc.social.like.vocabularies import FacebookButtonsVocabulary
 from sc.social.like.vocabularies import FacebookVerbsVocabulary
 from sc.social.like.vocabularies import TypeButtonVocabulary
@@ -110,7 +111,27 @@ class ISocialLikeSettings(model.Schema):
     model.fieldset(
         'facebook',
         label=u'Facebook',
-        fields=['fbaction', 'facebook_username', 'facebook_app_id', 'fbbuttons', 'fbshowlikes'],
+        fields=[
+            'canonical_domain',
+            'fbaction',
+            'facebook_username',
+            'facebook_app_id',
+            'fbbuttons',
+            'fbshowlikes',
+        ],
+    )
+
+    canonical_domain = schema.URI(
+        title=_(u'Canonical domain'),
+        description=_(
+            u'help_canonical_domain',
+            default=u'The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. '
+                    u'Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). '
+                    u'Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. '
+                    u'Check <a href="https://pypi.python.org/pypi/sc.social.like">package documentation</a> for more information on how to use this feature.'
+        ),
+        required=True,
+        constraint=validate_canonical_domain,
     )
 
     fbaction = schema.Choice(

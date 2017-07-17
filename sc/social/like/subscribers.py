@@ -5,6 +5,13 @@ Plone 5 includes a new social media configlet that duplicates some
 records already included in this package. To deal with that we use
 an event subscriber declared in this module to synchronize the values
 of the redundant records on every change.
+
+Facebook needs a canonical URL to ensure that all actions such as likes
+and shares aggregate at the same URL rather than spreading across
+multiple versions of a page. We populate a field with this value at
+creation time using an event handler bounded to IObjectAddedEvent
+because on IObjectCreatedEvent the container of the object is not
+available and we can not get its virtual path.
 """
 from plone import api
 from plone.registry.interfaces import IRegistry
@@ -73,3 +80,27 @@ def social_media_record_synchronizer(event):
 
     logger.debug('{0} was synchronized; new value is "{1}"'.format(
         repr(registry.records[record]), event.record.value))
+
+
+def assign_canonical_url(obj, event):
+    """Assing canonical URL to the object after it is published."""
+    if event.status['review_state'] not in ('published', ):
+        # don't a assign a canonical URL as this is not a public state
+        return
+
+    record = ISocialLikeSettings.__identifier__ + '.canonical_domain'
+    try:
+        canonical_domain = api.portal.get_registry_record(record)
+    except api.exc.InvalidParameterError:
+        # package is not installed or record deleted; do nothing
+        return
+
+    # we can't assign a canonical URL without a canonical domain
+    if canonical_domain:
+        obj.canonical_url = '{0}/{1}'.format(canonical_domain, obj.virtual_url_path())
+        logger.info('canonical_url set for {0}'.format(obj.canonical_url))
+    else:
+        logger.warn(
+            'Canonical domain not set in Social Media configlet; '
+            "Facebook's Open Graph canonical URL (og:orl) will not be available"
+        )

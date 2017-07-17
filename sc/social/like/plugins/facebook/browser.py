@@ -7,6 +7,7 @@ from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
@@ -46,6 +47,14 @@ class PluginView(BrowserView):
         self.language = facebook_language(get_language(context), self.language)
         self.image = get_content_image(context, width=1200, height=630)
         self.typebutton  # XXX: needed to initialize self.width
+
+    @property
+    def canonical_url(self):
+        if ISocialMedia.providedBy(self.context):
+            return self.context.canonical_url
+        else:
+            # use current URL if the object don't provide the behavior
+            return self.url
 
     @property
     def is_plone_5(self):
@@ -177,7 +186,7 @@ class PluginView(BrowserView):
         return 'article'
 
     def share_link(self):
-        absolute_url = self.context.absolute_url()
+        absolute_url = self.url
         params = dict(
             app_id=self.app_id,
             display='popup',

@@ -2,8 +2,10 @@
 from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
+from urlparse import urlparse
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
+from zope.interface import Invalid
 
 
 def get_images_view(context):
@@ -101,3 +103,12 @@ def _image_size(current, new):
         if n_width > width:
             return current
     return (width, height)
+
+
+def validate_canonical_domain(value):
+    """Check if the value is a URI containing only scheme and netloc."""
+    _ = urlparse(value)
+    if not all([_.scheme, _.netloc]) or any([_.path, _.params, _.query, _.fragment]):
+        raise Invalid(
+            u'Canonical domain should only include scheme and netloc (e.g. <strong>http://www.example.org</strong>)')
+    return True
