@@ -253,7 +253,7 @@ class To3045TestCase(UpgradeTestCaseBase):
     def test_upgrade_to_3045_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
-        self.assertEqual(self.total_steps, 1)
+        self.assertEqual(self.total_steps, 2)
 
     def test_enable_social_media_behavior(self):
         title = u'Enable Social Media behavior'
