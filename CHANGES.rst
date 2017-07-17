@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.10 (unreleased)
+2.10 (2017-07-17)
 ^^^^^^^^^^^^^^^^^
 
 - Fix support for canonical URL in Facebook's Open Graph for Dexterity-based content types;
