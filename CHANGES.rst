@@ -20,6 +20,10 @@ There's a frood who really knows where his towel is.
   a new upgrade step is provided to update the ``objects_provides`` catalog index (fixes `#115 <https://github.com/collective/sc.social.like/issues/115>`_).
   [hvelarde]
 
+- Turns out that the image cache for some reason makes ngix in production shows Plone logo instead of the image.
+  This cache is unecessary knowing that the image is inserted just one time by request in the header. (closes `#109 <https://github.com/collective/sc.social.like/issues/109>`_).
+  [rodfersou]
+
 - Add ``canonical_domain`` field record to the registry when upgrading;
   this fixes an issue in the upgrade step to profile version 3045 (fixes `#114 <https://github.com/collective/sc.social.like/issues/114>`_).
   [hvelarde]
