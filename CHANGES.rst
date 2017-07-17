@@ -6,7 +6,9 @@ There's a frood who really knows where his towel is.
 2.11 (unreleased)
 ^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add ``canonical_domain`` field record to the registry when upgrading;
+  this fixes an issue in the upgrade step to profile version 3045 (fixes `#114 <https://github.com/collective/sc.social.like/issues/114>`_).
+  [hvelarde]
 
 
 2.10 (2017-07-17)
