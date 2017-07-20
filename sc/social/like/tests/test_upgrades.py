@@ -2,6 +2,7 @@
 from plone import api
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
+from sc.social.like.testing import HAS_DEXTERITY
 from sc.social.like.testing import INTEGRATION_TESTING
 from zope.component import getUtility
 
@@ -297,6 +298,7 @@ class To3046TestCase(UpgradeTestCaseBase):
         self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self.total_steps, 1)
 
+    @unittest.skipUnless(HAS_DEXTERITY, 'plone.app.contenttypes must be installed')
     def test_reindex_catalog(self):
         # check if the upgrade step is registered
         title = u'Reindex catalog'
