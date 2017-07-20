@@ -20,7 +20,8 @@ def reindex_catalog(setup_tool):
     for obj in get_valid_objects(results):
         catalog.catalog_object(obj, idxs=['object_provides'], update_metadata=False)
         n += 1
-        if n % 1000 == 0 and not test:
+        # FIXME: S001 bug in code analysis dependency
+        if n % 1000 == 0 and not test:  # noqa: S001
             transaction.commit()
             logger.info('{0} items processed.'.format(n))
 
