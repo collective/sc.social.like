@@ -2,6 +2,7 @@
 from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
+from sc.social.like.logger import logger
 from urlparse import urlparse
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
@@ -112,3 +113,18 @@ def validate_canonical_domain(value):
         raise Invalid(
             u'Canonical domain should only include scheme and netloc (e.g. <strong>http://www.example.org</strong>)')
     return True
+
+
+def get_valid_objects(brains):
+    """Generate a list of objects associated with valid brains."""
+    for b in brains:
+        try:
+            obj = b.getObject()
+        except KeyError:
+            obj = None
+
+        if obj is None:  # warn on broken entries in the catalog
+            msg = u'Skipping invalid reference in the catalog: {0}'
+            logger.warn(msg.format(b.getPath()))
+            continue
+        yield obj

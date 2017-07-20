@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="3045"
+      destination="3046"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeStep
+        title="Reindex catalog"
+        description="Reindex objects to fix interfaces on the catalog."
+        handler=".reindex_catalog"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

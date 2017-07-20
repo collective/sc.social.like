@@ -1,9 +1,12 @@
 # -*- coding:utf-8 -*-
+from DateTime import DateTime
 from plone import api
 from plone.supermodel import model
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.behaviors import ISocialMedia
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
+from sc.social.like.utils import get_valid_objects
 from sc.social.like.utils import validate_canonical_domain
 from z3c.form import button
 from z3c.form import field
@@ -11,26 +14,11 @@ from z3c.form import form
 from zope import schema
 
 
-def get_valid_objects(brains):
-    """Generate a list of objects associated with valid brains."""
-    for b in brains:
-        try:
-            obj = b.getObject()
-        except KeyError:
-            obj = None
-
-        if obj is None:  # warn on broken entries in the catalog
-            logger.warn(
-                u'Invalid reference in the catalog: {0}'.format(b.getPath()))
-            continue
-        yield obj
-
-
 class ICanonicalURLUpdater(model.Schema):
     """A form to update the canonical url of portal objects based on a date."""
 
-    canonical_domain = schema.URI(
-        title=_(u'Canonical domain'),
+    old_canonical_domain = schema.URI(
+        title=_(u'Old canonical domain'),
         description=_(
             u'help_canonical_domain',
             default=u'The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. '
@@ -42,11 +30,12 @@ class ICanonicalURLUpdater(model.Schema):
         constraint=validate_canonical_domain,
     )
 
-    created_before = schema.Date(
+    published_before = schema.Date(
         title=_(u'Date'),
         description=_(
-            u'help_date',
-            u'All objects in the catalog created before this date will be updated.'
+            u'help_published_before',
+            default=u'Objects published before this date will be updated using the canonical domain defined in this form; '
+                    u'objects published on or after this date will be updated using the canonical domain defined in the control panel configlet.'
         ),
         required=True,
     )
@@ -56,17 +45,35 @@ class CanonicalURLUpdater(form.Form):
     """A form to update the canonical url of portal objects based on a date."""
 
     fields = field.Fields(ICanonicalURLUpdater)
-    label = _(u'This form is used to update the canonical URL of objects providing the Social Media behavior')
+    label = _(u'Canonical URL updater form')
+    description = _(
+        u'This form will update the canonical URL of all Dexterity-based '
+        u'objects in the catalog providing the Social Media behavior.'
+    )
     ignoreContext = True
 
+    @property
+    def canonical_domain(self):
+        return api.portal.get_registry_record(name='canonical_domain', interface=ISocialLikeSettings)
+
     def update(self):
-        """Disable the green bar and the portlet columns."""
         super(CanonicalURLUpdater, self).update()
+        # show error message if no canonical domain has been defined in the configlet
+        if not self.canonical_domain:
+            msg = _(u'Canonical domain has not been defined in the control panel configlet.')
+            api.portal.show_message(message=msg, request=self.request, type='error')
+
+        # disable the green bar and the portlet columns
         self.request.set('disable_border', 1)
         self.request.set('disable_plone.rightcolumn', 1)
         self.request.set('disable_plone.leftcolumn', 1)
 
-    @button.buttonAndHandler(_('Update'), name='update')
+    @property
+    def update_button_enabled(self):
+        """Condition to be used to display the "Update" button."""
+        return self.canonical_domain is not None
+
+    @button.buttonAndHandler(_('Update'), name='update', condition=lambda form: form.update_button_enabled)
     def handle_update(self, action):
         data, errors = self.extractData()
         if errors:
@@ -80,26 +87,33 @@ class CanonicalURLUpdater(form.Form):
         self.request.response.redirect(self.context.absolute_url())
 
     def update_canonical_url(self, data):
-        """Update all objects providing the ISocialMedia behavior
-        that were created before the specified date.
+        """Update the canonical URL of all objects in the catalog
+        providing the ISocialMedia behavior.
+
+        Objects published before the specified date will be updated
+        using the canonical domain defined in this form; objects
+        published on or after that date will be updated using the
+        canonical domain defined in the control panel configlet.
         """
-        canonical_domain = data['canonical_domain']
-        created_before = data['created_before'].isoformat()
-        logger.info(
-            u'Updating canonical URL of items created before {0}; '
-            u'using canonical domain "{1}"'.format(created_before, canonical_domain)
-        )
-
-        catalog = api.portal.get_tool('portal_catalog')
-        results = catalog(
+        old_canonical_domain = data['old_canonical_domain']
+        new_canonical_domain = self.canonical_domain
+        published_before = data['published_before'].isoformat()
+        results = api.content.find(
             object_provides=ISocialMedia.__identifier__,
-            created=dict(query=created_before, range='max'),
+            review_state='published',
         )
-
         total = len(results)
-        logger.info(u'{0} objects will be processed'.format(total))
+        logger.info(u'{0} objects will have their canonical URL updated'.format(total))
+
         for obj in get_valid_objects(results):
-            obj.canonical_url = '{0}/{1}'.format(canonical_domain, obj.virtual_url_path())
+            # FIXME: we're currently ignoring the site id
+            path = '/'.join(obj.getPhysicalPath()[2:])
+            if obj.effective_date < DateTime(published_before):
+                # use the canonical domain defined in this form
+                obj.canonical_url = '{0}/{1}'.format(old_canonical_domain, path)
+            elif not obj.canonical_url:
+                # use the canonical domain defined in the configlet
+                obj.canonical_url = '{0}/{1}'.format(new_canonical_domain, path)
 
         logger.info(u'Done.')
         self.status = u'Update complete; {0} items processed.'.format(total)

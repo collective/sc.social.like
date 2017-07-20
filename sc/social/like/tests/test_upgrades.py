@@ -285,3 +285,38 @@ class To3045TestCase(UpgradeTestCaseBase):
                 continue  # not a Dexterity-based content type
             behaviors = list(fti.behaviors)
             self.assertIn(ISocialMedia.__identifier__, behaviors)
+
+
+class To3046TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3045', u'3046')
+
+    def test_upgrade_to_3046_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
+
+    def test_reindex_catalog(self):
+        # check if the upgrade step is registered
+        title = u'Reindex catalog'
+        step = self.get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        from sc.social.like.behaviors import ISocialMedia
+        from sc.social.like.tests.utils import enable_social_media_behavior
+        with api.env.adopt_roles(['Manager']):
+            for i in xrange(0, 10):
+                api.content.create(self.portal, 'News Item', str(i))
+
+        # break the catalog by deleting an object without notifying
+        self.portal._delObject('0', suppress_events=True)
+        self.assertNotIn('0', self.portal)
+        enable_social_media_behavior()
+        results = api.content.find(object_provides=ISocialMedia.__identifier__)
+        self.assertEqual(len(results), 0)
+
+        # run the upgrade step to validate it
+        self.execute_upgrade_step(step)
+        results = api.content.find(object_provides=ISocialMedia.__identifier__)
+        self.assertEqual(len(results), 9)  # no failure and catalog updated
