@@ -106,7 +106,8 @@ class CanonicalURLUpdater(form.Form):
         logger.info(u'{0} objects will have their canonical URL updated'.format(total))
 
         for obj in get_valid_objects(results):
-            # FIXME: we're currently ignoring the site id
+            # FIXME: we're currently ignoring the Plone site id
+            #        https://github.com/collective/sc.social.like/issues/119
             path = '/'.join(obj.getPhysicalPath()[2:])
             if obj.effective_date < DateTime(published_before):
                 # use the canonical domain defined in this form
