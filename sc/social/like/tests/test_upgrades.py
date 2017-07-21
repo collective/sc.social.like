@@ -15,6 +15,7 @@ class UpgradeTestCaseBase(unittest.TestCase):
 
     def setUp(self, from_version, to_version):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         self.setup = self.portal['portal_setup']
         self.profile_id = u'sc.social.like:default'
         self.from_version = from_version
@@ -319,6 +320,7 @@ class To3046TestCase(UpgradeTestCaseBase):
         self.assertEqual(len(results), 0)
 
         # run the upgrade step to validate it
+        self.request.set('test', True)  # avoid transaction commits on tests
         self.execute_upgrade_step(step)
         results = api.content.find(object_provides=ISocialMedia.__identifier__)
         self.assertEqual(len(results), 9)  # no failure and catalog updated
