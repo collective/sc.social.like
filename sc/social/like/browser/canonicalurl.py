@@ -6,6 +6,7 @@ from sc.social.like import LikeMessageFactory as _
 from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
+from sc.social.like.utils import get_path_to_virtual_path
 from sc.social.like.utils import get_valid_objects
 from sc.social.like.utils import validate_canonical_domain
 from z3c.form import button
@@ -106,9 +107,7 @@ class CanonicalURLUpdater(form.Form):
         logger.info(u'{0} objects will have their canonical URL updated'.format(total))
 
         for obj in get_valid_objects(results):
-            # FIXME: we're currently ignoring the Plone site id
-            #        https://github.com/collective/sc.social.like/issues/119
-            path = '/'.join(obj.getPhysicalPath()[2:])
+            path = get_path_to_virtual_path(self.request, obj)
             if obj.effective_date < DateTime(published_before):
                 # use the canonical domain defined in this form
                 obj.canonical_url = '{0}/{1}'.format(old_canonical_domain, path)
