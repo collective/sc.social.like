@@ -97,7 +97,10 @@ def assign_canonical_url(obj, event):
 
     # we can't assign a canonical URL without a canonical domain
     if canonical_domain:
-        obj.canonical_url = '{0}/{1}'.format(canonical_domain, obj.virtual_url_path())
+        # FIXME: we're currently ignoring the Plone site id
+        #        https://github.com/collective/sc.social.like/issues/119
+        path = '/'.join(obj.getPhysicalPath()[2:])
+        obj.canonical_url = '{0}/{1}'.format(canonical_domain, path)
         logger.info('canonical_url set for {0}'.format(obj.canonical_url))
     else:
         logger.warn(
