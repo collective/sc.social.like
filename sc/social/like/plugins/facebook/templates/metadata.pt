@@ -16,5 +16,5 @@
   </tal:image>
   <meta tal:condition="view/admins" property="fb:admins" tal:attributes="content view/admins" />
   <meta tal:condition="view/app_id" property="fb:app_id" tal:attributes="content view/app_id" />
-  <script type="application/javascript" tal:content="view/fbjs"></script>
+  <script type="application/javascript" tal:content="structure view/fbjs"></script>
 </tal:fb>

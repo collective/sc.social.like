@@ -17,10 +17,6 @@ from urllib import urlencode
 from zope.component import getMultiAdapter
 
 
-BASE_URL = 'https://www.facebook.com/plugins/like.php?'
-PARAMS = 'locale={0}&href={1}&send=false&layout={2}&show_faces=true&action={3}'
-
-
 class PluginView(BrowserView):
 
     fb_enabled = False
@@ -62,13 +58,13 @@ class PluginView(BrowserView):
 
     def fbjs(self):
         js_source = """
-    (function() {{
-        var po = document.createElement('script');
-        po.async = true;
-        po.src = document.location.protocol + '//connect.facebook.net/{0}/all.js#xfbml=1';
-        var head = document.getElementsByTagName('head')[0];
-        head.appendChild(po);
-    }}());
+    (function(d, s, id) {{
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/{0}/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+    }}(document, 'script', 'facebook-jssdk'));
     """.format(self.language)
         return js_source
 
