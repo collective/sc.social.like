@@ -34,7 +34,6 @@ class BehaviorsTestCase(unittest.TestCase):
     def test_socialmedia_behavior(self):
         self.assertTrue(ISocialMedia.providedBy(self.obj))
 
-    @unittest.expectedFailure  # FIXME: https://github.com/collective/sc.social.like/issues/119
     def test_canonical_url(self):
         # canonical URL is empty after creation
         self.assertIsNone(self.obj.canonical_url)
