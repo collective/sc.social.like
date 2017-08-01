@@ -8,6 +8,8 @@ from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 from zope.interface import Invalid
 
+import string
+
 
 def get_images_view(context):
     request = getRequest()
@@ -112,6 +114,21 @@ def validate_canonical_domain(value):
     if not all([_.scheme, _.netloc]) or any([_.path, _.params, _.query, _.fragment]):
         raise Invalid(
             u'Canonical domain should only include scheme and netloc (e.g. <strong>http://www.example.org</strong>)')
+    return True
+
+
+def validate_like_ref(value):
+    """Check if Like Tracking Referrals has the valid characters."""
+    if len(value) > 50:
+        return False
+    for c in value:
+        if c in string.ascii_letters:
+            continue
+        if c in string.digits:
+            continue
+        if c in '+/=-.:_':
+            continue
+        return False
     return True
 
 

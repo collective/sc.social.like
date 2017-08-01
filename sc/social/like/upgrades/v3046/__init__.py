@@ -1,9 +1,19 @@
 # -*- coding:utf-8 -*-
 from plone import api
+from plone.app.upgrade.utils import loadMigrationProfile
+from plone.registry.interfaces import IRegistry
+from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
 from sc.social.like.utils import get_valid_objects
+from zope.component import getUtility
 
 import transaction
+
+
+OPTIONS_TO_REMOVE = [
+    '.fbaction',
+    '.fbshowlikes',
+]
 
 
 def reindex_catalog(setup_tool):
@@ -27,4 +37,33 @@ def reindex_catalog(setup_tool):
 
     if not test:
         transaction.commit()
+    logger.info('Done.')
+
+
+def update_facebook_options(context):
+    """Update facebook options following new API."""
+    logger.info(u'Update Action field.')
+    registry = getUtility(IRegistry)
+    settings = registry.forInterface(ISocialLikeSettings, check=False)
+
+    record = ISocialLikeSettings.__identifier__ + '.fbaction'
+    fbaction = registry.records[record].value
+    loadMigrationProfile(
+        context, 'sc.social.like:default', steps=['plone.app.registry'])
+    settings.fblike_action = fbaction
+    if settings.typebutton == 'horizontal' and 'Like' in settings.fbbuttons:
+        settings.fblike_layout = 'button_count'
+        settings.fblike_width = 90
+    elif settings.typebutton == 'vertical' and 'Like' in settings.fbbuttons:
+        settings.fblike_layout = 'box_count'
+        settings.fblike_width = 55
+    else:
+        settings.fblike_layout = 'button'
+        settings.fblike_width = 55
+
+    logger.info(u'Remove old facebook options that don\'t exists anymore.')
+    for option in OPTIONS_TO_REMOVE:
+        record = ISocialLikeSettings.__identifier__ + option
+        del registry.records[record]
+        assert record not in registry
     logger.info('Done.')

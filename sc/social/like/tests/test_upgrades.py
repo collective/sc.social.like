@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from plone.registry import field
+from plone.registry.interfaces import IRegistry
+from plone.registry.record import Record
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import HAS_DEXTERITY
@@ -297,7 +300,7 @@ class To3046TestCase(UpgradeTestCaseBase):
     def test_upgrade_to_3046_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
-        self.assertEqual(self.total_steps, 1)
+        self.assertEqual(self.total_steps, 2)
 
     @unittest.skipUnless(HAS_DEXTERITY, 'plone.app.contenttypes must be installed')
     def test_reindex_catalog(self):
@@ -324,3 +327,26 @@ class To3046TestCase(UpgradeTestCaseBase):
         self.execute_upgrade_step(step)
         results = api.content.find(object_provides=ISocialMedia.__identifier__)
         self.assertEqual(len(results), 9)  # no failure and catalog updated
+
+    def test_update_facebook_options(self):
+        # check if the upgrade step is registered
+        title = u'Update facebook options'
+        step = self.get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        from sc.social.like.upgrades.v3046 import OPTIONS_TO_REMOVE
+        registry = getUtility(IRegistry)
+        for option in OPTIONS_TO_REMOVE:
+            record = ISocialLikeSettings.__identifier__ + option
+            registry.records[record] = Record(
+                field.TextLine(title=u'Some record'))
+            self.assertIn(record, registry.records)
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        # Test if our setting is there and set
+        for option in OPTIONS_TO_REMOVE:
+            record = ISocialLikeSettings.__identifier__ + option
+            self.assertNotIn(record, registry.records)
