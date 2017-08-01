@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.10.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Fix Facebook href to point to Canonical URL.
+  [rodfersou]
+
 - Fix Canonical URL updater form;
   a new upgrade step is provided to update the ``objects_provides`` catalog index (fixes `#115 <https://github.com/collective/sc.social.like/issues/115>`_).
   [hvelarde]

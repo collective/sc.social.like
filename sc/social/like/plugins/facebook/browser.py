@@ -186,12 +186,11 @@ class PluginView(BrowserView):
         return 'article'
 
     def share_link(self):
-        absolute_url = self.url
         params = dict(
             app_id=self.app_id,
             display='popup',
-            href=absolute_url,
-            redirect_uri=absolute_url,
+            href=self.canonical_url,
+            redirect_uri=self.url,
         )
         url = 'https://www.facebook.com/dialog/share?' + urlencode(params)
         return url
