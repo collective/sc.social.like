@@ -4,11 +4,18 @@ from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import DEFAULT_ENABLED_CONTENT_TYPES
 from sc.social.like.config import DEFAULT_PLUGINS_ENABLED
 from sc.social.like.utils import validate_canonical_domain
+from sc.social.like.utils import validate_like_ref
 from sc.social.like.vocabularies import FacebookButtonsVocabulary
-from sc.social.like.vocabularies import FacebookVerbsVocabulary
+from sc.social.like.vocabularies import FacebookLikeActionVocabulary
+from sc.social.like.vocabularies import FacebookLikeColorschemeVocabulary
+from sc.social.like.vocabularies import FacebookLikeLayoutVocabulary
+from sc.social.like.vocabularies import FacebookShareLayoutVocabulary
+from sc.social.like.vocabularies import FacebookSizeVocabulary
 from sc.social.like.vocabularies import TypeButtonVocabulary
 from zope import schema
 from zope.interface import Interface
+from zope.interface import Invalid
+from zope.interface import invariant
 
 # BBB: for compatibility with installations made before 2.5.0
 import sys
@@ -113,11 +120,21 @@ class ISocialLikeSettings(model.Schema):
         label=u'Facebook',
         fields=[
             'canonical_domain',
-            'fbaction',
             'facebook_username',
             'facebook_app_id',
             'fbbuttons',
-            'fbshowlikes',
+            'fbshare_layout',
+            'fbshare_mobile_iframe',
+            'fbshare_size',
+            'fblike_action',
+            'fblike_colorscheme',
+            'fblike_kid_directed_site',
+            'fblike_layout',
+            'fblike_ref',
+            'fblike_share',
+            'fblike_show_faces',
+            'fblike_size',
+            'fblike_width',
         ],
     )
 
@@ -134,19 +151,7 @@ class ISocialLikeSettings(model.Schema):
         constraint=validate_canonical_domain,
     )
 
-    fbaction = schema.Choice(
-        title=_(u'Verb to display'),
-        description=_(
-            u'help_verb_display',
-            default=u'The verb to display in the Facebook button. '
-                    u'Currently only "like" and "recommend" are '
-                    u'supported.',
-        ),
-        required=True,
-        default=u'like',
-        vocabulary=FacebookVerbsVocabulary,
-    )
-
+    # variable name is the same as Plone 5
     facebook_username = schema.ASCIILine(
         title=_(u'Admins'),
         description=_(
@@ -158,6 +163,7 @@ class ISocialLikeSettings(model.Schema):
         default='',
     )
 
+    # variable name is the same as Plone 5
     facebook_app_id = schema.ASCIILine(
         title=_(u'Application ID'),
         description=_(
@@ -177,22 +183,178 @@ class ISocialLikeSettings(model.Schema):
         ),
         value_type=schema.Choice(vocabulary=FacebookButtonsVocabulary),
         required=True,
-        default=(u'Like', ),
+        default=(u'Share', ),
     )
 
-    fbshowlikes = schema.Bool(
-        title=_(u'Show number of likes'),
+    fbshare_layout = schema.Choice(
+        title=_(u'Share Layout'),
         description=_(
-            u'help_show_likes',
-            default=u'If enabled, the Facebook button will show the number of '
-                    u'Facebook users who have already liked this page.'
+            u'help_share_layout',
+            default=u'Selects one of the different layouts that '
+                    u'are available for the plugin. Can be one of '
+                    u'"box_count", "button_count", "button".',
         ),
+        required=False,
+        default=u'box_count',
+        vocabulary=FacebookShareLayoutVocabulary,
+    )
+
+    fbshare_mobile_iframe = schema.Bool(
+        title=_(u'Share Mobile iframe'),
+        description=_(
+            u'help_share_mobile_iframe',
+            default=u'If set to true, the share button will open the '
+                    u'share dialog in an iframe (instead of a popup) '
+                    u'on top of your website on mobile. This option '
+                    u'is only available for mobile, not desktop. For '
+                    u'more information see Mobile Web Share Dialog.',
+        ),
+        required=False,
         default=True,
     )
+
+    fbshare_size = schema.Choice(
+        title=_(u'Share Size'),
+        description=_(
+            u'help_share_size',
+            default=u'The button is offered in 2 sizes i.e. "large" '
+                    u'and "small".',
+        ),
+        default=u'small',
+        required=False,
+        vocabulary=FacebookSizeVocabulary,
+    )
+
+    fblike_action = schema.Choice(
+        title=_(u'Like Action'),
+        description=_(
+            u'help_like_action',
+            default=u'The verb to display on the button. Can be '
+                    u'either "like" or "recommend".',
+        ),
+        default=u'like',
+        required=False,
+        vocabulary=FacebookLikeActionVocabulary,
+    )
+
+    fblike_colorscheme = schema.Choice(
+        title=_(u'Like Color Scheme'),
+        description=_(
+            u'help_like_colorscheme',
+            default=u'The color scheme used by the plugin for '
+                    u'any text outside of the button itself. '
+                    u'Can be "light" or "dark".',
+        ),
+        default=u'light',
+        required=False,
+        vocabulary=FacebookLikeColorschemeVocabulary,
+    )
+
+    fblike_kid_directed_site = schema.Bool(
+        title=_(u'Like Kid Directed Site'),
+        description=_(
+            u'help_like_kid_directed_site',
+            default=u'If your web site or online service, or a '
+                    u'portion of your service, is directed to '
+                    u'children under 13 you must enable this.',
+        ),
+        required=False,
+        default=True,
+    )
+
+    fblike_layout = schema.Choice(
+        title=_(u'Like Layout'),
+        description=_(
+            u'help_like_layout',
+            default=u'Selects one of the different layouts that '
+                    u'are available for the plugin. Can be one of '
+                    u'"standard", "button_count", "button" or '
+                    u'"box_count".',
+        ),
+        default=u'button_count',
+        required=False,
+        vocabulary=FacebookLikeLayoutVocabulary,
+    )
+
+    fblike_ref = schema.ASCIILine(
+        title=_(u'Like Tracking Referrals'),
+        description=_(
+            u'help_like_ref',
+            default=u'A label for tracking referrals which must '
+                    u'be less than 50 characters and can contain '
+                    u'alphanumeric characters and some '
+                    u'punctuation (currently "+/=-.:_").',
+        ),
+        constraint=validate_like_ref,
+        required=False,
+        default='',
+    )
+
+    fblike_share = schema.Bool(
+        title=_(u'Like Share'),
+        description=_(
+            u'help_like_share',
+            default=u'Specifies whether to include a share '
+                    u'button beside the Like button.',
+        ),
+        required=False,
+        default=False,
+    )
+
+    fblike_show_faces = schema.Bool(
+        title=_(u'Like Show Faces'),
+        description=_(
+            u'help_like_show_faces',
+            default=u'Specifies whether to display profile photos '
+                    u'below the button (standard layout only). You '
+                    u'must not enable this on child-directed sites.'
+        ),
+        required=False,
+        default=False,
+    )
+
+    fblike_size = schema.Choice(
+        title=_(u'Like Size'),
+        description=_(
+            u'help_like_size',
+            default=u'The button is offered in 2 sizes i.e. "large" '
+                    u'and "small".',
+        ),
+        required=False,
+        default=u'small',
+        vocabulary=FacebookSizeVocabulary,
+    )
+
+    fblike_width = schema.Int(
+        title=_(u'Like Width'),
+        description=_(
+            u'help_like_width',
+            default=u'The width of the plugin (standard layout only), '
+                    u'which is subject to the minimum and default width.'
+        ),
+        required=False,
+        default=90,
+    )
+
+    @invariant
+    def validate_like_width(data):
+        if u'Like' not in data.fbbuttons:
+            return
+        layout_min_width = {
+            u'standard': 225,
+            u'box_count': 55,
+            u'button_count': 90,
+            u'button': 47
+        }
+        min_width = layout_min_width[data.fblike_layout]
+        if data.fblike_width < min_width:
+            raise Invalid(_(u'For layout "{layout}" the min width is "{width}"'.format(
+                layout=data.fblike_layout, width=min_width)))
 
     model.fieldset(
         'twitter', label=u'Twitter', fields=['twitter_username'])
 
+    # variable name is the same as Plone 5
     twitter_username = schema.ASCIILine(
         title=_(u'Twitter nick'),
         description=_(

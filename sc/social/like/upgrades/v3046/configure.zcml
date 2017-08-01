@@ -13,6 +13,12 @@
         handler=".reindex_catalog"
         />
 
+    <genericsetup:upgradeStep
+        title="Update facebook options"
+        description="Update facebook options following new API."
+        handler=".update_facebook_options"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

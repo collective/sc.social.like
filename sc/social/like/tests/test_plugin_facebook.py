@@ -251,12 +251,12 @@ class PluginViewsTest(unittest.TestCase):
         self.document.setLanguage('pt-br')
         view = document.restrictedTraverse(plugin_view)
         html = view.metadata()
-        self.assertIn('connect.facebook.net/pt_BR/all.js', html)
+        self.assertIn('connect.facebook.net/pt_BR/sdk.js', html)
 
         self.document.setLanguage('en')
         view = document.restrictedTraverse(plugin_view)
         html = view.metadata()
-        self.assertIn('connect.facebook.net/en_GB/all.js', html)
+        self.assertIn('connect.facebook.net/en_GB/sdk.js', html)
 
     def test_plugin_view_typebutton(self):
         portal = self.portal
