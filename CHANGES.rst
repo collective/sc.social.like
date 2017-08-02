@@ -6,6 +6,10 @@ There's a frood who really knows where his towel is.
 2.10.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Fix ``data-href`` attribute on Facebook plugin to point to canonical URL;
+  this should finally fix the counter on the widget.
+  [rodfersou]
+
 - Fix Canonical URL updater form;
   a new upgrade step is provided to update the ``objects_provides`` catalog index (fixes `#115 <https://github.com/collective/sc.social.like/issues/115>`_).
   [hvelarde]
