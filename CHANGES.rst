@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.10.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove useless scale caching on the request as it seems to be causing colateral issues (closes `#109 <https://github.com/collective/sc.social.like/issues/109>`_).
+  [rodfersou]
 
 
 2.10.1 (2017-08-02)
