@@ -1,5 +1,16 @@
 <tal:linkedin>
     <!-- Linkedin -->
+    <script type="application/javascript">
+      (function() {
+        var po = document.createElement('script');
+        po.type = 'application/javascript';
+        po.async = true;
+        po.src = '//platform.linkedin.com/in.js?async=true';
+        po.onload = function() {IN.init()};
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(po);
+      })();
+    </script>
     <script type="in/share" data-counter="right"
             tal:attributes="data-counter view/typebutton;
                             data-url view/url;"></script>

@@ -17,7 +17,6 @@ class PluginView(BrowserView):
     typebutton = ''
     language = 'en'
 
-    metadata = ViewPageTemplateFile('metadata.pt')
     plugin = link = ViewPageTemplateFile('plugin.pt')
 
     def __init__(self, context, request):
