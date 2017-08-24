@@ -1,5 +1,5 @@
 <!-- Facebook -->
-<script type="application/javascript" tal:content="view/fbjs" />
+<script tal:content="view/fbjs" />
 <div class="fb-like"
      tal:condition="view/fbshow_like"
      tal:attributes="data-href view/canonical_url;

@@ -1,6 +1,6 @@
 <tal:linkedin>
     <!-- Linkedin -->
-    <script type="application/javascript">
+    <script>
       (function() {
         var po = document.createElement('script');
         po.type = 'application/javascript';
@@ -13,5 +13,5 @@
     </script>
     <script type="in/share" data-counter="right"
             tal:attributes="data-counter view/typebutton;
-                            data-url view/url;"></script>
+                            data-url view/url;" />
 </tal:linkedin>
