@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -28,17 +27,11 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        record = ISocialLikeSettings.__identifier__ + '.typebutton'
-        try:
-            typebutton = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            typebutton = ''
-
-        if typebutton == 'horizontal':
-            typebutton = 'right'
-        else:
-            typebutton = 'top'
-        return typebutton
+        record = dict(
+            name='typebutton', interface=ISocialLikeSettings, default='')
+        if api.portal.get_registry_record(**record) == 'horizontal':
+            return 'right'
+        return 'top'
 
     def share_link(self):
         params = dict(
@@ -47,5 +40,4 @@ class PluginView(BrowserView):
             title=self.context.Title(),
             summary=self.context.Description(),
         )
-        url = 'https://www.linkedin.com/shareArticle?' + urlencode(params)
-        return url
+        return 'https://www.linkedin.com/shareArticle?' + urlencode(params)

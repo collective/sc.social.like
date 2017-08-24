@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.behaviors import ISocialMedia
@@ -40,11 +39,10 @@ class PluginView(BrowserView):
 
     @property
     def canonical_url(self):
-        if ISocialMedia.providedBy(self.context):
-            return self.context.canonical_url
-        else:
+        if not ISocialMedia.providedBy(self.context):
             # use current URL if the object don't provide the behavior
             return self.url
+        return self.context.canonical_url
 
     def fbjs(self):
         js_source = """
@@ -60,67 +58,54 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        typerecord = ISocialLikeSettings.__identifier__ + '.typebutton'
-        showlikesrecord = ISocialLikeSettings.__identifier__ + '.fbshowlikes'
-
-        try:
-            typebutton = api.portal.get_registry_record(typerecord)
-            fbshowlikes = api.portal.get_registry_record(showlikesrecord)
-        except InvalidParameterError:
+        record = dict(
+            name='typebutton', interface=ISocialLikeSettings, default=None)
+        typebutton = api.portal.get_registry_record(**record)
+        record = dict(
+            name='fbshowlikes', interface=ISocialLikeSettings, default=None)
+        fbshowlikes = api.portal.get_registry_record(**record)
+        if None in (typebutton, fbshowlikes):
             typebutton = ''
             fbshowlikes = True
         if typebutton == 'horizontal' and fbshowlikes:
-            typebutton = 'button_count'
             self.width = '90px'
+            return 'button_count'
         elif typebutton == 'vertical' and fbshowlikes:
-            typebutton = 'box_count'
             self.width = '55px'
-        else:
-            # no counts, show simple button
-            typebutton = 'button'
-            self.width = '55px'
-
-        return typebutton
+            return 'box_count'
+        # no counts, show simple button
+        self.width = '55px'
+        return 'button'
 
     @property
     def fbaction(self):
-        record = ISocialLikeSettings.__identifier__ + '.fbaction'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
+        record = dict(
+            name='fbaction', interface=ISocialLikeSettings, default='')
+        return api.portal.get_registry_record(**record)
 
     @property
     def app_id(self):
-        record = ISocialLikeSettings.__identifier__ + '.facebook_app_id'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
+        record = dict(
+            name='facebook_app_id', interface=ISocialLikeSettings, default='')
+        return api.portal.get_registry_record(**record)
 
     @property
     def admins(self):
-        record = ISocialLikeSettings.__identifier__ + '.facebook_username'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
+        record = dict(
+            name='facebook_username', interface=ISocialLikeSettings, default='')
+        return api.portal.get_registry_record(**record)
 
     @property
     def fbshow_like(self):
-        record = ISocialLikeSettings.__identifier__ + '.fbbuttons'
-        try:
-            return 'Like' in api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return False
+        record = dict(
+            name='fbbuttons', interface=ISocialLikeSettings, default=False)
+        return 'Like' in api.portal.get_registry_record(**record)
 
     @property
     def fbshow_share(self):
-        record = ISocialLikeSettings.__identifier__ + '.fbbuttons'
-        try:
-            return 'Share' in api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return False
+        record = dict(
+            name='fbbuttons', interface=ISocialLikeSettings, default=False)
+        return 'Share' in api.portal.get_registry_record(**record)
 
     def share_link(self):
         params = dict(
@@ -129,5 +114,4 @@ class PluginView(BrowserView):
             href=self.canonical_url,
             redirect_uri=self.url,
         )
-        url = 'https://www.facebook.com/dialog/share?' + urlencode(params)
-        return url
+        return 'https://www.facebook.com/dialog/share?' + urlencode(params)

@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
@@ -38,13 +37,10 @@ class PluginView(BrowserView):
     @property
     def klass(self):
         klass = 'telegram'
-        record = ISocialLikeSettings.__identifier__ + '.do_not_track'
-        try:
-            do_not_track = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            do_not_track = False
-        if do_not_track:
-            klass += ' link'
+        record = dict(
+            name='do_not_track', interface=ISocialLikeSettings, default=False)
+        if api.portal.get_registry_record(**record):
+            return klass + ' link'
         return klass
 
 

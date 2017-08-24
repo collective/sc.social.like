@@ -82,9 +82,8 @@ class SocialMetadataViewlet(BaseLikeViewlet):
     def setup(self):
         self.title = self.context.title
         self.description = self.context.Description()
-        portal_state = getMultiAdapter(
-            (self.context, self.request), name=u'plone_portal_state')
-        self.site_url = portal_state.portal_url()
+        portal = api.portal.get()
+        self.site_url = portal.absolute_url()
         self.url = self.context.absolute_url()
         self.language = facebook_language(get_language(self.context), self.language)
         self.image = get_content_image(self.context)
@@ -102,61 +101,56 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 
     @property
     def via(self):
-        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
+        record = dict(
+            name='twitter_username', interface=ISocialLikeSettings, default='')
+        return api.portal.get_registry_record(**record)
 
     @property
     def canonical_url(self):
-        if ISocialMedia.providedBy(self.context):
-            return self.context.canonical_url
-        else:
+        if not ISocialMedia.providedBy(self.context):
             # use current URL if the object don't provide the behavior
             return self.url
+        return self.context.canonical_url
 
     def image_height(self):
         """ Return height to image
         """
-        img = self.image
-        if img:
-            return img.height
+        if not self.image:
+            return
+        return self.image.height
 
     def image_type(self):
         """ Return content type to image
         """
-        img = self.image
-        if img:
-            return getattr(
-                img, 'content_type', getattr(img, 'mimetype', 'image/jpeg'))
+        if not self.image:
+            return
+        type = getattr(self.image, 'content_type', None)
+        if type is not None:
+            return type
+        return getattr(self.image, 'mimetype', 'image/jpeg')
 
     def image_width(self):
         """ Return width to image
         """
-        img = self.image
-        if img:
-            return img.width
+        if not self.image:
+            return
+        return self.image.width
 
     def image_url(self):
         """ Return url to image
         """
-        img = self.image
-        if img:
-            return img.url
-        else:
-            return '{0}/logo.png'.format(self.site_url)
+        if not self.image:
+            return self.site_url + '/logo.png'
+        return self.image.url
 
     def _isPortalDefaultView(self):
-        context = self.context
-        if ISiteRoot.providedBy(aq_parent(aq_inner(context))):
-            putils = getToolByName(context, 'plone_utils')
-            return putils.isDefaultPage(context)
+        if ISiteRoot.providedBy(aq_parent(aq_inner(self.context))):
+            putils = getToolByName(self.context, 'plone_utils')
+            return putils.isDefaultPage(self.context)
         return False
 
     def _isPortal(self):
-        context = self.context
-        if ISiteRoot.providedBy(aq_inner(context)):
+        if ISiteRoot.providedBy(aq_inner(self.context)):
             return True
         return self._isPortalDefaultView()
 

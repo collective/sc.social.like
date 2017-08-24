@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -45,19 +44,15 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        record = ISocialLikeSettings.__identifier__ + '.typebutton'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
+        record = dict(
+            name='typebutton', interface=ISocialLikeSettings, default='')
+        return api.portal.get_registry_record(**record)
 
     @property
     def via(self):
-        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
+        record = dict(
+            name='twitter_username', interface=ISocialLikeSettings, default='')
+        return api.portal.get_registry_record(**record)
 
     def share_link(self):
         params = dict(
@@ -66,6 +61,4 @@ class PluginView(BrowserView):
         )
         if self.via:
             params['via'] = self.via
-
-        url = 'https://twitter.com/intent/tweet?' + urlencode(params)
-        return url
+        return 'https://twitter.com/intent/tweet?' + urlencode(params)

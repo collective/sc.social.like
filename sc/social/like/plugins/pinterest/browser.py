@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -48,25 +47,17 @@ class PluginView(BrowserView):
     def image_url(self):
         """ Return url to image
         """
-        img = self.image
-        if img:
-            return img.url
-        else:
-            return '{0}/logo.png'.format(self.site_url)
+        if not self.image:
+            return self.site_url + '/logo.png'
+        return self.image.url
 
     @property
     def typebutton(self):
-        record = ISocialLikeSettings.__identifier__ + '.typebutton'
-        try:
-            typebutton = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            typebutton = ''
-
-        if typebutton == 'horizontal':
-            typebutton = 'beside'
-        else:
-            typebutton = 'above'
-        return typebutton
+        record = dict(
+            name='typebutton', interface=ISocialLikeSettings, default='')
+        if api.portal.get_registry_record(**record) == 'horizontal':
+            return 'beside'
+        return 'above'
 
     def share_link(self):
         # See http://stackoverflow.com/questions/10690019/link-to-pin-it-on-pinterest-without-generating-a-button
@@ -75,5 +66,4 @@ class PluginView(BrowserView):
             media=self.image_url(),
             description=self.context.Title(),
         )
-        url = 'http://pinterest.com/pin/create/button?' + urlencode(params)
-        return url
+        return 'http://pinterest.com/pin/create/button?' + urlencode(params)

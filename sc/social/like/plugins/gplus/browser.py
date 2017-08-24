@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -33,17 +32,11 @@ class PluginView(BrowserView):
 
     @property
     def typebutton(self):
-        record = ISocialLikeSettings.__identifier__ + '.typebutton'
-        try:
-            typebutton = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            typebutton = ''
-
-        if typebutton == 'horizontal':
-            typebutton = 'medium'
-        else:
-            typebutton = 'tall'
-        return typebutton
+        record = dict(
+            name='typebutton', interface=ISocialLikeSettings, default='')
+        if api.portal.get_registry_record(**record) == 'horizontal':
+            return 'medium'
+        return 'tall'
 
     def share_link(self):
         # Does we need any special language handler?
@@ -52,5 +45,4 @@ class PluginView(BrowserView):
             url=self.context.absolute_url(),
             hl=self.language,
         )
-        url = 'https://plus.google.com/share?' + urlencode(params)
-        return url
+        return 'https://plus.google.com/share?' + urlencode(params)
