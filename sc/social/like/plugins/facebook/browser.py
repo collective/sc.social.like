@@ -26,16 +26,16 @@ class PluginView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        # FIXME: the following could rise unexpected exceptions
-        #        move it to a new setup() method
-        #        see: http://docs.plone.org/develop/plone/views/browserviews.html#creating-a-view
-        self.title = context.title
-        self.description = context.Description()
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.site_url = self.portal_state.portal_url()
-        self.url = context.absolute_url()
-        self.language = facebook_language(get_language(context), self.language)
+        self.setup()
+
+    def setup(self):
+        self.title = self.context.title
+        self.description = self.context.Description()
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
+        self.site_url = portal_state.portal_url()
+        self.url = self.context.absolute_url()
+        self.language = facebook_language(get_language(self.context), self.language)
         self.typebutton  # XXX: needed to initialize self.width
 
     @property

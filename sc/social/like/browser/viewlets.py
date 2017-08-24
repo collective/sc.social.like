@@ -11,7 +11,9 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.interfaces import ISocialLikeSettings
+from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
+from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 
 
@@ -27,8 +29,11 @@ class BaseLikeViewlet(ViewletBase):
         self.context = context
         self.request = request
         self.view = view
-        self.helper = getMultiAdapter((self.context, self.request),
-                                      name=u'sl_helper')
+        self.setup()
+
+    def setup(self):
+        self.helper = getMultiAdapter(
+            (self.context, self.request), name=u'sl_helper')
         self.typebutton = self.helper.typebutton()
 
     @memoize
@@ -66,17 +71,23 @@ class BaseLikeViewlet(ViewletBase):
 class SocialMetadataViewlet(BaseLikeViewlet):
     """Viewlet used to insert metadata into page header
     """
+    language = 'en_US'
+
     render = ViewPageTemplateFile('templates/metadata.pt')
 
     def __init__(self, context, request, view, manager):
         super(SocialMetadataViewlet, self).__init__(context, request, view, manager)
-        self.title = context.title
-        self.description = context.Description()
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.site_url = self.portal_state.portal_url()
-        self.url = context.absolute_url()
-        self.image = get_content_image(context)
+        self.setup()
+
+    def setup(self):
+        self.title = self.context.title
+        self.description = self.context.Description()
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
+        self.site_url = portal_state.portal_url()
+        self.url = self.context.absolute_url()
+        self.language = facebook_language(get_language(self.context), self.language)
+        self.image = get_content_image(self.context)
 
     def enabled(self):
         """Validates if the viewlet should be enabled for this context

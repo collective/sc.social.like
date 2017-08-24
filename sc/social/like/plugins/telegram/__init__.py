@@ -22,14 +22,14 @@ class PluginView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self._setup()
+        self.setup()
 
-    def _setup(self):
-        self.portal_state = getMultiAdapter(
+    def setup(self):
+        portal_state = getMultiAdapter(
             (self.context, self.request), name=u'plone_portal_state')
-        self.portal = self.portal_state.portal()
-        self.site_url = self.portal_state.portal_url()
-        self.portal_title = self.portal_state.portal_title()
+        self.portal = portal_state.portal()
+        self.site_url = portal_state.portal_url()
+        self.portal_title = portal_state.portal_title()
         self.url = self.context.absolute_url()
         self.language = get_language(self.context)
         data = url_quote(self.context.absolute_url())
