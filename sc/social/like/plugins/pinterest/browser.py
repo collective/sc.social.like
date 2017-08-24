@@ -33,7 +33,7 @@ class PluginView(BrowserView):
         self.site_url = portal_state.portal_url()
         self.portal_title = portal_state.portal_title()
         self.url = self.context.absolute_url()
-        self.image = get_content_image(self.context, scale='large')
+        self.image = get_content_image(self.context)
         self.language = get_language(self.context)
 
     def share_url(self):
