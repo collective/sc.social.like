@@ -77,6 +77,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 
     def __init__(self, context, request, view, manager):
         super(SocialMetadataViewlet, self).__init__(context, request, view, manager)
+        super(SocialMetadataViewlet, self).setup()
         self.setup()
 
     def setup(self):
