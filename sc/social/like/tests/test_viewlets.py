@@ -46,7 +46,6 @@ class ViewletBaseTestCase(unittest.TestCase):
                 self.portal, type='News Item', id='foo')
         set_image_field(self.obj, load_image(1024, 768), 'image/png')
 
-    @property
     def _enable_all_plugins(self):
         from plone.registry.interfaces import IRegistry
         from sc.social.like.plugins.interfaces import IPlugin
@@ -112,7 +111,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
 
     def test_metadata_viewlet_performance(self):
         """Viewlet rendering must take less than 1ms."""
-        self._enable_all_plugins
+        self._enable_all_plugins()
         times = 1000
         viewlet = self.viewlet(self.obj)
 
@@ -192,7 +191,7 @@ class LikeViewletTestCase(ViewletBaseTestCase):
 
     def test_social_viewlet_performance(self):
         """Viewlet rendering must take less than 2ms."""
-        self._enable_all_plugins
+        self._enable_all_plugins()
         times = 1000
         viewlet = self.viewlet(self.obj)
 
