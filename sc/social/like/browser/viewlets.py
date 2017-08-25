@@ -72,14 +72,12 @@ class SocialMetadataViewlet(BaseLikeViewlet):
     render = ViewPageTemplateFile('templates/metadata.pt')
 
     def update(self):
-        self.setup()
-
-    def setup(self):
         self.title = self.context.title
         self.description = self.context.Description()
         portal = api.portal.get()
         self.site_url = portal.absolute_url()
         self.url = self.context.absolute_url()
+        self.portal_title = portal.title
         self.language = facebook_language(get_language(self.context), self.language)
         self.image = get_content_image(self.context)
 
@@ -96,9 +94,8 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 
     @property
     def via(self):
-        record = dict(
-            name='twitter_username', interface=ISocialLikeSettings, default='')
-        return api.portal.get_registry_record(**record)
+        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
+        return api.portal.get_registry_record(record, default='')
 
     @property
     def canonical_url(self):
@@ -137,6 +134,16 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         if not self.image:
             return self.site_url + '/logo.png'
         return self.image.url
+
+    @property
+    def app_id(self):
+        record = ISocialLikeSettings.__identifier__ + '.facebook_app_id'
+        return api.portal.get_registry_record(record, default='')
+
+    @property
+    def admins(self):
+        record = ISocialLikeSettings.__identifier__ + '.facebook_username'
+        return api.portal.get_registry_record(record, default='')
 
     def _isPortalDefaultView(self):
         if not ISiteRoot.providedBy(aq_parent(aq_inner(self.context))):

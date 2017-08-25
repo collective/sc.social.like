@@ -1,5 +1,6 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" tal:attributes="content string:@${view/via}" />
+<meta property="og:site_name" tal:attributes="content view/portal_title" />
 <meta property="og:url" tal:attributes="content view/canonical_url" />
 <meta property="og:type" tal:attributes="content view/type" />
 <meta property="og:locale" tal:attributes="content view/language" />
@@ -11,3 +12,5 @@
   <meta property="og:image:width" tal:attributes="content view/image_width" />
   <meta property="og:image:type" tal:attributes="content view/image_type" />
 </tal:image>
+<meta tal:condition="view/admins" property="fb:admins" tal:attributes="content view/admins" />
+<meta tal:condition="view/app_id" property="fb:app_id" tal:attributes="content view/app_id" />

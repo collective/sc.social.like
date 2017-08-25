@@ -99,14 +99,6 @@ class PluginView(BrowserView):
             return ''
 
     @property
-    def admins(self):
-        record = ISocialLikeSettings.__identifier__ + '.facebook_username'
-        try:
-            return api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            return ''
-
-    @property
     def fbshow_like(self):
         record = ISocialLikeSettings.__identifier__ + '.fbbuttons'
         try:
