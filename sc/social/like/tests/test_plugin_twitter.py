@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.registry.interfaces import IRegistry
-from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -67,27 +66,6 @@ class PluginViewsTest(unittest.TestCase):
 
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
-
-    # FIXME: we need to rethink this feature
-    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
-    def test_plugin_view_metadata(self):
-
-        def get_meta_content(name):
-            """Return the content attribute of the meta tag specified by name."""
-            return html.find('*/meta[@name="{0}"]'.format(name)).attrib['content']
-
-        view = self.newsitem.restrictedTraverse(self.plugin.view())
-        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
-        api.portal.set_registry_record(record, 'plone')
-
-        from lxml import etree
-        html = etree.HTML(view.metadata())
-        self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
-        expected = r'http://nohost/plone/lorem-ipsum/@@images/[0-9a-f--]+.png'
-        self.assertRegexpMatches(get_meta_content('twitter:image'), expected)
-        self.assertEqual(get_meta_content('twitter:site'), '@plone')
-        self.assertEqual(get_meta_content('twitter:title'), 'Lorem Ipsum')
-        self.assertEqual(get_meta_content('twitter:description'), 'Neque Porro')
 
     def test_plugin_view_html(self):
         view = self.newsitem.restrictedTraverse(self.plugin.view())

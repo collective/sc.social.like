@@ -71,8 +71,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 
     render = ViewPageTemplateFile('templates/metadata.pt')
 
-    def __init__(self, context, request, view, manager):
-        super(SocialMetadataViewlet, self).__init__(context, request, view, manager)
+    def update(self):
         self.setup()
 
     def setup(self):

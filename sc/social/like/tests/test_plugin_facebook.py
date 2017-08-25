@@ -3,7 +3,6 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from sc.social.like import utils
-from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook import browser
 from sc.social.like.plugins.facebook.utils import facebook_language
@@ -132,130 +131,27 @@ class PluginViewsTest(unittest.TestCase):
         html = view.link()
         self.assertIn('Share on Facebook', html)
 
-    # FIXME: we need to rethink this feature
-    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
-    def test_plugin_view_metadata(self):
+    def test_plugin_view_javascript(self):
         plugin = self.plugin
         portal = self.portal
         plugin_view = plugin.view()
         view = portal.restrictedTraverse(plugin_view)
 
-        metadata = view.metadata()
-        self.assertIn('og:site_name', metadata)
+        html = view.plugin()
+        self.assertIn('connect.facebook.net/en_GB/all.js', html)
 
-        # At root, use site logo
-        image_url = view.image_url()
-        self.assertIn('logo.png', image_url)
-
-        # At root, use website type
-        og_type = view.type()
-        self.assertIn('website', og_type)
-
-    def test_plugin_view_document(self):
-        plugin = self.plugin
-        document = self.document
-        portal = self.portal
-
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-
-        # At document, use site logo
-        image_url = view.image_url()
-        self.assertIn('logo.png', image_url)
-
-        # At document, use article type
-        og_type = view.type()
-        self.assertIn('article', og_type)
-
-        # At document, default page of portal, use website type
-        portal.setDefaultPage(document.id)
-        og_type = view.type()
-        self.assertIn('website', og_type)
-
-    def test_plugin_view_image(self):
-        plugin = self.plugin
-        image = self.image
-
-        plugin_view = plugin.view()
-        view = image.restrictedTraverse(plugin_view)
-
-        # At image, use local image
-        image_url = view.image_url()
-        self.assertNotIn('logo.png', image_url)
-        self.assertEqual(view.image_width(), 1024)
-        self.assertEqual(view.image_height(), 768)
-        self.assertEqual(view.image_type(), 'image/png')
-
-        # XXX: avoid failures because of unchanged modification date
-        #      this happens only on Dexterity-based content types
-        from time import sleep
-        sleep(1)
-
-        # Set a larger image
-        set_image_field(image, load_image(1920, 1080), 'image/png')
-
-        plugin_view = plugin.view()
-        view = image.restrictedTraverse(plugin_view)
-        self.assertEqual(view.image_width(), 1200)
-        self.assertEqual(view.image_height(), 675)
-
-    def test_plugin_view_image_large(self):
-        plugin = self.plugin
-        image = self.image
-        set_image_field(image, load_image(1920, 1080), 'image/png')
-
-        plugin_view = plugin.view()
-        view = image.restrictedTraverse(plugin_view)
-
-        # At newsitem, use image
-        image_url = view.image_url()
-        self.assertNotIn('logo.png', image_url)
-
-        self.assertEqual(view.image_width(), 1200)
-        self.assertEqual(view.image_height(), 675)
-
-    def test_plugin_view_newsitem(self):
-        plugin = self.plugin
-        newsitem = self.newsitem
-
-        plugin_view = plugin.view()
-        view = newsitem.restrictedTraverse(plugin_view)
-
-        # At newsitem, use image
-        image_url = view.image_url()
-        self.assertNotIn('logo.png', image_url)
-        self.assertEqual(view.image_width(), 1024)
-        self.assertEqual(view.image_height(), 768)
-
-    def test_plugin_view_newsitem_large(self):
-        plugin = self.plugin
-        newsitem = self.newsitem
-        set_image_field(newsitem, load_image(1920, 1080), 'image/png')
-
-        plugin_view = plugin.view()
-        view = newsitem.restrictedTraverse(plugin_view)
-
-        # At newsitem, use image
-        image_url = view.image_url()
-        self.assertNotIn('logo.png', image_url)
-
-        self.assertEqual(view.image_width(), 1200)
-        self.assertEqual(view.image_height(), 675)
-
-    # FIXME: we need to rethink this feature
-    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
     def test_plugin_language(self):
         plugin = self.plugin
         document = self.document
         plugin_view = plugin.view()
         self.document.setLanguage('pt-br')
         view = document.restrictedTraverse(plugin_view)
-        html = view.metadata()
+        html = view.plugin()
         self.assertIn('connect.facebook.net/pt_BR/all.js', html)
 
         self.document.setLanguage('en')
         view = document.restrictedTraverse(plugin_view)
-        html = view.metadata()
+        html = view.plugin()
         self.assertIn('connect.facebook.net/en_GB/all.js', html)
 
     def test_plugin_view_typebutton(self):

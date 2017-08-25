@@ -43,7 +43,11 @@ class ViewletBaseTestCase(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.obj = api.content.create(
-                self.portal, type='News Item', id='foo')
+                self.portal,
+                type='News Item',
+                title='Lorem Ipsum',
+                description='Neque Porro',
+            )
         set_image_field(self.obj, load_image(1024, 768), 'image/png')
 
     def _enable_all_plugins(self):
@@ -119,6 +123,47 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         def render(times):
             for i in xrange(0, times):
                 viewlet.render()
+
+    def test_viewlet_metadata(self):
+
+        def get_meta_content(name):
+            """Return the content attribute of the meta tag specified by name."""
+            node = html.find('*/meta[@name="{0}"]'.format(name))
+            if node is None:
+                node = html.find('*/meta[@property="{0}"]'.format(name))
+            return node.attrib['content']
+
+        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
+        api.portal.set_registry_record(record, 'plone')
+
+        viewlet = self.viewlet(self.obj)
+        html = viewlet.render()
+        from lxml import etree
+        html = etree.HTML(html)
+        self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
+        self.assertEqual(get_meta_content('twitter:site'), '@plone')
+        expected = r'http://nohost/plone/lorem-ipsum'
+        self.assertEqual(get_meta_content('og:url'), expected)
+        self.assertEqual(get_meta_content('og:type'), 'article')
+        self.assertEqual(get_meta_content('og:locale'), 'en_GB')
+        self.assertEqual(get_meta_content('og:title'), 'Lorem Ipsum')
+        self.assertEqual(get_meta_content('og:description'), 'Neque Porro')
+        expected = r'http://nohost/plone/lorem-ipsum/@@images/[0-9a-f--]+.png'
+        self.assertRegexpMatches(get_meta_content('og:image'), expected)
+        self.assertEqual(get_meta_content('og:image:height'), '576')
+        self.assertEqual(get_meta_content('og:image:width'), '768')
+        self.assertEqual(get_meta_content('og:image:type'), 'image/png')
+
+
+        # At document, use article type
+        og_type = viewlet.type()
+        self.assertIn('article', og_type)
+
+        # At document, default page of portal, use website type
+        self.portal.setDefaultPage(self.obj.id)
+        og_type = viewlet.type()
+        self.assertIn('website', og_type)
+
 
         with capture() as out:
             render(times=times)
