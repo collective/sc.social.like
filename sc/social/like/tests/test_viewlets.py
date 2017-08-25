@@ -2,16 +2,36 @@
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from profilehooks import profile
+from profilehooks import timecall
 from sc.social.like.browser.viewlets import SocialLikesViewlet
 from sc.social.like.browser.viewlets import SocialMetadataViewlet
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 
+import contextlib
 import unittest
 
 
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
+
+
+@contextlib.contextmanager
+def capture():
+    """A context manager to capture stdout and stderr.
+    http://stackoverflow.com/a/10743550/644075
+    """
+    import sys
+    from cStringIO import StringIO
+    oldout, olderr = sys.stdout, sys.stderr
+    try:
+        out = [StringIO(), StringIO()]
+        sys.stdout, sys.stderr = out
+        yield out
+    finally:
+        sys.stdout, sys.stderr = oldout, olderr
+        out[0], out[1] = out[0].getvalue(), out[1].getvalue()
 
 
 class MetadataViewletTestCase(unittest.TestCase):
@@ -60,6 +80,33 @@ class MetadataViewletTestCase(unittest.TestCase):
         viewlet = self.viewlet(self.document)
         html = viewlet.render()
         self.assertGreater(len(html), 0)
+
+    def test_render_timecall(self):
+        # rendering the viewlet 100 times must take less than 100 ms
+        viewlet = self.viewlet(self.document)
+
+        @timecall(immediate=True)
+        def render(times):
+            for i in xrange(0, times):
+                viewlet.render()
+
+        with capture() as out:
+            render(times=100)
+
+        import re
+        timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
+        self.assertLess(timelapse, 0.1)
+
+    def test_render_profile(self):
+        # show rendering profile
+        viewlet = self.viewlet(self.document)
+
+        @profile
+        def render(times):
+            for i in xrange(0, times):
+                viewlet.render()
+
+        render(times=100)
 
 
 class LikeViewletTestCase(unittest.TestCase):
@@ -123,3 +170,30 @@ class LikeViewletTestCase(unittest.TestCase):
         self.request.environ['HTTP_DNT'] = '1'
         viewlet = self.viewlet(self.document)
         self.assertEqual(viewlet.render_method, 'link')
+
+    def test_render_timecall(self):
+        # rendering the viewlet 100 times must take less than 100 ms
+        viewlet = self.viewlet(self.document)
+
+        @timecall(immediate=True)
+        def render(times):
+            for i in xrange(0, times):
+                viewlet.render()
+
+        with capture() as out:
+            render(times=100)
+
+        import re
+        timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
+        self.assertLess(timelapse, 0.1)
+
+    def test_render_profile(self):
+        # show rendering profile
+        viewlet = self.viewlet(self.document)
+
+        @profile
+        def render(times):
+            for i in xrange(0, times):
+                viewlet.render()
+
+        render(times=100)
