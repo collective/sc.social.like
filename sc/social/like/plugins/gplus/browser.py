@@ -11,7 +11,6 @@ from zope.component import getMultiAdapter
 
 class PluginView(BrowserView):
 
-    gp_enabled = True
     language = 'en'
 
     plugin = ViewPageTemplateFile('templates/plugin.pt')

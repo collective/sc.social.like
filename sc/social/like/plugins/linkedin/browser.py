@@ -10,8 +10,6 @@ from zope.component import getMultiAdapter
 
 class PluginView(BrowserView):
 
-    linkedin_enabled = True
-
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 

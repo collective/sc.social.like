@@ -17,7 +17,6 @@ PARAMS = 'locale={0}&href={1}&send=false&layout={2}&show_faces=true&action={3}'
 
 class PluginView(BrowserView):
 
-    fb_enabled = False
     language = 'en_US'
 
     plugin = ViewPageTemplateFile('templates/plugin.pt')

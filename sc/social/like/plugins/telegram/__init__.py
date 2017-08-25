@@ -7,15 +7,11 @@ from Products.PythonScripts.standard import url_quote
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins import IPlugin
 from sc.social.like.plugins import Plugin
-from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 from zope.interface import implementer
 
 
 class PluginView(BrowserView):
-
-    typebutton = ''
-    language = 'en'
 
     plugin = link = ViewPageTemplateFile('plugin.pt')
 
@@ -31,7 +27,6 @@ class PluginView(BrowserView):
         self.site_url = self.portal_state.portal_url()
         self.portal_title = self.portal_state.portal_title()
         self.url = self.context.absolute_url()
-        self.language = get_language(self.context)
         data = url_quote(self.context.absolute_url())
         self.telegramurl = u'https://telegram.me/share/url?url={0}'.format(data)
 
