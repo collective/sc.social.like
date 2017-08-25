@@ -64,7 +64,7 @@ class BaseLikeViewlet(ViewletBase):
         return
 
 
-class SocialMetadataViewlet(BaseLikeViewlet):
+class SocialMetadataViewlet(ViewletBase):
     """Viewlet used to insert metadata into page header
     """
     language = 'en_US'
@@ -72,6 +72,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
     render = ViewPageTemplateFile('templates/metadata.pt')
 
     def update(self):
+        self.helper = getMultiAdapter((self.context, self.request), name=u'sl_helper')
         self.title = self.context.title
         self.description = self.context.Description()
         portal = api.portal.get()
