@@ -140,7 +140,8 @@ class LikeViewletTestCase(ViewletBaseTestCase):
 
     def setUp(self):
         super(LikeViewletTestCase, self).setUp()
-        api.content.transition(obj=self.obj, transition='publish')
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(obj=self.obj, transition='publish')
 
     def viewlet(self, context):
         return self._get_viewlet_by_name('sc.social.likes', context)
