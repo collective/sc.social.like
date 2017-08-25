@@ -105,6 +105,30 @@ class SocialMetadataViewlet(BaseLikeViewlet):
             # use current URL if the object don't provide the behavior
             return self.url
 
+    def image_height(self):
+        """ Return height to image
+        """
+        if not self.image:
+            return
+        return self.image.height
+
+    def image_type(self):
+        """ Return content type to image
+        """
+        if not self.image:
+            return
+        type = getattr(self.image, 'content_type', None)
+        if type is not None:
+            return type
+        return getattr(self.image, 'mimetype', 'image/jpeg')
+
+    def image_width(self):
+        """ Return width to image
+        """
+        if not self.image:
+            return
+        return self.image.width
+
     def image_url(self):
         """ Return url to image
         """
