@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from profilehooks import profile
 from profilehooks import timecall
-from sc.social.like.browser.viewlets import SocialLikesViewlet
-from sc.social.like.browser.viewlets import SocialMetadataViewlet
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import load_image
+from sc.social.like.tests.api_hacks import set_image_field
 
 import contextlib
+import re
 import unittest
 
 
@@ -34,56 +33,88 @@ def capture():
         out[0], out[1] = out[0].getvalue(), out[1].getvalue()
 
 
-class MetadataViewletTestCase(unittest.TestCase):
+class ViewletBaseTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Document', 'my-document')
-        self.document = self.portal['my-document']
 
-    def viewlet(self, context=None):
-        context = context or self.portal
-        viewlet = SocialMetadataViewlet(context, self.request, None, None)
+        with api.env.adopt_roles(['Manager']):
+            self.obj = api.content.create(
+                self.portal, type='News Item', id='foo')
+        set_image_field(self.obj, load_image(1024, 768), 'image/png')
+
+    @property
+    def _enable_all_plugins(self):
+        from plone.registry.interfaces import IRegistry
+        from sc.social.like.plugins.interfaces import IPlugin
+        from zope.component import getUtilitiesFor
+        from zope.component import getUtility
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(ISocialLikeSettings)
+        all_plugins = tuple(i[0] for i in getUtilitiesFor(IPlugin))
+        settings.plugins_enabled = all_plugins
+
+    def _get_viewlet_by_name(self, name, context):
+        from plone.app.customerize.registration import getViews
+        from zope.publisher.interfaces.browser import IBrowserRequest
+        from zope.viewlet.interfaces import IViewlet
+        request = self.request
+        registration = None
+        for v in getViews(IBrowserRequest):
+            if v.provided == IViewlet:
+                if v.name == name:
+                    registration = v
+
+        if registration is None:
+            raise ValueError
+
+        viewlet = registration.factory(context, request, None, None).__of__(context)
         viewlet.update()
         return viewlet
 
-    def test_disabled_on_portal(self):
+
+class MetadataViewletTestCase(ViewletBaseTestCase):
+
+    def viewlet(self, context):
+        return self._get_viewlet_by_name('sc.social.likes_metadata', context)
+
+    def test_metadata_viewlet_is_disabled_on_portal(self):
         viewlet = self.viewlet(self.portal)
         self.assertFalse(viewlet.enabled())
 
-    def test_enabled_on_portal_with_template_full_view(self):
-        # Set layout to folder_full_view
+    def test_metadata_viewlet_is_enabled_on_portal_with_full_view(self):
         self.portal.setLayout('folder_full_view')
         viewlet = self.viewlet(self.portal)
         self.assertTrue(viewlet.enabled())
 
-    def test_enabled_on_document(self):
-        viewlet = self.viewlet(self.document)
+    def test_metadata_viewlet_is_enabled_on_content(self):
+        viewlet = self.viewlet(self.obj)
         self.assertTrue(viewlet.enabled())
 
     # FIXME: we need to rethink this feature
     @unittest.skipIf(IS_PLONE_5, 'Plone 5 includes metadata by default')
-    def test_disabled_on_edit_document(self):
+    def test_metadata_viewlet_is_disabled_on_content_edit(self):
         request = self.layer['request']
-        request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
+        request.set('ACTUAL_URL', self.obj.absolute_url() + '/edit')
         try:
-            html = self.document.atct_edit()  # Archetypes
+            html = self.obj.atct_edit()  # Archetypes
         except AttributeError:
-            html = self.document.restrictedTraverse('@@edit')()  # Dexterity
+            html = self.obj.restrictedTraverse('@@edit')()  # Dexterity
         self.assertNotIn('og:site_name', html)
 
-    def test_render(self):
-        viewlet = self.viewlet(self.document)
+    def test_metadata_viewlet_rendering(self):
+        viewlet = self.viewlet(self.obj)
         html = viewlet.render()
         self.assertGreater(len(html), 0)
 
-    def test_render_timecall(self):
-        # rendering the viewlet 100 times must take less than 100 ms
-        viewlet = self.viewlet(self.document)
+    def test_metadata_viewlet_performance(self):
+        """Viewlet rendering must take less than 1ms."""
+        self._enable_all_plugins
+        times = 1000
+        viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
         def render(times):
@@ -91,89 +122,78 @@ class MetadataViewletTestCase(unittest.TestCase):
                 viewlet.render()
 
         with capture() as out:
-            render(times=100)
+            render(times=times)
 
-        import re
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
-        self.assertLess(timelapse, 0.1)
+        self.assertLess(timelapse, 1)
 
-    def test_render_profile(self):
         # show rendering profile
-        viewlet = self.viewlet(self.document)
-
         @profile
         def render(times):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=100)
+        render(times=times)
 
 
-class LikeViewletTestCase(unittest.TestCase):
-
-    layer = INTEGRATION_TESTING
+class LikeViewletTestCase(ViewletBaseTestCase):
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Document', 'my-document')
-        self.document = self.portal['my-document']
-        api.content.transition(obj=self.document, transition='publish')
+        super(LikeViewletTestCase, self).setUp()
+        api.content.transition(obj=self.obj, transition='publish')
 
-    def viewlet(self, context=None):
-        context = context or self.portal
-        viewlet = SocialLikesViewlet(context, self.request, None, None)
-        viewlet.update()
-        return viewlet
+    def viewlet(self, context):
+        return self._get_viewlet_by_name('sc.social.likes', context)
 
-    def test_disabled_on_portal(self):
+    def test_social_viewlet_is_disabled_on_portal(self):
         viewlet = self.viewlet(self.portal)
         self.assertFalse(viewlet.enabled())
 
-    def test_enabled_on_document(self):
-        viewlet = self.viewlet(self.document)
+    def test_social_viewlet_is_enabled_on_content(self):
+        viewlet = self.viewlet(self.obj)
         self.assertTrue(viewlet.enabled())
 
-    def test_disabled_on_edit_document(self):
+    def test_social_viewlet_is_disabled_on_content_edit(self):
         request = self.layer['request']
-        request.set('ACTUAL_URL', self.document.absolute_url() + '/edit')
+        request.set('ACTUAL_URL', self.obj.absolute_url() + '/edit')
         try:
-            html = self.document.atct_edit()  # Archetypes
+            html = self.obj.atct_edit()  # Archetypes
         except AttributeError:
-            html = self.document.restrictedTraverse('@@edit')()  # Dexterity
+            html = self.obj.restrictedTraverse('@@edit')()  # Dexterity
         self.assertNotIn('id="viewlet-social-like"', html)
 
-    def test_render(self):
-        viewlet = self.viewlet(self.document)
+    def test_social_viewlet_rendering(self):
+        viewlet = self.viewlet(self.obj)
         html = viewlet.render()
         self.assertIn('id="viewlet-social-like"', html)
         self.assertIn('class="horizontal"', html)
 
     def test_rendermethod_default(self):
-        viewlet = self.viewlet(self.document)
+        viewlet = self.viewlet(self.obj)
         self.assertEqual(viewlet.render_method, 'plugin')
 
     def test_rendermethod_privacy(self):
         api.portal.set_registry_record(do_not_track, True)
-        viewlet = self.viewlet(self.document)
+        viewlet = self.viewlet(self.obj)
         self.assertEqual(viewlet.render_method, 'link')
 
     def test_rendermethod_privacy_opt_cookie(self):
         api.portal.set_registry_record(do_not_track, False)
         self.request.cookies['social-optout'] = 'true'
-        viewlet = self.viewlet(self.document)
+        viewlet = self.viewlet(self.obj)
         self.assertEqual(viewlet.render_method, 'link')
 
     def test_rendermethod_privacy_donottrack(self):
         api.portal.set_registry_record(do_not_track, False)
         self.request.environ['HTTP_DNT'] = '1'
-        viewlet = self.viewlet(self.document)
+        viewlet = self.viewlet(self.obj)
         self.assertEqual(viewlet.render_method, 'link')
 
-    def test_render_timecall(self):
-        # rendering the viewlet 100 times must take less than 100 ms
-        viewlet = self.viewlet(self.document)
+    def test_social_viewlet_performance(self):
+        """Viewlet rendering must take less than 2ms."""
+        self._enable_all_plugins
+        times = 1000
+        viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
         def render(times):
@@ -181,19 +201,15 @@ class LikeViewletTestCase(unittest.TestCase):
                 viewlet.render()
 
         with capture() as out:
-            render(times=100)
+            render(times=times)
 
-        import re
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
-        self.assertLess(timelapse, 0.1)
+        self.assertLess(timelapse, 2)
 
-    def test_render_profile(self):
         # show rendering profile
-        viewlet = self.viewlet(self.document)
-
         @profile
         def render(times):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=100)
+        render(times=times)
