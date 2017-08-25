@@ -9,9 +9,13 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 
 import contextlib
+import os
 import re
 import unittest
 
+
+# set the "SKIP_CODE_PROFILING" environent variable to skip profiling
+skip_profiling = os.environ.get('SKIP_CODE_PROFILING', False)
 
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
 
@@ -109,36 +113,6 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.assertNotIn('og:site_name', html)
 
     def test_metadata_viewlet_rendering(self):
-        viewlet = self.viewlet(self.obj)
-        html = viewlet.render()
-        self.assertGreater(len(html), 0)
-
-    def test_metadata_viewlet_performance(self):
-        """Viewlet rendering must take less than 1ms."""
-        self._enable_all_plugins()
-        times = 1000
-        viewlet = self.viewlet(self.obj)
-
-        @timecall(immediate=True)
-        def render(times):
-            for i in xrange(0, times):
-                viewlet.render()
-
-        with capture() as out:
-            render(times=times)
-
-        timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
-        self.assertLess(timelapse, 1)
-
-        # show rendering profile
-        @profile
-        def render(times):
-            for i in xrange(0, times):
-                viewlet.render()
-
-        render(times=times)
-
-    def test_metadata_viewlet_fields(self):
         def get_meta_content(name):
             """Return the content attribute of the meta tag specified by name."""
             node = html.find('*/meta[@name="{0}"]'.format(name))
@@ -185,6 +159,37 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.portal.setDefaultPage(self.obj.id)
         og_type = viewlet.type()
         self.assertIn('website', og_type)
+
+    def test_metadata_viewlet_performance(self):
+        """Viewlet rendering must take less than 1ms."""
+        self._enable_all_plugins()
+        times = 1000
+        viewlet = self.viewlet(self.obj)
+
+        @timecall(immediate=True)
+        def render_metadata_viewlet(times):
+            for i in xrange(0, times):
+                viewlet.render()
+
+        with capture() as out:
+            render_metadata_viewlet(times=times)
+
+        timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
+        self.assertLess(timelapse, 1)
+
+    @unittest.skipIf(skip_profiling, 'Code profiling not being executed')
+    def test_show_metadata_viewlet_rendering_profile(self):
+        self._enable_all_plugins()
+        times = 1000
+        viewlet = self.viewlet(self.obj)
+
+        # show rendering profile
+        @profile
+        def render_metadata_viewlet(times):
+            for i in xrange(0, times):
+                viewlet.render()
+
+        render_metadata_viewlet(times=times)
 
 
 class LikeViewletTestCase(ViewletBaseTestCase):
@@ -248,20 +253,26 @@ class LikeViewletTestCase(ViewletBaseTestCase):
         viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
-        def render(times):
+        def render_social_viewlet(times):
             for i in xrange(0, times):
                 viewlet.render()
 
         with capture() as out:
-            render(times=times)
+            render_social_viewlet(times=times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, 2)
 
+    @unittest.skipIf(skip_profiling, 'Code profiling not being executed')
+    def test_show_social_viewlet_rendering_profile(self):
+        self._enable_all_plugins()
+        times = 1000
+        viewlet = self.viewlet(self.obj)
+
         # show rendering profile
         @profile
-        def render(times):
+        def render_social_viewlet(times):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=times)
+        render_social_viewlet(times=times)
