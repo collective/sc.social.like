@@ -131,8 +131,6 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         html = viewlet.render()
         from lxml import etree
         html = etree.HTML(html)
-        self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
-        self.assertEqual(get_meta_content('twitter:site'), '@plone')
         self.assertEqual(get_meta_content('og:site_name'), 'Plone site')
         expected = r'http://nohost/plone/lorem-ipsum'
         self.assertEqual(get_meta_content('og:url'), expected)
@@ -147,16 +145,20 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.assertEqual(get_meta_content('og:image:type'), 'image/png')
         self.assertEqual(get_meta_content('fb:admins'), 'plone')
         self.assertEqual(get_meta_content('fb:app_id'), 'myid')
+        self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
+        self.assertEqual(get_meta_content('twitter:site'), '@plone')
 
-    def test_metadata_viewlet_at_portal_page(self):
-        viewlet = self.viewlet(self.obj)
-
+    def test_og_type_on_content(self):
         # At document, use article type
+        viewlet = self.viewlet(self.obj)
         og_type = viewlet.type()
         self.assertIn('article', og_type)
 
+    def test_og_type_on_portal_root(self):
+        # XXX: this test code doesn't seem to be quite right
         # At document, default page of portal, use website type
         self.portal.setDefaultPage(self.obj.id)
+        viewlet = self.viewlet(self.portal)
         og_type = viewlet.type()
         self.assertIn('website', og_type)
 
