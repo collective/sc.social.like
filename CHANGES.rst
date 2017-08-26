@@ -3,11 +3,18 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.10.2 (unreleased)
-^^^^^^^^^^^^^^^^^^^
+3.0a1 (unreleased)
+^^^^^^^^^^^^^^^^^^
 
-- Move all metadata to the viewlet template. After this change the metadata is always shown.
-  Also remove some unused metadata, since the provider use Open Graph as fallback. (closes `#112 <https://github.com/collective/sc.social.like/issues/112>`_).
+- Code optimization and clean up.
+  [hvelarde]
+
+- Plugins no longer support metadata rendering;
+  you must add your own viewlet if you need to inject code in the HTML head.
+  [rodfersou]
+
+- Remove duplicated metadata as Twitter can use Open Graph properties as a fallback behavior;
+  this simplifies the code and speeds up viewlet rendering (closes `#112 <https://github.com/collective/sc.social.like/issues/112>`_).
   [rodfersou]
 
 - Remove useless scale caching on the request as it seems to be causing colateral issues (closes `#109 <https://github.com/collective/sc.social.like/issues/109>`_).
