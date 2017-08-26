@@ -8,10 +8,6 @@ from sc.social.like.interfaces import ISocialLikeSettings
 
 class PluginView(BrowserView):
 
-    typebutton = ''
-    language = 'en'
-
-    metadata = None
     plugin = link = ViewPageTemplateFile('plugin.pt')
 
     @property

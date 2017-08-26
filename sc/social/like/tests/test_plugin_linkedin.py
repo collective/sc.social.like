@@ -92,13 +92,13 @@ class PluginViewsTest(unittest.TestCase):
         html = view.link()
         self.assertIn('Share on Linkedin', html)
 
-    def test_plugin_view_metadata(self):
+    def test_plugin_view_javascript(self):
         plugin = self.plugin
         document = self.document
         plugin_view = plugin.view()
         view = document.restrictedTraverse(plugin_view)
-        metadata = view.metadata()
-        self.assertIn('linkedin.com/in.js', metadata)
+        html = view.plugin()
+        self.assertIn('linkedin.com/in.js', html)
 
     def test_plugin_view_typebutton(self):
         portal = self.portal

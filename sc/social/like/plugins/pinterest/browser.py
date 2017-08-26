@@ -5,7 +5,6 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.utils import get_content_image
-from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
 
@@ -16,10 +15,6 @@ PARAMS = '?url={0}&media={1}&description={2}'
 
 class PluginView(BrowserView):
 
-    pinterest_enabled = False
-    language = 'en'
-
-    metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 
@@ -36,7 +31,6 @@ class PluginView(BrowserView):
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
         self.image = get_content_image(context, scale='large')
-        self.language = get_language(context)
 
     def share_url(self):
         template = BASE_URL + PARAMS

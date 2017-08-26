@@ -9,9 +9,13 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 
 import contextlib
+import os
 import re
 import unittest
 
+
+# set the "SKIP_CODE_PROFILING" environent variable to skip profiling
+skip_profiling = os.environ.get('SKIP_CODE_PROFILING', False)
 
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
 
@@ -43,7 +47,11 @@ class ViewletBaseTestCase(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.obj = api.content.create(
-                self.portal, type='News Item', id='foo')
+                self.portal,
+                type='News Item',
+                title='Lorem Ipsum',
+                description='Neque Porro',
+            )
         set_image_field(self.obj, load_image(1024, 768), 'image/png')
 
     def _enable_all_plugins(self):
@@ -105,9 +113,54 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.assertNotIn('og:site_name', html)
 
     def test_metadata_viewlet_rendering(self):
+        def get_meta_content(name):
+            """Return the content attribute of the meta tag specified by name."""
+            node = html.find('*/meta[@name="{0}"]'.format(name))
+            if node is None:
+                node = html.find('*/meta[@property="{0}"]'.format(name))
+            return node.attrib['content']
+
+        record = ISocialLikeSettings.__identifier__ + '.twitter_username'
+        api.portal.set_registry_record(record, 'plone')
+        record = ISocialLikeSettings.__identifier__ + '.facebook_username'
+        api.portal.set_registry_record(record, 'plone')
+        record = ISocialLikeSettings.__identifier__ + '.facebook_app_id'
+        api.portal.set_registry_record(record, 'myid')
+
         viewlet = self.viewlet(self.obj)
         html = viewlet.render()
-        self.assertGreater(len(html), 0)
+        from lxml import etree
+        html = etree.HTML(html)
+        self.assertEqual(get_meta_content('og:site_name'), 'Plone site')
+        expected = r'http://nohost/plone/lorem-ipsum'
+        self.assertEqual(get_meta_content('og:url'), expected)
+        self.assertEqual(get_meta_content('og:type'), 'article')
+        self.assertEqual(get_meta_content('og:locale'), 'en_GB')
+        self.assertEqual(get_meta_content('og:title'), 'Lorem Ipsum')
+        self.assertEqual(get_meta_content('og:description'), 'Neque Porro')
+        expected = r'http://nohost/plone/lorem-ipsum/@@images/[0-9a-f--]+.png'
+        self.assertRegexpMatches(get_meta_content('og:image'), expected)
+        self.assertEqual(get_meta_content('og:image:height'), '576')
+        self.assertEqual(get_meta_content('og:image:width'), '768')
+        self.assertEqual(get_meta_content('og:image:type'), 'image/png')
+        self.assertEqual(get_meta_content('fb:admins'), 'plone')
+        self.assertEqual(get_meta_content('fb:app_id'), 'myid')
+        self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
+        self.assertEqual(get_meta_content('twitter:site'), '@plone')
+
+    def test_og_type_on_content(self):
+        # At document, use article type
+        viewlet = self.viewlet(self.obj)
+        og_type = viewlet.type()
+        self.assertIn('article', og_type)
+
+    def test_og_type_on_portal_root(self):
+        # XXX: this test code doesn't seem to be quite right
+        # At document, default page of portal, use website type
+        self.portal.setDefaultPage(self.obj.id)
+        viewlet = self.viewlet(self.portal)
+        og_type = viewlet.type()
+        self.assertIn('website', og_type)
 
     def test_metadata_viewlet_performance(self):
         """Viewlet rendering must take less than 1ms."""
@@ -116,23 +169,29 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
-        def render(times):
+        def render_metadata_viewlet(times):
             for i in xrange(0, times):
                 viewlet.render()
 
         with capture() as out:
-            render(times=times)
+            render_metadata_viewlet(times=times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, 1)
 
+    @unittest.skipIf(skip_profiling, 'Code profiling not being executed')
+    def test_show_metadata_viewlet_rendering_profile(self):
+        self._enable_all_plugins()
+        times = 1000
+        viewlet = self.viewlet(self.obj)
+
         # show rendering profile
         @profile
-        def render(times):
+        def render_metadata_viewlet(times):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=times)
+        render_metadata_viewlet(times=times)
 
 
 class LikeViewletTestCase(ViewletBaseTestCase):
@@ -196,20 +255,26 @@ class LikeViewletTestCase(ViewletBaseTestCase):
         viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
-        def render(times):
+        def render_social_viewlet(times):
             for i in xrange(0, times):
                 viewlet.render()
 
         with capture() as out:
-            render(times=times)
+            render_social_viewlet(times=times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, 2)
 
+    @unittest.skipIf(skip_profiling, 'Code profiling not being executed')
+    def test_show_social_viewlet_rendering_profile(self):
+        self._enable_all_plugins()
+        times = 1000
+        viewlet = self.viewlet(self.obj)
+
         # show rendering profile
         @profile
-        def render(times):
+        def render_social_viewlet(times):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=times)
+        render_social_viewlet(times=times)

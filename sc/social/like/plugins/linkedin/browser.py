@@ -4,17 +4,12 @@ from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
-from sc.social.like.utils import get_language
 from urllib import urlencode
 from zope.component import getMultiAdapter
 
 
 class PluginView(BrowserView):
 
-    linkedin_enabled = True
-    language = 'en'
-
-    metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 
@@ -26,11 +21,8 @@ class PluginView(BrowserView):
         #        see: http://docs.plone.org/develop/plone/views/browserviews.html#creating-a-view
         self.portal_state = getMultiAdapter((self.context, self.request),
                                             name=u'plone_portal_state')
-        self.portal = self.portal_state.portal()
         self.site_url = self.portal_state.portal_url()
-        self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
-        self.language = get_language(context)
 
     @property
     def typebutton(self):

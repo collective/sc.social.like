@@ -6,16 +6,11 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote
 from sc.social.like.interfaces import ISocialLikeSettings
-from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 
 
 class PluginView(BrowserView):
 
-    typebutton = ''
-    language = 'en'
-
-    metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = link = ViewPageTemplateFile('templates/plugin.pt')
 
     def __init__(self, context, request):
@@ -30,7 +25,6 @@ class PluginView(BrowserView):
         self.site_url = self.portal_state.portal_url()
         self.portal_title = self.portal_state.portal_title()
         self.url = context.absolute_url()
-        self.language = get_language(context)
         data = url_quote(u'{0} - {1}'.format(
             safe_unicode(self.context.title), self.context.absolute_url()))
         self.whatsappurl = u'whatsapp://send?text={0}'.format(data)

@@ -1,8 +1,17 @@
-<tal:gp>
-    <!-- Google+ -->
-    <div class="g-plusone"
-       tal:attributes="data-annotation string:bubble;
-                       data-size view/typebutton;
-                       data-href view/url;
-                       data-lang view/language;"></div>
-</tal:gp>
+<!-- Google+ -->
+<script>
+  (function() {
+    var po = document.createElement('script');
+    po.type = 'application/javascript';
+    po.async = true;
+    po.src = '//apis.google.com/js/plusone.js';
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(po);
+  })();
+</script>
+
+<div class="g-plusone"
+   tal:attributes="data-annotation string:bubble;
+                   data-size view/typebutton;
+                   data-href view/url;
+                   data-lang view/language;"></div>
