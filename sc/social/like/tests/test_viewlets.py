@@ -9,9 +9,14 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 
 import contextlib
+import os
 import re
 import unittest
 
+
+# TODO: document this on README
+# set the "SKIP_CODE_PROFILING" environent variable to skip profiling
+skip_profiling = os.environ.get('SKIP_CODE_PROFILING', False)
 
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
 
@@ -109,7 +114,8 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         html = viewlet.render()
         self.assertGreater(len(html), 0)
 
-    def test_metadata_viewlet_performance(self):
+    @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
+    def test_metadata_viewlet_rendering_performance(self):
         """Viewlet rendering must take less than 1ms."""
         self._enable_all_plugins()
         times = 1000
@@ -121,7 +127,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
                 viewlet.render()
 
         with capture() as out:
-            render(times=times)
+            render(times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, 1)
@@ -132,7 +138,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=times)
+        render(times)
 
 
 class LikeViewletTestCase(ViewletBaseTestCase):
@@ -189,7 +195,8 @@ class LikeViewletTestCase(ViewletBaseTestCase):
         viewlet = self.viewlet(self.obj)
         self.assertEqual(viewlet.render_method, 'link')
 
-    def test_social_viewlet_performance(self):
+    @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
+    def test_social_viewlet_rendering_performance(self):
         """Viewlet rendering must take less than 2ms."""
         self._enable_all_plugins()
         times = 1000
@@ -201,7 +208,7 @@ class LikeViewletTestCase(ViewletBaseTestCase):
                 viewlet.render()
 
         with capture() as out:
-            render(times=times)
+            render(times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, 2)
@@ -212,4 +219,4 @@ class LikeViewletTestCase(ViewletBaseTestCase):
             for i in xrange(0, times):
                 viewlet.render()
 
-        render(times=times)
+        render(times)
