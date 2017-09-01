@@ -73,9 +73,10 @@ class PluginViewsTest(unittest.TestCase):
     def test_plugin_view_metadata(self):
 
         def get_meta_content(name):
-            """Return the content attribute of the meta tag specified by name."""
-            return html.find('*/meta[@name="{0}"]'.format(name)).attrib['content']
-
+            """Return the content attribute of the meta tag specified."""
+            meta = html.find('*/meta[@name="{0}"]'.format(name))
+            if meta is not None:
+                return meta.attrib['content']
         view = self.newsitem.restrictedTraverse(self.plugin.view())
         record = ISocialLikeSettings.__identifier__ + '.twitter_username'
         api.portal.set_registry_record(record, 'plone')
@@ -83,11 +84,13 @@ class PluginViewsTest(unittest.TestCase):
         from lxml import etree
         html = etree.HTML(view.metadata())
         self.assertEqual(get_meta_content('twitter:card'), 'summary_large_image')
-        expected = r'http://nohost/plone/lorem-ipsum/@@images/[0-9a-f--]+.png'
-        self.assertRegexpMatches(get_meta_content('twitter:image'), expected)
         self.assertEqual(get_meta_content('twitter:site'), '@plone')
-        self.assertEqual(get_meta_content('twitter:title'), 'Lorem Ipsum')
-        self.assertEqual(get_meta_content('twitter:description'), 'Neque Porro')
+
+        # privacy settings
+        self.assertIsNone(get_meta_content('twitter:dnt'))
+        self.settings.do_not_track = True
+        html = etree.HTML(view.metadata())
+        self.assertEqual(get_meta_content('twitter:dnt'), 'on')
 
     def test_plugin_view_html(self):
         view = self.newsitem.restrictedTraverse(self.plugin.view())
@@ -99,33 +102,13 @@ class PluginViewsTest(unittest.TestCase):
 
         view = self.portal.restrictedTraverse(self.plugin.view())
         html = view.link()
-        self.assertIn('Tweet it!', html)
+        self.assertIn('Tweet', html)
 
     def test_plugin_twitter_username(self):
-        self.settings.twitter_username = '@simplesconsult'
-
+        self.settings.twitter_username = 'simplesconsult'
         view = self.newsitem.restrictedTraverse(self.plugin.view())
         html = view.plugin()
-        self.assertIn('data-via="@simplesconsult"', html)
-
-    def test_plugin_urlnoscript_encoding(self):
-        self.newsitem.setTitle(u'Notícia')
-        self.settings.twitter_username = '@simplesconsult'
-
-        view = self.newsitem.restrictedTraverse(self.plugin.view())
-        html = view.plugin()
-        self.assertIn('%20via%20%40simplesconsult">Tweet', html)
-
-    def test_plugin_language(self):
-        self.newsitem.setLanguage('pt-br')
-        view = self.newsitem.restrictedTraverse(self.plugin.view())
-        html = view.plugin()
-        self.assertIn('data-lang="pt-br"', html)
-
-        self.newsitem.setLanguage('en')
-        view = self.newsitem.restrictedTraverse(self.plugin.view())
-        html = view.plugin()
-        self.assertIn('data-lang="en"', html)
+        self.assertIn('data-via="simplesconsult"', html)
 
     def test_share_link(self):
         view = self.newsitem.restrictedTraverse(self.plugin.view())
