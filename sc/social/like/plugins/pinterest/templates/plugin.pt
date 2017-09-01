@@ -1,6 +1,6 @@
 <tal:pinterest>
     <!-- Pinterest -->
-    <script type="application/javascript">
+    <script>
         (function() {
             var po = document.createElement('script');
             po.type = 'application/javascript';

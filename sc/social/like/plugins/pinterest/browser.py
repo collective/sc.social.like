@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -19,24 +18,23 @@ class PluginView(BrowserView):
     pinterest_enabled = False
     language = 'en'
 
-    metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        # FIXME: the following could rise unexpected exceptions
-        #        move it to a new setup() method
-        #        see: http://docs.plone.org/develop/plone/views/browserviews.html#creating-a-view
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.portal = self.portal_state.portal()
-        self.site_url = self.portal_state.portal_url()
-        self.portal_title = self.portal_state.portal_title()
-        self.url = context.absolute_url()
-        self.image = get_content_image(context, scale='large')
-        self.language = get_language(context)
+        self.setup()
+
+    def setup(self):
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
+        self.portal = portal_state.portal()
+        self.site_url = portal_state.portal_url()
+        self.portal_title = portal_state.portal_title()
+        self.url = self.context.absolute_url()
+        self.image = get_content_image(self.context)
+        self.language = get_language(self.context)
 
     def share_url(self):
         template = BASE_URL + PARAMS
@@ -49,25 +47,17 @@ class PluginView(BrowserView):
     def image_url(self):
         """ Return url to image
         """
-        img = self.image
-        if img:
-            return img.url
-        else:
-            return '{0}/logo.png'.format(self.site_url)
+        if not self.image:
+            return self.site_url + '/logo.png'
+        return self.image.url
 
     @property
     def typebutton(self):
-        record = ISocialLikeSettings.__identifier__ + '.typebutton'
-        try:
-            typebutton = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            typebutton = ''
-
-        if typebutton == 'horizontal':
-            typebutton = 'beside'
-        else:
-            typebutton = 'above'
-        return typebutton
+        record = dict(
+            name='typebutton', interface=ISocialLikeSettings, default='')
+        if api.portal.get_registry_record(**record) == 'horizontal':
+            return 'beside'
+        return 'above'
 
     def share_link(self):
         # See http://stackoverflow.com/questions/10690019/link-to-pin-it-on-pinterest-without-generating-a-button
@@ -76,5 +66,4 @@ class PluginView(BrowserView):
             media=self.image_url(),
             description=self.context.Title(),
         )
-        url = 'http://pinterest.com/pin/create/button?' + urlencode(params)
-        return url
+        return 'http://pinterest.com/pin/create/button?' + urlencode(params)
