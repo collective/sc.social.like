@@ -116,9 +116,8 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
 
     @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
     def test_metadata_viewlet_rendering_performance(self):
-        """Viewlet rendering must take less than 1ms."""
         self._enable_all_plugins()
-        times = 1000
+        times, limit = 1000, 5  # rendering 1000 times must take less than 5ms
         viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
@@ -130,7 +129,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
             render(times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
-        self.assertLess(timelapse, 1)
+        self.assertLess(timelapse, limit)
 
         # show rendering profile
         @profile
@@ -197,9 +196,8 @@ class LikeViewletTestCase(ViewletBaseTestCase):
 
     @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
     def test_social_viewlet_rendering_performance(self):
-        """Viewlet rendering must take less than 2ms."""
         self._enable_all_plugins()
-        times = 1000
+        times, limit = 1000, 5  # rendering 1000 times must take less than 5ms
         viewlet = self.viewlet(self.obj)
 
         @timecall(immediate=True)
@@ -211,7 +209,7 @@ class LikeViewletTestCase(ViewletBaseTestCase):
             render(times)
 
         timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
-        self.assertLess(timelapse, 2)
+        self.assertLess(timelapse, limit)
 
         # show rendering profile
         @profile
