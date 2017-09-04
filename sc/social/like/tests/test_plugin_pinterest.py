@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
@@ -56,8 +55,11 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.setup_content(self.portal)
+
+        with api.env.adopt_roles(['Manager']):
+            self.newsitem = api.content.create(
+                self.portal, type='News Item', title='foo')
+            set_image_field(self.newsitem, load_image(1024, 768), 'image/png')
 
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
@@ -65,84 +67,64 @@ class PluginViewsTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
-    def setup_content(self, portal):
-        portal.invokeFactory('News Item', 'my-newsitem')
-        portal.invokeFactory('Image', 'my-image')
-        self.newsitem = portal['my-newsitem']
-        set_image_field(self.newsitem, load_image(1024, 768), 'image/png')
-        self.image = portal['my-image']
-        set_image_field(self.image, load_image(1024, 768), 'image/png')
-
     def test_plugin_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
         self.assertTrue(isinstance(view, browser.PluginView))
 
     def test_plugin_view_html(self):
-        plugin = self.plugin
-        newsitem = self.newsitem
-        plugin_view = plugin.view()
-        view = newsitem.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.newsitem.restrictedTraverse(plugin_view)
         html = view.plugin()
         self.assertIn('js/pinit.js', html)
         self.assertIn('pin_it_button.png', html)
 
     def test_privacy_plugin_view_html(self):
-        plugin = self.plugin
-        portal = self.portal
         self.settings.do_not_track = True
 
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Pin it!', html)
 
-    def test_plugin_view_image(self):
-        plugin = self.plugin
-        image = self.image
+    def test_plugin_view_newsitem(self):
+        plugin_view = self.plugin.view()
+        view = self.newsitem.restrictedTraverse(plugin_view)
 
-        plugin_view = plugin.view()
+        # At news item, use image field
+        expected = r'http://nohost/plone/foo/@@images/[0-9a-f--]+.png'
+        self.assertRegexpMatches(view.image_url(), expected)
+
+    def test_plugin_view_image(self):
+        with api.env.adopt_roles(['Manager']):
+            image = api.content.create(
+                self.portal, type='Image', title='bar')
+            set_image_field(image, load_image(1024, 768), 'image/png')
+
+        plugin_view = self.plugin.view()
         view = image.restrictedTraverse(plugin_view)
 
         # At image, use local image
-        expected = r'http://nohost/plone/my-image/@@images/[0-9a-f--]+.png'
-        self.assertRegexpMatches(view.image_url(), expected)
-
-    def test_plugin_view_newsitem(self):
-        plugin = self.plugin
-        newsitem = self.newsitem
-
-        plugin_view = plugin.view()
-        view = newsitem.restrictedTraverse(plugin_view)
-
-        # At newsitem, use image
-        expected = r'http://nohost/plone/my-newsitem/@@images/[0-9a-f--]+.png'
+        expected = r'http://nohost/plone/bar/@@images/[0-9a-f--]+.png'
         self.assertRegexpMatches(view.image_url(), expected)
 
     def test_plugin_view_document(self):
-        plugin = self.plugin
-        self.portal.invokeFactory('Document', 'my-document')
-        document = self.portal['my-document']
-        expected = 'logo.png'
+        with api.env.adopt_roles(['Manager']):
+            document = api.content.create(
+                self.portal, type='Document', title='baz')
 
-        plugin_view = plugin.view()
+        plugin_view = self.plugin.view()
         view = document.restrictedTraverse(plugin_view)
 
         # At document, return logo
         image_url = view.image_url()
-        self.assertIn(expected, image_url)
+        self.assertIn('logo.png', image_url)
 
-    def test_plugin_view_typebutton(self):
-        portal = self.portal
-        plugin = self.plugin
-
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.typebutton, 'beside')
+    def test_plugin_view_pin_count(self):
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
+        self.assertEqual(view.pin_count(), 'beside')
 
         # Change to vertical
         self.settings.typebutton = 'vertical'
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.typebutton, 'above')
+        self.assertEqual(view.pin_count(), 'above')

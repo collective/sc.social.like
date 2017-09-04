@@ -1,20 +1,7 @@
-<tal:pinterest>
-    <!-- Pinterest -->
-    <script type="application/javascript">
-        (function() {
-            var po = document.createElement('script');
-            po.type = 'application/javascript';
-            po.async = true;
-            po.src = '//assets.pinterest.com/js/pinit.js';
-            po.onload = function() {IN.init()};
-            var head = document.getElementsByTagName('head')[0];
-            head.appendChild(po);
-          })();
-    </script>
-    <a href=""
-       data-pin-do="buttonPin"
-       data-pin-config="beside"
-       tal:attributes="href view/share_url;
-                       data-pin-config view/typebutton;"
-       ><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
-</tal:pinterest>
+<!-- Pinterest -->
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+<a href="https://pinterest.com/pin/create/button/"
+    data-pin-do="buttonPin"
+    tal:attributes="data-pin-count view/pin_count">
+  <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+</a>
