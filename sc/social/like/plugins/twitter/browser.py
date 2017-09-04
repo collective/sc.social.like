@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-"""Helper view to generate the Tweet Button widget.
+"""Helper view to generate Twitter widget.
 
 More information:
 * https://dev.twitter.com/web/tweet-button
@@ -16,7 +16,7 @@ from urllib import urlencode
 
 
 class PluginView(BrowserView):
-    """Helper view to generate the Tweet Button widget."""
+    """Helper view to generate Twitter widget."""
 
     metadata = ViewPageTemplateFile('templates/metadata.pt')
     plugin = ViewPageTemplateFile('templates/plugin.pt')

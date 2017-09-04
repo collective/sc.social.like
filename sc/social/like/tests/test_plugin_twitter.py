@@ -5,8 +5,6 @@ from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
 from sc.social.like.testing import INTEGRATION_TESTING
-from sc.social.like.testing import load_image
-from sc.social.like.tests.api_hacks import set_image_field
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
 
@@ -55,12 +53,7 @@ class PluginViewsTest(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.newsitem = api.content.create(
-                self.portal,
-                type='News Item',
-                title='Lorem Ipsum',
-                description='Neque Porro',
-            )
-        set_image_field(self.newsitem, load_image(1024, 768), 'image/png')
+                self.portal, type='News Item', title='foo')
 
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
@@ -113,7 +106,7 @@ class PluginViewsTest(unittest.TestCase):
     def test_share_link(self):
         view = self.newsitem.restrictedTraverse(self.plugin.view())
         share_link = view.share_link
-        self.assertTrue(share_link().endswith('text=Lorem+Ipsum'))
+        self.assertTrue(share_link().endswith('text=foo'))
 
         # unicode
         self.newsitem.setTitle(u'¡Notícia de última hora!')
