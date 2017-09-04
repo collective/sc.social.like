@@ -9,6 +9,6 @@
         <img src="share-linkedin.png"
              alt="Share on Linkedin"
              i18n:attributes="alt"
-             tal:attributes="src string:${view/site_url}/++resource++sl_images/share-linkedin.png" />
+             tal:attributes="src string:${view/portal_url}/++resource++sl_images/share-linkedin.png" />
     </a>
 </tal:linkedin>

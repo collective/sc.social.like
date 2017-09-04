@@ -1,6 +1,5 @@
-<tal:linkedin>
-    <!-- Linkedin -->
-    <script type="in/share" data-counter="right"
-            tal:attributes="data-counter view/typebutton;
-                            data-url view/url;"></script>
-</tal:linkedin>
+<!-- Linkedin -->
+<script async src="//platform.linkedin.com/in.js"></script>
+<script type="IN/Share"
+    tal:attributes="data-counter view/counter;
+                    data-url context/absolute_url;"></script>
