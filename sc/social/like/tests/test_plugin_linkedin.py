@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.interfaces import IPlugin
@@ -54,8 +53,10 @@ class PluginViewsTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.setup_content(self.portal)
+
+        with api.env.adopt_roles(['Manager']):
+            self.document = api.content.create(
+                self.portal, type='Document', title='foo')
 
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
@@ -63,52 +64,35 @@ class PluginViewsTest(unittest.TestCase):
         self.plugins = dict(getUtilitiesFor(IPlugin))
         self.plugin = self.plugins[name]
 
-    def setup_content(self, portal):
-        portal.invokeFactory('Document', 'my-document')
-        self.document = portal['my-document']
-
     def test_plugin_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
         self.assertTrue(isinstance(view, browser.PluginView))
 
     def test_plugin_view_html(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-        html = view.plugin()
-        self.assertIn('in/share', html)
+        from lxml import etree
+        plugin_view = self.plugin.view()
+        view = self.document.restrictedTraverse(plugin_view)
+        html = etree.HTML(view.plugin())
+        scripts = html.findall('*/script')
+        self.assertEqual(scripts[0].attrib['src'], '//platform.linkedin.com/in.js')
+        self.assertEqual(scripts[1].attrib['type'], 'IN/Share')
+        self.assertEqual(scripts[1].attrib['data-counter'], 'right')
+        self.assertEqual(scripts[1].attrib['data-url'], 'http://nohost/plone/foo')
 
     def test_privacy_plugin_view_html(self):
-        plugin = self.plugin
-        portal = self.portal
         self.settings.do_not_track = True
 
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Share on Linkedin', html)
 
-    def test_plugin_view_metadata(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-        metadata = view.metadata()
-        self.assertIn('linkedin.com/in.js', metadata)
-
     def test_plugin_view_typebutton(self):
-        portal = self.portal
-        plugin = self.plugin
-
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.typebutton, 'right')
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
+        self.assertEqual(view.counter(), 'right')
 
         # Change to vertical
         self.settings.typebutton = 'vertical'
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.typebutton, 'top')
+        self.assertEqual(view.counter(), 'top')
