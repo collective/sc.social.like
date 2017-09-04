@@ -11,7 +11,7 @@
         <img src="pin_it_button.png"
              alt="Pin it!"
              i18n:attributes="alt"
-             tal:attributes="src string:${view/site_url}/++resource++sl_images/pin_it_button.png" />
+             tal:attributes="src string:${view/portal_url}/++resource++sl_images/pin_it_button.png" />
     </a>
 
 </tal:pinterest>

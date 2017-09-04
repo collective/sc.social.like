@@ -6,10 +6,10 @@ There's a frood who really knows where his towel is.
 2.10.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Update LinkedIn's Share Plugin code; code clean up and refactor.
+- Code clean up and refactor.
   [hvelarde]
 
-- Update Tweet Button code; code clean up and refactor.
+- Twitter, LinkedIn and Pinterest widgets code was updated.
   [hvelarde]
 
 - Twitter widgets now respect users' privacy.
