@@ -19,7 +19,7 @@ class PluginView(BrowserView):
     pinterest_enabled = False
     language = 'en'
 
-    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    metadata = None
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 
