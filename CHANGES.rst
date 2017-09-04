@@ -6,6 +6,15 @@ There's a frood who really knows where his towel is.
 2.10.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Update Tweet Button code; code clean up and refactor.
+  [hvelarde]
+
+- Twitter widgets now respect users' privacy.
+  [hvelarde]
+
+- Remove redundant metadata as Twitter can use Open Graph properties as fall back (closes `#112 <https://github.com/collective/sc.social.like/issues/112>`_).
+  [hvelarde]
+
 - Remove useless scale caching on the request as it seems to be causing colateral issues (closes `#109 <https://github.com/collective/sc.social.like/issues/109>`_).
   [rodfersou]
 
