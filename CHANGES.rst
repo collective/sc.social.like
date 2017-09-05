@@ -9,10 +9,10 @@ There's a frood who really knows where his towel is.
 - Code clean up and refactor.
   [hvelarde]
 
-- Twitter, LinkedIn and Pinterest widgets code was updated.
+- Twitter widgets now respect users' privacy.
   [hvelarde]
 
-- Twitter widgets now respect users' privacy.
+- Google+, LinkedIn, Pinterest and Twitter widgets code was updated.
   [hvelarde]
 
 - Remove redundant metadata as Twitter can use Open Graph properties as fall back (closes `#112 <https://github.com/collective/sc.social.like/issues/112>`_).

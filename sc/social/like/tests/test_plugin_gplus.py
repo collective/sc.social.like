@@ -68,47 +68,34 @@ class PluginViewsTest(unittest.TestCase):
         self.document = portal['my-document']
 
     def test_plugin_view(self):
-        plugin = self.plugin
-        portal = self.portal
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
         self.assertTrue(isinstance(view, browser.PluginView))
 
     def test_plugin_view_html(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-        html = view.plugin()
-        self.assertIn('g-plusone', html)
+        from lxml import etree
+        plugin_view = self.plugin.view()
+        view = self.document.restrictedTraverse(plugin_view)
+        html = etree.HTML(view.plugin())
+        script = html.find('*/script')
+        self.assertEqual(script.attrib['src'], 'https://apis.google.com/js/platform.js')
+        div = html.find('*/div')
+        self.assertEqual(div.attrib['data-href'], 'http://nohost/plone/my-document')
+        self.assertEqual(div.attrib['data-annotation'], 'bubble')
 
     def test_privacy_plugin_view_html(self):
-        plugin = self.plugin
-        portal = self.portal
         self.settings.do_not_track = True
 
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Share on Google+', html)
 
-    def test_plugin_view_metadata(self):
-        plugin = self.plugin
-        document = self.document
-        plugin_view = plugin.view()
-        view = document.restrictedTraverse(plugin_view)
-        metadata = view.metadata()
-        self.assertIn('js/plusone.js', metadata)
-
-    def test_plugin_view_typebutton(self):
-        portal = self.portal
-        plugin = self.plugin
-
-        plugin_view = plugin.view()
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.typebutton, 'medium')
+    def test_plugin_view_annotation(self):
+        plugin_view = self.plugin.view()
+        view = self.portal.restrictedTraverse(plugin_view)
+        self.assertEqual(view.annotation(), 'bubble')
 
         # Change to vertical
         self.settings.typebutton = 'vertical'
-        view = portal.restrictedTraverse(plugin_view)
-        self.assertEqual(view.typebutton, 'tall')
+        self.assertEqual(view.annotation(), 'vertical-bubble')
