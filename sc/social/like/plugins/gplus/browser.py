@@ -1,50 +1,44 @@
 # -*- coding:utf-8 -*-
+"""Helper view to generate Google+ widget.
+
+More information:
+* https://developers.google.com/+/web/share/
+"""
+from Acquisition import aq_inner
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.utils import get_language
 from urllib import urlencode
-from zope.component import getMultiAdapter
 
 
 class PluginView(BrowserView):
+    """Helper view to generate Google+ widget."""
 
-    gp_enabled = True
-    language = 'en'
-
-    metadata = ViewPageTemplateFile('templates/metadata.pt')
+    metadata = None
     plugin = ViewPageTemplateFile('templates/plugin.pt')
     link = ViewPageTemplateFile('templates/link.pt')
 
     def __init__(self, context, request):
-        self.context = context
+        self.context = aq_inner(context)
         self.request = request
-        # FIXME: the following could rise unexpected exceptions
-        #        move it to a new setup() method
-        #        see: http://docs.plone.org/develop/plone/views/browserviews.html#creating-a-view
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.portal = self.portal_state.portal()
-        self.site_url = self.portal_state.portal_url()
-        self.portal_title = self.portal_state.portal_title()
-        self.url = context.absolute_url()
-        self.language = get_language(context)
 
-    @property
-    def typebutton(self):
+    def portal_url(self):
+        portal = api.portal.get()
+        return portal.absolute_url()
+
+    def language(self):
+        return get_language(self.context)
+
+    def annotation(self):
+        """Return annotation to display next to the button."""
         record = ISocialLikeSettings.__identifier__ + '.typebutton'
-        try:
-            typebutton = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            typebutton = ''
+        typebutton = api.portal.get_registry_record(record, default='')
 
-        if typebutton == 'horizontal':
-            typebutton = 'medium'
-        else:
-            typebutton = 'tall'
-        return typebutton
+        if typebutton == 'vertical':
+            return 'vertical-bubble'
+        return 'bubble'
 
     def share_link(self):
         # Does we need any special language handler?

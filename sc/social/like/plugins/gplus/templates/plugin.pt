@@ -1,8 +1,7 @@
-<tal:gp>
-    <!-- Google+ -->
-    <div class="g-plusone"
-       tal:attributes="data-annotation string:bubble;
-                       data-size view/typebutton;
-                       data-href view/url;
-                       data-lang view/language;"></div>
-</tal:gp>
+<!-- Google+ -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<div class="g-plus"
+    data-action="share"
+    tal:attributes="data-annotation view/annotation;
+                    data-href context/absolute_url">
+</div>
