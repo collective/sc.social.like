@@ -112,7 +112,16 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
     def test_metadata_viewlet_rendering(self):
         viewlet = self.viewlet(self.obj)
         html = viewlet.render()
-        self.assertGreater(len(html), 0)
+        self.assertIn('og:title', html)
+        self.assertIn('og:description', html)
+        self.assertIn('og:type', html)
+        self.assertIn('og:url', html)
+        self.assertIn('og:image', html)
+        self.assertIn('og:image:width', html)
+        self.assertIn('og:image:height', html)
+        self.assertIn('og:image:type', html)
+        self.assertIn('og:locale', html)
+        self.assertIn('og:site_name', html)
 
     @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
     def test_metadata_viewlet_rendering_performance(self):

@@ -12,6 +12,6 @@
         <img src="share-linkedin.png"
              alt="Share on Facebook"
              i18n:attributes="alt"
-             tal:attributes="src string:${view/site_url}/++resource++sl_images/share-facebook.png" />
+             tal:attributes="src string:${view/portal_url}/++resource++sl_images/share-facebook.png" />
     </a>
 </tal:fb>

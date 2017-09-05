@@ -1,5 +1,16 @@
-<tal:metas i18n:domain="sc.social.like" tal:condition="view/enabled">
-  <tal:plugin tal:repeat="plugin view/plugins">
-    <tal:replace replace="structure plugin/html" />
-  </tal:plugin>
-</tal:metas>
+<meta property="og:title" tal:attributes="content view/title" />
+<meta property="og:description" tal:attributes="content view/description" />
+<meta property="og:type" tal:attributes="content view/type" />
+<meta property="og:url" tal:attributes="content view/canonical_url" />
+<meta property="og:image" tal:attributes="content view/image_url" />
+<tal:image tal:condition="nocall:view/image">
+  <meta property="og:image:height" tal:attributes="content view/image_height" />
+  <meta property="og:image:width" tal:attributes="content view/image_width" />
+  <meta property="og:image:type" tal:attributes="content view/image_type" />
+</tal:image>
+<meta property="og:locale" tal:attributes="content view/language" />
+<meta property="og:site_name" tal:attributes="content view/site_name" />
+
+<tal:plugin tal:repeat="plugin view/plugins">
+  <tal:replace replace="structure plugin/html" />
+</tal:plugin>

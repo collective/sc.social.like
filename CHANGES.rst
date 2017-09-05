@@ -3,10 +3,13 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.10.2 (unreleased)
+2.11b1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
 - Code clean up and refactor.
+  [hvelarde]
+
+- Open Graph properties where moved out of the Facebook plugin as they are used by other plugins.
   [hvelarde]
 
 - Twitter widgets now respect users' privacy.
