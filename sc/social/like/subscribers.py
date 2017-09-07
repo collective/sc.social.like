@@ -15,10 +15,15 @@ available and we can not get its virtual path.
 """
 from plone import api
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.WorkflowCore import WorkflowException
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
+from utils import get_content_image
+from utils import validate_description_social
+from utils import validate_image_social
+from utils import validate_title_social
 from zope.component import getUtility
 from zope.schema.interfaces import WrongType
 
@@ -107,3 +112,44 @@ def assign_canonical_url(obj, event):
             'Canonical domain not set in Social Media configlet; '
             "Facebook's Open Graph canonical URL (og:orl) will not be available"
         )
+
+
+def social_content_check(obj, event):
+
+    request = obj.REQUEST
+    verify_state = 'published'
+
+    if getattr(event, 'status', None):
+        state = event.status['review_state']
+    else:
+        try:
+            state = api.content.get_state(obj)
+        except WorkflowException:
+            state = ''
+            verify_state = ''
+
+    if obj.restrictedTraverse('@@social_likes_view').enabled \
+            and state == verify_state:
+
+        title = getattr(obj, 'title', None)
+        v_title = validate_title_social(title)
+        if title and v_title:
+            msg = v_title
+            api.portal.show_message(message=msg, request=request, type='warning')
+
+        try:
+            description = obj.Description()
+            v_description = validate_description_social(description)
+            if description and v_description:
+                msg = v_description
+                api.portal.show_message(message=msg, request=request, type='warning')
+        except AttributeError:
+            pass
+
+        image = get_content_image(obj)
+        if image:
+            v_image = validate_image_social(image)
+            if v_image:
+                msg = v_image
+                logger.info(msg)
+                api.portal.show_message(message=msg, request=request, type='warning')

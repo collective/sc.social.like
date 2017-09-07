@@ -112,3 +112,65 @@ def get_valid_objects(brains):
             logger.warn(msg.format(b.getPath()))
             continue
         yield obj
+
+
+def validate_title_social(value):
+    """Check if title field have more than 70 characters."""
+    if len(value) > 70:
+        msg = u'Title have more than 70 characters.'
+        logger.info(msg)
+        return msg
+    return
+
+
+def validate_description_social(value):
+    """Check if description field have more than 200 characters."""
+
+    if value and len(value) > 200:
+        msg = u'Description have more than 200 characters.'
+        logger.info(msg)
+        return msg
+
+    elif value and (value.count('.') < 2 or value.count('.') > 2):
+        msg = u'Description should contain at least 2 phrases.'
+        logger.info(msg)
+        return msg
+
+    return
+
+
+def validate_image_social(value):
+    """Check if image be in formats mime type, dimensions and size."""
+
+    list_mimetypes = ['image/jpeg', 'image/png', 'image/gif', ' image/webp']
+
+    type = getattr(value, 'mimetype', None)
+    if type not in list_mimetypes:
+        msg = u'Image mime type not supported: {0}'
+        logger.info(msg.format(type))
+        return msg.format(type)
+
+    size = value.size
+    if size > 5242880:
+        msg = u'Image size should be less than 5MB.'
+        logger.info(msg)
+        return msg
+
+    width, height = (value.width, value.height)
+    if width < 600 and height < 315:
+        msg = u'Image dimensions should be at least 600 x 315.'
+        logger.info(msg)
+        return msg
+
+    if get_ratio(width, height) < 1.33:
+        msg = u'Image aspect ratio should be 1.33:1 at least.'
+        logger.info(msg)
+        return msg
+
+
+def get_ratio(w, h):
+    """Calculate aspect ratio."""
+    w = float(w)
+    h = float(h)
+    r = w % h or w
+    return '%s' % float((w / r) / (h / r))

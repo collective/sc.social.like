@@ -34,6 +34,34 @@
       handler=".subscribers.assign_canonical_url"
       />
 
+  <subscriber
+      zcml:condition="installed plone.app.dexterity"
+      for="plone.dexterity.interfaces.IDexterityContent
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".subscribers.social_content_check"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.dexterity"
+      for="plone.dexterity.interfaces.IDexterityContent
+           plone.dexterity.interfaces.IEditFinishedEvent"
+      handler=".subscribers.social_content_check"
+      />
+
+  <subscriber
+      zcml:condition="installed Products.ATContentTypes"
+      for="Products.ATContentTypes.interfaces.IATContentType
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".subscribers.social_content_check"
+      />
+
+  <subscriber
+      zcml:condition="installed Products.ATContentTypes"
+      for="Products.ATContentTypes.interfaces.IATContentType
+           Products.Archetypes.interfaces.IObjectEditedEvent"
+      handler=".subscribers.social_content_check"
+      />
+
   <include file="behaviors.zcml" />
 
 </configure>
