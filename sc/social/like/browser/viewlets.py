@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_inner
 from plone import api
-from plone.api.exc import InvalidParameterError
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize.view import memoize
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.interfaces import ISocialLikeSettings
+from sc.social.like.plugins.facebook.utils import facebook_language
+from sc.social.like.utils import get_content_image
+from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 
 
 class BaseLikeViewlet(ViewletBase):
@@ -58,14 +64,29 @@ class BaseLikeViewlet(ViewletBase):
 
 
 class SocialMetadataViewlet(BaseLikeViewlet):
-    """Viewlet used to insert metadata into page header
-    """
-    render = ViewPageTemplateFile('templates/metadata.pt')
+    """Open Graph properties and plugin specific metadata."""
+
+    index = ViewPageTemplateFile('templates/metadata.pt')
     render_method = 'metadata'
 
+    def update(self):
+        registry = getUtility(IRegistry)
+        self.settings = registry.forInterface(ISocialLikeSettings)
+        self.helper = getMultiAdapter((self.context, self.request), name=u'sl_helper')
+        self.title = self.context.Title()
+        self.description = self.context.Description()
+        portal = api.portal.get()
+        self.site_name = portal.Title()
+        self.language = facebook_language(get_language(self.context), 'en_US')
+        self.image = get_content_image(self.context)
+
+    def render(self):
+        if self.enabled():
+            return self.index()
+        return ''
+
     def enabled(self):
-        """Validates if the viewlet should be enabled for this context
-        """
+        """Check if the viewlet should be shown in this context."""
         template = self.helper.view_template_id()
         # If using folder_full_view or all_content, we add metadata
         # in order to proper display share buttons for
@@ -74,10 +95,48 @@ class SocialMetadataViewlet(BaseLikeViewlet):
             return True
         return self.helper.enabled(self.view)
 
+    def portal_url(self):
+        portal = api.portal.get()
+        return portal.absolute_url()
+
+    def canonical_url(self):
+        if ISocialMedia.providedBy(self.context):
+            return self.context.canonical_url
+        return self.context.absolute_url()
+
+    def image_url(self):
+        """Return lead image URL."""
+        img = self.image
+        if img:
+            return img.url
+        else:
+            return self.portal_url() + '/logo.png'
+
+    def image_width(self):
+        return self.image.width
+
+    def image_height(self):
+        return self.image.height
+
+    def image_type(self):
+        """Return lead image MIME type."""
+        try:
+            return self.image.content_type  # Dexterity
+        except AttributeError:
+            return self.image.mimetype  # Archetypes
+
+    def type(self):
+        context = aq_inner(self.context)
+        context_state = api.content.get_view(
+            'plone_context_state', context, self.request)
+        if context_state.is_portal_root():
+            return 'website'
+        return 'article'
+
 
 class SocialLikesViewlet(BaseLikeViewlet):
-    """Viewlet used to display the buttons
-    """
+    """Viewlet used to display the buttons."""
+
     render = ViewPageTemplateFile('templates/sociallikes.pt')
 
     @property
@@ -89,10 +148,7 @@ class SocialLikesViewlet(BaseLikeViewlet):
 
         # site specific privacy level check
         record = ISocialLikeSettings.__identifier__ + '.do_not_track'
-        try:
-            do_not_track = api.portal.get_registry_record(record)
-        except InvalidParameterError:
-            do_not_track = False
+        do_not_track = api.portal.get_registry_record(record, default=False)
 
         if do_not_track:
             return 'link'

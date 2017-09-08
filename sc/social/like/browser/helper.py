@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from plone import api
 from plone.app.layout.globals.interfaces import IViewView
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
@@ -8,7 +9,6 @@ from Products.Five import BrowserView
 from sc.social.like.interfaces import IHelperView
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins import IPlugin
-from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
 from zope.component import getUtility
 from zope.interface import implementer
@@ -16,18 +16,11 @@ from zope.interface import implementer
 
 @implementer(IHelperView)
 class HelperView(BrowserView):
-    """ Social Like configuration helpers
-    """
+    """Social Like configuration helpers."""
 
-    def __init__(self, context, request, *args, **kwargs):
-        super(HelperView, self).__init__(context, request, *args, **kwargs)
-        context = aq_inner(context)
-        self.context = context
-        self.portal_state = getMultiAdapter((self.context, self.request),
-                                            name=u'plone_portal_state')
-        self.portal = self.portal_state.portal()
-        self.context_state = getMultiAdapter((self.context, self.request),
-                                             name=u'plone_context_state')
+    def __init__(self, context, request):
+        self.context = aq_inner(context)
+        self.request = request
 
     @memoize_contextless
     def configs(self):
@@ -76,4 +69,6 @@ class HelperView(BrowserView):
 
     @memoize
     def view_template_id(self):
-        return self.context_state.view_template_id()
+        context_state = api.content.get_view(
+            'plone_context_state', self.context, self.request)
+        return context_state.view_template_id()
