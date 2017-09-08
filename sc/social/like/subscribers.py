@@ -15,7 +15,6 @@ available and we can not get its virtual path.
 """
 from plone import api
 from plone.registry.interfaces import IRegistry
-from Products.CMFCore.WorkflowCore import WorkflowException
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -24,7 +23,9 @@ from utils import get_content_image
 from utils import validate_description_social
 from utils import validate_image_social
 from utils import validate_title_social
+from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component.interfaces import ComponentLookupError
 from zope.schema.interfaces import WrongType
 
 import traceback
@@ -117,19 +118,13 @@ def assign_canonical_url(obj, event):
 def social_content_check(obj, event):
 
     request = obj.REQUEST
-    verify_state = 'published'
+    try:
+        view = getMultiAdapter((obj, request), name="social_likes_view")
+    except ComponentLookupError:
+        logger.info('not instaled.')
+        return
 
-    if getattr(event, 'status', None):
-        state = event.status['review_state']
-    else:
-        try:
-            state = api.content.get_state(obj)
-        except WorkflowException:
-            state = ''
-            verify_state = ''
-
-    if obj.restrictedTraverse('@@social_likes_view').enabled \
-            and state == verify_state:
+    if view.enabled:
 
         title = getattr(obj, 'title', None)
         v_title = validate_title_social(title)
@@ -153,3 +148,12 @@ def social_content_check(obj, event):
                 msg = v_image
                 logger.info(msg)
                 api.portal.show_message(message=msg, request=request, type='warning')
+
+
+def social_content_check_workflow(obj, event):
+
+    if event.status['review_state'] not in ('published', ):
+        # don't a assign a canonical URL as this is not a public state
+        return
+    else:
+        social_content_check(obj, event)
