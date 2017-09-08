@@ -120,7 +120,7 @@ def social_content_check(obj, event):
 
     request = obj.REQUEST
     try:
-        view = getMultiAdapter((obj, request), name="social_likes_view")
+        view = getMultiAdapter((obj, request), name='social_likes_view')
     except ComponentLookupError:
         logger.info('not instaled.')
         return

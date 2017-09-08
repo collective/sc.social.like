@@ -173,4 +173,4 @@ def get_ratio(w, h):
     w = float(w)
     h = float(h)
     r = w % h or w
-    return '%s' % float((w / r) / (h / r))
+    return '{}'.format(float((w / r) / (h / r)))
