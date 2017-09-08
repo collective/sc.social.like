@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.registry import field
 from plone.registry.interfaces import IRegistry
 from plone.registry.record import Record
 from plone.supermodel import model
+from Products.statusmessages.interfaces import IStatusMessage
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
+from sc.social.like.testing import load_image
+from sc.social.like.tests.api_hacks import set_image_field
 from zope import schema
 from zope.component import getUtility
 
@@ -27,6 +31,14 @@ class ControlPanelTestCase(unittest.TestCase):
         self.request = self.layer['request']
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
+
+        with api.env.adopt_roles(['Manager']):
+            self.obj = api.content.create(self.portal, 'News Item', 'test-1')
+            self.obj.setTitle('Etiam pulvinar rutrum diam vitae malesuada')
+            self.obj.setDescription(u'Aenean maximus eu eros in congue. '
+                                    u'Etiam maximus congue purus quis pellentesque.')
+            set_image_field(self.obj, load_image(1024, 768), 'image/png')
+            self.obj.reindexObject()
 
     def test_event_with_package_uninstalled(self):
         self.registry.records['foo'] = Record(field.ASCIILine(), 'foo')
@@ -69,3 +81,60 @@ class ControlPanelTestCase(unittest.TestCase):
         # both records must be unchanged
         self.assertEqual(self.settings.twitter_username, '')
         self.assertEqual(self.registry['plone.twitter_username'], '')
+
+    def test_validate_social_content_publish_valid(self):
+
+        request = self.obj.REQUEST
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.obj, 'publish')
+
+        messages = IStatusMessage(request).show()
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].message, u'Item state changed.')
+        self.assertEqual(messages[0].type, u'info')
+
+    # def test_validate_social_content_edit_valid(self):
+    #
+    #     with api.env.adopt_roles(['Manager']):
+    #         self.obj.setTitle('Phasellus tempus sagittis vulputate')
+    #
+    #     messages = IStatusMessage(self.request).show()
+    #     self.assertEqual(len(messages), 1)
+    #     self.assertEqual(messages[0].message, u'Item state changed.')
+    #     self.assertEqual(messages[0].type, u'info')
+
+    # def test_validate_social_content_publish_title_invalid(self):
+    #
+    #     self.obj.setTitle('Duis vestibulum arcu eu risus viverra semper. Donec scelerisque '
+    #                       'venenatis libero, quis pellentesque dui fringilla eget.')
+    #
+    #     api.content.transition(self.obj, 'publish')
+    #
+    #     messages = IStatusMessage(self.request).show()
+    #     self.assertEqual(len(messages), 2)
+    #     self.assertEqual(messages[1].message, u'Title have more than 70 characters.')
+    #     self.assertEqual(messages[1].type, u'warning')
+    #
+    # def test_validate_social_content_publish_description_invalid(self):
+    #
+    #     self.obj.setDescription('Duis vestibulum arcu eu risus viverra semper. Donec scelerisque '
+    #                             'venenatis libero, quis pellentesque dui fringilla eget.')
+    #
+    #     api.content.transition(self.obj, 'publish')
+    #
+    #     messages = IStatusMessage(self.request).show()
+    #     self.assertEqual(len(messages), 2)
+    #     self.assertEqual(messages[1].message, u'Title have more than 70 characters.')
+    #     self.assertEqual(messages[1].type, u'warning')
+    #
+    # def test_validate_social_content_publish_image_dimension_invalid(self):
+    #
+    #     set_image_field(self.obj, load_image(200, 200), 'image/png')
+    #
+    #     api.content.transition(self.obj, 'publish')
+    #
+    #     messages = IStatusMessage(self.request).show()
+    #     self.assertEqual(len(messages), 2)
+    #     self.assertEqual(messages[1].message, u'Title have more than 70 characters.')
+    #     self.assertEqual(messages[1].type, u'warning')
