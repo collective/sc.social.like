@@ -116,6 +116,7 @@ def assign_canonical_url(obj, event):
 
 
 def social_content_check(obj, event):
+    """Check if content is valid if enabled in sc.social.content, in action when edit."""
 
     request = obj.REQUEST
     try:
@@ -151,6 +152,7 @@ def social_content_check(obj, event):
 
 
 def social_content_check_workflow(obj, event):
+    """Check if content is valid if enabled in sc.social.content, is published."""
 
     if event.status['review_state'] not in ('published', ):
         # don't a assign a canonical URL as this is not a public state
