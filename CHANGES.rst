@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.11b1 (unreleased)
+2.11b1 (2017-09-08)
 ^^^^^^^^^^^^^^^^^^^
 
 - Code clean up and refactor.
