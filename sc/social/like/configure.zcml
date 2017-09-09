@@ -48,20 +48,6 @@
       handler=".subscribers.social_content_check"
       />
 
-  <subscriber
-      zcml:condition="installed Products.ATContentTypes"
-      for="Products.ATContentTypes.interfaces.IATContentType
-           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-      handler=".subscribers.social_content_check_workflow"
-      />
-
-  <subscriber
-      zcml:condition="installed Products.ATContentTypes"
-      for="Products.ATContentTypes.interfaces.IATContentType
-           Products.Archetypes.interfaces.IObjectEditedEvent"
-      handler=".subscribers.social_content_check"
-      />
-
   <include file="behaviors.zcml" />
 
 </configure>
