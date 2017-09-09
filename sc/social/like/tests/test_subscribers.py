@@ -41,7 +41,7 @@ class ControlPanelTestCase(unittest.TestCase):
             self.news_item.description = u'Aenean maximus eu eros in congue. '\
                                          u'Etiam maximus congue purus quis pellentesque.'
             self.news_item.text = RichTextValue(
-                u"Lorem ipsum",
+                u'Lorem ipsum',
                 'text/plain',
                 'text/html'
             )
