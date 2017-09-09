@@ -35,14 +35,14 @@
       />
 
   <subscriber
-      zcml:condition="installed plone.app.dexterity"
+      zcml:condition="installed plone.app.contenttypes"
       for="plone.dexterity.interfaces.IDexterityContent
            Products.DCWorkflow.interfaces.IAfterTransitionEvent"
       handler=".subscribers.social_content_check_workflow"
       />
 
   <subscriber
-      zcml:condition="installed plone.app.dexterity"
+      zcml:condition="installed plone.app.contenttypes"
       for="plone.dexterity.interfaces.IDexterityContent
            plone.dexterity.interfaces.IEditFinishedEvent"
       handler=".subscribers.social_content_check"
