@@ -144,23 +144,18 @@ def validate_image_social(value):
 
     list_mimetypes = ['image/jpeg', 'image/png', 'image/gif', ' image/webp']
 
-    type = getattr(value, 'mimetype', None)
-    if type not in list_mimetypes:
+    if value.mimetype not in list_mimetypes:
         msg = u'Image mime type not supported: {0}'
         logger.info(msg.format(type))
         return msg.format(type)
 
-    try:
-        size = value.size
-    except AttributeError:
-        size = value.data.size
-    if size > 5242880:
+    if value.data.size > 5242880:
         msg = u'Image size should be less than 5MB.'
         logger.info(msg)
         return msg
 
     width, height = (value.width, value.height)
-    if width < 600 and height < 315:
+    if width < 600 or height < 315:
         msg = u'Image dimensions should be at least 600 x 315.'
         logger.info(msg)
         return msg
@@ -175,5 +170,5 @@ def get_ratio(w, h):
     """Calculate aspect ratio."""
     w = float(w)
     h = float(h)
-    r = w % h or w
-    return '{}'.format(float((w / r) / (h / r)))
+    r = (w % h) or w
+    return '{0:.2f}'.format(float((w / r) / (h / r)))
