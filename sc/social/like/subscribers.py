@@ -118,7 +118,8 @@ def assign_canonical_url(obj, event):
 def social_content_check(obj, event):
     """Check if content is valid if enabled in sc.social.content, in action when edit."""
 
-    request = obj.REQUEST
+    request = event.object.REQUEST
+
     try:
         view = getMultiAdapter((obj, request), name='social_likes_view')
     except ComponentLookupError:
