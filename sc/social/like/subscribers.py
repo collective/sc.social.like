@@ -26,6 +26,7 @@ from sc.social.like.utils import validate_title_social
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
+from zope.globalrequest import getRequest
 from zope.schema.interfaces import WrongType
 
 import traceback
@@ -118,7 +119,7 @@ def assign_canonical_url(obj, event):
 def social_content_check(obj, event):
     """Check if content is valid if enabled in sc.social.content, in action when edit."""
 
-    request = event.object.REQUEST
+    request = getRequest()
 
     try:
         view = getMultiAdapter((obj, request), name='social_likes_view')

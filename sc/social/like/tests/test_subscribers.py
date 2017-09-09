@@ -16,6 +16,7 @@ from sc.social.like.tests.api_hacks import set_image_field
 from zope import schema
 from zope.component import getUtility
 from zope.event import notify
+from zope.globalrequest import getRequest
 
 import unittest
 
@@ -94,7 +95,7 @@ class ControlPanelTestCase(unittest.TestCase):
         with api.env.adopt_roles(['Manager']):
             api.content.transition(self.news_item, 'publish')
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 0)
 
     def test_validate_social_content_publish_invalid(self):
@@ -108,7 +109,7 @@ class ControlPanelTestCase(unittest.TestCase):
             set_image_field(self.news_item, load_image(200, 200), 'image/png')
             api.content.transition(self.news_item, 'publish')
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 3)
         self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
         self.assertEqual(messages[0].type, u'warning')
@@ -126,7 +127,7 @@ class ControlPanelTestCase(unittest.TestCase):
                                    u'fringilla eget.'
             api.content.transition(self.news_item, 'publish')
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
         self.assertEqual(messages[0].type, u'warning')
@@ -137,7 +138,7 @@ class ControlPanelTestCase(unittest.TestCase):
             self.news_item.description = u'Duis vestibulum arcu eu risus viverra semper.'
             api.content.transition(self.news_item, 'publish')
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].message, u'Description should contain at least 2 phrases.')
         self.assertEqual(messages[0].type, u'warning')
@@ -149,7 +150,7 @@ class ControlPanelTestCase(unittest.TestCase):
             set_image_field(self.news_item, load_image(200, 200), 'image/png')
             api.content.transition(self.news_item, 'publish')
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].message, u'Image dimensions should be at least 600 x 315.')
         self.assertEqual(messages[0].type, u'warning')
@@ -165,7 +166,7 @@ class ControlPanelTestCase(unittest.TestCase):
             set_image_field(self.news_item, load_image(1920, 1080), 'image/png')
             notify(EditFinishedEvent(self.news_item))
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 0)
 
     def test_validate_social_content_edit_invalid(self):
@@ -180,7 +181,7 @@ class ControlPanelTestCase(unittest.TestCase):
             set_image_field(self.news_item, load_image(200, 200), 'image/png')
             notify(EditFinishedEvent(self.news_item))
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 3)
         self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
         self.assertEqual(messages[0].type, u'warning')
@@ -199,7 +200,7 @@ class ControlPanelTestCase(unittest.TestCase):
                                    u'fringilla eget.'
             notify(EditFinishedEvent(self.news_item))
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
         self.assertEqual(messages[0].type, u'warning')
@@ -211,7 +212,7 @@ class ControlPanelTestCase(unittest.TestCase):
             self.news_item.description = u'Duis vestibulum arcu eu risus viverra semper.'
             notify(EditFinishedEvent(self.news_item))
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].message, u'Description should contain at least 2 phrases.')
         self.assertEqual(messages[0].type, u'warning')
@@ -224,7 +225,7 @@ class ControlPanelTestCase(unittest.TestCase):
             set_image_field(self.news_item, load_image(200, 200), 'image/png')
             notify(EditFinishedEvent(self.news_item))
 
-        messages = IStatusMessage(self.request).show()
+        messages = IStatusMessage(getRequest()).show()
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].message, u'Image dimensions should be at least 600 x 315.')
         self.assertEqual(messages[0].type, u'warning')
