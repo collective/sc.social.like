@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from plone.app.textfield.value import RichTextValue
+from plone.dexterity.events import EditFinishedEvent
 from plone.registry import field
 from plone.registry.interfaces import IRegistry
 from plone.registry.record import Record
@@ -13,6 +15,7 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 from zope import schema
 from zope.component import getUtility
+from zope.event import notify
 
 import unittest
 
@@ -33,12 +36,16 @@ class ControlPanelTestCase(unittest.TestCase):
         self.settings = self.registry.forInterface(ISocialLikeSettings)
 
         with api.env.adopt_roles(['Manager']):
-            self.obj = api.content.create(self.portal, 'News Item', 'test-1')
-            self.obj.setTitle('Etiam pulvinar rutrum diam vitae malesuada')
-            self.obj.setDescription(u'Aenean maximus eu eros in congue. '
-                                    u'Etiam maximus congue purus quis pellentesque.')
-            set_image_field(self.obj, load_image(1024, 768), 'image/png')
-            self.obj.reindexObject()
+            self.news_item = api.content.create(self.portal, 'News Item', 'test-1')
+            self.news_item.title = u'Etiam pulvinar rutrum diam vitae malesuada'
+            self.news_item.description = u'Aenean maximus eu eros in congue. '\
+                                         u'Etiam maximus congue purus quis pellentesque.'
+            self.news_item.text = RichTextValue(
+                u"Lorem ipsum",
+                'text/plain',
+                'text/html'
+            )
+            set_image_field(self.news_item, load_image(1024, 768), 'image/png')
 
     def test_event_with_package_uninstalled(self):
         self.registry.records['foo'] = Record(field.ASCIILine(), 'foo')
@@ -84,57 +91,140 @@ class ControlPanelTestCase(unittest.TestCase):
 
     def test_validate_social_content_publish_valid(self):
 
-        request = self.obj.REQUEST
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 0)
+
+    def test_validate_social_content_publish_invalid(self):
 
         with api.env.adopt_roles(['Manager']):
-            api.content.transition(self.obj, 'publish')
+            self.news_item.title = u'Duis vestibulum arcu eu risus viverra semper. Donec ' \
+                                   u'scelerisque venenatis libero, quis pellentesque dui' \
+                                   u'fringilla eget.'
+            self.news_item.description = u'Duis vestibulum arcu eu risus viverra semper.'
+            self.news_item.image = None
+            set_image_field(self.news_item, load_image(200, 200), 'image/png')
+            api.content.transition(self.news_item, 'publish')
 
-        messages = IStatusMessage(request).show()
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 3)
+        self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
+        self.assertEqual(messages[0].type, u'warning')
+        self.assertEqual(messages[1].message, u'Description should contain at least 2 phrases.')
+        self.assertEqual(messages[1].type, u'warning')
+        self.assertEqual(messages[2].message, u'Image '
+                                              u'dimensions should be at least 600 x 315.')
+        self.assertEqual(messages[2].type, u'warning')
+
+    def test_validate_social_content_publish_only_title_invalid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            self.news_item.title = u'Duis vestibulum arcu eu risus viverra semper. Donec ' \
+                                   u'scelerisque venenatis libero, quis pellentesque dui' \
+                                   u'fringilla eget.'
+            api.content.transition(self.news_item, 'publish')
+
+        messages = IStatusMessage(self.request).show()
         self.assertEqual(len(messages), 1)
-        self.assertEqual(messages[0].message, u'Item state changed.')
-        self.assertEqual(messages[0].type, u'info')
+        self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
+        self.assertEqual(messages[0].type, u'warning')
 
-    # def test_validate_social_content_edit_valid(self):
-    #
-    #     with api.env.adopt_roles(['Manager']):
-    #         self.obj.setTitle('Phasellus tempus sagittis vulputate')
-    #
-    #     messages = IStatusMessage(self.request).show()
-    #     self.assertEqual(len(messages), 1)
-    #     self.assertEqual(messages[0].message, u'Item state changed.')
-    #     self.assertEqual(messages[0].type, u'info')
+    def test_validate_social_content_publish_only_description_invalid(self):
 
-    # def test_validate_social_content_publish_title_invalid(self):
-    #
-    #     self.obj.setTitle('Duis vestibulum arcu eu risus viverra semper. Donec scelerisque '
-    #                       'venenatis libero, quis pellentesque dui fringilla eget.')
-    #
-    #     api.content.transition(self.obj, 'publish')
-    #
-    #     messages = IStatusMessage(self.request).show()
-    #     self.assertEqual(len(messages), 2)
-    #     self.assertEqual(messages[1].message, u'Title have more than 70 characters.')
-    #     self.assertEqual(messages[1].type, u'warning')
-    #
-    # def test_validate_social_content_publish_description_invalid(self):
-    #
-    #     self.obj.setDescription('Duis vestibulum arcu eu risus viverra semper. Donec scelerisque '
-    #                             'venenatis libero, quis pellentesque dui fringilla eget.')
-    #
-    #     api.content.transition(self.obj, 'publish')
-    #
-    #     messages = IStatusMessage(self.request).show()
-    #     self.assertEqual(len(messages), 2)
-    #     self.assertEqual(messages[1].message, u'Title have more than 70 characters.')
-    #     self.assertEqual(messages[1].type, u'warning')
-    #
-    # def test_validate_social_content_publish_image_dimension_invalid(self):
-    #
-    #     set_image_field(self.obj, load_image(200, 200), 'image/png')
-    #
-    #     api.content.transition(self.obj, 'publish')
-    #
-    #     messages = IStatusMessage(self.request).show()
-    #     self.assertEqual(len(messages), 2)
-    #     self.assertEqual(messages[1].message, u'Title have more than 70 characters.')
-    #     self.assertEqual(messages[1].type, u'warning')
+        with api.env.adopt_roles(['Manager']):
+            self.news_item.description = u'Duis vestibulum arcu eu risus viverra semper.'
+            api.content.transition(self.news_item, 'publish')
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].message, u'Description should contain at least 2 phrases.')
+        self.assertEqual(messages[0].type, u'warning')
+
+    def test_validate_social_content_publish_only_image_invalid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            self.news_item.image = None
+            set_image_field(self.news_item, load_image(200, 200), 'image/png')
+            api.content.transition(self.news_item, 'publish')
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].message, u'Image dimensions should be at least 600 x 315.')
+        self.assertEqual(messages[0].type, u'warning')
+
+    def test_validate_social_content_edit_valid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+            self.news_item.title = u'Phasellus tempus sagittis vulputate'
+            self.news_item.description = u'Aenean porta lorem enim, eget dapibus nulla ' \
+                                         u'consectetur vel. Vivamus placerat ligula ac justo ' \
+                                         u'hendrerit, efficitur posuere velit ultrices.'
+            set_image_field(self.news_item, load_image(1920, 1080), 'image/png')
+            notify(EditFinishedEvent(self.news_item))
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 0)
+
+    def test_validate_social_content_edit_invalid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+            self.news_item.title = u'Duis vestibulum arcu eu risus viverra semper. Donec ' \
+                                   u'scelerisque venenatis libero, quis pellentesque dui' \
+                                   u' fringilla eget.'
+            self.news_item.description = u'Duis vestibulum arcu eu risus viverra semper.'
+            self.news_item.image = None
+            set_image_field(self.news_item, load_image(200, 200), 'image/png')
+            notify(EditFinishedEvent(self.news_item))
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 3)
+        self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
+        self.assertEqual(messages[0].type, u'warning')
+        self.assertEqual(messages[1].message, u'Description should contain at least 2 phrases.')
+        self.assertEqual(messages[1].type, u'warning')
+        self.assertEqual(messages[2].message, u'Image '
+                                              u'dimensions should be at least 600 x 315.')
+        self.assertEqual(messages[2].type, u'warning')
+
+    def test_validate_social_content_edit_only_title_invalid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+            self.news_item.title = u'Duis vestibulum arcu eu risus viverra semper. Donec ' \
+                                   u'scelerisque venenatis libero, quis pellentesque dui' \
+                                   u'fringilla eget.'
+            notify(EditFinishedEvent(self.news_item))
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].message, u'Title have more than 70 characters.')
+        self.assertEqual(messages[0].type, u'warning')
+
+    def test_validate_social_content_edit_only_description_invalid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+            self.news_item.description = u'Duis vestibulum arcu eu risus viverra semper.'
+            notify(EditFinishedEvent(self.news_item))
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].message, u'Description should contain at least 2 phrases.')
+        self.assertEqual(messages[0].type, u'warning')
+
+    def test_validate_social_content_edit_image_invalid(self):
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+            self.news_item.image = None
+            set_image_field(self.news_item, load_image(200, 200), 'image/png')
+            notify(EditFinishedEvent(self.news_item))
+
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(messages[0].message, u'Image dimensions should be at least 600 x 315.')
+        self.assertEqual(messages[0].type, u'warning')
