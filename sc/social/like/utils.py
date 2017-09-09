@@ -149,7 +149,11 @@ def validate_image_social(value):
         logger.info(msg.format(type))
         return msg.format(type)
 
-    if value.data.size > 5242880:
+    try:
+        size = value.size
+    except AttributeError:
+        size = value.data.size
+    if size > 5242880:
         msg = u'Image size should be less than 5MB.'
         logger.info(msg)
         return msg
