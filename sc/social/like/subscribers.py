@@ -19,10 +19,10 @@ from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
-from utils import get_content_image
-from utils import validate_description_social
-from utils import validate_image_social
-from utils import validate_title_social
+from sc.social.like.utils import get_content_image
+from sc.social.like.utils import validate_description_social
+from sc.social.like.utils import validate_image_social
+from sc.social.like.utils import validate_title_social
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
