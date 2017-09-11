@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.11b2 (unreleased)
+2.11b2 (2017-09-11)
 ^^^^^^^^^^^^^^^^^^^
 
 - Avoid ``KeyError`` when upgrading the package from previous versions.
