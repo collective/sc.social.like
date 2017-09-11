@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.11b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Avoid ``KeyError`` when upgrading the package from previous versions.
+  [hvelarde]
 
 
 2.11b1 (2017-09-08)
