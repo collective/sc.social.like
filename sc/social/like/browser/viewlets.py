@@ -71,7 +71,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
 
     def update(self):
         registry = getUtility(IRegistry)
-        self.settings = registry.forInterface(ISocialLikeSettings)
+        self.settings = registry.forInterface(ISocialLikeSettings, check=False)
         self.helper = getMultiAdapter((self.context, self.request), name=u'sl_helper')
         self.title = self.context.Title()
         self.description = self.context.Description()
