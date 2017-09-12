@@ -2,10 +2,12 @@
 """Test for the canonical URL updater form."""
 from DateTime import DateTime
 from plone import api
+from Products.SiteAccess.VirtualHostMonster import manage_addVirtualHostMonster
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import HAS_DEXTERITY
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.tests.utils import enable_social_media_behavior
+from sc.social.like.utils import get_path_to_virtual_path
 
 import unittest
 
@@ -47,7 +49,6 @@ class CanonicalURLUpdaterTestCase(unittest.TestCase):
         self.portal['baz'].effective_date = DateTime()
         self.portal['baz'].reindexObject()
 
-    @unittest.expectedFailure  # FIXME: https://github.com/collective/sc.social.like/issues/119
     def test_update_canonical_url(self):
         # canonical URL is None as we did not set up a canonical domain
         self.assertIsNone(self.portal['foo'].canonical_url)
@@ -72,3 +73,33 @@ class CanonicalURLUpdaterTestCase(unittest.TestCase):
         # canonical URL unchaged
         self.assertEqual(
             self.portal['baz'].canonical_url, 'https://example.org/plone/baz')
+
+
+class UtilPathToVirtualPathTestCase(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        app = self.layer['app']
+        portal = self.layer['portal']
+        self.request = self.layer['request']
+
+        if 'virtual_hosting' not in app.objectIds():
+            manage_addVirtualHostMonster(app, 'virtual_hosting')
+
+        with api.env.adopt_roles(['Manager']):
+            self.obj = api.content.create(portal, type='News Item', id='foo')
+            api.content.transition(self.obj, 'publish')
+
+    def test_get_path_to_virtual_path(self):
+        self.request.traverse('/plone/')
+        self.assertEqual(
+            get_path_to_virtual_path(self.request, self.obj),
+            'plone/foo')
+
+    def test_get_path_to_virtual_path_using_virtualhostmonster(self):
+        self.request.traverse(
+            '/VirtualHostBase/http/bar.com/plone/VirtualHostRoot/')
+        self.assertEqual(
+            get_path_to_virtual_path(self.request, self.obj),
+            'foo')

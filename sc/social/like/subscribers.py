@@ -19,6 +19,7 @@ from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
+from sc.social.like.utils import get_path_to_virtual_path
 from zope.component import getUtility
 from zope.schema.interfaces import WrongType
 
@@ -97,9 +98,7 @@ def assign_canonical_url(obj, event):
 
     # we can't assign a canonical URL without a canonical domain
     if canonical_domain:
-        # FIXME: we're currently ignoring the Plone site id
-        #        https://github.com/collective/sc.social.like/issues/119
-        path = '/'.join(obj.getPhysicalPath()[2:])
+        path = get_path_to_virtual_path(event.request, obj)
         obj.canonical_url = '{0}/{1}'.format(canonical_domain, path)
         logger.info('canonical_url set for {0}'.format(obj.canonical_url))
     else:

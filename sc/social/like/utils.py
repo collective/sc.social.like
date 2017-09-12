@@ -112,3 +112,11 @@ def get_valid_objects(brains):
             logger.warn(msg.format(b.getPath()))
             continue
         yield obj
+
+
+def get_path_to_virtual_path(request, item):
+    return '/'.join(
+        request.physicalPathToVirtualPath(
+            item.getPhysicalPath()
+        )
+    )
