@@ -174,5 +174,6 @@ def get_ratio(w, h):
     """Calculate aspect ratio."""
     w = float(w)
     h = float(h)
-    r = (w % h) or w
+    # FIXME: https://github.com/gforcada/flake8-pep3101/issues/16
+    r = (w % h) or w  # noqa: S001
     return '{0:.2f}'.format(float((w / r) / (h / r)))
