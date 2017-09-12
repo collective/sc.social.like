@@ -67,6 +67,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertEqual(
             self.settings.plugins_enabled, ('Facebook', 'Twitter'))
 
+    def test_validation_enabled_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'validation_enabled'))
+        self.assertTrue(self.settings.validation_enabled)
+
     def test_typebutton_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'typebutton'))
         self.assertEqual(self.settings.typebutton, u'horizontal')
@@ -112,6 +116,7 @@ class RegistryTestCase(unittest.TestCase):
         records = [
             ISocialLikeSettings.__identifier__ + '.enabled_portal_types',
             ISocialLikeSettings.__identifier__ + '.plugins_enabled',
+            ISocialLikeSettings.__identifier__ + '.validation_enabled',
             ISocialLikeSettings.__identifier__ + '.typebutton',
             ISocialLikeSettings.__identifier__ + '.do_not_track',
             ISocialLikeSettings.__identifier__ + '.canonical_domain',

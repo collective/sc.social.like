@@ -2,6 +2,14 @@
 from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
+from sc.social.like import LikeMessageFactory as _
+from sc.social.like.config import OG_DESCRIPTION_MAX_LENGTH
+from sc.social.like.config import OG_LEAD_IMAGE_MAX_SIZE
+from sc.social.like.config import OG_LEAD_IMAGE_MIME_TYPES
+from sc.social.like.config import OG_LEAD_IMAGE_MIN_ASPECT_RATIO
+from sc.social.like.config import OG_LEAD_IMAGE_MIN_HEIGHT
+from sc.social.like.config import OG_LEAD_IMAGE_MIN_WIDTH
+from sc.social.like.config import OG_TITLE_MAX_LENGTH
 from sc.social.like.logger import logger
 from urlparse import urlparse
 from zope.interface import Invalid
@@ -114,66 +122,79 @@ def get_valid_objects(brains):
         yield obj
 
 
-def validate_title_social(value):
-    """Check if title field have more than 70 characters."""
-    if len(value) > 70:
-        msg = u'Title have more than 70 characters.'
-        logger.info(msg)
-        return msg
-    return
+MSG_INVALID_OG_TITLE = _(
+    u'Title of content should have less than 70 characters.')
 
 
-def validate_description_social(value):
-    """Check if description field have more than 200 characters."""
+def validate_og_title(title):
+    """Check if title of content is set and has less than 70 characters.
 
-    if value and len(value) > 200:
-        msg = u'Description have more than 200 characters.'
-        logger.info(msg)
-        return msg
+    More information:
+    * https://dev.twitter.com/cards/markup
+    """
+    if title and len(title) <= OG_TITLE_MAX_LENGTH:
+        return True
 
-    elif value and (value.count('.') < 2 or value.count('.') > 2):
-        msg = u'Description should contain at least 2 phrases.'
-        logger.info(msg)
-        return msg
-
-    return
+    raise ValueError(MSG_INVALID_OG_TITLE)
 
 
-def validate_image_social(value):
-    """Check if image be in formats mime type, dimensions and size."""
-
-    list_mimetypes = ['image/jpeg', 'image/png', 'image/gif', ' image/webp']
-
-    if value.mimetype not in list_mimetypes:
-        msg = u'Image mime type not supported: {0}'
-        logger.info(msg.format(type))
-        return msg.format(type)
-
-    try:
-        size = value.size
-    except AttributeError:
-        size = value.data.size
-    if size > 5242880:
-        msg = u'Image size should be less than 5MB.'
-        logger.info(msg)
-        return msg
-
-    width, height = (value.width, value.height)
-    if width < 600 or height < 315:
-        msg = u'Image dimensions should be at least 600 x 315.'
-        logger.info(msg)
-        return msg
-
-    if get_ratio(width, height) < 1.33:
-        msg = u'Image aspect ratio should be 1.33:1 at least.'
-        logger.info(msg)
-        return msg
+MSG_INVALID_OG_DESCRIPTION = _(
+    u'Description of content should have less than 200 characters.')
 
 
-def get_ratio(w, h):
-    """Calculate aspect ratio."""
-    w = float(w)
-    h = float(h)
-    # FIXME: https://github.com/gforcada/flake8-pep3101/issues/16
-    r = (w % h) or w  # noqa: S001
-    return '{0:.2f}'.format(float((w / r) / (h / r)))
+def validate_og_description(description):
+    """Check if description of content and has less than 200 characters.
+    Facebook recomends at least two sentences long, but we will not
+    enforce that for now.
+
+    More information:
+    * https://dev.twitter.com/cards/markup
+    * https://developers.facebook.com/docs/sharing/best-practices
+    """
+    if not description or len(description) <= OG_DESCRIPTION_MAX_LENGTH:
+        return True
+
+    raise ValueError(MSG_INVALID_OG_DESCRIPTION)
+
+
+MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE = _(u'Lead image MIME type not supported.')
+MSG_INVALID_OG_LEAD_IMAGE_SIZE = _(u'Lead image size should be less than 5MB.')
+MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS = _(
+    u'Lead image should be at least 600px width and 315px height.')
+MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO = _(
+    u'Lead image Image aspect ratio should be at least 1.33:1.')
+
+
+# XXX: current implementation makes hard testing the validator
+def validate_og_lead_image(image):
+    """Check if lead image scale follows best practices on MIME type,
+    size, dimensions and aspect ratio.
+
+    More information:
+    * https://dev.twitter.com/cards/markup
+    * https://developers.facebook.com/docs/sharing/best-practices
+
+    :param image: lead image scale object
+    :type image: instance of plone.namedfile.scaling.ImageScale
+    :returns: True if the image follows best practices
+    :rtype: bool
+    :raises ValueError: if image doesn't follow best practices
+    """
+    if image is None:
+        return True
+
+    if image.mimetype not in OG_LEAD_IMAGE_MIME_TYPES:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
+
+    if image.data.size > OG_LEAD_IMAGE_MAX_SIZE:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_SIZE)
+
+    width, height = image.width, image.height
+    if width < OG_LEAD_IMAGE_MIN_WIDTH or height < OG_LEAD_IMAGE_MIN_HEIGHT:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
+
+    aspect_ratio = float(image.width) / float(image.height)
+    if aspect_ratio < OG_LEAD_IMAGE_MIN_ASPECT_RATIO:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
+
+    return True

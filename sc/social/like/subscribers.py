@@ -20,13 +20,10 @@ from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.logger import logger
 from sc.social.like.utils import get_content_image
-from sc.social.like.utils import validate_description_social
-from sc.social.like.utils import validate_image_social
-from sc.social.like.utils import validate_title_social
-from zope.component import getMultiAdapter
+from sc.social.like.utils import validate_og_description
+from sc.social.like.utils import validate_og_lead_image
+from sc.social.like.utils import validate_og_title
 from zope.component import getUtility
-from zope.component.interfaces import ComponentLookupError
-from zope.globalrequest import getRequest
 from zope.schema.interfaces import WrongType
 
 import traceback
@@ -116,48 +113,44 @@ def assign_canonical_url(obj, event):
         )
 
 
-def social_content_check(obj, event):
-    """Check if content is valid if enabled in sc.social.content, in action when edit."""
+def check_sharing_best_practices(obj):
+    """Check if content follows social networks sharing best practices
+    as defined by Twitter and Facebook.
+    """
+    record = ISocialLikeSettings.__identifier__ + '.validation_enabled'
+    validation_enabled = api.portal.get_registry_record(record, default=False)
+    if not validation_enabled:
+        return
 
-    request = getRequest()
+    request = obj.REQUEST
 
+    title = getattr(obj, 'title', '')
     try:
-        view = getMultiAdapter((obj, request), name='social_likes_view')
-    except ComponentLookupError:
-        logger.info('not instaled.')
-        return
+        validate_og_title(title)
+    except ValueError as e:
+        api.portal.show_message(message=e.message, request=request, type='warning')
 
-    if view.enabled:
+    description = getattr(obj, 'description', '')
+    try:
+        validate_og_description(description)
+    except ValueError as e:
+        api.portal.show_message(message=e.message, request=request, type='warning')
 
-        title = getattr(obj, 'title', None)
-        v_title = validate_title_social(title)
-        if title and v_title:
-            msg = v_title
-            api.portal.show_message(message=msg, request=request, type='warning')
-
-        try:
-            description = obj.Description()
-            v_description = validate_description_social(description)
-            if description and v_description:
-                msg = v_description
-                api.portal.show_message(message=msg, request=request, type='warning')
-        except AttributeError:
-            pass
-
-        image = get_content_image(obj)
-        if image:
-            v_image = validate_image_social(image)
-            if v_image:
-                msg = v_image
-                logger.info(msg)
-                api.portal.show_message(message=msg, request=request, type='warning')
+    image = get_content_image(obj)
+    try:
+        validate_og_lead_image(image)
+    except ValueError as e:
+        api.portal.show_message(message=e.message, request=request, type='warning')
 
 
-def social_content_check_workflow(obj, event):
-    """Check if content is valid if enabled in sc.social.content, is published."""
+def check_sharing_best_practices_on_editing(obj, event):
+    """Event subscriber for content being edited."""
+    state = api.content.get_state(obj)
+    if state in ('published', ):
+        check_sharing_best_practices(obj)
 
-    if event.status['review_state'] not in ('published', ):
-        # don't a assign a canonical URL as this is not a public state
-        return
-    else:
-        social_content_check(obj, event)
+
+def check_sharing_best_practices_on_publishing(obj, event):
+    """Event subscriber for content being published."""
+    if event.status['review_state'] in ('published', ):
+        check_sharing_best_practices(obj)
