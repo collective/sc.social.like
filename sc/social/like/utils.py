@@ -1,5 +1,8 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_base
+from plone.formwidget.namedfile.converter import b64decode_file
+# from plone.namedfile.file import NamedBlobImage
+from plone.registry.interfaces import IRegistry
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
 from sc.social.like import LikeMessageFactory as _
@@ -12,6 +15,8 @@ from sc.social.like.config import OG_LEAD_IMAGE_MIN_WIDTH
 from sc.social.like.config import OG_TITLE_MAX_LENGTH
 from sc.social.like.logger import logger
 from urlparse import urlparse
+from zope.component import getUtility
+from zope.component.hooks import getSite
 from zope.interface import Invalid
 
 
@@ -198,3 +203,34 @@ def validate_og_lead_image(image):
         raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
 
     return True
+
+
+def get_image_fallback(site=None):
+    from sc.social.like.interfaces import ISocialLikeSettings
+    if site is None:
+        site = getSite()
+    registry = getUtility(IRegistry)
+    settings = registry.forInterface(ISocialLikeSettings, check=False)
+    site_url = site.absolute_url()
+
+    if getattr(settings, 'image_fallback', False):
+        filename, data = b64decode_file(settings.image_fallback)
+        return '{}/@@sociallike-image-fallback/{}'.format(
+            site_url, filename)
+    else:
+        return '%s/logo.png' % site_url
+
+
+# def validate_image_settings(value):
+#     """Check image fallback be in formats mime type, dimensions and size."""
+#
+#     if not value:
+#         return True
+#
+#     filename, data = b64decode_file(value)
+#     image = NamedBlobImage(data=data, filename=filename)
+#     msg = validate_image_social(image)
+#
+#     if msg:
+#         raise Invalid(msg)
+#     return True

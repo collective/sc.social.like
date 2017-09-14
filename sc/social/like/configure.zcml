@@ -22,6 +22,11 @@
        name="sc.social.likes.plugins"
        />
 
+     <utility
+       component=".vocabularies.ImageScalesVocabulary"
+       name="sc.social.likes.ImagesScales"
+       />
+
   <subscriber
       for="plone.registry.interfaces.IRecordModifiedEvent"
       handler=".subscribers.social_media_record_synchronizer"

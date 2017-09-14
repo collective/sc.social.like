@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+from plone.autoform import directives as form
+from plone.formwidget.namedfile.widget import NamedImageFieldWidget
 from plone.supermodel import model
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import DEFAULT_ENABLED_CONTENT_TYPES
@@ -211,4 +213,35 @@ class ISocialLikeSettings(model.Schema):
         ),
         required=False,
         default='',
+    )
+
+    model.fieldset(
+        'open_graph',
+        label=u'Open Graph',
+        fields=[
+            'image_fallback',
+            'image_scale'
+        ],
+    )
+
+    form.widget('image_fallback', NamedImageFieldWidget)
+    image_fallback = schema.ASCII(
+        title=_(u'Image fallback'),
+        description=_(
+            u'help_image_fallback',
+            default=u'Content that does not have an image should show this image.',
+        ),
+        required=False,
+        # constraint=validate_image_settings,
+    )
+
+    image_scale = schema.Choice(
+        title=_(u'Image scale for shared'),
+        description=_(
+            u'help_image_scale',
+            default=u'',
+        ),
+        required=True,
+        default=u'large',
+        vocabulary='sc.social.likes.ImagesScales',
     )

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+# from cStringIO import StringIO
 from plone import api
 from plone.app.testing import logout
+# from plone.formwidget.namedfile.converter import b64decode_file
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -107,6 +109,14 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'twitter_username'))
         self.assertEqual(self.settings.twitter_username, '')
 
+    def test_image_fallback_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'image_fallback'))
+        self.assertEqual(self.settings.image_fallback, None)
+
+    def test_image_scale_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'image_scale'))
+        self.assertEqual(self.settings.image_scale, 'large')
+
     def test_records_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 
@@ -126,6 +136,8 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.fbbuttons',
             ISocialLikeSettings.__identifier__ + '.fbshowlikes',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
+            ISocialLikeSettings.__identifier__ + '.image_fallback',
+            ISocialLikeSettings.__identifier__ + '.image_scale',
         ]
 
         for r in records:
