@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="3046"
+      destination="3047"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeDepends
+        title="Enable best practices validation"
+        description="Adds new field to the control panel configlet."
+        import_steps="plone.app.registry"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>
