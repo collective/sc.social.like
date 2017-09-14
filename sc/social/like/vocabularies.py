@@ -10,6 +10,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+
 # ADD IN CONFIG.PY
 LEAD_IMAGE_MIN_ASPECT_RATIO = 1.33
 LEAD_IMAGE_MIN_HEIGHT = 315

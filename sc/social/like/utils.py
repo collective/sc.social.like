@@ -215,10 +215,10 @@ def get_image_fallback(site=None):
 
     if getattr(settings, 'image_fallback', False):
         filename, data = b64decode_file(settings.image_fallback)
-        return '{}/@@sociallike-image-fallback/{}'.format(
+        return '{0}/@@sociallike-image-fallback/{1}'.format(
             site_url, filename)
     else:
-        return '%s/logo.png' % site_url
+        return '{0}/logo.png'.format(site_url)
 
 
 # def validate_image_settings(value):
