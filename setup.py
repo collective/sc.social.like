@@ -12,9 +12,7 @@ long_description = (
 
 setup(name='sc.social.like',
       version=version,
-      description="""Social Like is a Plone package providing simple Google+,
-                     Twitter and Facebook integration for Plone
-                     Content Types""",
+      description='Social networks integration for Plone.',
       long_description=long_description,
       classifiers=[
           "Development Status :: 4 - Beta",
