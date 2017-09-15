@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.11b3 (unreleased)
+2.12b1 (2017-09-15)
 ^^^^^^^^^^^^^^^^^^^
 
 - Update Brazilian Portuguese and Spanish translations.
