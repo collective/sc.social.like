@@ -422,3 +422,23 @@ msgstr "Cancelar"
 #: sc/social/like/vocabularies.py:36
 msgid "vertical"
 msgstr "vertical"
+
+#: ./sc/social/like/interfaces.py:209
+msgid "Open Graph"
+msgstr "Open Graph"
+
+#: ./sc/social/like/interfaces.py:211
+msgid "Image fallback"
+msgstr "Imagem"
+
+#: ./sc/social/like/interfaces.py:213
+msgid "help_fallback_image"
+msgstr "O conteúdo que não possuir uma imagem essa será exibida no compartilhamento.\n Caso não informe uma, a imagem \"logo.png\" será a padrão."
+
+#: ./sc/social/like/interfaces.py:223
+msgid "Image scale for shared"
+msgstr "Tamanho da imagem do compartilhamento"
+
+#: ./sc/social/like/interfaces.py:225
+msgid "help_image_scale"
+msgstr "Tamanho em escala da imagem do conteúdo que será compartilhado."

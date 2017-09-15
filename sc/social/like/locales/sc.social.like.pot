@@ -422,3 +422,23 @@ msgstr ""
 #: ./sc/social/like/vocabularies.py:36
 msgid "vertical"
 msgstr ""
+
+#: ./sc/social/like/interfaces.py:209
+msgid "Open Graph"
+msgstr ""
+
+#: ./sc/social/like/interfaces.py:211
+msgid "Image fallback"
+msgstr ""
+
+#: ./sc/social/like/interfaces.py:213
+msgid "help_fallback_image"
+msgstr ""
+
+#: ./sc/social/like/interfaces.py:223
+msgid "Image scale for shared"
+msgstr ""
+
+#: ./sc/social/like/interfaces.py:225
+msgid "help_image_scale"
+msgstr ""
