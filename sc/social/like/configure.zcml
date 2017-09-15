@@ -34,6 +34,20 @@
       handler=".subscribers.assign_canonical_url"
       />
 
+  <subscriber
+      zcml:condition="installed plone.app.contenttypes"
+      for="plone.dexterity.interfaces.IDexterityContent
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".subscribers.check_sharing_best_practices_on_publishing"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.contenttypes"
+      for="plone.dexterity.interfaces.IDexterityContent
+           plone.dexterity.interfaces.IEditFinishedEvent"
+      handler=".subscribers.check_sharing_best_practices_on_editing"
+      />
+
   <include file="behaviors.zcml" />
 
 </configure>

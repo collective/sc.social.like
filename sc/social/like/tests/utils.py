@@ -13,3 +13,9 @@ def enable_social_media_behavior():
     fti.behaviors = tuple(behaviors)
     # invalidate schema cache
     notify(SchemaInvalidatedEvent('News Item'))
+
+
+def get_random_string(length):
+    from random import choice
+    from string import printable
+    return ''.join(choice(printable) for i in xrange(0, length))

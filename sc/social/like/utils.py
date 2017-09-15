@@ -2,6 +2,14 @@
 from Acquisition import aq_base
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
+from sc.social.like import LikeMessageFactory as _
+from sc.social.like.config import OG_DESCRIPTION_MAX_LENGTH
+from sc.social.like.config import OG_LEAD_IMAGE_MAX_SIZE
+from sc.social.like.config import OG_LEAD_IMAGE_MIME_TYPES
+from sc.social.like.config import OG_LEAD_IMAGE_MIN_ASPECT_RATIO
+from sc.social.like.config import OG_LEAD_IMAGE_MIN_HEIGHT
+from sc.social.like.config import OG_LEAD_IMAGE_MIN_WIDTH
+from sc.social.like.config import OG_TITLE_MAX_LENGTH
 from sc.social.like.logger import logger
 from urlparse import urlparse
 from zope.interface import Invalid
@@ -112,3 +120,81 @@ def get_valid_objects(brains):
             logger.warn(msg.format(b.getPath()))
             continue
         yield obj
+
+
+MSG_INVALID_OG_TITLE = _(
+    u'Title of content should have less than 70 characters.')
+
+
+def validate_og_title(title):
+    """Check if title of content is set and has less than 70 characters.
+
+    More information:
+    * https://dev.twitter.com/cards/markup
+    """
+    if title and len(title) <= OG_TITLE_MAX_LENGTH:
+        return True
+
+    raise ValueError(MSG_INVALID_OG_TITLE)
+
+
+MSG_INVALID_OG_DESCRIPTION = _(
+    u'Description of content should have less than 200 characters.')
+
+
+def validate_og_description(description):
+    """Check if description of content and has less than 200 characters.
+    Facebook recomends at least two sentences long, but we will not
+    enforce that for now.
+
+    More information:
+    * https://dev.twitter.com/cards/markup
+    * https://developers.facebook.com/docs/sharing/best-practices
+    """
+    if not description or len(description) <= OG_DESCRIPTION_MAX_LENGTH:
+        return True
+
+    raise ValueError(MSG_INVALID_OG_DESCRIPTION)
+
+
+MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE = _(u'Lead image MIME type not supported.')
+MSG_INVALID_OG_LEAD_IMAGE_SIZE = _(u'Lead image size should be less than 5MB.')
+MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS = _(
+    u'Lead image should be at least 600px width and 315px height.')
+MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO = _(
+    u'Lead image Image aspect ratio should be at least 1.33:1.')
+
+
+# XXX: current implementation makes hard testing the validator
+def validate_og_lead_image(image):
+    """Check if lead image scale follows best practices on MIME type,
+    size, dimensions and aspect ratio.
+
+    More information:
+    * https://dev.twitter.com/cards/markup
+    * https://developers.facebook.com/docs/sharing/best-practices
+
+    :param image: lead image scale object
+    :type image: instance of plone.namedfile.scaling.ImageScale
+    :returns: True if the image follows best practices
+    :rtype: bool
+    :raises ValueError: if image doesn't follow best practices
+    """
+    if image is None:
+        return True
+
+    if image.mimetype not in OG_LEAD_IMAGE_MIME_TYPES:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
+
+    if image.data.size > OG_LEAD_IMAGE_MAX_SIZE:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_SIZE)
+
+    width, height = image.width, image.height
+    if width < OG_LEAD_IMAGE_MIN_WIDTH or height < OG_LEAD_IMAGE_MIN_HEIGHT:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
+
+    aspect_ratio = float(image.width) / float(image.height)
+    if aspect_ratio < OG_LEAD_IMAGE_MIN_ASPECT_RATIO:
+        raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
+
+    return True

@@ -324,3 +324,36 @@ class To3046TestCase(UpgradeTestCaseBase):
         self.execute_upgrade_step(step)
         results = api.content.find(object_provides=ISocialMedia.__identifier__)
         self.assertEqual(len(results), 9)  # no failure and catalog updated
+
+
+class To3047TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3046', u'3047')
+
+    def test_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
+
+    def test_add_validation_enabled_record(self):
+        title = u'Enable best practices validation'
+        step = self.get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        record = ISocialLikeSettings.__identifier__ + '.validation_enabled'
+        del registry.records[record]
+        self.assertNotIn(record, registry)
+
+        with self.assertRaises(KeyError):
+            registry.forInterface(ISocialLikeSettings)
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        # Test if our setting is there and set
+        settings = registry.forInterface(ISocialLikeSettings)
+        self.assertEqual(settings.validation_enabled, True)

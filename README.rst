@@ -1,5 +1,5 @@
 =====================================
-Social: Like Actions (sc.social.like)
+Social networks integration for Plone
 =====================================
 
 .. contents:: Table of Contents
@@ -9,7 +9,7 @@ Social: Like Actions (sc.social.like)
 Life, the Universe, and Everything
 ----------------------------------
 
-This package provides integration for the following social networks in Plone:
+This package provides integration with the following social networks in Plone:
 
 * Facebook
 * Google+
@@ -74,6 +74,24 @@ Go to the 'Site Setup' page in the Plone interface and click on the
 
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
+
+Validation of best practices for social networks sharing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+    This feature is only available for Dexterity-based content types.
+
+A content validation process is executed every time you publish an item, or when you edit an item in the ``published`` state.
+This process includes checking of maximum length of title and description fields, as well as format, size and dimensions of the lead image field, if present.
+A warning message will be shown to the user if the content does not comply with best practices.
+
+Sharing best practices were compiled mainly from Twitter and Facebook recommendations.
+For more information see:
+
+* https://dev.twitter.com/cards/markup
+* https://developers.facebook.com/docs/sharing/best-practices
+
+You can disable content validation using an option in the control panel configlet.
 
 Canonical URL and migration to HTTPS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

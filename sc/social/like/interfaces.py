@@ -57,7 +57,6 @@ class IHelperView(Interface):
 
 
 class ISocialLikeSettings(model.Schema):
-
     """Schema for the control panel form."""
 
     enabled_portal_types = schema.Tuple(
@@ -82,6 +81,17 @@ class ISocialLikeSettings(model.Schema):
         required=False,
         default=DEFAULT_PLUGINS_ENABLED,
         value_type=schema.Choice(vocabulary='sc.social.likes.plugins')
+    )
+
+    validation_enabled = schema.Bool(
+        title=_(u'Enable content validation?'),
+        description=_(
+            u'help_validation_enabled',
+            default=u'Check best practices for sharing content in social networks: '
+                    u'max length of title and description fields, '
+                    u'and format, size and dimensions of the lead image, if present.',
+        ),
+        default=True,
     )
 
     typebutton = schema.Choice(
