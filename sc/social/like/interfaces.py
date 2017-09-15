@@ -87,9 +87,9 @@ class ISocialLikeSettings(model.Schema):
         title=_(u'Enable content validation?'),
         description=_(
             u'help_validation_enabled',
-            default=u'Check best practices for sharing content in social networks: '
-                    u'max length of title and description fields, '
-                    u'and format, size and dimensions of the lead image, if present.',
+            default=u'Enables validation to check if content follows social networks sharing best practices. '
+                    u'The validation includes title, description and lead image fields. '
+                    u'This feature is only available for Dexterity-based content types.'
         ),
         default=True,
     )

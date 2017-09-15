@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.11b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Update Brazilian Portuguese and Spanish translations.
+  [hvelarde]
+
 - Implement a validator to check if content follows social networks sharing best practices (closes `#128 <https://github.com/collective/sc.social.like/issues/128>`_).
   [claytonc, hvelarde]
 

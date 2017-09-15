@@ -162,7 +162,7 @@ MSG_INVALID_OG_LEAD_IMAGE_SIZE = _(u'Lead image size should be less than 5MB.')
 MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS = _(
     u'Lead image should be at least 600px width and 315px height.')
 MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO = _(
-    u'Lead image Image aspect ratio should be at least 1.33:1.')
+    u'Lead image aspect ratio should be at least 1.33:1.')
 
 
 # XXX: current implementation makes hard testing the validator
