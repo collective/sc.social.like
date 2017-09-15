@@ -109,9 +109,9 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'twitter_username'))
         self.assertEqual(self.settings.twitter_username, '')
 
-    def test_image_fallback_record_in_registry(self):
-        self.assertTrue(hasattr(self.settings, 'image_fallback'))
-        self.assertEqual(self.settings.image_fallback, None)
+    def test_fallback_image_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'fallback_image'))
+        self.assertEqual(self.settings.fallback_image, None)
 
     def test_image_scale_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'image_scale'))
@@ -136,7 +136,7 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.fbbuttons',
             ISocialLikeSettings.__identifier__ + '.fbshowlikes',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
-            ISocialLikeSettings.__identifier__ + '.image_fallback',
+            ISocialLikeSettings.__identifier__ + '.fallback_image',
             ISocialLikeSettings.__identifier__ + '.image_scale',
         ]
 

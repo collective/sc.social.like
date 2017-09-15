@@ -10,7 +10,7 @@ from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
-from sc.social.like.utils import get_image_fallback
+from sc.social.like.utils import get_fallback_image
 from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 from zope.component import getUtility
@@ -80,7 +80,6 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         self.site_name = portal.Title()
         self.language = facebook_language(get_language(self.context), 'en_US')
         self.image = get_content_image(self.context)
-        self.image_fallback = get_image_fallback(portal)
 
     def render(self):
         if self.enabled():
@@ -112,7 +111,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         if img:
             return img.url
         else:
-            return self.image_fallback
+            return self.portal_url() + get_fallback_image()
 
     def image_width(self):
         return self.image.width

@@ -216,20 +216,15 @@ class ISocialLikeSettings(model.Schema):
     )
 
     model.fieldset(
-        'open_graph',
-        label=u'Open Graph',
-        fields=[
-            'image_fallback',
-            'image_scale'
-        ],
-    )
+        'open_graph', label=u'Open Graph', fields=['fallback_image', 'image_scale'])
 
-    form.widget('image_fallback', NamedImageFieldWidget)
-    image_fallback = schema.ASCII(
+    form.widget('fallback_image', NamedImageFieldWidget)
+    fallback_image = schema.ASCII(
         title=_(u'Image fallback'),
         description=_(
-            u'help_image_fallback',
-            default=u'Content that does not have an image should show this image.',
+            u'help_fallback_image',
+            default=u'Content that does not have an image will be displayed on the share.\n '
+                    u'If you do not enter a \"logo.png\" image will be the default.',
         ),
         required=False,
         # constraint=validate_image_settings,
@@ -239,7 +234,7 @@ class ISocialLikeSettings(model.Schema):
         title=_(u'Image scale for shared'),
         description=_(
             u'help_image_scale',
-            default=u'',
+            default=u'Scale size of the image of the content to be shared.',
         ),
         required=True,
         default=u'large',

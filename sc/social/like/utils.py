@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_base
+from plone import api
 from plone.formwidget.namedfile.converter import b64decode_file
 # from plone.namedfile.file import NamedBlobImage
-from plone.registry.interfaces import IRegistry
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
 from sc.social.like import LikeMessageFactory as _
@@ -15,8 +15,6 @@ from sc.social.like.config import OG_LEAD_IMAGE_MIN_WIDTH
 from sc.social.like.config import OG_TITLE_MAX_LENGTH
 from sc.social.like.logger import logger
 from urlparse import urlparse
-from zope.component import getUtility
-from zope.component.hooks import getSite
 from zope.interface import Invalid
 
 
@@ -205,20 +203,15 @@ def validate_og_lead_image(image):
     return True
 
 
-def get_image_fallback(site=None):
+def get_fallback_image():
     from sc.social.like.interfaces import ISocialLikeSettings
-    if site is None:
-        site = getSite()
-    registry = getUtility(IRegistry)
-    settings = registry.forInterface(ISocialLikeSettings, check=False)
-    site_url = site.absolute_url()
 
-    if getattr(settings, 'image_fallback', False):
-        filename, data = b64decode_file(settings.image_fallback)
-        return '{0}/@@sociallike-image-fallback/{1}'.format(
-            site_url, filename)
+    fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings)
+    if fallback_image:
+        filename, data = b64decode_file(fallback_image)
+        return '/@@sociallike-fallback-image/' + filename
     else:
-        return '{0}/logo.png'.format(site_url)
+        return '/logo.png'
 
 
 # def validate_image_settings(value):

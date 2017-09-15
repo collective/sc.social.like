@@ -78,9 +78,10 @@
         />
 
     <browser:page
-       for="*"
-       name="sociallike-image-fallback"
+       name="sociallike-fallback-image"
+       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
        class=".imagefallback.ImageFallBack"
+       layer="..interfaces.ISocialLikeLayer"
        permission="zope.Public"
        />
 
