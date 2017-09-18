@@ -2,426 +2,428 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2017-09-15 14:50+0000\n"
-"PO-Revision-Date: 2011-12-12 13:30+0100\n"
+"PO-Revision-Date: 2017-09-18 09:41+0200\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
-"X-Poedit-Language: Spanish\n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
-#: ./sc/social/like/profiles.zcml:14
+#: sc/social/like/profiles.zcml:14
 msgid "A simple, yet useful, social networking integration for Plone"
-msgstr ""
+msgstr "Ploneren sare-sozialekiko integrazioa bideratzeko produktua"
 
-#: ./sc/social/like/tiles/configure.zcml:19
+#: sc/social/like/tiles/configure.zcml:19
 msgid "A tile that embeds a Facebook Page."
-msgstr ""
+msgstr "Facebook Orri bat txertatzen duen zatitxoa"
 
-#: ./sc/social/like/tiles/configure.zcml:31
+#: sc/social/like/tiles/configure.zcml:31
 msgid "A tile that embeds a Twitter timeline."
-msgstr ""
+msgstr "Twitter denbora-lerroa txertatzen duen zatitxoa"
 
-#: ./sc/social/like/tiles/twitter.py:86
+#: sc/social/like/tiles/twitter.py:86
 msgid "A timeline widget is a live region of a page which may receive updates as new tweets become available. When specified as polite, assistive technologies will notify users of updates but generally do not interrupt the current task, and updates take low priority. When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates."
-msgstr ""
+msgstr "Denbora-lerroaren widgetak txioak erakutsiko ditu etorri ahala. Errespetuzko bezala konfiguratzen baduzu, erabiltzaileen eguneraketak daudela jakinaraziko zaie uneko ataza ez eteteko, eta eguneratzeak lehentasun txikia izango du. Bestela erabiltzaileari berehala jakinaraziko zaie eta agian aurreko eguneraketen zerrenda garbitu dezake."
 
-#: ./sc/social/like/behaviors.zcml:15
+#: sc/social/like/behaviors.zcml:15
 msgid "Add support for Social Media widgets and metadata."
-msgstr ""
+msgstr "Sare Sozialetako widget eta metadatuak integratzeko produktua"
 
-#: ./sc/social/like/interfaces.py:161
+#: sc/social/like/interfaces.py:161
 msgid "Admins"
 msgstr "Kudeatzaileak"
 
-#: ./sc/social/like/interfaces.py:172
+#: sc/social/like/interfaces.py:172
 msgid "Application ID"
-msgstr ""
+msgstr "Aplikazioaren IDa"
 
-#: ./sc/social/like/interfaces.py:98
+#: sc/social/like/interfaces.py:98
 msgid "Button style"
 msgstr "Botoien ixuria"
 
-#: ./sc/social/like/behaviors.py:19
+#: sc/social/like/behaviors.py:19
 msgid "Canonical URL"
-msgstr ""
+msgstr "URL kanonikoa"
 
-#: ./sc/social/like/browser/canonicalurl.py:48
+#: sc/social/like/browser/canonicalurl.py:48
 msgid "Canonical URL updater form"
-msgstr ""
+msgstr "URL kanokikoa eguneratzeko formularia"
 
-#: ./sc/social/like/interfaces.py:135
+#: sc/social/like/interfaces.py:135
 msgid "Canonical domain"
-msgstr ""
+msgstr "Domeinu kanonikoa"
 
-#: ./sc/social/like/browser/canonicalurl.py:63
+#: sc/social/like/browser/canonicalurl.py:63
 msgid "Canonical domain has not been defined in the control panel configlet."
-msgstr ""
+msgstr "Kontrol Panelean ez da domeinu kanonikorik konfiguratu"
 
-#: ./sc/social/like/interfaces.py:63
+#: sc/social/like/interfaces.py:63
 msgid "Content types"
 msgstr "Elementu-motak"
 
-#: ./sc/social/like/tiles/twitter.py:26
+#: sc/social/like/tiles/twitter.py:26
 msgid "Crop and hides the main timeline scrollbar"
-msgstr ""
+msgstr "Denbora-lerro nagusiaren scroll barra moztu eta ezkutatu"
 
-#: ./sc/social/like/browser/canonicalurl.py:34
+#: sc/social/like/browser/canonicalurl.py:34
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
-#: ./sc/social/like/utils.py:141
+#: sc/social/like/utils.py:141
 msgid "Description of content should have less than 200 characters."
-msgstr ""
+msgstr "Edukiaren deskribapenak 200 karaktere baino gutxiago eduki beharko lituzke."
 
-#: ./sc/social/like/tiles/twitter.py:74
+#: sc/social/like/tiles/twitter.py:74
 msgid "Display an expanded timeline of between 1 and 20 tweets. Leave it empty to use the default or to set the height of the widget."
-msgstr ""
+msgstr "1 eta 20 txio artean dituen denbora-lerro zabaldua erakutsi. Utzi hutsik defektuzkoa erabiltzeko edo ezarri widgetaren altuera."
 
-#: ./sc/social/like/interfaces.py:109
+#: sc/social/like/interfaces.py:109
 msgid "Do not track users"
-msgstr ""
+msgstr "Ez egin jarraipenik inoiz"
 
-#: ./sc/social/like/plugins/email/plugin.pt:2
+#: sc/social/like/plugins/email/plugin.pt:2
 msgid "Email"
-msgstr ""
+msgstr "Eposta"
 
-#: ./sc/social/like/interfaces.py:87
+#: sc/social/like/interfaces.py:87
 msgid "Enable content validation?"
-msgstr ""
+msgstr "Edukiaren balidazioa aktibatu?"
 
-#: ./sc/social/like/tiles/facebook.py:25
+#: sc/social/like/tiles/facebook.py:25
 msgid "Events"
-msgstr ""
+msgstr "Hitzorduak"
 
-#: ./sc/social/like/tiles/facebook.py:35
+#: sc/social/like/tiles/facebook.py:35
 msgid "Facebook Page"
-msgstr ""
+msgstr "Facebook orrialdea"
 
-#: ./sc/social/like/tiles/configure.zcml:19
+#: sc/social/like/tiles/configure.zcml:19
 msgid "Facebook Tile"
-msgstr ""
+msgstr "Facebook zatitxoa"
 
-#: ./sc/social/like/interfaces.py:183
+#: sc/social/like/interfaces.py:183
 msgid "Facebook buttons"
-msgstr ""
+msgstr "Facebook botoiak"
 
-#: ./sc/social/like/tiles/facebook.py:53
-#: ./sc/social/like/tiles/twitter.py:54
+#: sc/social/like/tiles/facebook.py:53 sc/social/like/tiles/twitter.py:54
 msgid "Height"
-msgstr ""
+msgstr "Altuera"
 
-#: ./sc/social/like/tiles/facebook.py:72
+#: sc/social/like/tiles/facebook.py:72
 msgid "Hide cover photo in the header"
-msgstr ""
+msgstr "Ezkutatu goiburuko irudia"
 
-#: ./sc/social/like/tiles/facebook.py:82
+#: sc/social/like/tiles/facebook.py:82
 msgid "Hide the custom call to action button (if available)"
-msgstr ""
+msgstr "Ezkutatu akzio-botoia (baldin badago)"
 
-#: ./sc/social/like/tiles/twitter.py:24
+#: sc/social/like/tiles/twitter.py:24
 msgid "Hide the timeline footer"
-msgstr ""
+msgstr "Ezkutatu denbora-lerroaren beheko aldea"
 
-#: ./sc/social/like/tiles/twitter.py:23
+#: sc/social/like/tiles/twitter.py:23
 msgid "Hide the timeline header"
-msgstr ""
+msgstr "Ezkutatu denbora-lerroaren goiburukoa"
 
-#: ./sc/social/like/utils.py:160
+#: sc/social/like/utils.py:160
 msgid "Lead image MIME type not supported."
-msgstr ""
+msgstr "Irudi formatua ez da zuzena"
 
-#: ./sc/social/like/utils.py:164
+#: sc/social/like/utils.py:164
 msgid "Lead image aspect ratio should be at least 1.33:1."
-msgstr ""
+msgstr "Irudiaren itxura-ratioa gutxienez 1.33:1ekoa izan behar da"
 
-#: ./sc/social/like/utils.py:162
+#: sc/social/like/utils.py:162
 msgid "Lead image should be at least 600px width and 315px height."
-msgstr ""
+msgstr "Irudiak gutxienez 600px izan behar ditu zabaleran eta 315px altueran."
 
-#: ./sc/social/like/utils.py:161
+#: sc/social/like/utils.py:161
 msgid "Lead image size should be less than 5MB."
-msgstr ""
+msgstr "Irudiaren tamaina 5MB baino txikiagoa izan behar da."
 
-#: ./sc/social/like/vocabularies.py:41
+#: sc/social/like/vocabularies.py:41
 msgid "Like"
 msgstr "Atsegin dut!"
 
-#: ./sc/social/like/tiles/facebook.py:26
+#: sc/social/like/tiles/facebook.py:26
 msgid "Messages"
-msgstr ""
+msgstr "Mezua"
 
-#: ./sc/social/like/browser/canonicalurl.py:21
+#: sc/social/like/browser/canonicalurl.py:21
 msgid "Old canonical domain"
-msgstr ""
+msgstr "Domeinu kanoniko zaharra"
 
-#: ./sc/social/like/plugins/pinterest/templates/link.pt:11
+#: sc/social/like/plugins/pinterest/templates/link.pt:11
 msgid "Pin it!"
-msgstr ""
+msgstr "Pineatu!"
 
-#: ./sc/social/like/plugins/pinterest/templates/link.pt:3
+#: sc/social/like/plugins/pinterest/templates/link.pt:3
 msgid "Pin it! (open in new window)"
-msgstr ""
+msgstr "Pineatu! (ireki leiho berrian)"
 
-#: ./sc/social/like/browser/canonicalurl.py:80
+#: sc/social/like/browser/canonicalurl.py:80
 msgid "Please correct the errors."
-msgstr ""
+msgstr "Mesedez, zuzendu erroreak."
 
-#: ./sc/social/like/interfaces.py:76
+#: sc/social/like/interfaces.py:76
 msgid "Plugins"
-msgstr ""
+msgstr "Pluginak"
 
-#: ./sc/social/like/vocabularies.py:42
+#: sc/social/like/vocabularies.py:42
 msgid "Recommend"
 msgstr "Gomendatu!"
 
-#: ./sc/social/like/tiles/twitter.py:25
+#: sc/social/like/tiles/twitter.py:25
 msgid "Remove all borders within the widget"
-msgstr ""
+msgstr "Widgetaren barneko inguruko marrak kendu"
 
-#: ./sc/social/like/tiles/twitter.py:27
+#: sc/social/like/tiles/twitter.py:27
 msgid "Remove the widget's background color"
-msgstr ""
+msgstr "Kendu widgetaren atzeko-planoko kolorea"
 
-#: ./sc/social/like/profiles.zcml:23
+#: sc/social/like/profiles.zcml:23
 msgid "Removes Social: Like Actions"
-msgstr ""
+msgstr "Social: Like ezabatu"
 
-#: ./sc/social/like/tiles/twitter.py:55
+#: sc/social/like/tiles/twitter.py:55
 msgid "Set the height of a displayed widget, overriding the value stored with the widget ID. Must be greater than 200 pixels. Note: this parameter does not apply if a tweet limit has been specified."
-msgstr ""
+msgstr "Erakutsiko den widgetaren altuera ezarri, honek widgetaren IDarekin gordetako ezarpena gainidatziko du. 200 px baino handiagoa izan behar da. Oharra: parametro hau ez da aplikatuko txio kopuru-muga ezarri bada."
 
-#: ./sc/social/like/tiles/facebook.py:54
+#: sc/social/like/tiles/facebook.py:54
 msgid "Set the height of a displayed widget, overriding the value stored with the widget ID. Must be greater than 70 pixels. "
-msgstr ""
+msgstr "Erakutsiko den widgetaren altuera ezarri, honek widgetaren IDarekin gordetako ezarpena gainidatziko du. 70 px baino handiagoa izan behar da."
 
-#: ./sc/social/like/tiles/facebook.py:42
+#: sc/social/like/tiles/facebook.py:42
 msgid "Set the maximum width of the widget between 180 and 500 pixels. Leave it empty to automatically adjust the widget to the width of the tile."
-msgstr ""
+msgstr "Erakutsiko den widgetaren zabalera maximoa ezarri, 180 eta 500 px artekoa. Utzi hutsik widgetaren zabalera zatixoaren zabalerara egokitzeko."
 
-#: ./sc/social/like/tiles/twitter.py:43
+#: sc/social/like/tiles/twitter.py:43
 msgid "Set the maximum width of the widget between 180 and 520 pixels. Leave it empty to automatically adjust the widget to the width of the tile."
-msgstr ""
+msgstr "Erakutsiko den widgetaren zabalera maximoa ezarri, 180 eta 520 px artekoa. Utzi hutsik widgetaren zabalera zatixoaren zabalerara egokitzeko."
 
-#: ./sc/social/like/controlpanel.py:13
+#: sc/social/like/controlpanel.py:13
 msgid "Settings for the sc.social.like package"
-msgstr ""
+msgstr "sc.social.like paketearen ezarpenak"
 
-#: ./sc/social/like/plugins/telegram/plugin.pt:2
-#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-#: ./sc/social/like/vocabularies.py:47
+#: sc/social/like/plugins/telegram/plugin.pt:2
+#: sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: sc/social/like/vocabularies.py:47
 msgid "Share"
-msgstr ""
+msgstr "Partekatu"
 
-#: ./sc/social/like/plugins/email/plugin.pt:2
+#: sc/social/like/plugins/email/plugin.pt:2
 msgid "Share by email"
-msgstr ""
+msgstr "Epostaz partekatu"
 
-#: ./sc/social/like/plugins/facebook/templates/link.pt:12
+#: sc/social/like/plugins/facebook/templates/link.pt:12
 msgid "Share on Facebook"
-msgstr ""
+msgstr "Facebooken partekatu"
 
-#: ./sc/social/like/plugins/facebook/templates/link.pt:6
+#: sc/social/like/plugins/facebook/templates/link.pt:6
 msgid "Share on Facebook (open in new window)"
-msgstr ""
+msgstr "Facebooken partekatu (ireki leiho berrian)"
 
-#: ./sc/social/like/plugins/gplus/templates/link.pt:9
+#: sc/social/like/plugins/gplus/templates/link.pt:9
 msgid "Share on Google+"
-msgstr ""
+msgstr "Google+en partekatu"
 
-#: ./sc/social/like/plugins/gplus/templates/link.pt:3
+#: sc/social/like/plugins/gplus/templates/link.pt:3
 msgid "Share on Google+ (open in new window)"
-msgstr ""
+msgstr "Google+en partekatu (ireki leiho berrian)"
 
-#: ./sc/social/like/plugins/linkedin/templates/link.pt:9
+#: sc/social/like/plugins/linkedin/templates/link.pt:9
 msgid "Share on Linkedin"
-msgstr ""
+msgstr "Linkedinen partekatu"
 
-#: ./sc/social/like/plugins/linkedin/templates/link.pt:3
+#: sc/social/like/plugins/linkedin/templates/link.pt:3
 msgid "Share on Linkedin (open in new window)"
-msgstr ""
+msgstr "Linkedinen partekatu (ireki leiho berrian)"
 
-#: ./sc/social/like/plugins/telegram/plugin.pt:2
+#: sc/social/like/plugins/telegram/plugin.pt:2
 msgid "Share on Telegram"
-msgstr ""
+msgstr "Telegramen partekatu"
 
-#: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
+#: sc/social/like/plugins/whatsapp/templates/plugin.pt:2
 msgid "Share on WhatsApp"
-msgstr ""
+msgstr "WhatsAppen partekatu"
 
-#: ./sc/social/like/interfaces.py:194
+#: sc/social/like/interfaces.py:194
 msgid "Show number of likes"
-msgstr ""
+msgstr "Atsegite kopurua erakutsi"
 
-#: ./sc/social/like/tiles/facebook.py:77
+#: sc/social/like/tiles/facebook.py:77
 msgid "Show profile photos when friends like this"
-msgstr ""
+msgstr "Lagunek hau atsegiten dutenean euren aurpegiak erakutsi"
 
-#: ./sc/social/like/tiles/facebook.py:87
+#: sc/social/like/tiles/facebook.py:87
 msgid "Show small header"
-msgstr ""
+msgstr "Goiburuko txiki bat erakutsi"
 
-#: ./sc/social/like/controlpanel.py:12
-#: ./sc/social/like/profiles/default/controlpanel.xml
+#: sc/social/like/controlpanel.py:12
+#: sc/social/like/profiles/default/controlpanel.xml
 msgid "Social Like"
 msgstr "Social Like"
 
-#: ./sc/social/like/behaviors.zcml:15
+#: sc/social/like/behaviors.zcml:15
 msgid "Social Media"
-msgstr ""
+msgstr "Sare sozialak"
 
-#: ./sc/social/like/profiles.zcml:14
+#: sc/social/like/profiles.zcml:14
 msgid "Social: Like Actions"
 msgstr "Social: \"Atsegin dut\" akzioak"
 
-#: ./sc/social/like/tiles/facebook.py:36
+#: sc/social/like/tiles/facebook.py:36
 msgid "The URL of the Facebook Page."
-msgstr ""
+msgstr "Facebook Orrialdearen URLa"
 
-#: ./sc/social/like/browser/canonicalurl.py:49
+#: sc/social/like/browser/canonicalurl.py:49
 msgid "This form will update the canonical URL of all Dexterity-based objects in the catalog providing the Social Media behavior."
-msgstr ""
+msgstr "Formulario onek Sare Sozialen portaera darabilten Dexterityrekin egindako elementu guztien URL kanonikoa eguneratuko du."
 
-#: ./sc/social/like/tiles/facebook.py:24
+#: sc/social/like/tiles/facebook.py:24
 msgid "Timeline"
-msgstr ""
+msgstr "Denbora lerroa"
 
-#: ./sc/social/like/utils.py:125
+#: sc/social/like/utils.py:125
 msgid "Title of content should have less than 70 characters."
-msgstr ""
+msgstr "Izenburuak 70 karaktere baino gutxiago eduki beharko lituzke"
 
-#: ./sc/social/like/plugins/twitter/templates/link.pt:9
+#: sc/social/like/plugins/twitter/templates/link.pt:9
 msgid "Tweet"
-msgstr ""
+msgstr "Txiotu"
 
-#: ./sc/social/like/plugins/twitter/templates/link.pt:2
+#: sc/social/like/plugins/twitter/templates/link.pt:2
 msgid "Tweet (opens in new window)"
-msgstr ""
+msgstr "Txiotu (ireki leiho berrian)"
 
-#: ./sc/social/like/tiles/twitter.py:73
+#: sc/social/like/tiles/twitter.py:73
 msgid "Tweet limit"
-msgstr ""
+msgstr "Txio muga"
 
-#: ./sc/social/like/tiles/configure.zcml:31
+#: sc/social/like/tiles/configure.zcml:31
 msgid "Twitter Tile"
-msgstr ""
+msgstr "Twitter zatitxoa"
 
-#: ./sc/social/like/interfaces.py:207
+#: sc/social/like/interfaces.py:207
 msgid "Twitter nick"
 msgstr "Twitter izena"
 
-#: ./sc/social/like/profiles.zcml:23
+#: sc/social/like/profiles.zcml:23
 msgid "Uninstall Social: Like Actions"
-msgstr ""
+msgstr "Ezabatu Social: like"
 
-#: ./sc/social/like/browser/canonicalurl.py:76
+#: sc/social/like/browser/canonicalurl.py:76
 msgid "Update"
-msgstr ""
+msgstr "Eguneratu"
 
-#: ./sc/social/like/interfaces.py:148
+#: sc/social/like/interfaces.py:148
 msgid "Verb to display"
 msgstr "Erakutsiko den testua"
 
-#: ./sc/social/like/tiles/twitter.py:85
+#: sc/social/like/tiles/twitter.py:85
 msgid "WAI-ARIA politeness"
-msgstr ""
+msgstr "WAI-ARIA ezarpenak"
 
-#: ./sc/social/like/tiles/twitter.py:36
+#: sc/social/like/tiles/twitter.py:36
 msgid "Widget ID"
-msgstr ""
+msgstr "Widget ID"
 
-#: ./sc/social/like/tiles/facebook.py:41
-#: ./sc/social/like/tiles/twitter.py:42
+#: sc/social/like/tiles/facebook.py:41 sc/social/like/tiles/twitter.py:42
 msgid "Width"
-msgstr ""
+msgstr "Zabalera"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ./sc/social/like/interfaces.py:162
-#, fuzzy
+#: sc/social/like/interfaces.py:162
 msgid "help_admins"
-msgstr "Facebook kontuaren kudeatzaileen Facebook IDak. Banatu komarekin bat baino gehiagoa badaude."
+msgstr "Facebook kontuaren kudeatzaileen Facebook IDak. Banatu komarekin bat baino gehiago badaude."
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
-#: ./sc/social/like/interfaces.py:173
+#: sc/social/like/interfaces.py:173
 msgid "help_appid"
 msgstr ""
+"Facebook plataformak ematen duen aplikazioaren IDa.\n"
+"\"Ez egin jarraipenik inoiz\" aktibatuta dagoenean derrigorrezkoa da"
 
 #. Default: "The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. Check <a href=\"https://pypi.python.org/pypi/sc.social.like\">package documentation</a> for more information on how to use this feature."
-#: ./sc/social/like/browser/canonicalurl.py:22
-#: ./sc/social/like/interfaces.py:136
+#: sc/social/like/browser/canonicalurl.py:22 sc/social/like/interfaces.py:136
 msgid "help_canonical_domain"
 msgstr ""
+"Domeinu kanonikoa, atariko elementuen URL kanokikoa osatzeko erabiliko da (<code>og:url</code> propietatea). Erabili zure webgunearen domeinua (adb. <strong>http://www.zurewebgunea.eus</strong> edo <strong>https://www.zurewebgunea.eus</strong>). Facebookek URL kanonikoa erabiliko du atsegite eta elkarbanatzeen kontaketa egiteko eta nahiz eta helbidea aldatu dena batera kontatzeko. Begiratu <a href=\\\"https://pypi.python.org/pypi/\n"
+"sc.social.like\\\">produktuaren dokumentazioa</a> informazio gehiago lortzeko."
 
 #. Default: "The canonical URL of the object that will be used as its permanent ID in the graph (<code>og:url</code>)."
-#: ./sc/social/like/behaviors.py:20
+#: sc/social/like/behaviors.py:20
 msgid "help_canonical_url"
-msgstr ""
+msgstr "Elementuaren URL kanonikoa, grafoan erabiliko den id iraunkorra izango da (<code>og:url</code>)"
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ./sc/social/like/interfaces.py:110
+#: sc/social/like/interfaces.py:110
 msgid "help_do_not_track"
 msgstr ""
+"Aktibatuta badago, atariak ez ditu widget aurreratuak erabiliko, lotura arruntak baizik.\n"
+"Honek erabiltzaileen egin ditzaketen akzioak mugatu egiten ditu eta informazio murriztua erakusten du (zenbat aldiz elkarbanatu den adibidez), baina erabiltzaileen pribatutasuna mantentzen du: ez da hirugarrenen cookierik ezarriko."
 
 #. Default: "Please select which plugins will be used"
-#: ./sc/social/like/interfaces.py:77
+#: sc/social/like/interfaces.py:77
 msgid "help_enabled_plugins"
-msgstr ""
+msgstr "Aukeratu zein plugin aktibatu behar diren"
 
 #. Default: "Select buttons to be shown"
-#: ./sc/social/like/interfaces.py:184
+#: sc/social/like/interfaces.py:184
 msgid "help_fbbuttons"
-msgstr ""
+msgstr "Aukeratu zein botoi erakutsi behar diren"
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ./sc/social/like/interfaces.py:64
+#: sc/social/like/interfaces.py:64
 msgid "help_portal_types"
 msgstr "Aukeratu zein elementutan agertuko diren loturak"
 
 #. Default: "Objects published before this date will be updated using the canonical domain defined in this form; objects published on or after this date will be updated using the canonical domain defined in the control panel configlet."
-#: ./sc/social/like/browser/canonicalurl.py:35
+#: sc/social/like/browser/canonicalurl.py:35
 msgid "help_published_before"
-msgstr ""
+msgstr "Data hau baino lehenago argitaratutako elementuak, formulario honetan ezarritako domeinu kanonikoarekin eguneratuko dira; data honetan edo ondoren argitaratutakoak kontrol panelean ezarritakoarekin eguneratuko dira."
 
 #. Default: "Choose your button style."
-#: ./sc/social/like/interfaces.py:99
+#: sc/social/like/interfaces.py:99
 msgid "help_selected_buttons"
 msgstr "Aukeratu botoiaren itxura"
 
 #. Default: "If enabled, the Facebook button will show the number of Facebook users who have already liked this page."
-#: ./sc/social/like/interfaces.py:195
+#: sc/social/like/interfaces.py:195
 msgid "help_show_likes"
-msgstr ""
+msgstr "Aktibatuta badago, Facebook botoiak orri hau zenbat Facebook erabiltzailek atsegin duten erakutsiko du."
 
 #. Default: "Enables validation to check if content follows social networks sharing best practices. The validation includes title, description and lead image fields. This feature is only available for Dexterity-based content types."
-#: ./sc/social/like/interfaces.py:88
+#: sc/social/like/interfaces.py:88
 msgid "help_validation_enabled"
-msgstr ""
+msgstr "Edukiak sare-sozialek esandako praktika onak betetzen dituen ala ez egiaztatzeko balidazioa aktibatzen du. Balidazioak izenburua, deskribapena eta irudiaren eremua hartzen ditu kontuak. Ezaugarri honek Dexterityrekin egindako elementu-motentzat bakarrik balio du."
 
 #. Default: "The verb to display in the Facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: ./sc/social/like/interfaces.py:149
-#, fuzzy
+#: sc/social/like/interfaces.py:149
 msgid "help_verb_display"
 msgstr "Zein hitz agertuko den Facebook botoian. Momentuz 'Atsegin dut' eta 'Gomendatu' bakarrik erabili daitezke."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:208
+#: sc/social/like/interfaces.py:208
 msgid "help_your_twitter_nick"
 msgstr "Idatzi Twitterreko zuren izena. adb. simplesconsultoria"
 
-#: ./sc/social/like/vocabularies.py:35
+#: sc/social/like/vocabularies.py:35
 msgid "horizontal"
 msgstr "Horizontala"
 
 #. Default: "Cancel"
-#: ./sc/social/like/browser/canonicalurl.py:85
+#: sc/social/like/browser/canonicalurl.py:85
 msgid "label_cancel"
-msgstr ""
+msgstr "Utzi"
 
-#: ./sc/social/like/vocabularies.py:36
+#: sc/social/like/vocabularies.py:36
 msgid "vertical"
 msgstr "Bertikala"
