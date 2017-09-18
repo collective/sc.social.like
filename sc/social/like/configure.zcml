@@ -23,7 +23,7 @@
        />
 
      <utility
-       component=".vocabularies.ImageScalesVocabulary"
+       component=".vocabularies.image_scales_vocabulary"
        name="sc.social.likes.ImagesScales"
        />
 

@@ -3,8 +3,8 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <genericsetup:upgradeSteps
-      source="3046"
-      destination="3047"
+      source="3047"
+      destination="3048"
       profile="sc.social.like:default">
 
     <genericsetup:upgradeDepends
