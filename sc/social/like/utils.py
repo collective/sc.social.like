@@ -206,7 +206,7 @@ def validate_og_lead_image(image):
 def get_fallback_image():
     from sc.social.like.interfaces import ISocialLikeSettings
 
-    fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings)
+    fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings, default=False)
     if fallback_image:
         filename, data = b64decode_file(fallback_image)
         return '/@@sociallike-fallback-image/' + filename

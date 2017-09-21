@@ -16,7 +16,7 @@ class ImageFallBack(Download):
         super(ImageFallBack, self).__call__()
 
     def setup(self):
-        fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings)
+        fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings, default=False)
         if fallback_image:
             filename, data = b64decode_file(fallback_image)
             data = NamedImage(data=data, filename=filename)
