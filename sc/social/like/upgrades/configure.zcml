@@ -13,5 +13,6 @@
     <include package=".v3045" />
     <include package=".v3046" />
     <include package=".v3047" />
+    <include package=".v3048" />
 
 </configure>
