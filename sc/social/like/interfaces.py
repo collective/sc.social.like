@@ -6,6 +6,7 @@ from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import DEFAULT_ENABLED_CONTENT_TYPES
 from sc.social.like.config import DEFAULT_PLUGINS_ENABLED
 from sc.social.like.utils import validate_canonical_domain
+from sc.social.like.utils import validate_image_settings
 from sc.social.like.vocabularies import FacebookButtonsVocabulary
 from sc.social.like.vocabularies import FacebookVerbsVocabulary
 from sc.social.like.vocabularies import TypeButtonVocabulary
@@ -227,7 +228,7 @@ class ISocialLikeSettings(model.Schema):
                     u'If you do not enter a \"logo.png\" image will be the default.',
         ),
         required=False,
-        # constraint=validate_image_settings,
+        constraint=validate_image_settings,
     )
 
     image_scale = schema.Choice(
