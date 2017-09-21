@@ -6,14 +6,15 @@ from plone.namedfile.file import NamedImage
 from sc.social.like.interfaces import ISocialLikeSettings
 
 
-class ImageFallBack(Download):
+class FallBackImage(Download):
+    """Download fallback image file, via /@@sociallike-fallback-image/filename"""
 
     filename = None
     data = None
 
     def __call__(self):
         self.setup()
-        super(ImageFallBack, self).__call__()
+        super(FallBackImage, self).__call__()
 
     def setup(self):
         fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings, default=False)

@@ -80,7 +80,7 @@
     <browser:page
        name="sociallike-fallback-image"
        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-       class=".imagefallback.ImageFallBack"
+       class=".fallbackimage.FallBackImage"
        layer="..interfaces.ISocialLikeLayer"
        permission="zope.Public"
        />
