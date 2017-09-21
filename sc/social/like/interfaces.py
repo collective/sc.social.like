@@ -221,10 +221,10 @@ class ISocialLikeSettings(model.Schema):
 
     form.widget('fallback_image', NamedImageFieldWidget)
     fallback_image = schema.ASCII(
-        title=_(u'Image fallback'),
+        title=_(u'Fallback image'),
         description=_(
             u'help_fallback_image',
-            default=u'Content that does not have an image will be displayed on the share.\n '
+            default=u'Image that will be displayed on the share for content that does not have an image..\n '
                     u'If you do not enter a \"logo.png\" image will be the default.',
         ),
         required=False,

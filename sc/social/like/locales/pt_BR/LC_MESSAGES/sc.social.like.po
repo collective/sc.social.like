@@ -433,7 +433,7 @@ msgstr "Imagem"
 
 #: ./sc/social/like/interfaces.py:213
 msgid "help_fallback_image"
-msgstr "O conteúdo que não possuir uma imagem essa será exibida no compartilhamento.\n Caso não informe uma, a imagem \"logo.png\" será a padrão."
+msgstr "Imagem que será exibida no compartilhamento para conteúdo que não possui uma imagem.\n Caso não informe uma, a imagem \"logo.png\" será a padrão."
 
 #: ./sc/social/like/interfaces.py:223
 msgid "Image scale for shared"
