@@ -58,10 +58,5 @@ def image_scales_vocabulary(object):
     terms = []
     for scale, (width, height) in getAllowedSizes().iteritems():
         if width >= OG_LEAD_IMAGE_MIN_WIDTH and height >= OG_LEAD_IMAGE_MIN_HEIGHT:
-            translated = _(
-                'imagescale_{0:s}'.format(scale),
-                default='{0:s} ${{width}}x${{height}}'.format(scale),
-                mapping={'width': str(width), 'height': str(height)})
-            terms.append(SimpleTerm(scale, scale, translated))
-
+            terms.append(SimpleTerm(scale, scale))
     return SimpleVocabulary(terms)
