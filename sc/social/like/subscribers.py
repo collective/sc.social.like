@@ -27,6 +27,7 @@ from sc.social.like.utils import validate_og_title
 from zope.component import getUtility
 from zope.schema.interfaces import WrongType
 
+import requests
 import traceback
 
 
@@ -151,3 +152,36 @@ def check_sharing_best_practices(obj, event):
         validate_og_lead_image(image)
     except ValueError as e:
         api.portal.show_message(message=e.message, request=request, type='warning')
+
+
+def prefetch_facebook(obj, event):
+    """Prefetching in object if enable."""
+
+    record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enable'
+    prefetch_enable = api.portal.get_registry_record(record, default=False)
+
+    if not prefetch_enable:
+        return
+
+    try:
+        review_state = api.content.get_state(obj)
+    except WorkflowException:
+        # images and files have no associated workflow by default
+        review_state = 'published'
+
+    if review_state not in ('published', ):
+        return  # no need to validate
+
+    url = obj.absolute_url()
+    r = requests.post('https://graph.facebook.com/?id=' + url + '&scrape=true',
+                      timeout=5,
+                      verify=False)
+
+    if r.status_code == '200':
+        prefetch = r.json()
+        if prefetch.get('og_object', None):
+            logger.info(u'Prefetching: ' + url)
+        else:
+            logger.warn(u'Prefetching failed, page is not accessible by Facebook.')
+    else:
+        logger.warn(u'Prefetching failed, invalid HTTP response.')

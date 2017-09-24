@@ -235,3 +235,16 @@ class ISocialLikeSettings(model.Schema):
         required=False,
         default='',
     )
+
+    model.fieldset(
+        'open_graph', label=u'Open Graph', fields=['facebook_prefetch_enable'])
+
+    facebook_prefetch_enable = schema.Bool(
+        title=_(u'Enable Prefetching Facebook?'),
+        description=_(
+            u'help_facebook_prefetch_enable',
+            default=u'If enabled, an event is triggered so that Facebook '
+                    u'downloads mobile content before someone clicks on a link.'
+        ),
+        default=False,
+    )
