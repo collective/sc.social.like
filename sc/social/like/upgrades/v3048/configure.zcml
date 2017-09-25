@@ -8,8 +8,8 @@
       profile="sc.social.like:default">
 
     <genericsetup:upgradeDepends
-        title="Add fallback image in configlet"
-        description="Adds new field to the control panel configlet."
+        title="Add new fields to configlet"
+        description="Adds fallback image and Facebook prefetch features."
         import_steps="plone.app.registry"
         />
 
