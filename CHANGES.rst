@@ -17,6 +17,9 @@ There's a frood who really knows where his towel is.
 - Update Basque translation.
   [erral]
 
+- Implement prefetch for Facebook.
+  [claytonc]
+
 
 2.12b1 (2017-09-15)
 ^^^^^^^^^^^^^^^^^^^
