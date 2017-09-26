@@ -217,7 +217,7 @@ class ISocialLikeSettings(model.Schema):
     )
 
     model.fieldset(
-        'open_graph', label=u'Open Graph', fields=['fallback_image', 'image_scale'])
+        'open_graph', label=u'Open Graph', fields=['fallback_image'])
 
     form.widget('fallback_image', NamedImageFieldWidget)
     fallback_image = schema.ASCII(
@@ -229,15 +229,4 @@ class ISocialLikeSettings(model.Schema):
         ),
         required=False,
         constraint=validate_image_settings,
-    )
-
-    image_scale = schema.Choice(
-        title=_(u'Image scale for shared'),
-        description=_(
-            u'help_image_scale',
-            default=u'Scale size of the image of the content to be shared.',
-        ),
-        required=True,
-        default=u'large',
-        vocabulary='sc.social.likes.ImagesScales',
     )

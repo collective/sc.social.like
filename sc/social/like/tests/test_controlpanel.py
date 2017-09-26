@@ -113,10 +113,6 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'fallback_image'))
         self.assertEqual(self.settings.fallback_image, None)
 
-    def test_image_scale_record_in_registry(self):
-        self.assertTrue(hasattr(self.settings, 'image_scale'))
-        self.assertEqual(self.settings.image_scale, 'large')
-
     def test_records_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 
@@ -137,7 +133,6 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.fbshowlikes',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
             ISocialLikeSettings.__identifier__ + '.fallback_image',
-            ISocialLikeSettings.__identifier__ + '.image_scale',
         ]
 
         for r in records:
