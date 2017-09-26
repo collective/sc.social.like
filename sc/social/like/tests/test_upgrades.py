@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from plone.registry.interfaces import IRegistry
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import HAS_DEXTERITY
@@ -110,7 +111,6 @@ class To3040TestCase(UpgradeTestCaseBase):
         assert step is not None
 
         # simulate state on previous version
-        from plone.registry.interfaces import IRegistry
         from sc.social.like.config import PROJECTNAME
 
         # restore old property sheet
@@ -230,7 +230,6 @@ class To3044TestCase(UpgradeTestCaseBase):
         assert step is not None
 
         # simulate state on previous version
-        from plone.registry.interfaces import IRegistry
         registry = getUtility(IRegistry)
         record = ISocialLikeSettings.__identifier__ + '.fbshowlikes'
         del registry.records[record]
@@ -342,7 +341,6 @@ class To3047TestCase(UpgradeTestCaseBase):
         self.assertIsNotNone(step)
 
         # simulate state on previous version
-        from plone.registry.interfaces import IRegistry
         registry = getUtility(IRegistry)
         record = ISocialLikeSettings.__identifier__ + '.validation_enabled'
         del registry.records[record]
@@ -370,14 +368,16 @@ class To3048TestCase(UpgradeTestCaseBase):
         self.assertEqual(self.total_steps, 1)
 
     def test_add_validation_enabled_record(self):
-        title = u'Add fallback image in configlet'
+        title = u'Add new fields to configlet'
         step = self.get_upgrade_step(title)
         self.assertIsNotNone(step)
 
         # simulate state on previous version
-        from plone.registry.interfaces import IRegistry
         registry = getUtility(IRegistry)
         record = ISocialLikeSettings.__identifier__ + '.fallback_image'
+        del registry.records[record]
+        self.assertNotIn(record, registry)
+        record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enable'
         del registry.records[record]
         self.assertNotIn(record, registry)
 
@@ -387,6 +387,7 @@ class To3048TestCase(UpgradeTestCaseBase):
         # run the upgrade step to validate the update
         self.execute_upgrade_step(step)
 
-        # test the new field is in place
+        # test the new fields are in place
         settings = registry.forInterface(ISocialLikeSettings)
         self.assertIsNone(settings.fallback_image)
+        self.assertFalse(settings.facebook_prefetch_enable)

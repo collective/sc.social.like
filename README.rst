@@ -107,6 +107,20 @@ For more information see:
 
 You can disable content validation using an option in the control panel configlet.
 
+Prefetching Facebook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+    This feature is only available for Dexterity-based content types.
+
+Prefetching allows Facebook to download mobile content before someone clicks a link.
+
+Prefetching is especially beneficial for people using Facebook on slow or poor network connections.
+
+According to Facebook's `documentation <https://www.facebook.com/business/help/1514372351922333>`_:
+
+The default is disable, but you can enable prefetch using an option in the control panel configlet.
+
 Canonical URL and migration to HTTPS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
