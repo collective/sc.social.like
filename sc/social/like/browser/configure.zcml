@@ -78,11 +78,11 @@
         />
 
     <browser:page
-       name="sociallike-fallback-image"
-       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-       class=".fallbackimage.FallBackImage"
-       layer="..interfaces.ISocialLikeLayer"
-       permission="zope.Public"
-       />
+        name="sociallike-fallback-image"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helper.FallBackImageView"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
 
 </configure>

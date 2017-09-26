@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-# from cStringIO import StringIO
 from plone import api
 from plone.app.testing import logout
-# from plone.formwidget.namedfile.converter import b64decode_file
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -85,6 +83,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'canonical_domain'))
         self.assertIsNone(self.settings.canonical_domain)
 
+    def test_fallback_image_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'fallback_image'))
+        self.assertEqual(self.settings.fallback_image, None)
+
     def test_fbaction_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fbaction'))
         self.assertEqual(self.settings.fbaction, u'like')
@@ -109,10 +111,6 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'twitter_username'))
         self.assertEqual(self.settings.twitter_username, '')
 
-    def test_fallback_image_record_in_registry(self):
-        self.assertTrue(hasattr(self.settings, 'fallback_image'))
-        self.assertEqual(self.settings.fallback_image, None)
-
     def test_records_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 
@@ -126,13 +124,13 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.typebutton',
             ISocialLikeSettings.__identifier__ + '.do_not_track',
             ISocialLikeSettings.__identifier__ + '.canonical_domain',
+            ISocialLikeSettings.__identifier__ + '.fallback_image',
             ISocialLikeSettings.__identifier__ + '.fbaction',
             ISocialLikeSettings.__identifier__ + '.facebook_username',
             ISocialLikeSettings.__identifier__ + '.facebook_app_id',
             ISocialLikeSettings.__identifier__ + '.fbbuttons',
             ISocialLikeSettings.__identifier__ + '.fbshowlikes',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
-            ISocialLikeSettings.__identifier__ + '.fallback_image',
         ]
 
         for r in records:

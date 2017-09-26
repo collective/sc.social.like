@@ -122,15 +122,11 @@ class ISocialLikeSettings(model.Schema):
     )
 
     model.fieldset(
-        'facebook',
-        label=u'Facebook',
+        'open_graph',
+        label=u'Open Graph',
         fields=[
             'canonical_domain',
-            'fbaction',
-            'facebook_username',
-            'facebook_app_id',
-            'fbbuttons',
-            'fbshowlikes',
+            'fallback_image',
         ],
     )
 
@@ -145,6 +141,29 @@ class ISocialLikeSettings(model.Schema):
         ),
         required=True,
         constraint=validate_canonical_domain,
+    )
+
+    form.widget('fallback_image', NamedImageFieldWidget)
+    fallback_image = schema.ASCII(
+        title=_(u'Fallback image'),
+        description=_(
+            u'help_fallback_image',
+            default=u'Content without a lead image will use this image as fallback.'
+        ),
+        required=False,
+        constraint=validate_image_settings,
+    )
+
+    model.fieldset(
+        'facebook',
+        label=u'Facebook',
+        fields=[
+            'fbaction',
+            'facebook_username',
+            'facebook_app_id',
+            'fbbuttons',
+            'fbshowlikes',
+        ],
     )
 
     fbaction = schema.Choice(
@@ -214,19 +233,4 @@ class ISocialLikeSettings(model.Schema):
         ),
         required=False,
         default='',
-    )
-
-    model.fieldset(
-        'open_graph', label=u'Open Graph', fields=['fallback_image'])
-
-    form.widget('fallback_image', NamedImageFieldWidget)
-    fallback_image = schema.ASCII(
-        title=_(u'Fallback image'),
-        description=_(
-            u'help_fallback_image',
-            default=u'Image that will be displayed on the share for content that does not have an image..\n '
-                    u'If you do not enter a \"logo.png\" image will be the default.',
-        ),
-        required=False,
-        constraint=validate_image_settings,
     )
