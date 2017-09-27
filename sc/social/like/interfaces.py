@@ -148,7 +148,8 @@ class ISocialLikeSettings(model.Schema):
         title=_(u'Fallback image'),
         description=_(
             u'help_fallback_image',
-            default=u'Content without a lead image will use this image as fallback.'
+            default=u'Content without a lead image will use this image as fallback (<code>og:image</code> property). '
+                    u'There could be a delay of up to 2 minutes when replacing this image.'
         ),
         required=False,
         constraint=validate_og_fallback_image,

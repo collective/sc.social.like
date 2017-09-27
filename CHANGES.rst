@@ -6,7 +6,9 @@ There's a frood who really knows where his towel is.
 2.12b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Add image fallback for content with no lead image.
+- Add Open Graph fallback image for content lacking lead image;
+  the image should be uploaded in the control panel configlet and must comply with best practices;
+  canonical domain field was also moved to the new Open Graph field set in the configlet (closes `#130 <https://github.com/collective/sc.social.like/issues/130>`_).
   [claytonc, hvelarde]
 
 - Avoid ``WorkflowException`` on sharing best practices validation of content that has no associated workflow, like images and files (fixes `#142 <https://github.com/collective/sc.social.like/issues/142>`_).
