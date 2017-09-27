@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.12b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Avoid ``WorkflowException`` on sharing best practices validation of content that has no associated workflow, like images and files (fixes `#142 <https://github.com/collective/sc.social.like/issues/142>`_).
+  [hvelarde]
+
 - Update Basque translation.
   [erral]
 

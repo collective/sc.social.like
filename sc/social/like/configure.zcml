@@ -38,14 +38,14 @@
       zcml:condition="installed plone.app.contenttypes"
       for="plone.dexterity.interfaces.IDexterityContent
            Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-      handler=".subscribers.check_sharing_best_practices_on_publishing"
+      handler=".subscribers.check_sharing_best_practices"
       />
 
   <subscriber
       zcml:condition="installed plone.app.contenttypes"
       for="plone.dexterity.interfaces.IDexterityContent
            plone.dexterity.interfaces.IEditFinishedEvent"
-      handler=".subscribers.check_sharing_best_practices_on_editing"
+      handler=".subscribers.check_sharing_best_practices"
       />
 
   <include file="behaviors.zcml" />
