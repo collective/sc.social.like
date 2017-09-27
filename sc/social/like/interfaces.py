@@ -6,7 +6,7 @@ from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import DEFAULT_ENABLED_CONTENT_TYPES
 from sc.social.like.config import DEFAULT_PLUGINS_ENABLED
 from sc.social.like.utils import validate_canonical_domain
-from sc.social.like.utils import validate_image_settings
+from sc.social.like.utils import validate_og_fallback_image
 from sc.social.like.vocabularies import FacebookButtonsVocabulary
 from sc.social.like.vocabularies import FacebookVerbsVocabulary
 from sc.social.like.vocabularies import TypeButtonVocabulary
@@ -151,7 +151,7 @@ class ISocialLikeSettings(model.Schema):
             default=u'Content without a lead image will use this image as fallback.'
         ),
         required=False,
-        constraint=validate_image_settings,
+        constraint=validate_og_fallback_image,
     )
 
     model.fieldset(

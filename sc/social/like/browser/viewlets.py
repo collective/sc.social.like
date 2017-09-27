@@ -2,6 +2,7 @@
 from Acquisition import aq_inner
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
+from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.WorkflowCore import WorkflowException
@@ -10,7 +11,6 @@ from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
-from sc.social.like.utils import get_fallback_image
 from sc.social.like.utils import get_language
 from zope.component import getMultiAdapter
 from zope.component import getUtility
@@ -105,13 +105,21 @@ class SocialMetadataViewlet(BaseLikeViewlet):
             return self.context.canonical_url
         return self.context.absolute_url()
 
+    def get_fallback_image(self):
+        fallback_image = self.settings.fallback_image
+        if fallback_image is not None:
+            filename, data = b64decode_file(fallback_image)
+            return '/@@sociallike-fallback-image/' + filename
+        else:
+            return '/logo.png'
+
     def image_url(self):
         """Return lead image URL."""
         img = self.image
         if img:
             return img.url
         else:
-            return self.portal_url() + get_fallback_image()
+            return self.portal_url() + self.get_fallback_image()
 
     def image_width(self):
         return self.image.width

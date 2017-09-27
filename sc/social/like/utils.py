@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_base
-from plone import api
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.namedfile.file import NamedBlobImage
 from Products.Archetypes.interfaces import IBaseContent
@@ -203,25 +202,15 @@ def validate_og_lead_image(image):
     return True
 
 
-def get_fallback_image():
-    from sc.social.like.interfaces import ISocialLikeSettings
-
-    fallback_image = api.portal.get_registry_record('fallback_image', interface=ISocialLikeSettings, default=False)
-    if fallback_image:
-        filename, data = b64decode_file(fallback_image)
-        return '/@@sociallike-fallback-image/' + filename
-    else:
-        return '/logo.png'
-
-
-def validate_image_settings(value):
-    """Check image fallback be in formats mime type, dimensions and size."""
+def validate_og_fallback_image(value):
+    """Check if fallback image follows best practices on MIME type,
+    size, dimensions and aspect ratio.
+    """
+    if value is None:
+        return True
 
     filename, data = b64decode_file(value)
     image = NamedBlobImage(data=data, filename=filename)
-
-    if image is None:
-        return True
 
     if image.contentType not in OG_LEAD_IMAGE_MIME_TYPES:
         raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
