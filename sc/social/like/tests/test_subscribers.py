@@ -140,6 +140,26 @@ class ValidationTestCase(unittest.TestCase):
         self.assertEqual(messages[2].message, MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
         self.assertEqual(messages[2].type, u'warning')
 
+    def test_validate_on_no_workflow(self):
+        # image and files have no associated workflow
+        with api.env.adopt_roles(['Manager']):
+            image = api.content.create(self.portal, 'Image', id='foo')
+
+        # content don't follow best practices
+        image.title = get_random_string(80)
+        image.description = get_random_string(300)
+        set_image_field(image, load_image(200, 150), 'image/png')
+        notify(EditFinishedEvent(image))
+
+        # feedback messages present
+        messages = IStatusMessage(self.request).show()
+        self.assertEqual(messages[0].message, MSG_INVALID_OG_TITLE)
+        self.assertEqual(messages[0].type, u'warning')
+        self.assertEqual(messages[1].message, MSG_INVALID_OG_DESCRIPTION)
+        self.assertEqual(messages[1].type, u'warning')
+        self.assertEqual(messages[2].message, MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
+        self.assertEqual(messages[2].type, u'warning')
+
     def test_do_not_validate_on_edit_not_public(self):
         with api.env.adopt_roles(['Manager']):
             api.content.transition(self.news_item, 'submit')
@@ -168,7 +188,7 @@ class ValidationTestCase(unittest.TestCase):
         messages = IStatusMessage(self.request).show()
         self.assertEqual(len(messages), 0)
 
-    def test_validate_social_content_edit_invalid(self):
+    def test_validate_on_edit_invalid(self):
         with api.env.adopt_roles(['Manager']):
             api.content.transition(self.news_item, 'publish')
 

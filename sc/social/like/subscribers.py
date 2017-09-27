@@ -15,6 +15,7 @@ available and we can not get its virtual path.
 """
 from plone import api
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.WorkflowCore import WorkflowException
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -113,7 +114,7 @@ def assign_canonical_url(obj, event):
         )
 
 
-def check_sharing_best_practices(obj):
+def check_sharing_best_practices(obj, event):
     """Check if content follows social networks sharing best practices
     as defined by Twitter and Facebook.
     """
@@ -121,6 +122,15 @@ def check_sharing_best_practices(obj):
     validation_enabled = api.portal.get_registry_record(record, default=False)
     if not validation_enabled:
         return
+
+    try:
+        review_state = api.content.get_state(obj)
+    except WorkflowException:
+        # images and files have no associated workflow by default
+        review_state = 'published'
+
+    if review_state not in ('published', ):
+        return  # no need to validate
 
     request = obj.REQUEST
 
@@ -141,16 +151,3 @@ def check_sharing_best_practices(obj):
         validate_og_lead_image(image)
     except ValueError as e:
         api.portal.show_message(message=e.message, request=request, type='warning')
-
-
-def check_sharing_best_practices_on_editing(obj, event):
-    """Event subscriber for content being edited."""
-    state = api.content.get_state(obj)
-    if state in ('published', ):
-        check_sharing_best_practices(obj)
-
-
-def check_sharing_best_practices_on_publishing(obj, event):
-    """Event subscriber for content being published."""
-    if event.status['review_state'] in ('published', ):
-        check_sharing_best_practices(obj)
