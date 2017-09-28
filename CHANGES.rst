@@ -6,8 +6,9 @@ There's a frood who really knows where his towel is.
 2.12b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Implement prefetch for Facebook.
-  [claytonc]
+- Implement Facebook prefetching.
+  Check package documentation for more information on how to use this new feature (closes `#129 <https://github.com/collective/sc.social.like/issues/129>`_).
+  [claytonc, hvelarde]
 
 - Add Open Graph fallback image for content lacking lead image;
   the image should be uploaded in the control panel configlet and must comply with best practices;
