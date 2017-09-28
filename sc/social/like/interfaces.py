@@ -164,6 +164,7 @@ class ISocialLikeSettings(model.Schema):
             'facebook_app_id',
             'fbbuttons',
             'fbshowlikes',
+            'facebook_prefetch_enabled'
         ],
     )
 
@@ -221,6 +222,19 @@ class ISocialLikeSettings(model.Schema):
                     u'Facebook users who have already liked this page.'
         ),
         default=True,
+    )
+
+    facebook_prefetch_enabled = schema.Bool(
+        title=_(u'Enable Facebook prefetch?'),
+        description=_(
+            u'help_facebook_prefetch_enabled',
+            default=u'If enabled, an event is triggered to make Facebook '
+                    u'crawler scrape and cache metadata every time a new '
+                    u'piece content is published and every time published '
+                    u'content is edited. '
+                    u'This will keep the metadata updated on Facebook always.'
+        ),
+        default=False,
     )
 
     model.fieldset(

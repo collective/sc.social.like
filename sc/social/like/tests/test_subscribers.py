@@ -21,10 +21,13 @@ from sc.social.like.tests.utils import get_random_string
 from sc.social.like.utils import MSG_INVALID_OG_DESCRIPTION
 from sc.social.like.utils import MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS
 from sc.social.like.utils import MSG_INVALID_OG_TITLE
+from testfixtures import log_capture
 from zope import schema
 from zope.component import getUtility
 from zope.event import notify
 
+import logging
+import requests_mock
 import unittest
 
 
@@ -221,6 +224,72 @@ class ValidationTestCase(unittest.TestCase):
         notify(EditFinishedEvent(self.news_item))
 
 
+class PrefetchTestCase(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+
+        record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enabled'
+        api.portal.set_registry_record(record, True)
+
+        with api.env.adopt_roles(['Manager']):
+            self.news_item = api.content.create(
+                self.portal, 'News Item', title=u'Lorem ipsum')
+
+        url = self.news_item.absolute_url()
+        self.endpoint = 'https://graph.facebook.com/?id=' + url + '&scrape=true'
+
+    @requests_mock.mock()
+    @log_capture(level=logging.INFO)
+    def test_facebook_prefetch_non_public(self, m, l):
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'submit')
+
+        # check no log entries
+        l.check()
+
+    @requests_mock.mock()
+    @log_capture(level=logging.INFO)
+    def test_facebook_prefetch(self, m, l):
+        m.post(self.endpoint, status_code='200')
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+
+        # check log entries
+        msg = 'Prefetch successful: http://nohost/plone/lorem-ipsum'
+        expected = ('sc.social.like', 'INFO', msg)
+        l.check(expected)
+
+    @requests_mock.mock()
+    @log_capture(level=logging.INFO)
+    def test_facebook_prefetch_error(self, m, l):
+        import json
+        text = '{"error":{"message":"foo","type":"bar"}}'
+        m.post(self.endpoint, text=text, status_code='403', reason='Forbidden')
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+
+        # check log entries
+        msg = 'Prefetch error 403 (Forbidden): ' + str(json.loads(text))
+        expected = ('sc.social.like', 'WARNING', msg)
+        l.check(expected)
+
+    @requests_mock.mock()
+    def test_facebook_prefetch_failure(self, m):
+        import requests
+        m.post(self.endpoint, exc=requests.exceptions.ConnectTimeout)
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+
+        # transition should not be aborted
+        self.assertEqual(api.content.get_state(self.news_item), 'published')
+
+
 def load_tests(loader, tests, pattern):
     from sc.social.like.testing import HAS_DEXTERITY
 
@@ -228,6 +297,7 @@ def load_tests(loader, tests, pattern):
     if HAS_DEXTERITY:
         # load validation tests on Dexterity-based content types only
         test_cases.append(ValidationTestCase)
+        test_cases.append(PrefetchTestCase)
 
     suite = unittest.TestSuite()
     for test_class in test_cases:

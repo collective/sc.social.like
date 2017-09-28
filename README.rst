@@ -107,6 +107,28 @@ For more information see:
 
 You can disable content validation using an option in the control panel configlet.
 
+Facebook prefetch
+^^^^^^^^^^^^^^^^^
+
+.. note::
+    This feature is only available for Dexterity-based content types.
+
+When content is shared for the first time,
+the Facebook crawler will scrape and cache the metadata from the URL shared.
+The crawler has to see images at least once before they can be rendered.
+Prefetching allows Facebook to download content before someone shares it.
+
+According to `Facebook's documentation <https://www.facebook.com/business/help/1514372351922333>`_,
+prefetching is especially beneficial for people using Facebook on slow or poor network connections.
+Prefetching also loads mobile site content faster,
+which improves the Facebook app experience on Android and iPhone devices.
+
+You can enable Facebook prefetch using an option in the control panel configlet.
+
+A call to the Graph API endpoint will be generated automatically every time a new piece content is published,
+and every time a published content is edited.
+This will keep the metadata updated on Facebook always.
+
 Canonical URL and migration to HTTPS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

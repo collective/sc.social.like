@@ -48,6 +48,20 @@
       handler=".subscribers.check_sharing_best_practices"
       />
 
+  <subscriber
+      zcml:condition="installed plone.app.contenttypes"
+      for="plone.dexterity.interfaces.IDexterityContent
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".subscribers.facebook_prefetching"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.contenttypes"
+      for="plone.dexterity.interfaces.IDexterityContent
+           plone.dexterity.interfaces.IEditFinishedEvent"
+      handler=".subscribers.facebook_prefetching"
+      />
+
   <include file="behaviors.zcml" />
 
 </configure>

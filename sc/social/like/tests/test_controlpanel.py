@@ -111,6 +111,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'twitter_username'))
         self.assertEqual(self.settings.twitter_username, '')
 
+    def test_facebook_prefetch_enabled_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'facebook_prefetch_enabled'))
+        self.assertEqual(self.settings.facebook_prefetch_enabled, False)
+
     def test_records_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 
@@ -131,6 +135,7 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.fbbuttons',
             ISocialLikeSettings.__identifier__ + '.fbshowlikes',
             ISocialLikeSettings.__identifier__ + '.twitter_username',
+            ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enabled',
         ]
 
         for r in records:
