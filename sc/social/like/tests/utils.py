@@ -19,3 +19,19 @@ def get_random_string(length):
     from random import choice
     from string import printable
     return ''.join(choice(printable) for i in xrange(0, length))
+
+
+def get_file(filename):
+    """Return contents of file from current directory."""
+    import os
+    path = os.path.abspath(os.path.dirname(__file__))
+    path = os.path.join(path, 'images', filename)
+    with open(path, 'rb') as f:
+        return f.read()
+
+
+def get_file_b64encoded(filename):
+    """Load file from current directory and return it b64encoded."""
+    from plone.formwidget.namedfile.converter import b64encode_file
+    data = get_file(filename)
+    return b64encode_file(filename, data)

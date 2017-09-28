@@ -19,6 +19,8 @@ This package provides integration with the following social networks in Plone:
 * Twitter
 * WhatsApp (mobile only)
 
+The integration is done via `Open Graph protocol <http://ogp.me/>`_ basic metadata and the inclusion of sharing widgets for all enabled social networks.
+
 Mostly Harmless
 ---------------
 
@@ -74,6 +76,18 @@ Go to the 'Site Setup' page in the Plone interface and click on the
 
 There you can configure how **Social: Like Actions** will behave, which actions
 will be displayed and for which content types.
+
+Open Graph protocol support
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following basic metadata is included on content types with Social Media behavior enabled:
+
+* ``og:title``: the title of the item
+* ``og:description``: the description of the item
+* ``og:type``: defaults to 'website' on the portal root and 'article' elsewhere
+* ``og:url``: the canonical URL of the item, that is the URL used by the item when it was first published
+* ``og:image``: the 'large' scale of the lead image of the item, if present;
+  you can define a fallback image to be used in content that lacks lead image on the control panel configlet
 
 Validation of best practices for social networks sharing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

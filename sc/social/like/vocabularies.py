@@ -28,6 +28,7 @@ class PluginsVocabulary(object):
     def __call__(self, context):
         return self.plugins()
 
+
 PluginsVocabularyFactory = PluginsVocabulary()
 
 

@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_base
+from plone.formwidget.namedfile.converter import b64decode_file
+from plone.namedfile.file import NamedBlobImage
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
 from sc.social.like import LikeMessageFactory as _
@@ -196,5 +198,32 @@ def validate_og_lead_image(image):
     aspect_ratio = float(image.width) / float(image.height)
     if aspect_ratio < OG_LEAD_IMAGE_MIN_ASPECT_RATIO:
         raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
+
+    return True
+
+
+def validate_og_fallback_image(value):
+    """Check if fallback image follows best practices on MIME type,
+    size, dimensions and aspect ratio.
+    """
+    if value is None:
+        return True
+
+    filename, data = b64decode_file(value)
+    image = NamedBlobImage(data=data, filename=filename)
+
+    if image.contentType not in OG_LEAD_IMAGE_MIME_TYPES:
+        raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
+
+    if image.getSize() > OG_LEAD_IMAGE_MAX_SIZE:
+        raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_SIZE)
+
+    width, height = image.getImageSize()
+    if width < OG_LEAD_IMAGE_MIN_WIDTH or height < OG_LEAD_IMAGE_MIN_HEIGHT:
+        raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
+
+    aspect_ratio = float(width) / float(height)
+    if aspect_ratio < OG_LEAD_IMAGE_MIN_ASPECT_RATIO:
+        raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
 
     return True

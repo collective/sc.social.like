@@ -83,6 +83,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'canonical_domain'))
         self.assertIsNone(self.settings.canonical_domain)
 
+    def test_fallback_image_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'fallback_image'))
+        self.assertEqual(self.settings.fallback_image, None)
+
     def test_fbaction_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fbaction'))
         self.assertEqual(self.settings.fbaction, u'like')
@@ -120,6 +124,7 @@ class RegistryTestCase(unittest.TestCase):
             ISocialLikeSettings.__identifier__ + '.typebutton',
             ISocialLikeSettings.__identifier__ + '.do_not_track',
             ISocialLikeSettings.__identifier__ + '.canonical_domain',
+            ISocialLikeSettings.__identifier__ + '.fallback_image',
             ISocialLikeSettings.__identifier__ + '.fbaction',
             ISocialLikeSettings.__identifier__ + '.facebook_username',
             ISocialLikeSettings.__identifier__ + '.facebook_app_id',

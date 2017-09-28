@@ -2,8 +2,11 @@
 from Acquisition import aq_inner
 from plone import api
 from plone.app.layout.globals.interfaces import IViewView
+from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
+from plone.namedfile.browser import Download
+from plone.namedfile.file import NamedImage
 from plone.registry.interfaces import IRegistry
 from Products.Five import BrowserView
 from sc.social.like.interfaces import IHelperView
@@ -72,3 +75,28 @@ class HelperView(BrowserView):
         context_state = api.content.get_view(
             'plone_context_state', self.context, self.request)
         return context_state.view_template_id()
+
+
+class FallBackImageView(Download):
+    """Helper view to return the fallback image."""
+
+    def __init__(self, context, request):
+        super(FallBackImageView, self).__init__(context, request)
+
+        record = ISocialLikeSettings.__identifier__ + '.fallback_image'
+        fallback_image = api.portal.get_registry_record(record, default=None)
+
+        if fallback_image is not None:
+            # set fallback image data for download
+            filename, data = b64decode_file(fallback_image)
+            data = NamedImage(data=data, filename=filename)
+            self.filename, self.data = filename, data
+            # enable image caching for 2 minutes
+            self.request.RESPONSE.setHeader('Cache-Control', 'max-age=120, public')
+        else:
+            # resource no longer available
+            self.data = NamedImage(data='')
+            self.request.RESPONSE.setStatus(410)  # Gone
+
+    def _getFile(self):
+        return self.data

@@ -77,4 +77,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="sociallike-fallback-image"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helper.FallBackImageView"
+        layer="..interfaces.ISocialLikeLayer"
+        permission="zope.Public"
+        />
+
 </configure>

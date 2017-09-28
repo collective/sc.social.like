@@ -1,9 +1,12 @@
 # -*- coding:utf-8 -*-
+from plone.autoform import directives as form
+from plone.formwidget.namedfile.widget import NamedImageFieldWidget
 from plone.supermodel import model
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import DEFAULT_ENABLED_CONTENT_TYPES
 from sc.social.like.config import DEFAULT_PLUGINS_ENABLED
 from sc.social.like.utils import validate_canonical_domain
+from sc.social.like.utils import validate_og_fallback_image
 from sc.social.like.vocabularies import FacebookButtonsVocabulary
 from sc.social.like.vocabularies import FacebookVerbsVocabulary
 from sc.social.like.vocabularies import TypeButtonVocabulary
@@ -119,15 +122,11 @@ class ISocialLikeSettings(model.Schema):
     )
 
     model.fieldset(
-        'facebook',
-        label=u'Facebook',
+        'open_graph',
+        label=u'Open Graph',
         fields=[
             'canonical_domain',
-            'fbaction',
-            'facebook_username',
-            'facebook_app_id',
-            'fbbuttons',
-            'fbshowlikes',
+            'fallback_image',
         ],
     )
 
@@ -142,6 +141,30 @@ class ISocialLikeSettings(model.Schema):
         ),
         required=True,
         constraint=validate_canonical_domain,
+    )
+
+    form.widget('fallback_image', NamedImageFieldWidget)
+    fallback_image = schema.ASCII(
+        title=_(u'Fallback image'),
+        description=_(
+            u'help_fallback_image',
+            default=u'Content without a lead image will use this image as fallback (<code>og:image</code> property). '
+                    u'There could be a delay of up to 2 minutes when replacing this image.'
+        ),
+        required=False,
+        constraint=validate_og_fallback_image,
+    )
+
+    model.fieldset(
+        'facebook',
+        label=u'Facebook',
+        fields=[
+            'fbaction',
+            'facebook_username',
+            'facebook_app_id',
+            'fbbuttons',
+            'fbshowlikes',
+        ],
     )
 
     fbaction = schema.Choice(
