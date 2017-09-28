@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2017-09-28 14:35+0000\n"
-"PO-Revision-Date: 2017-09-28 11:41-0300\n"
+"PO-Revision-Date: 2017-09-28 13:23-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "URL canónica"
 
 #: sc/social/like/browser/canonicalurl.py:48
 msgid "Canonical URL updater form"
-msgstr "Formulário de atualização de URL canónica"
+msgstr "Formulário de atualização de URL canônica"
 
 #: sc/social/like/interfaces.py:134
 msgid "Canonical domain"
@@ -63,7 +63,7 @@ msgstr "Domínio canônico"
 
 #: sc/social/like/browser/canonicalurl.py:63
 msgid "Canonical domain has not been defined in the control panel configlet."
-msgstr "O domínio canónico não foi definido no configlet do painel de controle."
+msgstr "O domínio canônico não foi definido no configlet do painel de controle."
 
 #: sc/social/like/interfaces.py:66
 msgid "Content types"
@@ -79,15 +79,15 @@ msgstr "Data"
 
 #: sc/social/like/utils.py:143
 msgid "Description of content should have less than 200 characters."
-msgstr "A descrição do conteúdo deve ter máximo 200 carateres."
+msgstr "A descrição do conteúdo deve ter no máximo 200 caracteres."
 
 #: sc/social/like/tiles/twitter.py:74
 msgid "Display an expanded timeline of between 1 and 20 tweets. Leave it empty to use the default or to set the height of the widget."
-msgstr "Mostrar um timeline expandido de entre 1 e 20 tweets. Deixar vazío para usar o valor padrão ou para especificar a altura do widget."
+msgstr "Mostrar timeline expandida entre 1 e 20 tweets. Deixar vazio para usar o valor padrão ou para especificar a altura do widget."
 
 #: sc/social/like/interfaces.py:112
 msgid "Do not track users"
-msgstr "No rastrear os usuários"
+msgstr "Não rastrear os usuários"
 
 #: sc/social/like/plugins/email/plugin.pt:2
 msgid "Email"
@@ -95,7 +95,7 @@ msgstr "Email"
 
 #: sc/social/like/interfaces.py:228
 msgid "Enable Facebook prefetch?"
-msgstr "Habilitar prefetch em Facebook?"
+msgstr "Habilitar prefetch no Facebook?"
 
 #: sc/social/like/interfaces.py:90
 msgid "Enable content validation?"
@@ -139,7 +139,7 @@ msgstr "Ocultar a imagem do rodapé"
 
 #: sc/social/like/tiles/twitter.py:23
 msgid "Hide the timeline header"
-msgstr "Ocultar o cabeçãlho do cabeçalho"
+msgstr "Ocultar o cabeçalho da timeline"
 
 #: sc/social/like/utils.py:162
 msgid "Lead image MIME type not supported."
@@ -147,7 +147,7 @@ msgstr "O tipo MIME da imagem principal não está suportado."
 
 #: sc/social/like/utils.py:166
 msgid "Lead image aspect ratio should be at least 1.33:1."
-msgstr "A relação de aspeto da imagem principal deve ser 1.33:1 pelo menos."
+msgstr "A relação do aspecto da imagem principal deve ser 1.33:1, pelo menos."
 
 #: sc/social/like/utils.py:164
 msgid "Lead image should be at least 600px width and 315px height."
@@ -155,7 +155,7 @@ msgstr "A imagem principal deve ter pelo menos 600px de largura e 315px de altur
 
 #: sc/social/like/utils.py:163
 msgid "Lead image size should be less than 5MB."
-msgstr "O tamanho da imagem principal deve ser menor de 5MB."
+msgstr "O tamanho da imagem principal deve ser menor que 5MB."
 
 #: sc/social/like/vocabularies.py:42
 msgid "Like"
@@ -302,7 +302,7 @@ msgstr "Timeline"
 
 #: sc/social/like/utils.py:127
 msgid "Title of content should have less than 70 characters."
-msgstr "O título do conteúdo deve ter máximo 70 carateres."
+msgstr "O título do conteúdo deve ter no máximo 70 caracteres."
 
 #: sc/social/like/plugins/twitter/templates/link.pt:9
 msgid "Tweet"
@@ -361,17 +361,17 @@ msgstr "ID da aplicação na plataforma Facebook. Isso é requerido quando a opc
 #. Default: "The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. Check <a href=\"https://pypi.python.org/pypi/sc.social.like\">package documentation</a> for more information on how to use this feature."
 #: sc/social/like/browser/canonicalurl.py:22 sc/social/like/interfaces.py:135
 msgid "help_canonical_domain"
-msgstr "O domínio canónico será usado para construir a URL canónica (a propriedade <code>og:url</code>) dos objetos do portal. Use o nome canónico do seu site (por exemplo, <strong>http://www.example.org</strong> ou <strong>https://www.example.org</strong>). O Facebook utilizará a URL canónica para garantir que todas as ações como \\\"Curtir\\\" ou \\\"Compartilhar\\\" sejam agregadas na mesma URL ao invés de se espalhar por várias versões da página. Confira a <a href=\\\"https://pypi.python.org/pypi/sc.social.like\\\">documentação do pacote</a> para mais informação no uso de esta funcionalidade."
+msgstr "O domínio canônico será usado para construir a URL canônica (a propriedade <code>og:url</code>) dos objetos do portal. Use o nome canônico do seu site (por exemplo, <strong>http://www.example.org</strong> ou <strong>https://www.example.org</strong>). O Facebook utilizará a URL canônica para garantir que todas as ações como \"Curtir\" ou \"Compartilhar\" sejam agregadas na mesma URL ao invés de se espalhar por várias versões da página. Confira a <a href=\"https://pypi.python.org/pypi/sc.social.like\">documentação do pacote</a> para mais informações sobre o uso desta funcionalidade."
 
 #. Default: "The canonical URL of the object that will be used as its permanent ID in the graph (<code>og:url</code>)."
 #: sc/social/like/behaviors.py:20
 msgid "help_canonical_url"
-msgstr "A URL canónica do objeto que será usada como seu ID permanente no gráfico (<code>og:url</code>)."
+msgstr "A URL canônica do objeto que será usada como seu ID permanente no gráfico (a propriedade <code>og:url</code>)."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
 #: sc/social/like/interfaces.py:113
 msgid "help_do_not_track"
-msgstr "Se habilitado, o site no provera os widgets avançados, mas simples links para os serviços. Isso limitará a experiência de usuário e as funcionalidades (como a conta de compartilhamentos) mas respeitará a privacidade dos usuários: nos se enviaram cookies a terceiros."
+msgstr "Se habilitado, o site não proverá os widgets avançados, mas simples links para os serviços. Isso limitará a experiência do usuário e as funcionalidades (como a conta de compartilhamentos) mas respeitará a privacidade dos usuários: não serão enviados cookies a terceiros."
 
 #. Default: "Please select which plugins will be used"
 #: sc/social/like/interfaces.py:80
@@ -381,12 +381,12 @@ msgstr "Informe os plugins que serão usados"
 #. Default: "If enabled, an event is triggered to make Facebook crawler scrape and cache metadata every time a new piece content is published and every time published content is edited. This will keep the metadata updated on Facebook always."
 #: sc/social/like/interfaces.py:229
 msgid "help_facebook_prefetch_enabled"
-msgstr "Se habilitado, se ativará um evento para o crawler do Facebook atualizar e cachear a metadata cada vez que um novo conteúdo seja publicado e cada vez que um novo conteúdo publicado seja editado."
+msgstr "Se habilitado, ativará um evento para o crawler do Facebook atualizar e cachear a metadata cada vez que um novo conteúdo seja publicado e cada vez que um novo conteúdo publicado seja editado."
 
 #. Default: "Content without a lead image will use this image as fallback (<code>og:image</code> property). There could be a delay of up to 2 minutes when replacing this image."
 #: sc/social/like/interfaces.py:149
 msgid "help_fallback_image"
-msgstr "O conteúdo que não possua uma imagem principal usará está imagem como propriedade <code>og:image</code>. Pode ter uma demora de até 2 minutos quando a imagem for substituída."
+msgstr "O conteúdo que não possua uma imagem principal usará esta imagem como propriedade <code>og:image</code>. Pode ter uma demora de até 2 minutos quando a imagem for substituída."
 
 #. Default: "Select buttons to be shown"
 #: sc/social/like/interfaces.py:208
@@ -401,7 +401,7 @@ msgstr "Indique quais tipos de conteúdo terão o viewlet de ações sociais."
 #. Default: "Objects published before this date will be updated using the canonical domain defined in this form; objects published on or after this date will be updated using the canonical domain defined in the control panel configlet."
 #: sc/social/like/browser/canonicalurl.py:35
 msgid "help_published_before"
-msgstr "Objetos publicado antes de essa data serão atualizados usando o domínio canónico definido em este formulário; objetos publicados em essa data o depois serão atualizados usando o domínio canónico definido em o configlet do painel de controle."
+msgstr "Objetos publicados antes desta data serão atualizados usando o domínio canônico definido neste formulário; objetos publicados nesta data ou depois serão atualizados usando o domínio canônico definido no configlet do painel de controle."
 
 #. Default: "Choose your button style."
 #: sc/social/like/interfaces.py:102
@@ -430,7 +430,7 @@ msgstr "Informe seu usuário do Twitter. Ex: simplesconsultoria"
 
 #: sc/social/like/vocabularies.py:36
 msgid "horizontal"
-msgstr "horizontal"
+msgstr "Horizontal"
 
 #. Default: "Cancel"
 #: sc/social/like/browser/canonicalurl.py:85
@@ -439,4 +439,4 @@ msgstr "Cancelar"
 
 #: sc/social/like/vocabularies.py:37
 msgid "vertical"
-msgstr "vertical"
+msgstr "Vertical"

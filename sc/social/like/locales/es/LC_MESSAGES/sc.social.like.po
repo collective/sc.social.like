@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2017-09-28 14:35+0000\n"
-"PO-Revision-Date: 2017-09-28 11:45-0300\n"
+"PO-Revision-Date: 2017-09-28 13:25-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -363,7 +363,7 @@ msgstr "El ID de la aplicación en la plataforma Facebook. Esto es necesario cua
 #. Default: "The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. Check <a href=\"https://pypi.python.org/pypi/sc.social.like\">package documentation</a> for more information on how to use this feature."
 #: sc/social/like/browser/canonicalurl.py:22 sc/social/like/interfaces.py:135
 msgid "help_canonical_domain"
-msgstr "El dominio canónico será usado para construir la URL canónica (la propiedad <code>og:url</code>) de los objetos del portal. Use el nombre de dominio de su site (por ejemplo, <strong>http://www.example.org</strong> o <strong>https://www.example.org</strong>). Facebook utilizará la URL canónica para asegurarse que todas las acciones como \\\"Me gusta\\\" y \\\"Compartir\\\" serán agregadas en la misma URL, en vez de distribuirse en varias versiones de una página. Revise la <a href=\\\"https://pypi.python.org/pypi/sc.social.like\\\">documentación del paquete</a> para mayor información sobre cómo utilizar esta funcionalidad."
+msgstr "El dominio canónico será usado para construir la URL canónica (la propiedad <code>og:url</code>) de los objetos del portal. Use el nombre de dominio de su site (por ejemplo, <strong>http://www.example.org</strong> o <strong>https://www.example.org</strong>). Facebook utilizará la URL canónica para asegurarse que todas las acciones como \"Me gusta\" y \"Compartir\" serán agregadas en la misma URL, en vez de distribuirse en varias versiones de una página. Revise la <a href=\"https://pypi.python.org/pypi/sc.social.like\">documentación del paquete</a> para mayor información sobre cómo utilizar esta funcionalidad."
 
 #. Default: "The canonical URL of the object that will be used as its permanent ID in the graph (<code>og:url</code>)."
 #: sc/social/like/behaviors.py:20
