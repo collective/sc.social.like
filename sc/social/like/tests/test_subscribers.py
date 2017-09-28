@@ -278,6 +278,17 @@ class PrefetchTestCase(unittest.TestCase):
         expected = ('sc.social.like', 'WARNING', msg)
         l.check(expected)
 
+    @requests_mock.mock()
+    def test_facebook_prefetch_failure(self, m):
+        import requests
+        m.post(self.endpoint, exc=requests.exceptions.ConnectTimeout)
+
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'publish')
+
+        # transition should not be aborted
+        self.assertEqual(api.content.get_state(self.news_item), 'published')
+
 
 def load_tests(loader, tests, pattern):
     from sc.social.like.testing import HAS_DEXTERITY

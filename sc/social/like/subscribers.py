@@ -172,7 +172,11 @@ def prefetch_facebook(obj, event):
 
     url = obj.absolute_url()
     endpoint = 'https://graph.facebook.com/?id=' + url + '&scrape=true'
-    r = requests.post(endpoint, timeout=5)
+    try:
+        r = requests.post(endpoint, timeout=5)
+    except requests.exceptions.RequestException as e:
+        logger.warn('Prefetch failure: ' + str(e.message))
+        return
 
     if r.status_code == '200':
         logger.info('Prefetch successful: ' + url)
