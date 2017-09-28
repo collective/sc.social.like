@@ -428,5 +428,5 @@ msgid "Enable Prefetching Facebook?"
 msgstr ""
 
 #: ./sc/social/like/interfaces.py:222
-msgid "help_facebook_prefetch_enable"
+msgid "help_facebook_prefetch_enabled"
 msgstr ""

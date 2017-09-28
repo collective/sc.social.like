@@ -429,5 +429,5 @@ msgid "Enable Prefetching Facebook?"
 msgstr ""
 
 #: ./sc/social/like/interfaces.py:222
-msgid "help_facebook_prefetch_enable"
+msgid "help_facebook_prefetch_enabled"
 msgstr "Se ativado, um evento é acionado para que o Facebook faça o download de conteúdo móvel antes de alguém clicar em um link."

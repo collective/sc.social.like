@@ -164,7 +164,7 @@ class ISocialLikeSettings(model.Schema):
             'facebook_app_id',
             'fbbuttons',
             'fbshowlikes',
-            'facebook_prefetch_enable'
+            'facebook_prefetch_enabled'
         ],
     )
 
@@ -224,10 +224,10 @@ class ISocialLikeSettings(model.Schema):
         default=True,
     )
 
-    facebook_prefetch_enable = schema.Bool(
+    facebook_prefetch_enabled = schema.Bool(
         title=_(u'Enable Prefetching Facebook?'),
         description=_(
-            u'help_facebook_prefetch_enable',
+            u'help_facebook_prefetch_enabled',
             default=u'If enabled, an event is triggered so that Facebook '
                     u'downloads mobile content before someone clicks on a link.'
         ),

@@ -21,11 +21,12 @@ from sc.social.like.tests.utils import get_random_string
 from sc.social.like.utils import MSG_INVALID_OG_DESCRIPTION
 from sc.social.like.utils import MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS
 from sc.social.like.utils import MSG_INVALID_OG_TITLE
-from testfixtures import LogCapture
+from testfixtures import log_capture
 from zope import schema
 from zope.component import getUtility
 from zope.event import notify
 
+import logging
 import requests_mock
 import unittest
 
@@ -222,48 +223,60 @@ class ValidationTestCase(unittest.TestCase):
         # should not raise exceptions on editing
         notify(EditFinishedEvent(self.news_item))
 
-    @requests_mock.mock()
-    def test_validate_facebook_prefetch_valid(self, m):
-        RESPONSE_VALID = """{u'description': u'', u'id': u'10150450110122918',
-                             u'image': [{u'type': u'image/png', u'url': u'https://plone.org/logo.png'}],
-                             u'site_name': u'Plone: Enterprise Level CMS - Free and OpenSource - Community
-                             Driven - Secure',
-                             u'title': u'Plone CMS: Open Source Content Management',
-                             u'type': u'website',
-                             u'updated_time': u'2017-09-27T22:56:54+0000',
-                             u'url': u'https://plone.org/'}"""
-        url = 'https://graph.facebook.com/?id=' + self.news_item.absolute_url() + '&scrape=true'
-        m.post(url, text=RESPONSE_VALID, status_code='200')
-        api.portal.set_registry_record('facebook_prefetch_enable', True, interface=ISocialLikeSettings)
 
-        # testing log
-        expected = ('sc.social.like', 'INFO', u'Prefetching successful')
-        log = LogCapture(PROJECTNAME)
+class PrefetchTestCase(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+
+        record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enabled'
+        api.portal.set_registry_record(record, True)
+
+        with api.env.adopt_roles(['Manager']):
+            self.news_item = api.content.create(
+                self.portal, 'News Item', title=u'Lorem ipsum')
+
+        url = self.news_item.absolute_url()
+        self.endpoint = 'https://graph.facebook.com/?id=' + url + '&scrape=true'
+
+    @requests_mock.mock()
+    @log_capture(level=logging.INFO)
+    def test_facebook_prefetch_non_public(self, m, l):
+        with api.env.adopt_roles(['Manager']):
+            api.content.transition(self.news_item, 'submit')
+
+        # check no log entries
+        l.check()
+
+    @requests_mock.mock()
+    @log_capture(level=logging.INFO)
+    def test_facebook_prefetch(self, m, l):
+        m.post(self.endpoint, status_code='200')
 
         with api.env.adopt_roles(['Manager']):
             api.content.transition(self.news_item, 'publish')
 
-        log.check(expected)
+        # check log entries
+        msg = 'Prefetch successful: http://nohost/plone/lorem-ipsum'
+        expected = ('sc.social.like', 'INFO', msg)
+        l.check(expected)
 
     @requests_mock.mock()
-    def test_validate_facebook_prefetch_response_invalid(self, m):
-        RESPONSE_INVALID = """{"error":{"message":"Application request limit reached","type":"ThrottlingException",
-                               "is_transient":true,"code":4,"fbtrace_id":"C+fZI9UDOoi"}}"""
-        url = 'https://graph.facebook.com/?id=' + self.news_item.absolute_url() + '&scrape=true'
-        m.post(url, text=RESPONSE_INVALID, status_code='403', reason='Forbidden')
-        api.portal.set_registry_record('facebook_prefetch_enable', True, interface=ISocialLikeSettings)
-
-        # testing log
-        expected = ('sc.social.like', 'WARNING',
-                    u"Prefetching failed HTTP response: Forbidden - {u'error': {u'code': 4, "
-                    u"u'message': u'Application request limit reached', u'is_transient': True, "
-                    u"u'type': u'ThrottlingException', u'fbtrace_id': u'C+fZI9UDOoi'}}")
-        log = LogCapture(PROJECTNAME)
+    @log_capture(level=logging.INFO)
+    def test_facebook_prefetch_error(self, m, l):
+        import json
+        text = '{"error":{"message":"foo","type":"bar"}}'
+        m.post(self.endpoint, text=text, status_code='403', reason='Forbidden')
 
         with api.env.adopt_roles(['Manager']):
             api.content.transition(self.news_item, 'publish')
 
-        log.check(expected)
+        # check log entries
+        msg = 'Prefetch error 403 (Forbidden): ' + str(json.loads(text))
+        expected = ('sc.social.like', 'WARNING', msg)
+        l.check(expected)
 
 
 def load_tests(loader, tests, pattern):
@@ -273,6 +286,7 @@ def load_tests(loader, tests, pattern):
     if HAS_DEXTERITY:
         # load validation tests on Dexterity-based content types only
         test_cases.append(ValidationTestCase)
+        test_cases.append(PrefetchTestCase)
 
     suite = unittest.TestSuite()
     for test_class in test_cases:

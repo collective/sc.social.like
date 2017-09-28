@@ -377,7 +377,7 @@ class To3048TestCase(UpgradeTestCaseBase):
         record = ISocialLikeSettings.__identifier__ + '.fallback_image'
         del registry.records[record]
         self.assertNotIn(record, registry)
-        record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enable'
+        record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enabled'
         del registry.records[record]
         self.assertNotIn(record, registry)
 
@@ -390,4 +390,4 @@ class To3048TestCase(UpgradeTestCaseBase):
         # test the new fields are in place
         settings = registry.forInterface(ISocialLikeSettings)
         self.assertIsNone(settings.fallback_image)
-        self.assertFalse(settings.facebook_prefetch_enable)
+        self.assertFalse(settings.facebook_prefetch_enabled)

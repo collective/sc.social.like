@@ -156,17 +156,27 @@ def check_sharing_best_practices(obj, event):
 
 def prefetch_facebook(obj, event):
     """Prefetching in object if enable."""
-
-    record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enable'
+    record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enabled'
     prefetch_enable = api.portal.get_registry_record(record, default=False)
-
     if not prefetch_enable:
         return
 
-    url = 'https://graph.facebook.com/?id=' + obj.absolute_url() + '&scrape=true'
-    req = requests.post(url, timeout=5)
+    try:
+        review_state = api.content.get_state(obj)
+    except WorkflowException:
+        # images and files have no associated workflow by default
+        review_state = 'published'
 
-    if req.status_code == '200':
-        logger.info(u'Prefetching successful')
+    if review_state not in ('published', ):
+        return  # can't prefetch non-public content
+
+    url = obj.absolute_url()
+    endpoint = 'https://graph.facebook.com/?id=' + url + '&scrape=true'
+    r = requests.post(endpoint, timeout=5)
+
+    if r.status_code == '200':
+        logger.info('Prefetch successful: ' + url)
     else:
-        logger.warn(u'Prefetching failed HTTP response: ' + req.reason + ' - ' + str(req.json()))
+        logger.warn(
+            'Prefetch error {code} ({reason}): {debug}'.format(
+                code=r.status_code, reason=r.reason, debug=str(r.json())))
