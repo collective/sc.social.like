@@ -108,7 +108,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
     def get_fallback_image(self):
         fallback_image = self.settings.fallback_image
         if fallback_image is not None:
-            filename, data = b64decode_file(fallback_image)
+            filename, _ = b64decode_file(fallback_image)
             return '/@@sociallike-fallback-image/' + filename
         else:
             return '/logo.png'
