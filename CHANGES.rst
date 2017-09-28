@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.12b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Update i18n, and Brazilian Portuguese and Spanish translations.
+  [hvelarde]
+
 - Implement Facebook prefetching.
   Check package documentation for more information on how to use this new feature (closes `#129 <https://github.com/collective/sc.social.like/issues/129>`_).
   [claytonc, hvelarde]

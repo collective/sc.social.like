@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
-"POT-Creation-Date: 2017-09-15 14:50+0000\n"
-"PO-Revision-Date: 2017-09-15 12:26-0300\n"
+"POT-Creation-Date: 2017-09-28 14:35+0000\n"
+"PO-Revision-Date: 2017-09-28 11:41-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -37,15 +37,15 @@ msgstr "Um widget de timeline é uma região de uma página que puedo recebir ac
 msgid "Add support for Social Media widgets and metadata."
 msgstr "Adiciona suporte para widgets e metadata de redes sociais."
 
-#: sc/social/like/interfaces.py:161
+#: sc/social/like/interfaces.py:185
 msgid "Admins"
 msgstr "Administradores"
 
-#: sc/social/like/interfaces.py:172
+#: sc/social/like/interfaces.py:196
 msgid "Application ID"
 msgstr "Application ID"
 
-#: sc/social/like/interfaces.py:98
+#: sc/social/like/interfaces.py:101
 msgid "Button style"
 msgstr "Estilo dos botões"
 
@@ -57,7 +57,7 @@ msgstr "URL canónica"
 msgid "Canonical URL updater form"
 msgstr "Formulário de atualização de URL canónica"
 
-#: sc/social/like/interfaces.py:135
+#: sc/social/like/interfaces.py:134
 msgid "Canonical domain"
 msgstr "Domínio canônico"
 
@@ -65,7 +65,7 @@ msgstr "Domínio canônico"
 msgid "Canonical domain has not been defined in the control panel configlet."
 msgstr "O domínio canónico não foi definido no configlet do painel de controle."
 
-#: sc/social/like/interfaces.py:63
+#: sc/social/like/interfaces.py:66
 msgid "Content types"
 msgstr "Tipos de conteúdo"
 
@@ -77,7 +77,7 @@ msgstr "Recortar e ocultar as barras de deslocamento do timeline"
 msgid "Date"
 msgstr "Data"
 
-#: sc/social/like/utils.py:141
+#: sc/social/like/utils.py:143
 msgid "Description of content should have less than 200 characters."
 msgstr "A descrição do conteúdo deve ter máximo 200 carateres."
 
@@ -85,7 +85,7 @@ msgstr "A descrição do conteúdo deve ter máximo 200 carateres."
 msgid "Display an expanded timeline of between 1 and 20 tweets. Leave it empty to use the default or to set the height of the widget."
 msgstr "Mostrar um timeline expandido de entre 1 e 20 tweets. Deixar vazío para usar o valor padrão ou para especificar a altura do widget."
 
-#: sc/social/like/interfaces.py:109
+#: sc/social/like/interfaces.py:112
 msgid "Do not track users"
 msgstr "No rastrear os usuários"
 
@@ -93,7 +93,11 @@ msgstr "No rastrear os usuários"
 msgid "Email"
 msgstr "Email"
 
-#: sc/social/like/interfaces.py:87
+#: sc/social/like/interfaces.py:228
+msgid "Enable Facebook prefetch?"
+msgstr "Habilitar prefetch em Facebook?"
+
+#: sc/social/like/interfaces.py:90
 msgid "Enable content validation?"
 msgstr "Habilitar validação do conteúdo?"
 
@@ -109,9 +113,13 @@ msgstr "Página do Facebook"
 msgid "Facebook Tile"
 msgstr "Tile do Facebook"
 
-#: sc/social/like/interfaces.py:183
+#: sc/social/like/interfaces.py:207
 msgid "Facebook buttons"
 msgstr "Botões do Facebook"
+
+#: sc/social/like/interfaces.py:148
+msgid "Fallback image"
+msgstr "Imagem alternativa"
 
 #: sc/social/like/tiles/facebook.py:53 sc/social/like/tiles/twitter.py:54
 msgid "Height"
@@ -133,23 +141,23 @@ msgstr "Ocultar a imagem do rodapé"
 msgid "Hide the timeline header"
 msgstr "Ocultar o cabeçãlho do cabeçalho"
 
-#: sc/social/like/utils.py:160
+#: sc/social/like/utils.py:162
 msgid "Lead image MIME type not supported."
 msgstr "O tipo MIME da imagem principal não está suportado."
 
-#: sc/social/like/utils.py:164
+#: sc/social/like/utils.py:166
 msgid "Lead image aspect ratio should be at least 1.33:1."
 msgstr "A relação de aspeto da imagem principal deve ser 1.33:1 pelo menos."
 
-#: sc/social/like/utils.py:162
+#: sc/social/like/utils.py:164
 msgid "Lead image should be at least 600px width and 315px height."
 msgstr "A imagem principal deve ter pelo menos 600px de largura e 315px de altura."
 
-#: sc/social/like/utils.py:161
+#: sc/social/like/utils.py:163
 msgid "Lead image size should be less than 5MB."
 msgstr "O tamanho da imagem principal deve ser menor de 5MB."
 
-#: sc/social/like/vocabularies.py:41
+#: sc/social/like/vocabularies.py:42
 msgid "Like"
 msgstr "Curtir"
 
@@ -173,11 +181,11 @@ msgstr "Pin it! (abre em uma nova janela)"
 msgid "Please correct the errors."
 msgstr "Por favor corrija os erros."
 
-#: sc/social/like/interfaces.py:76
+#: sc/social/like/interfaces.py:79
 msgid "Plugins"
 msgstr "Plugins"
 
-#: sc/social/like/vocabularies.py:42
+#: sc/social/like/vocabularies.py:43
 msgid "Recommend"
 msgstr "Recomendar"
 
@@ -215,7 +223,7 @@ msgstr "Configuração da integração com redes sociais"
 
 #: sc/social/like/plugins/telegram/plugin.pt:2
 #: sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-#: sc/social/like/vocabularies.py:47
+#: sc/social/like/vocabularies.py:48
 msgid "Share"
 msgstr "Compartilhar"
 
@@ -255,7 +263,7 @@ msgstr "Compartilhar no Telegram"
 msgid "Share on WhatsApp"
 msgstr "Compartilhar no WhatsApp"
 
-#: sc/social/like/interfaces.py:194
+#: sc/social/like/interfaces.py:218
 msgid "Show number of likes"
 msgstr "Mostrar número de curtidas"
 
@@ -292,7 +300,7 @@ msgstr "Este formulário atualizará a URL canónica de todos os objetos Dexteri
 msgid "Timeline"
 msgstr "Timeline"
 
-#: sc/social/like/utils.py:125
+#: sc/social/like/utils.py:127
 msgid "Title of content should have less than 70 characters."
 msgstr "O título do conteúdo deve ter máximo 70 carateres."
 
@@ -312,7 +320,7 @@ msgstr "Limite de tweets"
 msgid "Twitter Tile"
 msgstr "Tile do Tweeter"
 
-#: sc/social/like/interfaces.py:207
+#: sc/social/like/interfaces.py:244
 msgid "Twitter nick"
 msgstr "Usuário do Twitter"
 
@@ -324,7 +332,7 @@ msgstr ""
 msgid "Update"
 msgstr "Atualizar"
 
-#: sc/social/like/interfaces.py:148
+#: sc/social/like/interfaces.py:172
 msgid "Verb to display"
 msgstr "Verbo a ser exibido"
 
@@ -341,17 +349,17 @@ msgid "Width"
 msgstr "Largura"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: sc/social/like/interfaces.py:162
+#: sc/social/like/interfaces.py:186
 msgid "help_admins"
 msgstr "Uma lista, separada por vírgulas, dos IDs dos administradores desta página ou o ID de uma aplicação do Facebook."
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
-#: sc/social/like/interfaces.py:173
+#: sc/social/like/interfaces.py:197
 msgid "help_appid"
 msgstr "ID da aplicação na plataforma Facebook. Isso é requerido quando a opcão de \"Não rastrear os usuários\" está habilitada."
 
 #. Default: "The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. Check <a href=\"https://pypi.python.org/pypi/sc.social.like\">package documentation</a> for more information on how to use this feature."
-#: sc/social/like/browser/canonicalurl.py:22 sc/social/like/interfaces.py:136
+#: sc/social/like/browser/canonicalurl.py:22 sc/social/like/interfaces.py:135
 msgid "help_canonical_domain"
 msgstr "O domínio canónico será usado para construir a URL canónica (a propriedade <code>og:url</code>) dos objetos do portal. Use o nome canónico do seu site (por exemplo, <strong>http://www.example.org</strong> ou <strong>https://www.example.org</strong>). O Facebook utilizará a URL canónica para garantir que todas as ações como \\\"Curtir\\\" ou \\\"Compartilhar\\\" sejam agregadas na mesma URL ao invés de se espalhar por várias versões da página. Confira a <a href=\\\"https://pypi.python.org/pypi/sc.social.like\\\">documentação do pacote</a> para mais informação no uso de esta funcionalidade."
 
@@ -361,22 +369,32 @@ msgid "help_canonical_url"
 msgstr "A URL canónica do objeto que será usada como seu ID permanente no gráfico (<code>og:url</code>)."
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: sc/social/like/interfaces.py:110
+#: sc/social/like/interfaces.py:113
 msgid "help_do_not_track"
 msgstr "Se habilitado, o site no provera os widgets avançados, mas simples links para os serviços. Isso limitará a experiência de usuário e as funcionalidades (como a conta de compartilhamentos) mas respeitará a privacidade dos usuários: nos se enviaram cookies a terceiros."
 
 #. Default: "Please select which plugins will be used"
-#: sc/social/like/interfaces.py:77
+#: sc/social/like/interfaces.py:80
 msgid "help_enabled_plugins"
 msgstr "Informe os plugins que serão usados"
 
+#. Default: "If enabled, an event is triggered to make Facebook crawler scrape and cache metadata every time a new piece content is published and every time published content is edited. This will keep the metadata updated on Facebook always."
+#: sc/social/like/interfaces.py:229
+msgid "help_facebook_prefetch_enabled"
+msgstr "Se habilitado, se ativará um evento para o crawler do Facebook atualizar e cachear a metadata cada vez que um novo conteúdo seja publicado e cada vez que um novo conteúdo publicado seja editado."
+
+#. Default: "Content without a lead image will use this image as fallback (<code>og:image</code> property). There could be a delay of up to 2 minutes when replacing this image."
+#: sc/social/like/interfaces.py:149
+msgid "help_fallback_image"
+msgstr "O conteúdo que não possua uma imagem principal usará está imagem como propriedade <code>og:image</code>. Pode ter uma demora de até 2 minutos quando a imagem for substituída."
+
 #. Default: "Select buttons to be shown"
-#: sc/social/like/interfaces.py:184
+#: sc/social/like/interfaces.py:208
 msgid "help_fbbuttons"
 msgstr "Selecione os botões que serão mostrados"
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: sc/social/like/interfaces.py:64
+#: sc/social/like/interfaces.py:67
 msgid "help_portal_types"
 msgstr "Indique quais tipos de conteúdo terão o viewlet de ações sociais."
 
@@ -386,31 +404,31 @@ msgid "help_published_before"
 msgstr "Objetos publicado antes de essa data serão atualizados usando o domínio canónico definido em este formulário; objetos publicados em essa data o depois serão atualizados usando o domínio canónico definido em o configlet do painel de controle."
 
 #. Default: "Choose your button style."
-#: sc/social/like/interfaces.py:99
+#: sc/social/like/interfaces.py:102
 msgid "help_selected_buttons"
 msgstr "Qual o estilo dos botões."
 
 #. Default: "If enabled, the Facebook button will show the number of Facebook users who have already liked this page."
-#: sc/social/like/interfaces.py:195
+#: sc/social/like/interfaces.py:219
 msgid "help_show_likes"
 msgstr "Se habilitado, o botão do Facebook mostrará o número de usuários que curtiram uma página."
 
 #. Default: "Enables validation to check if content follows social networks sharing best practices. The validation includes title, description and lead image fields. This feature is only available for Dexterity-based content types."
-#: sc/social/like/interfaces.py:88
+#: sc/social/like/interfaces.py:91
 msgid "help_validation_enabled"
 msgstr "Habilita a validação para conferir se o conteúdo segue as recomendações das redes sociais. A validação inclui os campos título, descrição e imagem principal. Esta funcionalidade está disponível só para tipos de conteúdo Dexterity."
 
 #. Default: "The verb to display in the Facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: sc/social/like/interfaces.py:149
+#: sc/social/like/interfaces.py:173
 msgid "help_verb_display"
 msgstr "Verbo a ser exibido no botão do Facebook. Atualmente apenas \"Curtir\" e \"Recomendar\" estão suportados."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: sc/social/like/interfaces.py:208
+#: sc/social/like/interfaces.py:245
 msgid "help_your_twitter_nick"
 msgstr "Informe seu usuário do Twitter. Ex: simplesconsultoria"
 
-#: sc/social/like/vocabularies.py:35
+#: sc/social/like/vocabularies.py:36
 msgid "horizontal"
 msgstr "horizontal"
 
@@ -419,6 +437,6 @@ msgstr "horizontal"
 msgid "label_cancel"
 msgstr "Cancelar"
 
-#: sc/social/like/vocabularies.py:36
+#: sc/social/like/vocabularies.py:37
 msgid "vertical"
 msgstr "vertical"
