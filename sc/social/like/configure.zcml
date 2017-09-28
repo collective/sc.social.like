@@ -52,14 +52,14 @@
       zcml:condition="installed plone.app.contenttypes"
       for="plone.dexterity.interfaces.IDexterityContent
            Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-      handler=".subscribers.prefetch_facebook"
+      handler=".subscribers.facebook_prefetching"
       />
 
   <subscriber
       zcml:condition="installed plone.app.contenttypes"
       for="plone.dexterity.interfaces.IDexterityContent
            plone.dexterity.interfaces.IEditFinishedEvent"
-      handler=".subscribers.prefetch_facebook"
+      handler=".subscribers.facebook_prefetching"
       />
 
   <include file="behaviors.zcml" />

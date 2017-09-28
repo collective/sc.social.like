@@ -154,8 +154,10 @@ def check_sharing_best_practices(obj, event):
         api.portal.show_message(message=e.message, request=request, type='warning')
 
 
-def prefetch_facebook(obj, event):
-    """Prefetching in object if enable."""
+def facebook_prefetching(obj, event):
+    """Call Facebook Graph API endpoint to keep metadata of published
+    objects always updated.
+    """
     record = ISocialLikeSettings.__identifier__ + '.facebook_prefetch_enabled'
     prefetch_enable = api.portal.get_registry_record(record, default=False)
     if not prefetch_enable:
