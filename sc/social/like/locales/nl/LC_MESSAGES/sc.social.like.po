@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.social 2.2\n"
-"POT-Creation-Date: 2017-09-15 14:50+0000\n"
+"POT-Creation-Date: 2017-09-28 14:35+0000\n"
 "PO-Revision-Date: 2015-05-29 09:50 +0002\n"
 "Last-Translator: Fred van Dijk <f.van.dijk@zestsoftware.nl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,15 +36,15 @@ msgstr "Eem tijdlijn-wdiget is een live gedeelte op de webpagina waar tweets bij
 msgid "Add support for Social Media widgets and metadata."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:161
+#: ./sc/social/like/interfaces.py:185
 msgid "Admins"
 msgstr "Beheerders"
 
-#: ./sc/social/like/interfaces.py:172
+#: ./sc/social/like/interfaces.py:196
 msgid "Application ID"
 msgstr "App ID"
 
-#: ./sc/social/like/interfaces.py:98
+#: ./sc/social/like/interfaces.py:101
 msgid "Button style"
 msgstr "Knopstijl"
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Canonical URL updater form"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:135
+#: ./sc/social/like/interfaces.py:134
 msgid "Canonical domain"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Canonical domain has not been defined in the control panel configlet."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:63
+#: ./sc/social/like/interfaces.py:66
 msgid "Content types"
 msgstr "Contenttypes"
 
@@ -76,7 +76,7 @@ msgstr "Snij af en verberg de scrollbalk in de hoofd tijdlijn"
 msgid "Date"
 msgstr ""
 
-#: ./sc/social/like/utils.py:141
+#: ./sc/social/like/utils.py:143
 msgid "Description of content should have less than 200 characters."
 msgstr ""
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Display an expanded timeline of between 1 and 20 tweets. Leave it empty to use the default or to set the height of the widget."
 msgstr "Toon een uitgebreide tijdlijn van 1 tot 20 tweets. Laat leeg om de standaardweergave te gebruiken of om de hoogte van het widget in te kunnen stellen."
 
-#: ./sc/social/like/interfaces.py:109
+#: ./sc/social/like/interfaces.py:112
 msgid "Do not track users"
 msgstr "Volg geen gebruikers (tracking)"
 
@@ -92,7 +92,11 @@ msgstr "Volg geen gebruikers (tracking)"
 msgid "Email"
 msgstr "E-mail"
 
-#: ./sc/social/like/interfaces.py:87
+#: ./sc/social/like/interfaces.py:228
+msgid "Enable Facebook prefetch?"
+msgstr ""
+
+#: ./sc/social/like/interfaces.py:90
 msgid "Enable content validation?"
 msgstr ""
 
@@ -108,9 +112,13 @@ msgstr "Facebookpagina"
 msgid "Facebook Tile"
 msgstr "Facebooktegel"
 
-#: ./sc/social/like/interfaces.py:183
+#: ./sc/social/like/interfaces.py:207
 msgid "Facebook buttons"
 msgstr "Facebook knoppen"
+
+#: ./sc/social/like/interfaces.py:148
+msgid "Fallback image"
+msgstr ""
 
 #: ./sc/social/like/tiles/facebook.py:53
 #: ./sc/social/like/tiles/twitter.py:54
@@ -133,23 +141,23 @@ msgstr "Verberg de footer van de tijdlijn"
 msgid "Hide the timeline header"
 msgstr "Verberg de header van de tijdlijn"
 
-#: ./sc/social/like/utils.py:160
+#: ./sc/social/like/utils.py:162
 msgid "Lead image MIME type not supported."
 msgstr ""
 
-#: ./sc/social/like/utils.py:164
+#: ./sc/social/like/utils.py:166
 msgid "Lead image aspect ratio should be at least 1.33:1."
 msgstr ""
 
-#: ./sc/social/like/utils.py:162
+#: ./sc/social/like/utils.py:164
 msgid "Lead image should be at least 600px width and 315px height."
 msgstr ""
 
-#: ./sc/social/like/utils.py:161
+#: ./sc/social/like/utils.py:163
 msgid "Lead image size should be less than 5MB."
 msgstr ""
 
-#: ./sc/social/like/vocabularies.py:41
+#: ./sc/social/like/vocabularies.py:42
 msgid "Like"
 msgstr "Vind ik leuk (Like)"
 
@@ -173,11 +181,11 @@ msgstr "Pin vast! (open in nieuw venster)"
 msgid "Please correct the errors."
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:76
+#: ./sc/social/like/interfaces.py:79
 msgid "Plugins"
 msgstr "Plugins"
 
-#: ./sc/social/like/vocabularies.py:42
+#: ./sc/social/like/vocabularies.py:43
 msgid "Recommend"
 msgstr "Aanbevelen"
 
@@ -215,7 +223,7 @@ msgstr "Instellingen voor sc.social.like"
 
 #: ./sc/social/like/plugins/telegram/plugin.pt:2
 #: ./sc/social/like/plugins/whatsapp/templates/plugin.pt:2
-#: ./sc/social/like/vocabularies.py:47
+#: ./sc/social/like/vocabularies.py:48
 msgid "Share"
 msgstr "Delen"
 
@@ -255,7 +263,7 @@ msgstr "Deel op Telegram"
 msgid "Share on WhatsApp"
 msgstr "In WhatsApp delen"
 
-#: ./sc/social/like/interfaces.py:194
+#: ./sc/social/like/interfaces.py:218
 msgid "Show number of likes"
 msgstr "Toon aantal likes."
 
@@ -292,7 +300,7 @@ msgstr ""
 msgid "Timeline"
 msgstr "Tijdlijn"
 
-#: ./sc/social/like/utils.py:125
+#: ./sc/social/like/utils.py:127
 msgid "Title of content should have less than 70 characters."
 msgstr ""
 
@@ -312,7 +320,7 @@ msgstr "Tweet limiet"
 msgid "Twitter Tile"
 msgstr "Twittertegel"
 
-#: ./sc/social/like/interfaces.py:207
+#: ./sc/social/like/interfaces.py:244
 msgid "Twitter nick"
 msgstr "Twitter naam (nick)"
 
@@ -324,7 +332,7 @@ msgstr "De-installeer Social: Like Actions"
 msgid "Update"
 msgstr ""
 
-#: ./sc/social/like/interfaces.py:148
+#: ./sc/social/like/interfaces.py:172
 msgid "Verb to display"
 msgstr "Te tonen werkwoord"
 
@@ -342,18 +350,18 @@ msgid "Width"
 msgstr "Breedte"
 
 #. Default: "A comma-separated list of either the Facebook IDs of page administrators."
-#: ./sc/social/like/interfaces.py:162
+#: ./sc/social/like/interfaces.py:186
 msgid "help_admins"
 msgstr "Een komma-gescheiden lijst van de Facebook ID's van de paginabeheerders of het Facebook App ID."
 
 #. Default: "A Facebook Platform application ID.\nThis is required when \"Do not track users\" option is enabled."
-#: ./sc/social/like/interfaces.py:173
+#: ./sc/social/like/interfaces.py:197
 msgid "help_appid"
 msgstr "Een Facebook App ID. Dit is een verplichtt wanneer \"Volg geen gebruikers (tracking)\" is ingeschakeld."
 
 #. Default: "The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. Check <a href=\"https://pypi.python.org/pypi/sc.social.like\">package documentation</a> for more information on how to use this feature."
 #: ./sc/social/like/browser/canonicalurl.py:22
-#: ./sc/social/like/interfaces.py:136
+#: ./sc/social/like/interfaces.py:135
 msgid "help_canonical_domain"
 msgstr ""
 
@@ -363,22 +371,32 @@ msgid "help_canonical_url"
 msgstr ""
 
 #. Default: "If enabled, the site will not provide advanced sharing widgets , instead simple links will be used.\nThis will limits user experience and features (like the share count) but will enhance users privacy: no 3rd party cookies will be sent to users."
-#: ./sc/social/like/interfaces.py:110
+#: ./sc/social/like/interfaces.py:113
 msgid "help_do_not_track"
 msgstr "Hiermee zal de website geen geavanceerde 'delen' widgets tonen, er komen alleen direct links te staan. Dit geeft een slechtere gebruikerservaring en functies als het aantal malen gedeeld staan uit, maar het verbetert de privacy van gebruikes. Geen 3rd party cookies worden hiermee gezet."
 
 #. Default: "Please select which plugins will be used"
-#: ./sc/social/like/interfaces.py:77
+#: ./sc/social/like/interfaces.py:80
 msgid "help_enabled_plugins"
 msgstr "Selecteer de ingeschakelde plugins. "
 
+#. Default: "If enabled, an event is triggered to make Facebook crawler scrape and cache metadata every time a new piece content is published and every time published content is edited. This will keep the metadata updated on Facebook always."
+#: ./sc/social/like/interfaces.py:229
+msgid "help_facebook_prefetch_enabled"
+msgstr ""
+
+#. Default: "Content without a lead image will use this image as fallback (<code>og:image</code> property). There could be a delay of up to 2 minutes when replacing this image."
+#: ./sc/social/like/interfaces.py:149
+msgid "help_fallback_image"
+msgstr ""
+
 #. Default: "Select buttons to be shown"
-#: ./sc/social/like/interfaces.py:184
+#: ./sc/social/like/interfaces.py:208
 msgid "help_fbbuttons"
 msgstr "Te tonen knoppen"
 
 #. Default: "Please select content types in which the viewlet will be applied."
-#: ./sc/social/like/interfaces.py:64
+#: ./sc/social/like/interfaces.py:67
 msgid "help_portal_types"
 msgstr "Kies de contenttypes waarbij de Social Media knoppen getoond worden."
 
@@ -388,31 +406,31 @@ msgid "help_published_before"
 msgstr ""
 
 #. Default: "Choose your button style."
-#: ./sc/social/like/interfaces.py:99
+#: ./sc/social/like/interfaces.py:102
 msgid "help_selected_buttons"
 msgstr "Kies de grafische stijl voor de knoppen."
 
 #. Default: "If enabled, the Facebook button will show the number of Facebook users who have already liked this page."
-#: ./sc/social/like/interfaces.py:195
+#: ./sc/social/like/interfaces.py:219
 msgid "help_show_likes"
 msgstr "De Facebook knop toont ernaast of erboven het aantal gebruikers die deze pagina al geliked hebben."
 
 #. Default: "Enables validation to check if content follows social networks sharing best practices. The validation includes title, description and lead image fields. This feature is only available for Dexterity-based content types."
-#: ./sc/social/like/interfaces.py:88
+#: ./sc/social/like/interfaces.py:91
 msgid "help_validation_enabled"
 msgstr ""
 
 #. Default: "The verb to display in the Facebook button. Currently only \"like\" and \"recommend\" are supported."
-#: ./sc/social/like/interfaces.py:149
+#: ./sc/social/like/interfaces.py:173
 msgid "help_verb_display"
 msgstr "Het werkwoord dat in de Facebook knop komt te staan. Op het moment zijn alelen \"Vind ik leuk\" en \"Aanbevelen\" beschikbaar."
 
 #. Default: "Enter your twitter nick. eg. simplesconsultoria"
-#: ./sc/social/like/interfaces.py:208
+#: ./sc/social/like/interfaces.py:245
 msgid "help_your_twitter_nick"
 msgstr "Vul de twitternaam in. Bijvoorbeeld planetplone"
 
-#: ./sc/social/like/vocabularies.py:35
+#: ./sc/social/like/vocabularies.py:36
 msgid "horizontal"
 msgstr "horizontaal"
 
@@ -421,6 +439,6 @@ msgstr "horizontaal"
 msgid "label_cancel"
 msgstr ""
 
-#: ./sc/social/like/vocabularies.py:36
+#: ./sc/social/like/vocabularies.py:37
 msgid "vertical"
 msgstr "verticaal"
