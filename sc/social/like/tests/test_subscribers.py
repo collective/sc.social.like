@@ -224,31 +224,20 @@ class ValidationTestCase(unittest.TestCase):
 
     @requests_mock.mock()
     def test_validate_facebook_prefetch_valid(self, m):
-        RESPONSE_VALID = """{"share":{"comment_count":0,"share_count":4},
-                              "og_object":{"id":"442171799221474","description":"Plone","title":"Lorem ipsum","type":"website",
-                              "updated_time":"2013-10-31T12:59:59+0000"},"id":"http:\/\/nohost/plone/\/news-item"}"""
-        url = self.news_item.absolute_url()
-        m.post('https://graph.facebook.com/?id=' + url + '&scrape=true', text=RESPONSE_VALID, status_code='200')
+        RESPONSE_VALID = """{u'description': u'', u'id': u'10150450110122918',
+                             u'image': [{u'type': u'image/png', u'url': u'https://plone.org/logo.png'}],
+                             u'site_name': u'Plone: Enterprise Level CMS - Free and OpenSource - Community
+                             Driven - Secure',
+                             u'title': u'Plone CMS: Open Source Content Management',
+                             u'type': u'website',
+                             u'updated_time': u'2017-09-27T22:56:54+0000',
+                             u'url': u'https://plone.org/'}"""
+        url = 'https://graph.facebook.com/?id=' + self.news_item.absolute_url() + '&scrape=true'
+        m.post(url, text=RESPONSE_VALID, status_code='200')
         api.portal.set_registry_record('facebook_prefetch_enable', True, interface=ISocialLikeSettings)
 
         # testing log
-        expected = ('sc.social.like', 'INFO', u'Prefetching: http://nohost/plone/lorem-ipsum')
-        log = LogCapture(PROJECTNAME)
-
-        with api.env.adopt_roles(['Manager']):
-            api.content.transition(self.news_item, 'publish')
-
-        log.check(expected)
-
-    @requests_mock.mock()
-    def test_validate_facebook_prefetch_invalid(self, m):
-        RESPONSE_INVALID = """{"share":{"comment_count":0,"share_count":4},"id":"http:\/\/nohost/plone/\/news-item"}"""
-        url = self.news_item.absolute_url()
-        m.post('https://graph.facebook.com/?id=' + url + '&scrape=true', text=RESPONSE_INVALID, status_code='200')
-        api.portal.set_registry_record('facebook_prefetch_enable', True, interface=ISocialLikeSettings)
-
-        # testing log
-        expected = ('sc.social.like', 'WARNING', u'Prefetching failed, page is not accessible by Facebook.')
+        expected = ('sc.social.like', 'INFO', u'Prefetching successful')
         log = LogCapture(PROJECTNAME)
 
         with api.env.adopt_roles(['Manager']):
@@ -260,12 +249,15 @@ class ValidationTestCase(unittest.TestCase):
     def test_validate_facebook_prefetch_response_invalid(self, m):
         RESPONSE_INVALID = """{"error":{"message":"Application request limit reached","type":"ThrottlingException",
                                "is_transient":true,"code":4,"fbtrace_id":"C+fZI9UDOoi"}}"""
-        url = self.news_item.absolute_url()
-        m.post('https://graph.facebook.com/?id=' + url + '&scrape=true', text=RESPONSE_INVALID, status_code='403')
+        url = 'https://graph.facebook.com/?id=' + self.news_item.absolute_url() + '&scrape=true'
+        m.post(url, text=RESPONSE_INVALID, status_code='403', reason='Forbidden')
         api.portal.set_registry_record('facebook_prefetch_enable', True, interface=ISocialLikeSettings)
 
         # testing log
-        expected = ('sc.social.like', 'WARNING', u'Prefetching failed, invalid HTTP response.')
+        expected = ('sc.social.like', 'WARNING',
+                    u"Prefetching failed HTTP response: Forbidden - {u'error': {u'code': 4, "
+                    u"u'message': u'Application request limit reached', u'is_transient': True, "
+                    u"u'type': u'ThrottlingException', u'fbtrace_id': u'C+fZI9UDOoi'}}")
         log = LogCapture(PROJECTNAME)
 
         with api.env.adopt_roles(['Manager']):

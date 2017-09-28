@@ -163,25 +163,10 @@ def prefetch_facebook(obj, event):
     if not prefetch_enable:
         return
 
-    try:
-        review_state = api.content.get_state(obj)
-    except WorkflowException:
-        # images and files have no associated workflow by default
-        review_state = 'published'
+    url = 'https://graph.facebook.com/?id=' + obj.absolute_url() + '&scrape=true'
+    req = requests.post(url, timeout=5)
 
-    if review_state not in ('published', ):
-        return  # no need to validate
-
-    url = obj.absolute_url()
-    r = requests.post('https://graph.facebook.com/?id=' + url + '&scrape=true',
-                      timeout=5,
-                      verify=False)
-
-    if r.status_code == '200':
-        prefetch = r.json()
-        if prefetch.get('og_object', None):
-            logger.info(u'Prefetching: ' + url)
-        else:
-            logger.warn(u'Prefetching failed, page is not accessible by Facebook.')
+    if req.status_code == '200':
+        logger.info(u'Prefetching successful')
     else:
-        logger.warn(u'Prefetching failed, invalid HTTP response.')
+        logger.warn(u'Prefetching failed HTTP response: ' + req.reason + ' - ' + str(req.json()))
