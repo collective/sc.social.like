@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.13b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Complete Basque translation.
+  [erral]
 
 
 2.13b1 (2017-09-28)
