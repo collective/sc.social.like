@@ -89,6 +89,37 @@ The following basic metadata is included on content types with Social Media beha
 * ``og:image``: the 'large' scale of the lead image of the item, if present;
   you can define a fallback image to be used in content that lacks lead image on the control panel configlet
 
+Extending Open Graph metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can also extend the basic metadata with additional tags. Open Graph protocol supports
+additional metatags for example to mark videos. To provide these additional metatags you
+need to register an adapter implementing `IAdditionalMetatags`. For example, to provide additional
+metatags for objecs implementing INewsItem interface, you will need something like::
+
+  from zope.component import adapter 
+  from zope.interface import implementer
+
+  from plone.app.contenttypes.interfaces import INewsItem
+
+  @implementer(IAdditionalMetatags)
+  @adapter(INewsItem)
+  class MyAdditionalMetatags(object):
+
+      def __init__(self, context):
+          self.context = context
+
+      def metatags(self):
+          return {'my_key_1': 'my_value_1'}
+
+And in your configure.zcml file::
+    ...
+        <adapter
+            factory=".adapters.MyAdditionalMetatags"
+        />
+    ...
+
+
 Validation of best practices for social networks sharing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
