@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.app.contenttypes.interfaces import INewsItem
 from profilehooks import profile
 from profilehooks import timecall
 from sc.social.like.config import IS_PLONE_5
@@ -17,6 +16,12 @@ import contextlib
 import os
 import re
 import unittest
+
+
+try:
+    from plone.app.contenttypes.interfaces import INewsItem
+except ImportError:
+    from Products.ATContentTypes.interfaces import IATNewsItem as INewsItem
 
 
 # TODO: document this on README
