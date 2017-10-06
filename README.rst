@@ -94,7 +94,7 @@ Extending Open Graph metadata
 
 You can also extend the basic metadata with additional tags. Open Graph protocol supports
 additional metatags for example to mark videos. To provide these additional metatags you
-need to register an adapter implementing `IAdditionalMetatags`. For example, to provide additional
+need to register an adapter implementing `IOGProperties`. For example, to provide additional
 metatags for objecs implementing INewsItem interface, you will need something like::
 
   from zope.component import adapter 
@@ -102,7 +102,7 @@ metatags for objecs implementing INewsItem interface, you will need something li
 
   from plone.app.contenttypes.interfaces import INewsItem
 
-  @implementer(IAdditionalMetatags)
+  @implementer(IOGProperties)
   @adapter(INewsItem)
   class MyAdditionalMetatags(object):
 

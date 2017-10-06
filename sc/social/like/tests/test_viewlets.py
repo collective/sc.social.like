@@ -3,7 +3,7 @@ from plone import api
 from profilehooks import profile
 from profilehooks import timecall
 from sc.social.like.config import IS_PLONE_5
-from sc.social.like.interfaces import IAdditionalMetatags
+from sc.social.like.interfaces import IOGProperties
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.testing import load_image
@@ -31,7 +31,7 @@ skip_profiling = os.environ.get('SKIP_CODE_PROFILING', False)
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
 
 
-@implementer(IAdditionalMetatags)
+@implementer(IOGProperties)
 @adapter(INewsItem)
 class NewsItemMetatagsAdapter(object):
 
@@ -47,7 +47,7 @@ class NewsItemMetatagsAdapter(object):
         return tags
 
 
-@implementer(IAdditionalMetatags)
+@implementer(IOGProperties)
 @adapter(INewsItem)
 class NewsItemMetatagsAdapterOverridingTags(object):
 

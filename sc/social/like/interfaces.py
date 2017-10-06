@@ -251,7 +251,7 @@ class ISocialLikeSettings(model.Schema):
     )
 
 
-class IAdditionalMetatags(Interface):
+class IOGProperties(Interface):
     """ Interface to provide additional metatags to those provided by default."""
 
     def metatags():
