@@ -158,7 +158,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         tags['og:locale'] = self.language
         tags['og:site_name'] = self.site_name
 
-        for _, adapter in getAdapters((self.context,), IAdditionalMetatags):
+        for _, adapter in getAdapters([self.context], IAdditionalMetatags):
             tags.update(adapter.metatags())
         return tags.items()
 
