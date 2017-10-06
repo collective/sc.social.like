@@ -112,12 +112,14 @@ metatags for objecs implementing INewsItem interface, you will need something li
       def metatags(self):
           return {'my_key_1': 'my_value_1'}
 
+
 And in your configure.zcml file::
-    ...
+
+  ...
         <adapter
             factory=".adapters.MyAdditionalMetatags"
         />
-    ...
+  ...
 
 
 Validation of best practices for social networks sharing
