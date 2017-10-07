@@ -23,5 +23,26 @@ $(function(){
       formselector: 'form'
     });
   }
+
+  if ($('.template-sociallike-settings').length >= 0) {
+    var checkTabs = function() {
+      var disabledPlugins = $.map($('#form-widgets-plugins_enabled-from option'), function(option) {
+          return option.value;
+      });
+      var enabledPlugins = $.map($('#form-widgets-plugins_enabled-to option'), function(option) {
+          return option.value;
+      });
+      $('.formTab').each(function(){
+        var $tab = $(this);
+        if ($.inArray($tab.text(), enabledPlugins) >= 0) {
+          $tab.show();
+        } if ($.inArray($tab.text(), disabledPlugins) >= 0) {
+          $tab.hide();
+        }
+      })
+    };
+    $('#form-widgets-plugins_enabled button').on('click', checkTabs);
+    checkTabs();
+  }
 });
 
