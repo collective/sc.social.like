@@ -3,10 +3,14 @@ from plone import api
 from profilehooks import profile
 from profilehooks import timecall
 from sc.social.like.config import IS_PLONE_5
+from sc.social.like.interfaces import IOpenGraphMetadata
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
+from zope.component import adapter
+from zope.component import provideAdapter
+from zope.interface import implementer
 
 import contextlib
 import os
@@ -14,11 +18,48 @@ import re
 import unittest
 
 
+try:
+    from plone.app.contenttypes.interfaces import INewsItem
+except ImportError:
+    from Products.ATContentTypes.interfaces import IATNewsItem as INewsItem
+
+
 # TODO: document this on README
 # set the "SKIP_CODE_PROFILING" environent variable to skip profiling
 skip_profiling = os.environ.get('SKIP_CODE_PROFILING', False)
 
 do_not_track = ISocialLikeSettings.__identifier__ + '.do_not_track'
+
+
+@implementer(IOpenGraphMetadata)
+@adapter(INewsItem)
+class NewsItemMetatagsAdapter(object):
+
+    def __init__(self, context):
+        self.context = context
+
+    def metatags(self):
+        tags = {}
+        tags['one_key'] = 'one_value'
+        tags['two_key'] = 'two_value'
+        tags['three_key'] = 'three_value'
+
+        return tags
+
+
+@implementer(IOpenGraphMetadata)
+@adapter(INewsItem)
+class NewsItemMetatagsAdapterOverridingTags(object):
+
+    def __init__(self, context):
+        self.context = context
+
+    def metatags(self):
+        tags = {}
+        tags['og:title'] = 'My overrided title'
+        tags['one_key'] = 'one_value'
+
+        return tags
 
 
 @contextlib.contextmanager
@@ -122,6 +163,25 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.assertIn('og:image:type', html)
         self.assertIn('og:locale', html)
         self.assertIn('og:site_name', html)
+
+    def test_additional_metadata_rendering(self):
+        provideAdapter(NewsItemMetatagsAdapter)
+        viewlet = self.viewlet(self.obj)
+        html = viewlet.render()
+        self.assertIn('one_key', html)
+        self.assertIn('one_value', html)
+        self.assertIn('two_key', html)
+        self.assertIn('two_value', html)
+        self.assertIn('three_key', html)
+        self.assertIn('three_value', html)
+
+    def test_additional_metadata_with_overriden_values_rendering(self):
+        provideAdapter(NewsItemMetatagsAdapterOverridingTags)
+        viewlet = self.viewlet(self.obj)
+        html = viewlet.render()
+        self.assertIn('My overrided title', html)
+        self.assertIn('one_key', html)
+        self.assertIn('one_value', html)
 
     @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
     def test_metadata_viewlet_rendering_performance(self):

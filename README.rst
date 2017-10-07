@@ -89,6 +89,36 @@ The following basic metadata is included on content types with Social Media beha
 * ``og:image``: the 'large' scale of the lead image of the item, if present;
   you can define a fallback image to be used in content that lacks lead image on the control panel configlet
 
+Extending/overriding Open Graph metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can extend `Open Graph protocol`_ basic metadata by registering an adapter implementing the ``IOpenGraphMetadata`` interface.
+
+For example, to add a property to the News Item content type, you will need something like this:
+
+.. code-block:: python
+
+    from plone.app.contenttypes.interfaces import INewsItem
+    from sc.social.like.interfaces import IOpenGraphMetadata
+    from zope.component import adapter
+    from zope.interface import implementer
+
+    @implementer(IOpenGraphMetadata)
+    @adapter(INewsItem)
+    class MyCustomMetadataAdapter(object):
+
+        def __init__(self, context):
+            self.context = context
+
+        def metatags(self):
+            return {'og:foo': 'bar'}
+
+You have to register the adapter in your ``configure.zcml`` file:
+
+.. code-block:: xml
+
+    <adapter factory=".adapters.MyCustomMetadataAdapter" />
+
 Validation of best practices for social networks sharing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

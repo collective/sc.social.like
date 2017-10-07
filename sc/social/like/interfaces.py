@@ -249,3 +249,10 @@ class ISocialLikeSettings(model.Schema):
         required=False,
         default='',
     )
+
+
+class IOpenGraphMetadata(Interface):
+    """Interface to provide Open Graph protocol metadata."""
+
+    def metatags():
+        """Return a dict with metadata information, e.g. {'og:foo': 'bar'}."""

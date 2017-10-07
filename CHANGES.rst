@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.13b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Add a way to extend and/or override Open Graph metadata using adapters.
+  [erral]
+
 - Complete Basque translation.
   [erral]
 

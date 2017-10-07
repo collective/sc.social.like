@@ -8,10 +8,12 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.behaviors import ISocialMedia
+from sc.social.like.interfaces import IOpenGraphMetadata
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
 from sc.social.like.utils import get_language
+from zope.component import getAdapters
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
@@ -141,6 +143,24 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         if context_state.is_portal_root():
             return 'website'
         return 'article'
+
+    def metatags(self):
+        tags = {}
+        tags['og:title'] = self.title
+        tags['og:description'] = self.description
+        tags['og:type'] = self.type()
+        tags['og:url'] = self.canonical_url()
+        tags['og:image'] = self.image_url()
+        if self.image:
+            tags['og:image:height'] = self.image_height()
+            tags['og:image:width'] = self.image_width()
+            tags['og:image:type'] = self.image_type()
+        tags['og:locale'] = self.language
+        tags['og:site_name'] = self.site_name
+
+        for _, adapter in getAdapters([self.context], IOpenGraphMetadata):
+            tags.update(adapter.metatags())
+        return tags.items()
 
 
 class SocialLikesViewlet(BaseLikeViewlet):
