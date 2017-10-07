@@ -89,38 +89,35 @@ The following basic metadata is included on content types with Social Media beha
 * ``og:image``: the 'large' scale of the lead image of the item, if present;
   you can define a fallback image to be used in content that lacks lead image on the control panel configlet
 
-Extending Open Graph metadata
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Extending/overriding Open Graph metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can also extend the basic metadata with additional tags. Open Graph protocol supports
-additional metatags for example to mark videos. To provide these additional metatags you
-need to register an adapter implementing `IOGProperties`. For example, to provide additional
-metatags for objecs implementing INewsItem interface, you will need something like::
+You can extend `Open Graph protocol`_ basic metadata by registering an adapter implementing the ``IOpenGraphMetadata`` interface.
 
-  from zope.component import adapter 
-  from zope.interface import implementer
+For example, to add a property to the News Item content type, you will need something like this:
 
-  from plone.app.contenttypes.interfaces import INewsItem
+.. code-block:: python
 
-  @implementer(IOGProperties)
-  @adapter(INewsItem)
-  class MyAdditionalMetatags(object):
+    from plone.app.contenttypes.interfaces import INewsItem
+    from sc.social.like.interfaces import IOpenGraphMetadata
+    from zope.component import adapter
+    from zope.interface import implementer
 
-      def __init__(self, context):
-          self.context = context
+    @implementer(IOpenGraphMetadata)
+    @adapter(INewsItem)
+    class MyCustomMetadataAdapter(object):
 
-      def metatags(self):
-          return {'my_key_1': 'my_value_1'}
+        def __init__(self, context):
+            self.context = context
 
+        def metatags(self):
+            return {'og:foo': 'bar'}
 
-And in your configure.zcml file::
+You have to register the adapter in your ``configure.zcml`` file:
 
-  ...
-        <adapter
-            factory=".adapters.MyAdditionalMetatags"
-        />
-  ...
+.. code-block:: xml
 
+    <adapter factory=".adapters.MyCustomMetadataAdapter" />
 
 Validation of best practices for social networks sharing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

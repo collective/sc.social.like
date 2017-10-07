@@ -8,7 +8,7 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.behaviors import ISocialMedia
-from sc.social.like.interfaces import IOGProperties
+from sc.social.like.interfaces import IOpenGraphMetadata
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_content_image
@@ -158,7 +158,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         tags['og:locale'] = self.language
         tags['og:site_name'] = self.site_name
 
-        for _, adapter in getAdapters([self.context], IOGProperties):
+        for _, adapter in getAdapters([self.context], IOpenGraphMetadata):
             tags.update(adapter.metatags())
         return tags.items()
 

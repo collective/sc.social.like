@@ -251,8 +251,8 @@ class ISocialLikeSettings(model.Schema):
     )
 
 
-class IOGProperties(Interface):
-    """ Interface to provide additional metatags to those provided by default."""
+class IOpenGraphMetadata(Interface):
+    """Interface to provide Open Graph protocol metadata."""
 
     def metatags():
-        """ a dict with additional metatags."""
+        """Return a dict with metadata information, e.g. {'og:foo': 'bar'}."""
