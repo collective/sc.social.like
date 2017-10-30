@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.13b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Avoid ``AttributeError`` when migrating package settings to Plone's registry.
+  [hvelarde]
+
 - Complete Basque translation.
   [erral]
 
