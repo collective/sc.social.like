@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.13b2 (unreleased)
+2.13b2 (2017-10-30)
 ^^^^^^^^^^^^^^^^^^^
 
 - Avoid ``AttributeError`` when migrating package settings to Plone's registry.
