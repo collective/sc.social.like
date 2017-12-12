@@ -20,8 +20,7 @@ def reindex_catalog(setup_tool):
     for obj in get_valid_objects(results):
         catalog.catalog_object(obj, idxs=['object_provides'], update_metadata=False)
         n += 1
-        # XXX: https://github.com/gforcada/flake8-pep3101/issues/16
-        if n % 1000 == 0 and not test:  # noqa: S001
+        if n % 1000 == 0 and not test:
             transaction.commit()
             logger.info('{0} items processed.'.format(n))
 
