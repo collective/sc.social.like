@@ -188,7 +188,7 @@ def validate_og_lead_image(image):
     if image.mimetype not in OG_LEAD_IMAGE_MIME_TYPES:
         raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
 
-    if image.data.size > OG_LEAD_IMAGE_MAX_SIZE:
+    if image.data.getSize() > OG_LEAD_IMAGE_MAX_SIZE:
         raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_SIZE)
 
     width, height = image.width, image.height
