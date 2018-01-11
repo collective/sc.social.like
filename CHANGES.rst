@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.13b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Avoid ``AttributeError`` when acessing image fields based on ``NamedImage`` instead of ``NamedBlobImage``.
+  [hvelarde]
 
 
 2.13b2 (2017-10-30)
