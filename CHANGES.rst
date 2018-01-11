@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.13b3 (unreleased)
+2.13b3 (2018-01-11)
 ^^^^^^^^^^^^^^^^^^^
 
 - Avoid ``AttributeError`` when acessing image fields based on ``NamedImage`` instead of ``NamedBlobImage``.
