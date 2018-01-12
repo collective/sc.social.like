@@ -87,14 +87,8 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         return ''
 
     def enabled(self):
-        """Check if the viewlet should be shown in this context."""
-        template = self.helper.view_template_id()
-        # If using folder_full_view or all_content, we add metadata
-        # in order to proper display share buttons for
-        # contained content types
-        if template in ('all_content', 'folder_full_view',):
-            return True
-        return self.helper.enabled(self.view)
+        """Enable metadata viewlet globally"""
+        return True
 
     def portal_url(self):
         portal = api.portal.get()
