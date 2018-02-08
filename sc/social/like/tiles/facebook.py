@@ -41,8 +41,7 @@ class IFacebookTile(IPersistentCoverTile):
         title=_(u'Width'),
         description=_(
             u'Set the maximum width of the widget between 180 and 500 pixels. '
-            u'Leave it empty to automatically adjust the widget to the width of the tile.'
-        ),
+            u'Leave it empty to automatically adjust the widget to the width of the tile.'),
         required=False,
         default=None,
         min=180,
@@ -53,8 +52,7 @@ class IFacebookTile(IPersistentCoverTile):
         title=_(u'Height'),
         description=_(
             u'Set the height of a displayed widget, overriding the value stored with the widget ID. '
-            u'Must be greater than 70 pixels. '
-        ),
+            u'Must be greater than 70 pixels. '),
         required=True,
         default=500,
         min=70,

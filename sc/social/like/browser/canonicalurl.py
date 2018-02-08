@@ -24,8 +24,7 @@ class ICanonicalURLUpdater(model.Schema):
             default=u'The canonical domain will be used to construct the canonical URL (<code>og:url</code> property) of portal objects. '
                     u'Use the domain name of your site (e.g. <strong>http://www.example.org</strong> or <strong>https://www.example.org</strong>). '
                     u'Facebook will use the canonical URL to ensure that all actions such as likes and shares aggregate at the same URL rather than spreading across multiple versions of a page. '
-                    u'Check <a href="https://pypi.python.org/pypi/sc.social.like">package documentation</a> for more information on how to use this feature.'
-        ),
+                    u'Check <a href="https://pypi.python.org/pypi/sc.social.like">package documentation</a> for more information on how to use this feature.'),
         required=True,
         constraint=validate_canonical_domain,
     )
@@ -35,8 +34,7 @@ class ICanonicalURLUpdater(model.Schema):
         description=_(
             u'help_published_before',
             default=u'Objects published before this date will be updated using the canonical domain defined in this form; '
-                    u'objects published on or after this date will be updated using the canonical domain defined in the control panel configlet.'
-        ),
+                    u'objects published on or after this date will be updated using the canonical domain defined in the control panel configlet.'),
         required=True,
     )
 
@@ -48,8 +46,7 @@ class CanonicalURLUpdater(form.Form):
     label = _(u'Canonical URL updater form')
     description = _(
         u'This form will update the canonical URL of all Dexterity-based '
-        u'objects in the catalog providing the Social Media behavior.'
-    )
+        u'objects in the catalog providing the Social Media behavior.')
     ignoreContext = True
 
     @property

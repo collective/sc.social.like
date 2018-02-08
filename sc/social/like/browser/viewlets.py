@@ -92,7 +92,7 @@ class SocialMetadataViewlet(BaseLikeViewlet):
         # If using folder_full_view or all_content, we add metadata
         # in order to proper display share buttons for
         # contained content types
-        if template in ('all_content', 'folder_full_view',):
+        if template in ('all_content', 'folder_full_view'):
             return True
         return self.helper.enabled(self.view)
 

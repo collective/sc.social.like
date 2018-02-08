@@ -42,8 +42,7 @@ class ITwitterTile(IPersistentCoverTile):
         title=_(u'Width'),
         description=_(
             u'Set the maximum width of the widget between 180 and 520 pixels. '
-            u'Leave it empty to automatically adjust the widget to the width of the tile.'
-        ),
+            u'Leave it empty to automatically adjust the widget to the width of the tile.'),
         required=False,
         default=None,
         min=180,
@@ -55,8 +54,7 @@ class ITwitterTile(IPersistentCoverTile):
         description=_(
             u'Set the height of a displayed widget, overriding the value stored with the widget ID. '
             u'Must be greater than 200 pixels. '
-            u'Note: this parameter does not apply if a tweet limit has been specified.'
-        ),
+            u'Note: this parameter does not apply if a tweet limit has been specified.'),
         required=False,
         default=500,
         min=200,
@@ -73,8 +71,7 @@ class ITwitterTile(IPersistentCoverTile):
         title=_(u'Tweet limit'),
         description=_(
             u'Display an expanded timeline of between 1 and 20 tweets. '
-            u'Leave it empty to use the default or to set the height of the widget.'
-        ),
+            u'Leave it empty to use the default or to set the height of the widget.'),
         required=False,
         default=None,
         min=1,
@@ -86,8 +83,7 @@ class ITwitterTile(IPersistentCoverTile):
         description=_(
             u'A timeline widget is a live region of a page which may receive updates as new tweets become available. '
             u'When specified as polite, assistive technologies will notify users of updates but generally do not interrupt the current task, and updates take low priority. '
-            u'When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates.'
-        ),
+            u'When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates.'),
         required=True,
         values=['polite', 'assertive'],
         default='polite',
