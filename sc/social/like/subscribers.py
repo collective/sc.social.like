@@ -111,8 +111,7 @@ def assign_canonical_url(obj, event):
     else:
         logger.warn(
             'Canonical domain not set in Social Media configlet; '
-            "Facebook's Open Graph canonical URL (og:orl) will not be available"
-        )
+            "Facebook's Open Graph canonical URL (og:orl) will not be available")
 
 
 def check_sharing_best_practices(obj, event):
