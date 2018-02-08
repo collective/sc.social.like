@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.13b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix upgrade step when there are no plone.app.tiles recrods.
+  [erral]
 
 
 2.13b3 (2018-01-11)
