@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.social.like\n"
 "POT-Creation-Date: 2017-09-28 14:35+0000\n"
-"PO-Revision-Date: 2017-09-28 13:23-0300\n"
+"PO-Revision-Date: 2018-02-22 17:20-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -318,7 +318,7 @@ msgstr "Limite de tweets"
 
 #: sc/social/like/tiles/configure.zcml:31
 msgid "Twitter Tile"
-msgstr "Tile do Tweeter"
+msgstr "Tile do Twitter"
 
 #: sc/social/like/interfaces.py:244
 msgid "Twitter nick"
