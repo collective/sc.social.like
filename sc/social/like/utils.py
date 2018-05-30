@@ -92,10 +92,10 @@ def _image_size(current, new):
     if (n_width > c_width) or (n_height > c_height):
         return current
     width = n_width
-    height = int(round(width / c_aspect))
+    height = int(round(width / c_aspect))  # pylint: disable=round-builtin
     if n_height > height:
         height = n_height
-        width = int(round(height * c_aspect))
+        width = int(round(height * c_aspect))  # pylint: disable=round-builtin
         if n_width > width:
             return current
     return (width, height)
