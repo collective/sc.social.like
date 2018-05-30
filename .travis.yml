@@ -23,12 +23,13 @@ install:
 - bin/buildout buildout:test-eggs=$TEST_EGGS annotate
 - bin/buildout buildout:test-eggs=$TEST_EGGS
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - firefox -v
+- export CATALOG_OPTIMIZATION_DISABLED=true
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- firefox -v
 script:
 - bin/code-analysis
-- CATALOG_OPTIMIZATION_DISABLED=true bin/test
+- bin/test
 - bin/pylint --py3k --disable=no-absolute-import sc/social/like || true
 after_success:
 - bin/zopepy setup.py check -mrs
