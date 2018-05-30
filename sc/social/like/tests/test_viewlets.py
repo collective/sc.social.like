@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from six.moves import range  # noqa: I001
 from plone import api
 from profilehooks import profile
 from profilehooks import timecall
@@ -131,7 +132,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
 
         @timecall(immediate=True)
         def render(times):
-            for i in xrange(0, times):
+            for i in range(0, times):
                 viewlet.render()
 
         with capture() as out:
@@ -143,7 +144,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         # show rendering profile
         @profile
         def render(times):
-            for i in xrange(0, times):
+            for i in range(0, times):
                 viewlet.render()
 
         render(times)
@@ -211,7 +212,7 @@ class LikeViewletTestCase(ViewletBaseTestCase):
 
         @timecall(immediate=True)
         def render(times):
-            for i in xrange(0, times):
+            for i in range(0, times):
                 viewlet.render()
 
         with capture() as out:
@@ -223,7 +224,7 @@ class LikeViewletTestCase(ViewletBaseTestCase):
         # show rendering profile
         @profile
         def render(times):
-            for i in xrange(0, times):
+            for i in range(0, times):
                 viewlet.render()
 
         render(times)

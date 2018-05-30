@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from six.moves import range  # noqa: I001
 from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import IS_PLONE_5
@@ -308,7 +309,7 @@ class To3046TestCase(UpgradeTestCaseBase):
         from sc.social.like.behaviors import ISocialMedia
         from sc.social.like.tests.utils import enable_social_media_behavior
         with api.env.adopt_roles(['Manager']):
-            for i in xrange(0, 10):
+            for i in range(0, 10):
                 api.content.create(self.portal, 'News Item', str(i))
 
         # break the catalog by deleting an object without notifying
