@@ -5,13 +5,13 @@ More information:
 * https://developers.pinterest.com/docs/widgets/save/
 * https://developers.pinterest.com/docs/rich-pins/reference/
 """
+from six.moves.urllib.parse import urlencode  # noqa: I001
 from Acquisition import aq_inner
 from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.utils import get_content_image
-from urllib import urlencode
 
 
 class PluginView(BrowserView):
