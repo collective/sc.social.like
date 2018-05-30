@@ -42,5 +42,5 @@ def facebook_language(languages, default):
         return default
     languages = [languages] if not isinstance(languages, list) else languages
     languages = [fix_iso(l) for l in languages]
-    prefered = [l for l in languages if l in FB_LOCALES]
+    prefered = [l for l in languages if l in FB_LOCALES]  # noqa: E501; pylint: disable=W1662
     return prefered and prefered[0] or default
