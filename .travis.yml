@@ -3,7 +3,9 @@ python: 2.7
 sudo: false
 cache:
   directories:
-    - eggs
+  - $HOME/.pylint.d
+  - eggs
+  - parts/node
 addons:
   firefox: 45.8.0esr
 env:
@@ -25,8 +27,9 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - firefox -v
 script:
-  - bin/code-analysis
-  - CATALOG_OPTIMIZATION_DISABLED=true bin/test
+- bin/code-analysis
+- CATALOG_OPTIMIZATION_DISABLED=true bin/test
+- bin/pylint --py3k --disable=no-absolute-import sc/social/like || true
 after_success:
 - bin/zopepy setup.py check -mrs
 - pip install coverage
