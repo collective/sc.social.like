@@ -6,6 +6,13 @@ There's a frood who really knows where his towel is.
 2.13b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+.. Warning::
+    Upgrading from versions below 2.3 is no longer supported.
+    You must upgrade at least to version 2.3 before upgrading to this release.
+
+- Remove upgrade steps for old, unsupported releases.
+  [hvelarde]
+
 - Code refactor to increase future Python 3 compatibility;
   add dependency on `six <https://pypi.python.org/pypi/six>`_.
   [hvelarde]
