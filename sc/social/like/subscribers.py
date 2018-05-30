@@ -138,19 +138,19 @@ def check_sharing_best_practices(obj, event):
     try:
         validate_og_title(title)
     except ValueError as e:
-        api.portal.show_message(message=e.message, request=request, type='warning')
+        api.portal.show_message(message=str(e), request=request, type='warning')
 
     description = getattr(obj, 'description', '')
     try:
         validate_og_description(description)
     except ValueError as e:
-        api.portal.show_message(message=e.message, request=request, type='warning')
+        api.portal.show_message(message=str(e), request=request, type='warning')
 
     image = get_content_image(obj)
     try:
         validate_og_lead_image(image)
     except ValueError as e:
-        api.portal.show_message(message=e.message, request=request, type='warning')
+        api.portal.show_message(message=str(e), request=request, type='warning')
 
 
 def facebook_prefetching(obj, event):
@@ -176,7 +176,7 @@ def facebook_prefetching(obj, event):
     try:
         r = requests.post(endpoint, timeout=5)
     except requests.exceptions.RequestException as e:
-        logger.warn('Prefetch failure: ' + str(e.message))
+        logger.warn('Prefetch failure: ' + str(e))
         return
 
     if r.status_code == '200':
