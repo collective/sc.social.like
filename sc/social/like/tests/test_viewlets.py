@@ -28,10 +28,10 @@ def capture():
     http://stackoverflow.com/a/10743550/644075
     """
     import sys
-    from cStringIO import StringIO
+    from io import BytesIO
     oldout, olderr = sys.stdout, sys.stderr
     try:
-        out = [StringIO(), StringIO()]
+        out = [BytesIO(), BytesIO()]
         sys.stdout, sys.stderr = out
         yield out
     finally:
