@@ -25,7 +25,6 @@ from sc.social.like.utils import validate_og_description
 from sc.social.like.utils import validate_og_lead_image
 from sc.social.like.utils import validate_og_title
 from zope.component import getUtility
-from zope.schema.interfaces import WrongType
 
 import requests
 import traceback
@@ -57,10 +56,10 @@ def social_media_record_synchronizer(event):
     if not IS_PLONE_5:
         return
 
-    logger.debug(u'Processing: ' + repr(event.record))
+    logger.debug('Processing: ' + repr(event.record))
     field = event.record.fieldName
     if field not in FIELDS:
-        logger.debug(u'Field name not being tracked')
+        logger.debug('Field name not being tracked')
         return
 
     # find out which record we need to synchronize
@@ -73,16 +72,12 @@ def social_media_record_synchronizer(event):
         # Plone record modified; synchronize sc.social.like record
         record = ISocialLikeSettings.__identifier__ + '.' + field
     else:
-        logger.debug(u'Schema not being tracked')
+        logger.debug('Schema not being tracked')
         return
 
     registry = getUtility(IRegistry)
     # this will fire the aditional IRecordModifiedEvent
-    try:
-        registry[record] = str(event.record.value)
-    except WrongType:
-        # Plone 5 declares records as TextLine
-        registry[record] = unicode(event.record.value)
+    registry[record] = str(event.record.value)
 
     logger.debug('{0} was synchronized; new value is "{1}"'.format(
         repr(registry.records[record]), event.record.value))
