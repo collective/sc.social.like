@@ -4,13 +4,13 @@
 More information:
 * https://developers.google.com/+/web/share/
 """
+from six.moves.urllib.parse import urlencode  # noqa: I001
 from Acquisition import aq_inner
 from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.utils import get_language
-from urllib import urlencode
 
 
 class PluginView(BrowserView):

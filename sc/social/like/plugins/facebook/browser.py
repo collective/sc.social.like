@@ -4,6 +4,7 @@
 More information:
 * https://developers.facebook.com/docs/plugins
 """
+from six.moves.urllib.parse import urlencode  # noqa: I001
 from Acquisition import aq_inner
 from plone import api
 from Products.Five import BrowserView
@@ -13,7 +14,6 @@ from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook.utils import facebook_language
 from sc.social.like.utils import get_language
-from urllib import urlencode
 
 
 class PluginView(BrowserView):

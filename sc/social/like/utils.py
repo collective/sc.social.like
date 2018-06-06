@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+from __future__ import division
+from six.moves.urllib.parse import urlparse  # noqa: I001
 from Acquisition import aq_base
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.namedfile.file import NamedBlobImage
@@ -13,7 +15,6 @@ from sc.social.like.config import OG_LEAD_IMAGE_MIN_HEIGHT
 from sc.social.like.config import OG_LEAD_IMAGE_MIN_WIDTH
 from sc.social.like.config import OG_TITLE_MAX_LENGTH
 from sc.social.like.logger import logger
-from urlparse import urlparse
 from zope.interface import Invalid
 
 
@@ -82,7 +83,7 @@ def _image_size(current, new):
     c_width, c_height = current
     if not (c_width and c_height):
         return (0, 0)
-    c_aspect = float(c_width) / float(c_height)
+    c_aspect = c_width / c_height
     # New width, height
     n_width, n_height = new
 
@@ -91,10 +92,10 @@ def _image_size(current, new):
     if (n_width > c_width) or (n_height > c_height):
         return current
     width = n_width
-    height = int(round(float(width) / c_aspect))
+    height = int(round(width / c_aspect))  # pylint: disable=round-builtin
     if n_height > height:
         height = n_height
-        width = int(round(height * c_aspect))
+        width = int(round(height * c_aspect))  # pylint: disable=round-builtin
         if n_width > width:
             return current
     return (width, height)
@@ -195,7 +196,7 @@ def validate_og_lead_image(image):
     if width < OG_LEAD_IMAGE_MIN_WIDTH or height < OG_LEAD_IMAGE_MIN_HEIGHT:
         raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
 
-    aspect_ratio = float(image.width) / float(image.height)
+    aspect_ratio = image.width / image.height
     if aspect_ratio < OG_LEAD_IMAGE_MIN_ASPECT_RATIO:
         raise ValueError(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
 
@@ -222,7 +223,7 @@ def validate_og_fallback_image(value):
     if width < OG_LEAD_IMAGE_MIN_WIDTH or height < OG_LEAD_IMAGE_MIN_HEIGHT:
         raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
 
-    aspect_ratio = float(width) / float(height)
+    aspect_ratio = width / height
     if aspect_ratio < OG_LEAD_IMAGE_MIN_ASPECT_RATIO:
         raise Invalid(MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
 

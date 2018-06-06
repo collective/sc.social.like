@@ -64,7 +64,7 @@ class OGValidatorsTestCase(unittest.TestCase):
         try:
             validate_og_description(title)
         except ValueError as e:
-            self.assertEqual(e.message, MSG_INVALID_OG_TITLE)
+            self.assertEqual(str(e), MSG_INVALID_OG_TITLE)
 
     def test_validate_og_description_valid(self):
         self.assertTrue(validate_og_description(None))
@@ -83,7 +83,7 @@ class OGValidatorsTestCase(unittest.TestCase):
         try:
             validate_og_description(description)
         except ValueError as e:
-            self.assertEqual(e.message, MSG_INVALID_OG_DESCRIPTION)
+            self.assertEqual(str(e), MSG_INVALID_OG_DESCRIPTION)
 
     def test_validate_og_lead_image_no_image(self):
         self.assertTrue(validate_og_lead_image(None))
@@ -105,7 +105,7 @@ class OGValidatorsTestCase(unittest.TestCase):
         try:
             validate_og_lead_image(image)
         except ValueError as e:
-            self.assertEqual(e.message, MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
+            self.assertEqual(str(e), MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE)
 
     def test_validate_og_lead_image_invalid_size(self):
         from sc.social.like.config import OG_LEAD_IMAGE_MAX_SIZE
@@ -121,7 +121,7 @@ class OGValidatorsTestCase(unittest.TestCase):
         try:
             validate_og_lead_image(image)
         except ValueError as e:
-            self.assertEqual(e.message, MSG_INVALID_OG_LEAD_IMAGE_SIZE)
+            self.assertEqual(str(e), MSG_INVALID_OG_LEAD_IMAGE_SIZE)
 
     def test_validate_og_lead_image_invalid_dimensions(self):
         from sc.social.like.utils import MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS
@@ -135,7 +135,7 @@ class OGValidatorsTestCase(unittest.TestCase):
         try:
             validate_og_lead_image(image)
         except ValueError as e:
-            self.assertEqual(e.message, MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
+            self.assertEqual(str(e), MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
 
     def test_validate_og_lead_image_invalid_aspect_ratio(self):
         from sc.social.like.utils import MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO
@@ -149,7 +149,7 @@ class OGValidatorsTestCase(unittest.TestCase):
         try:
             validate_og_lead_image(image)
         except ValueError as e:
-            self.assertEqual(e.message, MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
+            self.assertEqual(str(e), MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO)
 
 
 def load_tests(loader, tests, pattern):

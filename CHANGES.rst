@@ -6,6 +6,10 @@ There's a frood who really knows where his towel is.
 2.13b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Code refactor to increase future Python 3 compatibility;
+  add dependency on `six <https://pypi.python.org/pypi/six>`_.
+  [hvelarde]
+
 - Fix upgrade step when there are no plone.app.tiles recrods.
   [erral]
 

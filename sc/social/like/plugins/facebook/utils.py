@@ -42,5 +42,6 @@ def facebook_language(languages, default):
         return default
     languages = [languages] if not isinstance(languages, list) else languages
     languages = [fix_iso(l) for l in languages]
-    prefered = [l for l in languages if l in FB_LOCALES]
+    # XXX: https://github.com/PyCQA/pylint/issues/2106
+    prefered = [l for l in languages if l in FB_LOCALES]  # noqa: E501; pylint: disable=comprehension-escape
     return prefered and prefered[0] or default

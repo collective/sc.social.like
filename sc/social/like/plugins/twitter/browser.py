@@ -5,6 +5,7 @@ More information:
 * https://dev.twitter.com/web/tweet-button
 * https://dev.twitter.com/web/overview/privacy
 """
+from six.moves.urllib.parse import urlencode  # noqa: I001
 from Acquisition import aq_inner
 from plone import api
 from Products.Five import BrowserView
@@ -12,7 +13,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.social.like.behaviors import ISocialMedia
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
-from urllib import urlencode
 
 
 class PluginView(BrowserView):

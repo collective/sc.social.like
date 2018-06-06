@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from six.moves import range  # noqa: I001
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.schema import SchemaInvalidatedEvent
 from sc.social.like.behaviors import ISocialMedia
@@ -18,7 +19,7 @@ def enable_social_media_behavior():
 def get_random_string(length):
     from random import choice
     from string import printable
-    return ''.join(choice(printable) for i in xrange(0, length))
+    return ''.join(choice(printable) for i in range(0, length))
 
 
 def get_file(filename):
