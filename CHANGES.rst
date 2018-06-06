@@ -3,8 +3,8 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.13b4 (unreleased)
-^^^^^^^^^^^^^^^^^^^
+3.0b1 (unreleased)
+^^^^^^^^^^^^^^^^^^
 
 .. Warning::
     Upgrading from versions below 2.3 is no longer supported.
