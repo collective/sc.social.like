@@ -190,7 +190,7 @@ class To3041TestCase(UpgradeTestCaseBase):
         self.execute_upgrade_step(step)
 
         registered = api.portal.get_registry_record('plone.app.tiles')
-        [self.assertIn(t, registered) for t in TILES]  # noqa: E501; pylint: disable=W1662
+        [self.assertIn(t, registered) for t in TILES]
 
 
 class To3042TestCase(UpgradeTestCaseBase):
