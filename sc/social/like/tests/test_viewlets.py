@@ -177,6 +177,11 @@ class LikeViewletTestCase(ViewletBaseTestCase):
             html = self.obj.restrictedTraverse('@@edit')()  # Dexterity
         self.assertNotIn('id="viewlet-social-like"', html)
 
+    def test_viewlet_is_not_present_in_foldercontents(self):
+        view = api.content.get_view(
+            name=u'folder_contents', context=self.obj, request=self.request)
+        self.assertNotIn('id="viewlet-social-like"', view())
+
     def test_social_viewlet_rendering(self):
         viewlet = self.viewlet(self.obj)
         html = viewlet.render()
