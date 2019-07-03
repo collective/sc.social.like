@@ -44,8 +44,10 @@ class HelperView(BrowserView):
         return configs.plugins_enabled or []
 
     @memoize
-    def enabled(self, view=None):
-        if IFolderContentsView.providedBy(view) or not IViewView.providedBy(view):
+    def enabled(self, view):
+        if view and not IViewView.providedBy(view):
+            return False
+        if view and IFolderContentsView.providedBy(view):
             return False
         enabled_portal_types = self.enabled_portal_types()
         return self.context.portal_type in enabled_portal_types
