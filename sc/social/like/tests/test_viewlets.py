@@ -124,7 +124,8 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.assertIn('og:locale', html)
         self.assertIn('og:site_name', html)
 
-    @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
+    @unittest.skipIf(
+        skip_profiling, 'Skipping performance measure and code profiling')
     def test_metadata_viewlet_rendering_performance(self):
         self._enable_all_plugins()
         times, limit = 1000, 5  # rendering 1000 times must take less than 5ms
