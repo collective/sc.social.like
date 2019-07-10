@@ -54,7 +54,7 @@ class BaseLikeViewlet(ViewletBase):
         except WorkflowException:
             # no workflow on context, like in site root
             published = True
-        return all([published, self.helper.enabled(), self.plugins()])
+        return all([published, self.helper.enabled(self.view), self.plugins()])
 
     # HACK: fixes https://bitbucket.org/takaki/sc.social.like/issue/1
     def update(self):
