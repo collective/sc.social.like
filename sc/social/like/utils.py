@@ -117,6 +117,8 @@ def get_valid_objects(brains):
             obj = b.getObject()
         except KeyError:
             obj = None
+        except AttributeError:
+            obj = None
 
         if obj is None:  # warn on broken entries in the catalog
             msg = u'Skipping invalid reference in the catalog: {0}'
