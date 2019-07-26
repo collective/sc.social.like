@@ -33,7 +33,7 @@ def reindex_catalog(setup_tool):
             raise
         except Exception as e:
             errors += 1
-            logger.error('%(e)r reindexing %(obj)r', locals())
+            logger.error('{0!r} reindexing {1!r}'.format(e, obj))
             if test:
                 raise
         n += 1
@@ -43,6 +43,6 @@ def reindex_catalog(setup_tool):
 
     if not test:
         if errors:
-            logger.info('%(errors)d errors occured.', locals())
+            logger.info('{0} errors occured.'.format(errors)))
         transaction.commit()
     logger.info('Done.')
