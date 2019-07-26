@@ -43,6 +43,6 @@ def reindex_catalog(setup_tool):
 
     if not test:
         if errors:
-            logger.info('{0} errors occured.'.format(errors)))
+            logger.info('{0} errors occured.'.format(errors))
         transaction.commit()
     logger.info('Done.')
