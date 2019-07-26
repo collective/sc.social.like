@@ -8,7 +8,7 @@ import transaction
 try:
     # this exception must be resubmitted:
     from ZODB.POSException import ConflictError
-except:
+except ImportError:
     # we don't really *require* this;
     #  if we don't have it, a dummy exception will do:
     class ConflictError(Exception):
@@ -29,7 +29,7 @@ def reindex_catalog(setup_tool):
     for obj in get_valid_objects(results):
         try:
             catalog.catalog_object(obj, idxs=['object_provides'], update_metadata=False)
-        except ConflictError as e:
+        except ConflictError:
             raise
         except Exception as e:
             errors += 1
