@@ -17,3 +17,7 @@ Makefile
 .pydevproject
 .project
 .settings
+
+# virtual environment:
+lib64
+pip-selfcheck.json
