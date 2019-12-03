@@ -139,7 +139,7 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         with capture() as out:
             render(times)
 
-        timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
+        timelapse = float(re.search(r'(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, limit)
 
         # show rendering profile
@@ -226,7 +226,7 @@ class LikeViewletTestCase(ViewletBaseTestCase):
         with capture() as out:
             render(times)
 
-        timelapse = float(re.search('(\d+\.\d+)', out[1]).group())
+        timelapse = float(re.search(r'(\d+\.\d+)', out[1]).group())
         self.assertLess(timelapse, limit)
 
         # show rendering profile
