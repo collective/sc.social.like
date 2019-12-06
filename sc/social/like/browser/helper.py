@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from plone import api
+from plone.app.content.browser.interfaces import IFolderContentsView
 from plone.app.layout.globals.interfaces import IViewView
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize
@@ -43,8 +44,10 @@ class HelperView(BrowserView):
         return configs.plugins_enabled or []
 
     @memoize
-    def enabled(self, view=None):
+    def enabled(self, view):
         if view and not IViewView.providedBy(view):
+            return False
+        if view and IFolderContentsView.providedBy(view):
             return False
         enabled_portal_types = self.enabled_portal_types()
         return self.context.portal_type in enabled_portal_types

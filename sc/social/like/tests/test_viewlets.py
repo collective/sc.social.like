@@ -124,7 +124,8 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
         self.assertIn('og:locale', html)
         self.assertIn('og:site_name', html)
 
-    @unittest.skipIf(skip_profiling, 'Skipping performance measure and code profiling')
+    @unittest.skipIf(
+        skip_profiling, 'Skipping performance measure and code profiling')
     def test_metadata_viewlet_rendering_performance(self):
         self._enable_all_plugins()
         times, limit = 1000, 5  # rendering 1000 times must take less than 5ms
@@ -176,6 +177,13 @@ class LikeViewletTestCase(ViewletBaseTestCase):
         except AttributeError:
             html = self.obj.restrictedTraverse('@@edit')()  # Dexterity
         self.assertNotIn('id="viewlet-social-like"', html)
+
+    # TODO: find why folder_contents view is not available in Plone 5
+    @unittest.skipIf(IS_PLONE_5, "Plone 5 don't have this view")
+    def test_viewlet_is_not_present_in_foldercontents(self):
+        view = api.content.get_view(
+            name=u'folder_contents', context=self.obj, request=self.request)
+        self.assertNotIn('id="viewlet-social-like"', view())
 
     def test_social_viewlet_rendering(self):
         viewlet = self.viewlet(self.obj)
