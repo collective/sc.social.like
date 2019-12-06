@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 2.13b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Remove unused view `social_likes_view`.
+  [idgserpro]
+
 - Explicity remove the viewlet for folder_contents view (closes `#261 <https://github.com/plonegovbr/brasil.gov.temas/issues/261>`_).
   [rodfersou]
 
