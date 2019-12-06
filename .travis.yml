@@ -22,8 +22,7 @@ install:
   - bin/buildout buildout:test-eggs=$TEST_EGGS annotate
   - bin/buildout buildout:test-eggs=$TEST_EGGS
 before_script:
-- export CATALOG_OPTIMIZATION_DISABLED=true
-- firefox -v
+  - firefox -v
 script:
 - bin/code-analysis
 - bin/test
