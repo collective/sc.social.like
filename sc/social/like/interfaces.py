@@ -114,7 +114,7 @@ class ISocialLikeSettings(model.Schema):
             default=u'If enabled, the site will not provide advanced sharing '
                     u'widgets; simple links will be used instead.\n'
                     u'This will limit user experience and features '
-                    u'(like the share count) but will enhance users'' privacy: '
+                    u"(like the share count) but will enhance users' privacy: "
                     u'no 3rd party cookies will be sent to users.'),
         default=False,
     )
