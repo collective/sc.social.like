@@ -198,6 +198,7 @@ If collective.cover is installed, two new tiles will be available: Facebook and 
 The Facebook tile embeds a Facebook Page.
 You can set the width and height, and you can control some other aspects of the widget.
 A Facebook application ID must be defined in the Social Like configlet in order to use this tile.
+Instructions for obtaining a Facebook application ID can be found at `Facebook's developer site <https://developers.facebook.com/docs/apps#register>`_
 
 The Twitter tile embeds a Twitter timeline.
 Timelines are an easy way to embed multiple tweets on your website in a compact, single-column view.
@@ -217,3 +218,4 @@ TODO:
 * [ ] Twitter: allow to remove a display component of a timeline (chrome)
 * [ ] Twitter: refresh the tile after editing it
 * [ ] RobotFramework tests for both tiles
+* [ ] Plone 5.1 compatibility

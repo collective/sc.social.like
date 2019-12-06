@@ -112,9 +112,9 @@ class ISocialLikeSettings(model.Schema):
         description=_(
             u'help_do_not_track',
             default=u'If enabled, the site will not provide advanced sharing '
-                    u'widgets , instead simple links will be used.\n'
-                    u'This will limits user experience and features '
-                    u'(like the share count) but will enhance users privacy: '
+                    u'widgets; simple links will be used instead.\n'
+                    u'This will limit user experience and features '
+                    u"(like the share count) but will enhance users' privacy: "
                     u'no 3rd party cookies will be sent to users.'),
         default=False,
     )
@@ -191,7 +191,8 @@ class ISocialLikeSettings(model.Schema):
         description=_(
             u'help_appid',
             default=u'A Facebook Platform application ID.\n'
-                    u'This is required when \"Do not track users\" option is enabled.'),
+                    u'This is required when the \"Do not track users\" option is enabled and for the '
+                    u'Facebook share icon to be displayed. See https://developers.facebook.com/docs/apps#register'),
         required=False,
         default='',
     )
