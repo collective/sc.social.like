@@ -191,7 +191,8 @@ class ISocialLikeSettings(model.Schema):
         description=_(
             u'help_appid',
             default=u'A Facebook Platform application ID.\n'
-                    u'This is required when the \"Do not track users\" option is enabled and for the Facebook share icon to be displayed. See https://developers.facebook.com/docs/apps#register'),
+                    u'This is required when the \"Do not track users\" option is enabled and for the '
+                    u'Facebook share icon to be displayed. See https://developers.facebook.com/docs/apps#register'),
         required=False,
         default='',
     )
