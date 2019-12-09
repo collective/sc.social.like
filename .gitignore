@@ -9,7 +9,9 @@ coverage/
 develop-eggs/
 downloads/
 eggs/
+local
 parts/
+share/
 var/
 include/
 lib/
