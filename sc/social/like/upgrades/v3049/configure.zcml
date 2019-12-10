@@ -1,0 +1,17 @@
+<configure
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="3048"
+      destination="3049"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeDepends
+        title="Add new folderish_templates field to configlet"
+        description="Add option to show social networks in folderish templates."
+        import_steps="plone.app.registry"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

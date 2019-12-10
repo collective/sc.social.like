@@ -9,6 +9,7 @@ from plone.memoize.view import memoize_contextless
 from plone.namedfile.browser import Download
 from plone.namedfile.file import NamedImage
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.interfaces import IFolderish
 from Products.Five import BrowserView
 from sc.social.like.interfaces import IHelperView
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -39,6 +40,11 @@ class HelperView(BrowserView):
         return configs.enabled_portal_types or []
 
     @memoize_contextless
+    def folderish_templates(self):
+        configs = self.configs()
+        return configs.folderish_templates or []
+
+    @memoize_contextless
     def plugins_enabled(self):
         configs = self.configs()
         return configs.plugins_enabled or []
@@ -49,6 +55,11 @@ class HelperView(BrowserView):
             return False
         if view and IFolderContentsView.providedBy(view):
             return False
+        folderish_templates = self.folderish_templates()
+        template = self.view_template_id()
+        if IFolderish.providedBy(self.context) and \
+                template in folderish_templates:
+            return True
         enabled_portal_types = self.enabled_portal_types()
         return self.context.portal_type in enabled_portal_types
 

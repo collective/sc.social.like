@@ -86,6 +86,18 @@ class ISocialLikeSettings(model.Schema):
         value_type=schema.Choice(vocabulary='sc.social.likes.plugins'),
     )
 
+    folderish_templates = schema.List(
+        title=_(u'Folderish Templates'),
+        description=_(
+            u'help_folderish_templates',
+            default=u'If a folderish has one of these templates as default '
+                    u'view, the viewlet is showed even if the folderish type '
+                    u'is not selected in Content types.',
+        ),
+        required=False,
+        value_type=schema.TextLine(),
+    )
+
     validation_enabled = schema.Bool(
         title=_(u'Enable content validation?'),
         description=_(
@@ -205,7 +217,7 @@ class ISocialLikeSettings(model.Schema):
         ),
         value_type=schema.Choice(vocabulary=FacebookButtonsVocabulary),
         required=True,
-        default=(u'Like', ),
+        default=(u'Like',),
     )
 
     fbshowlikes = schema.Bool(

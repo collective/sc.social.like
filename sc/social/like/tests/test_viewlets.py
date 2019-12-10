@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from six.moves import range  # noqa: I001
 from plone import api
 from profilehooks import profile
 from profilehooks import timecall
@@ -8,6 +7,7 @@ from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
+from six.moves import range
 
 import contextlib
 import os
@@ -50,6 +50,8 @@ class ViewletBaseTestCase(unittest.TestCase):
         with api.env.adopt_roles(['Manager']):
             self.obj = api.content.create(
                 self.portal, type='News Item', id='foo')
+            self.folder = api.content.create(
+                self.portal, type='Folder', id='folder')
         set_image_field(self.obj, load_image(1024, 768), 'image/png')
 
     def _enable_all_plugins(self):
@@ -76,7 +78,8 @@ class ViewletBaseTestCase(unittest.TestCase):
         if registration is None:
             raise ValueError
 
-        viewlet = registration.factory(context, request, None, None).__of__(context)
+        viewlet = registration.factory(
+            context, request, None, None).__of__(context)
         viewlet.update()
         return viewlet
 
@@ -98,6 +101,20 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
     def test_metadata_viewlet_is_enabled_on_content(self):
         viewlet = self.viewlet(self.obj)
         self.assertTrue(viewlet.enabled())
+
+    def test_metadata_viewlet_is_enabled_on_folderish_with_setting_view(self):
+        api.portal.set_registry_record(
+            'folderish_templates', [u'summary_view'], ISocialLikeSettings)
+        self.folder.setLayout(u'summary_view')
+        viewlet = self.viewlet(self.folder)
+        self.assertTrue(viewlet.enabled())
+
+    def test_metadata_viewlet_is_disabled_on_folderish_without_setting_view(
+            self):
+        api.portal.set_registry_record(
+            'folderish_templates', [u'summary_view'], ISocialLikeSettings)
+        viewlet = self.viewlet(self.folder)
+        self.assertFalse(viewlet.enabled())
 
     # FIXME: we need to rethink this feature
     @unittest.skipIf(IS_PLONE_5, 'Plone 5 includes metadata by default')

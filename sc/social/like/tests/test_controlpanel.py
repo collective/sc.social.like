@@ -115,6 +115,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'facebook_prefetch_enabled'))
         self.assertEqual(self.settings.facebook_prefetch_enabled, False)
 
+    def test_folderish_templates_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'folderish_templates'))
+        self.assertEqual(self.settings.folderish_templates, None)
+
     def test_records_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 

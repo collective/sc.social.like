@@ -6,6 +6,10 @@ There's a frood who really knows where his towel is.
 2.13b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+- Add option to show social networks in folderish templates, even if folderish
+  type isn't checked to show social networks (closes `#174 <https://github.com/plonegovbr/brasil.gov.temas/issues/174>`_).
+  [idgserpro]
+
 - Remove unused view `social_likes_view`.
   [idgserpro]
 
