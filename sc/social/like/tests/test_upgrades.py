@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from six.moves import range  # noqa: I001
 from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import HAS_DEXTERITY
 from sc.social.like.testing import INTEGRATION_TESTING
+from six.moves import range  # noqa: I001
 from zope.component import getUtility
 
 import unittest
@@ -392,3 +392,35 @@ class To3048TestCase(UpgradeTestCaseBase):
         settings = registry.forInterface(ISocialLikeSettings)
         self.assertIsNone(settings.fallback_image)
         self.assertFalse(settings.facebook_prefetch_enabled)
+
+
+class To3049TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'3048', u'3049')
+
+    def test_registrations(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self.total_steps, 1)
+
+    def test_add_folderish_templates_record(self):
+        title = u'Add new folderish_templates field to configlet'
+        step = self.get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        registry = getUtility(IRegistry)
+        record = ISocialLikeSettings.__identifier__ + '.folderish_templates'
+        del registry.records[record]
+        self.assertNotIn(record, registry)
+
+        with self.assertRaises(KeyError):
+            registry.forInterface(ISocialLikeSettings)
+
+        # run the upgrade step to validate the update
+        self.execute_upgrade_step(step)
+
+        # test the new field is in place
+        settings = registry.forInterface(ISocialLikeSettings)
+        self.assertIsNone(settings.folderish_templates)
