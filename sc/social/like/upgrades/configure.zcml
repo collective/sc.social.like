@@ -1,8 +1,4 @@
 <configure xmlns="http://namespaces.zope.org/zope">
-
-    <include package=".v2000" />
-    <include package=".v3000" />
-    <include package=".v3010" />
     <include package=".v3020" />
     <include package=".v3030" />
     <include package=".v3040" />
@@ -14,5 +10,4 @@
     <include package=".v3046" />
     <include package=".v3047" />
     <include package=".v3048" />
-
 </configure>

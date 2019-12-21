@@ -3,8 +3,15 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.13b4 (unreleased)
-^^^^^^^^^^^^^^^^^^^
+3.0b1 (unreleased)
+^^^^^^^^^^^^^^^^^^
+
+.. Warning::
+    Upgrading from versions below 2.3 is no longer supported.
+    You must upgrade at least to version 2.3 before upgrading to this release.
+
+- Remove upgrade steps for old, unsupported releases.
+  [hvelarde]
 
 - Remove unused view `social_likes_view`.
   [idgserpro]
