@@ -41,7 +41,7 @@ Don't Panic
 -----------
 
 Plone version compatibility
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 This package is compatible with Plone 4.3 and 5.0.
 
