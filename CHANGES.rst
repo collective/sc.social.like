@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-2.13b4 (unreleased)
+2.13 (2020-01-02)
 ^^^^^^^^^^^^^^^^^^^
 
 - Add option to show social networks in folderish templates, even if folderish
