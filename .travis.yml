@@ -31,7 +31,7 @@ script:
 - bin/pylint --py3k --disable=no-absolute-import sc/social/like
 after_success:
 - bin/zopepy setup.py check -mrs
-- pip install coverage==4.5.4
+- pip install coverage
 - coverage run bin/test --layer=\!Robot
 # Coveralls
 - pip install coveralls
