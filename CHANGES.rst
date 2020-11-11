@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 2.13.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix gplus language attribute for sharing with do not track option enabled.
+  [rodfersou]
 
 
 2.13 (2020-01-02)

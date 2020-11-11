@@ -45,7 +45,7 @@ class PluginView(BrowserView):
         # See https://developers.google.com/+/web/share/?hl=it#available-languages
         params = dict(
             url=self.context.absolute_url(),
-            hl=self.language,
+            hl=self.language(),
         )
         url = 'https://plus.google.com/share?' + urlencode(params)
         return url
