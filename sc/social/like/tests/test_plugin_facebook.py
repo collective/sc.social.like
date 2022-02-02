@@ -2,7 +2,6 @@
 from plone import api
 from plone.registry.interfaces import IRegistry
 from sc.social.like import utils
-from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.plugins.facebook import browser
 from sc.social.like.plugins.facebook.utils import facebook_language
@@ -109,38 +108,6 @@ class PluginViewsTest(unittest.TestCase):
         view = self.portal.restrictedTraverse(plugin_view)
         html = view.link()
         self.assertIn('Share on Facebook', html)
-
-    # FIXME: we need to rethink this feature
-    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
-    def test_plugin_view_metadata(self):
-
-        def get_meta_property(name):
-            meta = html.find('*/meta[@property="{0}"]'.format(name))
-            if meta is not None:
-                return meta.attrib['content']
-
-        view = self.newsitem.restrictedTraverse(self.plugin.view())
-        self.settings.facebook_username = 'plone'
-        self.settings.facebook_app_id = '1234567890'
-
-        from lxml import etree
-        html = etree.HTML(view.metadata())
-        self.assertEqual(get_meta_property('fb:admins'), 'plone')
-        self.assertEqual(get_meta_property('fb:app_id'), '1234567890')
-
-    # FIXME: we need to rethink this feature
-    @unittest.skipIf(IS_PLONE_5, 'Metadata viewlet is disabled in Plone 5')
-    def test_plugin_language(self):
-        plugin_view = self.plugin.view()
-        self.newsitem.setLanguage('pt-br')
-        view = self.newsitem.restrictedTraverse(plugin_view)
-        html = view.metadata()
-        self.assertIn('connect.facebook.net/pt_BR/all.js', html)
-
-        self.newsitem.setLanguage('en')
-        view = self.newsitem.restrictedTraverse(plugin_view)
-        html = view.metadata()
-        self.assertIn('connect.facebook.net/en_GB/all.js', html)
 
     def test_plugin_view_typebutton(self):
         plugin_view = self.plugin.view()

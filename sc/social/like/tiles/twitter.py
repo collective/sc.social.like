@@ -20,10 +20,10 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 ChromeOptions = SimpleVocabulary([
-    SimpleTerm(value='noheader', title=_(u'Hide the timeline header')),
-    SimpleTerm(value='nofooter', title=_(u'Hide the timeline footer')),
-    SimpleTerm(value='noborders', title=_(u'Remove all borders within the widget')),
-    SimpleTerm(value='noscrollbar', title=_(u'Crop and hides the main timeline scrollbar')),
+    SimpleTerm(value='noheader', title=_('Hide the timeline header')),
+    SimpleTerm(value='nofooter', title=_('Hide the timeline footer')),
+    SimpleTerm(value='noborders', title=_('Remove all borders within the widget')),
+    SimpleTerm(value='noscrollbar', title=_('Crop and hides the main timeline scrollbar')),
     SimpleTerm(value='transparent', title=_(u"Remove the widget's background color")),
 ])
 
@@ -33,16 +33,16 @@ class ITwitterTile(IPersistentCoverTile):
     """A tile that embeds a Twitter timeline."""
 
     widget_id = schema.ASCIILine(
-        title=_(u'Widget ID'),
+        title=_('Widget ID'),
         required=False,
         default='',
     )
 
     width = schema.Int(
-        title=_(u'Width'),
+        title=_('Width'),
         description=_(
-            u'Set the maximum width of the widget between 180 and 520 pixels. '
-            u'Leave it empty to automatically adjust the widget to the width of the tile.'),
+            'Set the maximum width of the widget between 180 and 520 pixels. '
+            'Leave it empty to automatically adjust the widget to the width of the tile.'),
         required=False,
         default=None,
         min=180,
@@ -50,11 +50,11 @@ class ITwitterTile(IPersistentCoverTile):
     )
 
     height = schema.Int(
-        title=_(u'Height'),
+        title=_('Height'),
         description=_(
-            u'Set the height of a displayed widget, overriding the value stored with the widget ID. '
-            u'Must be greater than 200 pixels. '
-            u'Note: this parameter does not apply if a tweet limit has been specified.'),
+            'Set the height of a displayed widget, overriding the value stored with the widget ID. '
+            'Must be greater than 200 pixels. '
+            'Note: this parameter does not apply if a tweet limit has been specified.'),
         required=False,
         default=500,
         min=200,
@@ -62,16 +62,16 @@ class ITwitterTile(IPersistentCoverTile):
 
     # form.widget('chrome', CheckBoxFieldWidget)
     # chrome = schema.Choice(
-    #     title=_(u'Chrome'),
+    #     title=_('Chrome'),
     #     required=False,
     #     vocabulary=ChromeOptions,
     # )
 
     tweet_limit = schema.Int(
-        title=_(u'Tweet limit'),
+        title=_('Tweet limit'),
         description=_(
-            u'Display an expanded timeline of between 1 and 20 tweets. '
-            u'Leave it empty to use the default or to set the height of the widget.'),
+            'Display an expanded timeline of between 1 and 20 tweets. '
+            'Leave it empty to use the default or to set the height of the widget.'),
         required=False,
         default=None,
         min=1,
@@ -79,11 +79,11 @@ class ITwitterTile(IPersistentCoverTile):
     )
 
     aria_polite = schema.Choice(
-        title=_(u'WAI-ARIA politeness'),
+        title=_('WAI-ARIA politeness'),
         description=_(
-            u'A timeline widget is a live region of a page which may receive updates as new tweets become available. '
-            u'When specified as polite, assistive technologies will notify users of updates but generally do not interrupt the current task, and updates take low priority. '
-            u'When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates.'),
+            'A timeline widget is a live region of a page which may receive updates as new tweets become available. '
+            'When specified as polite, assistive technologies will notify users of updates but generally do not interrupt the current task, and updates take low priority. '
+            'When specified as assertive, assistive technologies will immediately notify the user, and could potentially clear the speech queue of previous updates.'),
         required=True,
         values=['polite', 'assertive'],
         default='polite',

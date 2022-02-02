@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.registry.interfaces import IRegistry
-from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import HAS_DEXTERITY
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -19,7 +18,7 @@ class UpgradeTestCaseBase(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         self.setup = self.portal['portal_setup']
-        self.profile_id = u'sc.social.like:default'
+        self.profile_id = 'sc.social.like:default'
         self.from_version = from_version
         self.to_version = to_version
 
@@ -49,37 +48,18 @@ class UpgradeTestCaseBase(unittest.TestCase):
 class To3030TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3020', u'3030')
+        UpgradeTestCaseBase.setUp(self, '3020', '3030')
 
     def test_upgrade_to_3030_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self.total_steps, 3)
 
-    @unittest.skipIf(IS_PLONE_5, 'Upgrade step not supported under Plone 5')
-    def test_move_mobile_detection_client_side(self):
-        # check if the upgrade step is registered
-        title = u'Move mobile detection client-side'
-        step = self.get_upgrade_step(title)
-        self.assertIsNotNone(step)
-
-        js_tool = api.portal.get_tool('portal_javascripts')
-        JS_ID = '++resource++sl_scripts/social_like.js'
-
-        # simulate state on previous version
-        js_tool.unregisterResource(JS_ID)
-
-        # run the upgrade step to validate the update
-        self.execute_upgrade_step(step)
-
-        # Check
-        self.assertIn(JS_ID, js_tool.getResourceIds())
-
 
 class To3040TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3030', u'3040')
+        UpgradeTestCaseBase.setUp(self, '3030', '3040')
 
     def test_upgrade_to_3040_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -88,7 +68,7 @@ class To3040TestCase(UpgradeTestCaseBase):
 
     def test_update_configlet_information(self):
         # check if the upgrade step is registered
-        title = u'Update configlet information'
+        title = 'Update configlet information'
         step = self.get_upgrade_step(title)
         assert step is not None
 
@@ -107,7 +87,7 @@ class To3040TestCase(UpgradeTestCaseBase):
 
     def test_migrate_settings_to_registry(self):
         # check if the upgrade step is registered
-        title = u'Migrate package settings to registry'
+        title = 'Migrate package settings to registry'
         step = self.get_upgrade_step(title)
         assert step is not None
 
@@ -134,8 +114,8 @@ class To3040TestCase(UpgradeTestCaseBase):
 
         # simulate assignment via form using field type TextLine (unicode)
         # we are now using and ASCIILine field (str)
-        old_props.twittvia = u'hvelarde'
-        old_props.fbadmins = u'hvelarde'
+        old_props.twittvia = 'hvelarde'
+        old_props.fbadmins = 'hvelarde'
         old_props.fbapp_id = None  # form had no default values
 
         # remove registry settings
@@ -154,19 +134,19 @@ class To3040TestCase(UpgradeTestCaseBase):
         settings = registry.forInterface(ISocialLikeSettings)
         self.assertEqual(settings.enabled_portal_types, enabled_portal_types)
         self.assertEqual(settings.plugins_enabled, plugins_enabled)
-        self.assertEqual(settings.typebutton, u'horizontal')
+        self.assertEqual(settings.typebutton, 'horizontal')
         self.assertFalse(settings.do_not_track)
-        self.assertEqual(settings.fbaction, u'like')
+        self.assertEqual(settings.fbaction, 'like')
         self.assertEqual(settings.facebook_username, 'hvelarde')
         self.assertEqual(settings.facebook_app_id, '')
-        self.assertEqual(settings.fbbuttons, (u'Like',))
+        self.assertEqual(settings.fbbuttons, ('Like',))
         self.assertEqual(settings.twitter_username, 'hvelarde')
 
 
 class To3041TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3040', u'3041')
+        UpgradeTestCaseBase.setUp(self, '3040', '3041')
 
     def test_upgrade_to_3041_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -175,7 +155,7 @@ class To3041TestCase(UpgradeTestCaseBase):
 
     def test_register_cover_tiles(self):
         # check if the upgrade step is registered
-        title = u'Register collective.cover tiles'
+        title = 'Register collective.cover tiles'
         step = self.get_upgrade_step(title)
         assert step is not None
 
@@ -196,7 +176,7 @@ class To3041TestCase(UpgradeTestCaseBase):
 class To3042TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3041', u'3042')
+        UpgradeTestCaseBase.setUp(self, '3041', '3042')
 
     def test_upgrade_to_3042_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -207,7 +187,7 @@ class To3042TestCase(UpgradeTestCaseBase):
 class To3043TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3042', u'3043')
+        UpgradeTestCaseBase.setUp(self, '3042', '3043')
 
     def test_upgrade_to_3043_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -218,7 +198,7 @@ class To3043TestCase(UpgradeTestCaseBase):
 class To3044TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3043', u'3044')
+        UpgradeTestCaseBase.setUp(self, '3043', '3044')
 
     def test_upgrade_to_3043_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -226,7 +206,7 @@ class To3044TestCase(UpgradeTestCaseBase):
         self.assertEqual(self.total_steps, 1)
 
     def test_add_fbshowlikes_record(self):
-        title = u'Add registry setting to show/hide number of likes'
+        title = 'Add registry setting to show/hide number of likes'
         step = self.get_upgrade_step(title)
         assert step is not None
 
@@ -250,7 +230,7 @@ class To3044TestCase(UpgradeTestCaseBase):
 class To3045TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3044', u'3045')
+        UpgradeTestCaseBase.setUp(self, '3044', '3045')
 
     def test_upgrade_to_3045_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -258,7 +238,7 @@ class To3045TestCase(UpgradeTestCaseBase):
         self.assertEqual(self.total_steps, 2)
 
     def test_enable_social_media_behavior(self):
-        title = u'Enable Social Media behavior'
+        title = 'Enable Social Media behavior'
         step = self.get_upgrade_step(title)
         self.assertIsNotNone(step)
 
@@ -292,7 +272,7 @@ class To3045TestCase(UpgradeTestCaseBase):
 class To3046TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3045', u'3046')
+        UpgradeTestCaseBase.setUp(self, '3045', '3046')
 
     def test_upgrade_to_3046_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -302,7 +282,7 @@ class To3046TestCase(UpgradeTestCaseBase):
     @unittest.skipUnless(HAS_DEXTERITY, 'plone.app.contenttypes must be installed')
     def test_reindex_catalog(self):
         # check if the upgrade step is registered
-        title = u'Reindex catalog'
+        title = 'Reindex catalog'
         step = self.get_upgrade_step(title)
         self.assertIsNotNone(step)
 
@@ -329,7 +309,7 @@ class To3046TestCase(UpgradeTestCaseBase):
 class To3047TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3046', u'3047')
+        UpgradeTestCaseBase.setUp(self, '3046', '3047')
 
     def test_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -337,7 +317,7 @@ class To3047TestCase(UpgradeTestCaseBase):
         self.assertEqual(self.total_steps, 1)
 
     def test_add_validation_enabled_record(self):
-        title = u'Enable best practices validation'
+        title = 'Enable best practices validation'
         step = self.get_upgrade_step(title)
         self.assertIsNotNone(step)
 
@@ -361,7 +341,7 @@ class To3047TestCase(UpgradeTestCaseBase):
 class To3048TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3047', u'3048')
+        UpgradeTestCaseBase.setUp(self, '3047', '3048')
 
     def test_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -369,7 +349,7 @@ class To3048TestCase(UpgradeTestCaseBase):
         self.assertEqual(self.total_steps, 1)
 
     def test_add_validation_enabled_record(self):
-        title = u'Add new fields to configlet'
+        title = 'Add new fields to configlet'
         step = self.get_upgrade_step(title)
         self.assertIsNotNone(step)
 
@@ -397,7 +377,7 @@ class To3048TestCase(UpgradeTestCaseBase):
 class To3049TestCase(UpgradeTestCaseBase):
 
     def setUp(self):
-        UpgradeTestCaseBase.setUp(self, u'3048', u'3049')
+        UpgradeTestCaseBase.setUp(self, '3048', '3049')
 
     def test_registrations(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -405,7 +385,7 @@ class To3049TestCase(UpgradeTestCaseBase):
         self.assertEqual(self.total_steps, 1)
 
     def test_add_folderish_templates_record(self):
-        title = u'Add new folderish_templates field to configlet'
+        title = 'Add new folderish_templates field to configlet'
         step = self.get_upgrade_step(title)
         self.assertIsNotNone(step)
 

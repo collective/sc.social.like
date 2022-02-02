@@ -10,8 +10,8 @@
       title="Social Media"
       description="Add support for Social Media widgets and metadata."
       provides="sc.social.like.behaviors.ISocialMedia"
-      for="plone.dexterity.interfaces.IDexterityContent"
       i18n:attributes="title; description"
       />
+  <!-- above formerly said for="...IDexterityContent" but this has no effect without a factory= -->
 
 </configure>

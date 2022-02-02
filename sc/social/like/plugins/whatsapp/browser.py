@@ -20,9 +20,9 @@ class PluginView(BrowserView):
         self.context = aq_inner(context)
         self.request = request
         self.language = get_language(context)
-        data = url_quote(u'{0} - {1}'.format(
+        data = url_quote('{0} - {1}'.format(
             safe_unicode(self.context.title), self.context.absolute_url()))
-        self.whatsappurl = u'whatsapp://send?text={0}'.format(data)
+        self.whatsappurl = 'whatsapp://send?text={0}'.format(data)
 
     @property
     def klass(self):

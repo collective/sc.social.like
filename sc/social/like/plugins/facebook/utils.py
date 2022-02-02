@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from config import FB_LOCALES
+from .config import FB_LOCALES
 
 
 def fix_iso(code):
@@ -41,6 +41,6 @@ def facebook_language(languages, default):
         # do not change anything
         return default
     languages = [languages] if not isinstance(languages, list) else languages
-    languages = [fix_iso(l) for l in languages]
-    prefered = [l for l in languages if l in FB_LOCALES]
+    languages = [fix_iso(lang) for lang in languages]
+    prefered = [lang for lang in languages if lang in FB_LOCALES]
     return prefered and prefered[0] or default

@@ -10,8 +10,8 @@ from plone.registry import field
 from plone.registry.interfaces import IRegistry
 from plone.registry.record import Record
 from plone.supermodel import model
+from Products.CMFPlone.utils import get_installer
 from Products.statusmessages.interfaces import IStatusMessage
-from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -48,31 +48,23 @@ class ControlPanelTestCase(unittest.TestCase):
 
     def test_event_with_package_uninstalled(self):
         self.registry.records['foo'] = Record(field.ASCIILine(), 'foo')
-        qi = self.portal['portal_quickinstaller']
-        qi.uninstallProducts(products=[PROJECTNAME])
+        qi = get_installer(self.portal, self.request)
+        qi.uninstall_product(PROJECTNAME)
         # should not raise exceptions on changes
         self.registry['foo'] = 'bar'
 
-    @unittest.skipIf(IS_PLONE_5, 'This test is for Plone 4 only')
-    def test_modify_plone_4(self):
-        # should not raise exceptions on changes
-        self.settings.twitter_username = 'hvelarde'
-
-    @unittest.skipIf(not IS_PLONE_5, 'This test is for Plone 5 only')
     def test_modify_social_like_settings(self):
         self.settings.twitter_username = 'hvelarde'
         self.assertEqual(self.registry['plone.twitter_username'], 'hvelarde')
         # changing other fields don't break anything
         self.settings.do_not_track = True
 
-    @unittest.skipIf(not IS_PLONE_5, 'This test is for Plone 5 only')
     def test_modify_plone_settings(self):
         self.registry['plone.twitter_username'] = 'hvelarde'
         self.assertEqual(self.settings.twitter_username, 'hvelarde')
         # changing other fields don't break anything
         self.registry['plone.share_social_data'] = False
 
-    @unittest.skipIf(not IS_PLONE_5, 'This test is for Plone 5 only')
     def test_invalid_interface(self):
         # changes to fields with names being tracked but belonging to
         # different schemas should not modify anything
@@ -94,7 +86,7 @@ class ValidationTestCase(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.news_item = api.content.create(
-                self.portal, 'News Item', title=u'Lorem ipsum')
+                self.portal, 'News Item', title='Lorem ipsum')
         set_image_field(self.news_item, load_image(1024, 768), 'image/png')
 
     def test_do_not_validate_on_submit(self):
@@ -132,11 +124,11 @@ class ValidationTestCase(unittest.TestCase):
         messages = IStatusMessage(self.request).show()
         self.assertEqual(len(messages), 3)
         self.assertEqual(messages[0].message, MSG_INVALID_OG_TITLE)
-        self.assertEqual(messages[0].type, u'warning')
+        self.assertEqual(messages[0].type, 'warning')
         self.assertEqual(messages[1].message, MSG_INVALID_OG_DESCRIPTION)
-        self.assertEqual(messages[1].type, u'warning')
+        self.assertEqual(messages[1].type, 'warning')
         self.assertEqual(messages[2].message, MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
-        self.assertEqual(messages[2].type, u'warning')
+        self.assertEqual(messages[2].type, 'warning')
 
     def test_validate_on_no_workflow(self):
         # image and files have no associated workflow
@@ -152,11 +144,11 @@ class ValidationTestCase(unittest.TestCase):
         # feedback messages present
         messages = IStatusMessage(self.request).show()
         self.assertEqual(messages[0].message, MSG_INVALID_OG_TITLE)
-        self.assertEqual(messages[0].type, u'warning')
+        self.assertEqual(messages[0].type, 'warning')
         self.assertEqual(messages[1].message, MSG_INVALID_OG_DESCRIPTION)
-        self.assertEqual(messages[1].type, u'warning')
+        self.assertEqual(messages[1].type, 'warning')
         self.assertEqual(messages[2].message, MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
-        self.assertEqual(messages[2].type, u'warning')
+        self.assertEqual(messages[2].type, 'warning')
 
     def test_do_not_validate_on_edit_not_public(self):
         with api.env.adopt_roles(['Manager']):
@@ -200,16 +192,16 @@ class ValidationTestCase(unittest.TestCase):
         messages = IStatusMessage(self.request).show()
         self.assertEqual(len(messages), 3)
         self.assertEqual(messages[0].message, MSG_INVALID_OG_TITLE)
-        self.assertEqual(messages[0].type, u'warning')
+        self.assertEqual(messages[0].type, 'warning')
         self.assertEqual(messages[1].message, MSG_INVALID_OG_DESCRIPTION)
-        self.assertEqual(messages[1].type, u'warning')
+        self.assertEqual(messages[1].type, 'warning')
         self.assertEqual(messages[2].message, MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS)
-        self.assertEqual(messages[2].type, u'warning')
+        self.assertEqual(messages[2].type, 'warning')
 
     def test_validate_with_package_uninstalled(self):
         from sc.social.like.config import PROJECTNAME
-        qi = self.portal['portal_quickinstaller']
-        qi.uninstallProducts(products=[PROJECTNAME])
+        qi = get_installer(self.portal, self.request)
+        qi.uninstall_product(PROJECTNAME)
 
         # should not raise exceptions on publishing
         with api.env.adopt_roles(['Manager']):
@@ -231,23 +223,23 @@ class PrefetchTestCase(unittest.TestCase):
 
         with api.env.adopt_roles(['Manager']):
             self.news_item = api.content.create(
-                self.portal, 'News Item', title=u'Lorem ipsum')
+                self.portal, 'News Item', title='Lorem ipsum')
 
         url = self.news_item.absolute_url()
         self.endpoint = 'https://graph.facebook.com/?id=' + url + '&scrape=true'
 
     @requests_mock.mock()
     @log_capture(level=logging.INFO)
-    def test_facebook_prefetch_non_public(self, m, l):
+    def test_facebook_prefetch_non_public(self, m, lg):
         with api.env.adopt_roles(['Manager']):
             api.content.transition(self.news_item, 'submit')
 
         # check no log entries
-        l.check()
+        lg.check()
 
     @requests_mock.mock()
     @log_capture(level=logging.INFO)
-    def test_facebook_prefetch(self, m, l):
+    def test_facebook_prefetch(self, m, lg):
         m.post(self.endpoint, status_code='200')
 
         with api.env.adopt_roles(['Manager']):
@@ -256,11 +248,11 @@ class PrefetchTestCase(unittest.TestCase):
         # check log entries
         msg = 'Prefetch successful: http://nohost/plone/lorem-ipsum'
         expected = ('sc.social.like', 'INFO', msg)
-        l.check(expected)
+        lg.check(expected)
 
     @requests_mock.mock()
     @log_capture(level=logging.INFO)
-    def test_facebook_prefetch_error(self, m, l):
+    def test_facebook_prefetch_error(self, m, lg):
         import json
         text = '{"error":{"message":"foo","type":"bar"}}'
         m.post(self.endpoint, text=text, status_code='403', reason='Forbidden')
@@ -271,7 +263,7 @@ class PrefetchTestCase(unittest.TestCase):
         # check log entries
         msg = 'Prefetch error 403 (Forbidden): ' + str(json.loads(text))
         expected = ('sc.social.like', 'WARNING', msg)
-        l.check(expected)
+        lg.check(expected)
 
     @requests_mock.mock()
     def test_facebook_prefetch_failure(self, m):

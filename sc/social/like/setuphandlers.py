@@ -21,9 +21,9 @@ class HiddenProfiles(object):
 
     def getNonInstallableProfiles(self):
         return [
-            u'sc.social.like:uninstall',
-            u'sc.social.like.upgrades.v2000:default',
-            u'sc.social.like.upgrades.v3000:default',
-            u'sc.social.like.upgrades.v3010:default',
-            u'sc.social.like.upgrades.v3020:default',
+            'sc.social.like:uninstall',
+            'sc.social.like.upgrades.v2000:default',
+            'sc.social.like.upgrades.v3000:default',
+            'sc.social.like.upgrades.v3010:default',
+            'sc.social.like.upgrades.v3020:default',
         ]

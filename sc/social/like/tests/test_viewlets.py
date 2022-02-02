@@ -2,7 +2,6 @@
 from plone import api
 from profilehooks import profile
 from profilehooks import timecall
-from sc.social.like.config import IS_PLONE_5
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
 from sc.social.like.testing import load_image
@@ -27,11 +26,13 @@ def capture():
     """A context manager to capture stdout and stderr.
     http://stackoverflow.com/a/10743550/644075
     """
+    from io import StringIO
+
     import sys
-    from io import BytesIO
+
     oldout, olderr = sys.stdout, sys.stderr
     try:
-        out = [BytesIO(), BytesIO()]
+        out = [StringIO(), StringIO()]
         sys.stdout, sys.stderr = out
         yield out
     finally:
@@ -78,8 +79,7 @@ class ViewletBaseTestCase(unittest.TestCase):
         if registration is None:
             raise ValueError
 
-        viewlet = registration.factory(
-            context, request, None, None).__of__(context)
+        viewlet = registration.factory(context, request, None, None)
         viewlet.update()
         return viewlet
 
@@ -104,42 +104,17 @@ class MetadataViewletTestCase(ViewletBaseTestCase):
 
     def test_metadata_viewlet_is_enabled_on_folderish_with_setting_view(self):
         api.portal.set_registry_record(
-            'folderish_templates', [u'summary_view'], ISocialLikeSettings)
-        self.folder.setLayout(u'summary_view')
+            'folderish_templates', ['summary_view'], ISocialLikeSettings)
+        self.folder.setLayout('summary_view')
         viewlet = self.viewlet(self.folder)
         self.assertTrue(viewlet.enabled())
 
     def test_metadata_viewlet_is_disabled_on_folderish_without_setting_view(
             self):
         api.portal.set_registry_record(
-            'folderish_templates', [u'summary_view'], ISocialLikeSettings)
+            'folderish_templates', ['summary_view'], ISocialLikeSettings)
         viewlet = self.viewlet(self.folder)
         self.assertFalse(viewlet.enabled())
-
-    # FIXME: we need to rethink this feature
-    @unittest.skipIf(IS_PLONE_5, 'Plone 5 includes metadata by default')
-    def test_metadata_viewlet_is_disabled_on_content_edit(self):
-        request = self.layer['request']
-        request.set('ACTUAL_URL', self.obj.absolute_url() + '/edit')
-        try:
-            html = self.obj.atct_edit()  # Archetypes
-        except AttributeError:
-            html = self.obj.restrictedTraverse('@@edit')()  # Dexterity
-        self.assertNotIn('og:site_name', html)
-
-    def test_metadata_viewlet_rendering(self):
-        viewlet = self.viewlet(self.obj)
-        html = viewlet.render()
-        self.assertIn('og:title', html)
-        self.assertIn('og:description', html)
-        self.assertIn('og:type', html)
-        self.assertIn('og:url', html)
-        self.assertIn('og:image', html)
-        self.assertIn('og:image:width', html)
-        self.assertIn('og:image:height', html)
-        self.assertIn('og:image:type', html)
-        self.assertIn('og:locale', html)
-        self.assertIn('og:site_name', html)
 
     @unittest.skipIf(
         skip_profiling, 'Skipping performance measure and code profiling')
@@ -189,18 +164,8 @@ class LikeViewletTestCase(ViewletBaseTestCase):
     def test_social_viewlet_is_disabled_on_content_edit(self):
         request = self.layer['request']
         request.set('ACTUAL_URL', self.obj.absolute_url() + '/edit')
-        try:
-            html = self.obj.atct_edit()  # Archetypes
-        except AttributeError:
-            html = self.obj.restrictedTraverse('@@edit')()  # Dexterity
+        html = self.obj.restrictedTraverse('@@edit')()
         self.assertNotIn('id="viewlet-social-like"', html)
-
-    # TODO: find why folder_contents view is not available in Plone 5
-    @unittest.skipIf(IS_PLONE_5, "Plone 5 don't have this view")
-    def test_viewlet_is_not_present_in_foldercontents(self):
-        view = api.content.get_view(
-            name=u'folder_contents', context=self.obj, request=self.request)
-        self.assertNotIn('id="viewlet-social-like"', view())
 
     def test_social_viewlet_rendering(self):
         viewlet = self.viewlet(self.obj)

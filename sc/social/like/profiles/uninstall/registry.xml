@@ -1,4 +1,13 @@
 <?xml version="1.0"?>
 <registry>
   <records interface="sc.social.like.controlpanel.ISocialLikeSettings" remove="true" />
+  <records interface="sc.social.like.interfaces.ISocialLikeSettings" remove="true" />
+
+  <records prefix="plone.resources/social_like"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'
+           remove="true" />
+
+  <records prefix="plone.bundles/social_like"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'
+           remove="true" />
 </registry>

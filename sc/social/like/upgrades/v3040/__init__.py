@@ -53,7 +53,7 @@ def migrate_settings_to_registry(setup_tool):  # noqa: C901
     setup_tool.runImportStepFromProfile(profile, 'plone.app.registry')
     portal_properties = api.portal.get_tool(name='portal_properties')
     if 'sc_social_likes_properties' not in portal_properties:
-        logger.warn('Property sheet not found; using defaults')
+        logger.warning('Property sheet not found; using defaults')
         return
 
     old_props = portal_properties.sc_social_likes_properties

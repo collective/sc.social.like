@@ -109,7 +109,7 @@ class FallBackImageView(Download):
             self.request.RESPONSE.setHeader('Cache-Control', 'max-age=120, public')
         else:
             # resource no longer available
-            self.data = NamedImage(data='')
+            self.data = NamedImage(data=b'')
             self.request.RESPONSE.setStatus(410)  # Gone
 
     def _getFile(self):

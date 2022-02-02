@@ -9,7 +9,12 @@ def set_image_field(obj, image, content_type):
         obj.setImage(image)  # Archetypes
     except AttributeError:
         # Dexterity
-        data = image if type(image) == str else image.getvalue()
+        if type(image) == str:
+            data = bytes(image, 'utf-8')
+        elif type(image) == bytes:
+            data = image
+        else:
+            data = image.getvalue()
         obj.image = NamedBlobImage(data=data, contentType=content_type)
     finally:
         obj.reindexObject()
