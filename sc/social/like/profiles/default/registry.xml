@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <registry>
-  <records interface="sc.social.like.controlpanel.ISocialLikeSettings" />
+  <records interface="sc.social.like.interfaces.ISocialLikeSettings" />
+
+  <!-- This is not supported anymore.  Plone 6 takes care of it. -->
+  <record
+       name="sc.social.like.controlpanel.ISocialLikeSettings.canonical_domain"
+       remove="true" />
+  <record
+       name="sc.social.like.interfaces.ISocialLikeSettings.canonical_domain"
+       remove="true" />
 
   <record name="plone.app.tiles">
     <field type="plone.registry.field.List">
@@ -12,4 +20,22 @@
       <element>sc.social.like.twitter</element>
     </value>
   </record>
+
+  <records prefix="plone.resources/social_like"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++resource++sl_scripts/social_like.js</value>
+      <value key="css">++resource++sl_stylesheets/social_like.css</value>
+  </records>
+
+  <records prefix="plone.bundles/social_like"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources" purge="false">
+      <element>social_like</element>
+    </value>
+    <value key="compile">False</value>
+    <value key="last_compilation"></value>
+    <value key="jscompilation">++resource++sl_scripts/social_like.js</value>
+    <value key="csscompilation">++resource++sl_stylesheets/social_like.css</value>
+  </records>
+
 </registry>

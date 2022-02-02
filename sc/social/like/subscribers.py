@@ -13,9 +13,11 @@ creation time using an event handler bounded to IObjectAddedEvent
 because on IObjectCreatedEvent the container of the object is not
 available and we can not get its virtual path.
 """
+
 from plone import api
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFPlone.utils import get_installer
 from sc.social.like.config import IS_PLONE_5
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
@@ -44,13 +46,14 @@ def social_media_record_synchronizer(event):
     deal with that to avoid RuntimeError due to infinite recursion.
     """
     # how many times the name of this function appears on the stack?
-    stack = [l[2] for l in traceback.extract_stack() if l[2] == FN_NAME]
+    stack = [fr[2] for fr in traceback.extract_stack() if fr[2] == FN_NAME]
     if len(stack) > 1:
         return  # we've been here before
 
     # subscribers are registered even if packages are not installed
-    qi = api.portal.get_tool('portal_quickinstaller')
-    if not qi.isProductInstalled(PROJECTNAME):
+    # so we must check whether we are installed before proceeding.
+    qi = get_installer(api.portal.get())
+    if not qi.is_product_installed(PROJECTNAME):
         return
 
     if not IS_PLONE_5:
@@ -81,32 +84,6 @@ def social_media_record_synchronizer(event):
 
     logger.debug('{0} was synchronized; new value is "{1}"'.format(
         repr(registry.records[record]), event.record.value))
-
-
-def assign_canonical_url(obj, event):
-    """Assing canonical URL to the object after it is published."""
-    if event.status['review_state'] not in ('published', ):
-        # don't a assign a canonical URL as this is not a public state
-        return
-
-    record = ISocialLikeSettings.__identifier__ + '.canonical_domain'
-    try:
-        canonical_domain = api.portal.get_registry_record(record)
-    except api.exc.InvalidParameterError:
-        # package is not installed or record deleted; do nothing
-        return
-
-    # we can't assign a canonical URL without a canonical domain
-    if canonical_domain:
-        # FIXME: we're currently ignoring the Plone site id
-        #        https://github.com/collective/sc.social.like/issues/119
-        path = '/'.join(obj.getPhysicalPath()[2:])
-        obj.canonical_url = '{0}/{1}'.format(canonical_domain, path)
-        logger.info('canonical_url set for {0}'.format(obj.canonical_url))
-    else:
-        logger.warn(
-            'Canonical domain not set in Social Media configlet; '
-            "Facebook's Open Graph canonical URL (og:orl) will not be available")
 
 
 def check_sharing_best_practices(obj, event):
@@ -171,12 +148,12 @@ def facebook_prefetching(obj, event):
     try:
         r = requests.post(endpoint, timeout=5)
     except requests.exceptions.RequestException as e:
-        logger.warn('Prefetch failure: ' + str(e))
+        logger.warning('Prefetch failure: %s', e)
         return
 
     if r.status_code == '200':
-        logger.info('Prefetch successful: ' + url)
+        logger.info('Prefetch successful: %s', url)
     else:
-        logger.warn(
+        logger.warning(
             'Prefetch error {code} ({reason}): {debug}'.format(
                 code=r.status_code, reason=r.reason, debug=str(r.json())))

@@ -9,8 +9,8 @@ class SocialLikeSettingsEditForm(controlpanel.RegistryEditForm):
     """Control panel edit form."""
 
     schema = ISocialLikeSettings
-    label = _(u'Social Like')
-    description = _(u'Settings for the sc.social.like package')
+    label = _('Social Like')
+    description = _('Settings for the sc.social.like package')
 
 
 class SocialLikeSettingsControlPanel(controlpanel.ControlPanelFormWrapper):

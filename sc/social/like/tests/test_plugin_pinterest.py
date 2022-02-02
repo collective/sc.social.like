@@ -93,7 +93,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At news item, use image field
         expected = r'http://nohost/plone/foo/@@images/[0-9a-f--]+.png'
-        self.assertRegexpMatches(view.image_url(), expected)
+        self.assertRegex(view.image_url(), expected)
 
     def test_plugin_view_image(self):
         with api.env.adopt_roles(['Manager']):
@@ -106,7 +106,7 @@ class PluginViewsTest(unittest.TestCase):
 
         # At image, use local image
         expected = r'http://nohost/plone/bar/@@images/[0-9a-f--]+.png'
-        self.assertRegexpMatches(view.image_url(), expected)
+        self.assertRegex(view.image_url(), expected)
 
     def test_plugin_view_document(self):
         with api.env.adopt_roles(['Manager']):

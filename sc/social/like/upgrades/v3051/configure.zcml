@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="3050"
+      destination="3051"
+      profile="sc.social.like:default">
+
+    <genericsetup:upgradeDepends
+        title="Remove 'canonical_domain' field record from the registry"
+        description="Plone 6 already generates canonical_domain."
+        import_steps="plone.app.registry"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

@@ -26,8 +26,8 @@ class TwitterTileTestCase(TestTileMixin, unittest.TestCase):
     def setUp(self):
         super(TwitterTileTestCase, self).setUp()
         self.tile = TwitterTile(self.cover, self.request)
-        self.tile.__name__ = u'sc.social.like.twitter'
-        self.tile.id = u'test'
+        self.tile.__name__ = 'sc.social.like.twitter'
+        self.tile.id = 'test'
 
     def _set_record(self, name, value):
         from sc.social.like.interfaces import ISocialLikeSettings
@@ -70,7 +70,7 @@ class TwitterTileTestCase(TestTileMixin, unittest.TestCase):
         self.assertEqual(self.tile.get_data, expected)
 
     def test_render_empty(self):
-        msg = u'you must define a Twitter username'
+        msg = 'you must define a Twitter username'
 
         self.tile.is_compose_mode = Mock(return_value=True)
         self.assertIn(msg, self.tile())
@@ -81,4 +81,4 @@ class TwitterTileTestCase(TestTileMixin, unittest.TestCase):
     def test_render_not_empty(self):
         self._set_record('twitter_username', 'plone')
         rendered = self.tile()
-        self.assertIn(u'twitter-timeline', rendered)
+        self.assertIn('twitter-timeline', rendered)

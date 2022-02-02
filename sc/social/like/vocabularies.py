@@ -18,7 +18,7 @@ class PluginsVocabulary(object):
     def plugins(self):
         terms = []
         registered = dict(getUtilitiesFor(IPlugin))
-        keys = registered.keys()
+        keys = list(registered.keys())
         keys.sort()
         for key in keys:
             terms.append(SimpleTerm(key, title=key))
@@ -33,17 +33,17 @@ PluginsVocabularyFactory = PluginsVocabulary()
 
 
 TypeButtonVocabulary = SimpleVocabulary([
-    SimpleTerm(value=u'horizontal', title=_(u'horizontal')),
-    SimpleTerm(value=u'vertical', title=_(u'vertical')),
+    SimpleTerm(value='horizontal', title=_('horizontal')),
+    SimpleTerm(value='vertical', title=_('vertical')),
 ])
 
 
 FacebookVerbsVocabulary = SimpleVocabulary([
-    SimpleTerm(value=u'like', title=_(u'Like')),
-    SimpleTerm(value=u'recommend', title=_(u'Recommend')),
+    SimpleTerm(value='like', title=_('Like')),
+    SimpleTerm(value='recommend', title=_('Recommend')),
 ])
 
 FacebookButtonsVocabulary = SimpleVocabulary([
-    SimpleTerm(value=u'Like', title=_(u'Like')),
-    SimpleTerm(value=u'Share', title=_(u'Share')),
+    SimpleTerm(value='Like', title=_('Like')),
+    SimpleTerm(value='Share', title=_('Share')),
 ])

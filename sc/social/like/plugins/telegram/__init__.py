@@ -25,7 +25,7 @@ class PluginView(BrowserView):
     def _setup(self):
         self.url = self.context.absolute_url()
         data = url_quote(self.context.absolute_url())
-        self.telegramurl = u'https://telegram.me/share/url?url={0}'.format(data)
+        self.telegramurl = 'https://telegram.me/share/url?url={0}'.format(data)
 
     @property
     def klass(self):

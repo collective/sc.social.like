@@ -22,16 +22,13 @@
        name="sc.social.likes.plugins"
        />
 
+  <!-- the former subscriber to IAfterTransitionEvent that assigned
+       canonical URLs is gone, since that is Plone core functionality
+       in Plone 6 now. -->
+
   <subscriber
       for="plone.registry.interfaces.IRecordModifiedEvent"
       handler=".subscribers.social_media_record_synchronizer"
-      />
-
-  <subscriber
-      zcml:condition="installed plone.app.dexterity"
-      for="sc.social.like.behaviors.ISocialMedia
-           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-      handler=".subscribers.assign_canonical_url"
       />
 
   <subscriber

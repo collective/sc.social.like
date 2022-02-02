@@ -21,9 +21,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 TabsOptions = SimpleVocabulary([
-    SimpleTerm(value='timeline', title=_(u'Timeline')),
-    SimpleTerm(value='events', title=_(u'Events')),
-    SimpleTerm(value='messages', title=_(u'Messages')),
+    SimpleTerm(value='timeline', title=_('Timeline')),
+    SimpleTerm(value='events', title=_('Events')),
+    SimpleTerm(value='messages', title=_('Messages')),
 ])
 
 
@@ -32,16 +32,16 @@ class IFacebookTile(IPersistentCoverTile):
     """A tile that embeds a Facebook Page."""
 
     href = schema.URI(
-        title=_(u'Facebook Page'),
-        description=_(u'The URL of the Facebook Page.'),
+        title=_('Facebook Page'),
+        description=_('The URL of the Facebook Page.'),
         required=True,
     )
 
     width = schema.Int(
-        title=_(u'Width'),
+        title=_('Width'),
         description=_(
-            u'Set the maximum width of the widget between 180 and 500 pixels. '
-            u'Leave it empty to automatically adjust the widget to the width of the tile.'),
+            'Set the maximum width of the widget between 180 and 500 pixels. '
+            'Leave it empty to automatically adjust the widget to the width of the tile.'),
         required=False,
         default=None,
         min=180,
@@ -49,10 +49,10 @@ class IFacebookTile(IPersistentCoverTile):
     )
 
     height = schema.Int(
-        title=_(u'Height'),
+        title=_('Height'),
         description=_(
-            u'Set the height of a displayed widget, overriding the value stored with the widget ID. '
-            u'Must be greater than 70 pixels. '),
+            'Set the height of a displayed widget, overriding the value stored with the widget ID. '
+            'Must be greater than 70 pixels. '),
         required=True,
         default=500,
         min=70,
@@ -60,29 +60,29 @@ class IFacebookTile(IPersistentCoverTile):
 
     # form.widget('tabs', CheckBoxFieldWidget)
     # tabs = schema.Choice(
-    #     title=_(u'Tabs to render'),
+    #     title=_('Tabs to render'),
     #     required=False,
     #     default='timeline',
     #     vocabulary=TabsOptions,
     # )
 
     hide_cover = schema.Bool(
-        title=_(u'Hide cover photo in the header'),
+        title=_('Hide cover photo in the header'),
         default=True,
     )
 
     show_facepile = schema.Bool(
-        title=_(u'Show profile photos when friends like this'),
+        title=_('Show profile photos when friends like this'),
         default=False,
     )
 
     hide_cta = schema.Bool(
-        title=_(u'Hide the custom call to action button (if available)'),
+        title=_('Hide the custom call to action button (if available)'),
         default=True,
     )
 
     small_header = schema.Bool(
-        title=_(u'Show small header'),
+        title=_('Show small header'),
         default=True,
     )
 

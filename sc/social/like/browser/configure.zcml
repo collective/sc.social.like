@@ -62,13 +62,6 @@
         />
 
     <browser:page
-        name="canonical-url-updater"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class="sc.social.like.browser.canonicalurl.CanonicalURLUpdater"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
         name="sociallike-fallback-image"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helper.FallBackImageView"

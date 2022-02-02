@@ -2,6 +2,7 @@
 from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
+from Products.CMFPlone.utils import get_installer
 from sc.social.like.config import PROJECTNAME
 from sc.social.like.interfaces import ISocialLikeSettings
 from sc.social.like.testing import INTEGRATION_TESTING
@@ -20,8 +21,7 @@ class ControlPanelTestCase(unittest.TestCase):
         self.controlpanel = self.portal['portal_controlpanel']
 
     def test_controlpanel_has_view(self):
-        view = api.content.get_view(u'sociallike-settings', self.portal, self.request)
-        view = view.__of__(self.portal)
+        view = api.content.get_view('sociallike-settings', self.portal, self.request)
         self.assertTrue(view())
 
     def test_controlpanel_view_is_protected(self):
@@ -36,10 +36,10 @@ class ControlPanelTestCase(unittest.TestCase):
         self.assertIn('sociallikes', actions)
 
     def test_controlpanel_removed_on_uninstall(self):
-        qi = self.portal['portal_quickinstaller']
+        qi = get_installer(self.portal, self.request)
 
         with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+            qi.uninstall_product(PROJECTNAME)
 
         actions = [
             a.getAction(self)['id'] for a in self.controlpanel.listActions()]
@@ -52,6 +52,7 @@ class RegistryTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(ISocialLikeSettings)
 
@@ -73,15 +74,11 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_typebutton_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'typebutton'))
-        self.assertEqual(self.settings.typebutton, u'horizontal')
+        self.assertEqual(self.settings.typebutton, 'horizontal')
 
     def test_do_not_track_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'do_not_track'))
         self.assertFalse(self.settings.do_not_track)
-
-    def test_canonical_domain_record_in_registry(self):
-        self.assertTrue(hasattr(self.settings, 'canonical_domain'))
-        self.assertIsNone(self.settings.canonical_domain)
 
     def test_fallback_image_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fallback_image'))
@@ -89,7 +86,7 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_fbaction_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fbaction'))
-        self.assertEqual(self.settings.fbaction, u'like')
+        self.assertEqual(self.settings.fbaction, 'like')
 
     def test_facebook_username_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'facebook_username'))
@@ -101,7 +98,7 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_fbbuttons_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fbbuttons'))
-        self.assertEqual(self.settings.fbbuttons, (u'Like',))
+        self.assertEqual(self.settings.fbbuttons, ('Like',))
 
     def test_fbshowlikes_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'fbshowlikes'))
@@ -120,10 +117,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertEqual(self.settings.folderish_templates, None)
 
     def test_records_removed_on_uninstall(self):
-        qi = self.portal['portal_quickinstaller']
+        qi = get_installer(self.portal, self.request)
 
         with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+            qi.uninstall_product(PROJECTNAME)
 
         records = [
             ISocialLikeSettings.__identifier__ + '.enabled_portal_types',

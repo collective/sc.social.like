@@ -1,10 +1,9 @@
 # -*- coding:utf-8 -*-
 from __future__ import division
-from six.moves.urllib.parse import urlparse  # noqa: I001
+
 from Acquisition import aq_base
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.namedfile.file import NamedBlobImage
-from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFPlone.utils import safe_hasattr
 from sc.social.like import LikeMessageFactory as _
 from sc.social.like.config import OG_DESCRIPTION_MAX_LENGTH
@@ -18,20 +17,12 @@ from sc.social.like.logger import logger
 from zope.interface import Invalid
 
 
+# Archetypes support has been removed from Plone 6.
+
+
 def get_images_view(context):
     view = context.unrestrictedTraverse('@@images', None)
     field = 'image'
-    if view:
-        fields = ['image', 'leadImage', 'portrait']
-        if IBaseContent.providedBy(context):
-            schema = context.Schema()
-            field = [f for f in schema.keys() if f in fields]
-            if field:
-                field = field[0]
-                # if a content has an image field that isn't an ImageField
-                # (for example a relation field), set field='' to avoid errors
-                if schema[field].type not in ['image', 'blob']:
-                    field = ''
     return (view, field) if (view and field) else (None, None)
 
 
@@ -59,7 +50,7 @@ def get_content_image(context,
                 width, height = _image_size(sizes, new)
                 kwargs['width'] = width
                 kwargs['height'] = height
-                kwargs['direction'] = 'down'
+                kwargs['mode'] = 'down'
             try:
                 img = view.scale(fieldname=field, **kwargs)
             except (AttributeError, TypeError):
@@ -71,10 +62,7 @@ def get_language(context):
     ps = context.restrictedTraverse('plone_portal_state')
     default_language = ps.default_language()
     content = aq_base(context)
-    if IBaseContent.providedBy(content):
-        language = content.Language()
-    else:
-        language = content.language if safe_hasattr(content, 'language') else ''
+    language = content.language if safe_hasattr(content, 'language') else ''
     return language if language else default_language
 
 
@@ -101,15 +89,6 @@ def _image_size(current, new):
     return (width, height)
 
 
-def validate_canonical_domain(value):
-    """Check if the value is a URI containing only scheme and netloc."""
-    _ = urlparse(value)
-    if not all([_.scheme, _.netloc]) or any([_.path, _.params, _.query, _.fragment]):
-        raise Invalid(
-            u'Canonical domain should only include scheme and netloc (e.g. <strong>http://www.example.org</strong>)')
-    return True
-
-
 def get_valid_objects(brains):
     """Generate a list of objects associated with valid brains."""
     for b in brains:
@@ -119,14 +98,14 @@ def get_valid_objects(brains):
             obj = None
 
         if obj is None:  # warn on broken entries in the catalog
-            msg = u'Skipping invalid reference in the catalog: {0}'
-            logger.warn(msg.format(b.getPath()))
+            msg = 'Skipping invalid reference in the catalog: {0}'
+            logger.warning(msg.format(b.getPath()))
             continue
         yield obj
 
 
 MSG_INVALID_OG_TITLE = _(
-    u'Title of content should have less than 70 characters.')
+    'Title of content should have less than 70 characters.')
 
 
 def validate_og_title(title):
@@ -142,7 +121,7 @@ def validate_og_title(title):
 
 
 MSG_INVALID_OG_DESCRIPTION = _(
-    u'Description of content should have less than 200 characters.')
+    'Description of content should have less than 200 characters.')
 
 
 def validate_og_description(description):
@@ -160,12 +139,12 @@ def validate_og_description(description):
     raise ValueError(MSG_INVALID_OG_DESCRIPTION)
 
 
-MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE = _(u'Lead image MIME type not supported.')
-MSG_INVALID_OG_LEAD_IMAGE_SIZE = _(u'Lead image size should be less than 5MB.')
+MSG_INVALID_OG_LEAD_IMAGE_MIME_TYPE = _('Lead image MIME type not supported.')
+MSG_INVALID_OG_LEAD_IMAGE_SIZE = _('Lead image size should be less than 5MB.')
 MSG_INVALID_OG_LEAD_IMAGE_DIMENSIONS = _(
-    u'Lead image should be at least 600px width and 315px height.')
+    'Lead image should be at least 600px width and 315px height.')
 MSG_INVALID_OG_LEAD_IMAGE_ASPECT_RATIO = _(
-    u'Lead image aspect ratio should be at least 1.33:1.')
+    'Lead image aspect ratio should be at least 1.33:1.')
 
 
 # XXX: current implementation makes hard testing the validator

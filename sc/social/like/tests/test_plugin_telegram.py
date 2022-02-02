@@ -71,7 +71,7 @@ class PluginViewsTest(unittest.TestCase):
 
     def test_plugin_urlnoscript_encoding(self):
         plugin = self.plugin.view()
-        self.document.setTitle(u'Notícia')
+        self.document.setTitle('Notícia')
         view = self.document.restrictedTraverse(plugin)
         html = view.plugin()
         self.assertIn(

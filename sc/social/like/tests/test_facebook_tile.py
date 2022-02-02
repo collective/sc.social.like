@@ -8,9 +8,9 @@ import unittest
 
 
 if HAS_COVER:
-    from collective.cover.tests.base import TestTileMixin
-    from sc.social.like.tiles.facebook import IFacebookTile
-    from sc.social.like.tiles.facebook import FacebookTile
+    from collective.cover.tests.base import TestTileMixin  # noqa
+    from sc.social.like.tiles.facebook import IFacebookTile  # noqa
+    from sc.social.like.tiles.facebook import FacebookTile  # noqa
 else:
     class TestTileMixin:
         pass
@@ -26,8 +26,8 @@ class FacebookTileTestCase(TestTileMixin, unittest.TestCase):
     def setUp(self):
         super(FacebookTileTestCase, self).setUp()
         self.tile = FacebookTile(self.cover, self.request)
-        self.tile.__name__ = u'sc.social.like.facebook'
-        self.tile.id = u'test'
+        self.tile.__name__ = 'sc.social.like.facebook'
+        self.tile.id = 'test'
 
     def _set_record(self, name, value):
         from sc.social.like.interfaces import ISocialLikeSettings
@@ -76,7 +76,7 @@ class FacebookTileTestCase(TestTileMixin, unittest.TestCase):
         self.assertEqual(self.tile.get_data, expected)
 
     def test_render_empty(self):
-        msg = u'you must define a Facebook application ID'
+        msg = 'you must define a Facebook application ID'
 
         self.tile.is_compose_mode = Mock(return_value=True)
         self.assertIn(msg, self.tile())
@@ -87,4 +87,4 @@ class FacebookTileTestCase(TestTileMixin, unittest.TestCase):
     def test_render_not_empty(self):
         self._set_record('facebook_app_id', 'dummy')
         rendered = self.tile()
-        self.assertIn(u'<iframe src="//www.facebook.com/plugins', rendered)
+        self.assertIn('<iframe src="//www.facebook.com/plugins', rendered)

@@ -5,22 +5,13 @@ will display the Social Media widgets, replacing the
 """
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from sc.social.like import LikeMessageFactory as _
-from zope import schema
 from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
 class ISocialMedia(model.Schema):
     """Social Media behavior."""
-
-    # TODO: move field to "settings" fieldset
-    canonical_url = schema.URI(
-        title=_(u'Canonical URL'),
-        description=_(
-            u'help_canonical_url',
-            default=u'The canonical URL of the object that will be used as its permanent ID in the graph (<code>og:url</code>).',
-        ),
-        readonly=True,
-        required=False,
-    )
+    # The canonical URL behavior is already provided by Plone 6 core.
+    # This interface is left for backwards compatibility, and for
+    # the future plans to use it as marking which objects are to be
+    # social-media'd -- as described somewhere else in the code.

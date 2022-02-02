@@ -5,30 +5,11 @@ from sc.social.like.testing import load_image
 from sc.social.like.tests.api_hacks import set_image_field
 from sc.social.like.tests.utils import get_random_string
 from sc.social.like.utils import get_content_image
-from sc.social.like.utils import validate_canonical_domain
 from sc.social.like.utils import validate_og_description
 from sc.social.like.utils import validate_og_lead_image
 from sc.social.like.utils import validate_og_title
-from zope.interface import Invalid
 
 import unittest
-
-
-class UtilsTestCase(unittest.TestCase):
-
-    def test_validate_canonical_domain_valid(self):
-        self.assertTrue(validate_canonical_domain('http://example.org'))
-        self.assertTrue(validate_canonical_domain('https://example.org'))
-
-    def test_validate_canonical_domain_invalid(self):
-        with self.assertRaises(Invalid):
-            validate_canonical_domain('https://example.org/foo?bar')
-        with self.assertRaises(Invalid):
-            validate_canonical_domain('http://example.org/')  # path
-        with self.assertRaises(Invalid):
-            validate_canonical_domain('https://example.org?foo')  # query
-        with self.assertRaises(Invalid):
-            validate_canonical_domain('https://example.org#bar')  # fragment
 
 
 class OGValidatorsTestCase(unittest.TestCase):
@@ -155,7 +136,7 @@ class OGValidatorsTestCase(unittest.TestCase):
 def load_tests(loader, tests, pattern):
     from sc.social.like.testing import HAS_DEXTERITY
 
-    test_cases = [UtilsTestCase]
+    test_cases = []
     if HAS_DEXTERITY:
         # load validation tests on Dexterity-based content types only
         test_cases.append(OGValidatorsTestCase)
