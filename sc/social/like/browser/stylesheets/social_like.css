@@ -65,8 +65,6 @@
 }
 #viewlet-social-like .whatsapp
 {
-    display: none;
-
     background-color: #199e0e;
     background-image: url(++resource++sl_images/ico-whatsapp.svg);
     background-position: 2px 2px;
@@ -76,10 +74,6 @@
 #viewlet-social-like .share-by-email:hover
 {
     color: #fff !important;
-}
-#viewlet-social-like .whatsapp.active
-{
-    display: inline-block;
 }
 #viewlet-social-like .telegram
 {
