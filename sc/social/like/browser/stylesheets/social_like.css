@@ -7,6 +7,7 @@
 {
     min-height: 3em;
     margin-top: 5px;
+    line-height: 20px;
 }
 
 #viewlet-social-like .twitter-count-horizontal
@@ -45,7 +46,7 @@
 
     white-space: nowrap;
 
-    color: #fff !important;
+    color: #fff;
     border: 0 !important;
     border-bottom: none !important;
     border-radius: 3px;
@@ -73,7 +74,7 @@
 #viewlet-social-like .telegram:hover,
 #viewlet-social-like .share-by-email:hover
 {
-    color: #fff !important;
+    color: #fff;
 }
 #viewlet-social-like .telegram
 {
